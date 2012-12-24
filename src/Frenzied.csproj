@@ -130,6 +130,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Assets\AssetManager.cs" />
     <Compile Include="Core\GamePlay\BlockContainer.cs" />
     <Compile Include="Core\Input\InputState.cs" />
     <Compile Include="Core\Screen\GameScreen.cs" />

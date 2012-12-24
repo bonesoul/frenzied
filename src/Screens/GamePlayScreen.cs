@@ -3,6 +3,7 @@ using Frenzied.Core.GamePlay;
 using Frenzied.Core.Screen;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Frenzied.Screens
 {
@@ -16,26 +17,48 @@ namespace Frenzied.Screens
 
     public class GamePlayScreen : GameScreen
     {
-        private Dictionary<Color, Texture2D> _blockTextures=new Dictionary<Color, Texture2D>();
-
         private Dictionary<BlockContainerPosition, BlockContainer> _blockContainers = new Dictionary<BlockContainerPosition, BlockContainer>();
 
-        public GamePlayScreen()
+        public GamePlayScreen(Game game) 
+            : base(game)
         {            
         }
 
         public override void LoadContent()
         {
-            this._blockContainers.Add(BlockContainerPosition.top, new BlockContainer(ScreenManager.Instance.Game, new Vector2(ScreenManager.Instance.GraphicsDevice.Viewport.Bounds.Width / 2 - BlockContainer.Size.X/2, ScreenManager.Game.GraphicsDevice.Viewport.Bounds.Height/2 - BlockContainer.Size.Y)));
-            this._blockContainers.Add(BlockContainerPosition.bottom, new BlockContainer(ScreenManager.Instance.Game, new Vector2(ScreenManager.Instance.GraphicsDevice.Viewport.Bounds.Width / 2 - BlockContainer.Size.X/2, ScreenManager.Game.GraphicsDevice.Viewport.Bounds.Height / 2 + BlockContainer.Size.Y/2)));
-            this._blockContainers.Add(BlockContainerPosition.left, new BlockContainer(ScreenManager.Instance.Game, new Vector2(ScreenManager.Instance.GraphicsDevice.Viewport.Bounds.Width / 2 - BlockContainer.Size.X, ScreenManager.Game.GraphicsDevice.Viewport.Bounds.Height / 2 - BlockContainer.Size.Y/2)));
-            this._blockContainers.Add(BlockContainerPosition.right, new BlockContainer(ScreenManager.Instance.Game, new Vector2(ScreenManager.Instance.GraphicsDevice.Viewport.Bounds.Width / 2 + BlockContainer.Size.X, ScreenManager.Game.GraphicsDevice.Viewport.Bounds.Height / 2 - BlockContainer.Size.Y / 2)));
+            var midScreenX = this.Game.GraphicsDevice.Viewport.Bounds.Width/2;
+            var midScreenY = this.Game.GraphicsDevice.Viewport.Bounds.Height/2;
 
-            this._blockTextures[Color.Orange] = ScreenManager.Game.Content.Load<Texture2D>(@"Textures/Blocks/OrangeBlock");
-            this._blockTextures[Color.Purple] = ScreenManager.Game.Content.Load<Texture2D>(@"Textures/Blocks/PurpleBlock");
-            this._blockTextures[Color.Green] = ScreenManager.Game.Content.Load<Texture2D>(@"Textures/Blocks/GreenBlock");            
+
+            // load block containers
+            var offset = 100;
+
+            this._blockContainers.Add(BlockContainerPosition.top,
+                                      new BlockContainer(this.Game, new Vector2(midScreenX - BlockContainer.Size.X/2, midScreenY - BlockContainer.Size.Y - offset)));
+            this._blockContainers.Add(BlockContainerPosition.left,
+                                      new BlockContainer(this.Game, new Vector2(midScreenX - BlockContainer.Size.X - offset, midScreenY-offset)));
+            this._blockContainers.Add(BlockContainerPosition.right,
+                                      new BlockContainer(this.Game, new Vector2(midScreenX + offset, midScreenY-offset)));
+            this._blockContainers.Add(BlockContainerPosition.bottom,
+                                      new BlockContainer(this.Game, new Vector2(midScreenX - BlockContainer.Size.X/2,midScreenY + BlockContainer.Size.Y - offset)));
 
             base.LoadContent();
+        }
+
+        public override void HandleInput(Core.Input.InputState input)
+        {
+            if (input.CurrentMouseState.LeftButton== ButtonState.Pressed && input.LastMouseState.LeftButton== ButtonState.Released)
+            {
+                var mouseState = input.CurrentMouseState;
+                foreach (var container in this._blockContainers)
+                {
+                    if (container.Value.Bounds.Contains(mouseState.X, mouseState.Y))
+                    {
+                        container.Value.AddBlock(BlockPosition.topleft, Block.green);
+                        break;
+                    }
+                }
+            }
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)

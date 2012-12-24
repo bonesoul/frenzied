@@ -158,6 +158,13 @@ namespace Frenzied.Core.Screen
         #region Initialization
 
 
+        public Game Game { get; protected set; }
+
+        public GameScreen(Game game)
+        {
+            this.Game = game;
+        }
+
         /// <summary>
         /// Load graphics content for the screen.
         /// </summary>

@@ -5,15 +5,15 @@ namespace Frenzied.Core.Input
 {
     public class InputState
     {
-        #region Fields
-
         public const int MaxInputs = 4;
 
         public readonly KeyboardState[] CurrentKeyboardStates;
         public readonly GamePadState[] CurrentGamePadStates;
+        public MouseState CurrentMouseState;
 
         public readonly KeyboardState[] LastKeyboardStates;
         public readonly GamePadState[] LastGamePadStates;
+        public MouseState LastMouseState;
 
         /// <summary>
         /// Constructs a new input state.
@@ -26,12 +26,6 @@ namespace Frenzied.Core.Input
             LastKeyboardStates = new KeyboardState[MaxInputs];
             LastGamePadStates = new GamePadState[MaxInputs];
         }
-
-
-        #endregion
-
-        #region Properties
-
 
         /// <summary>
         /// Checks for a "menu up" input action, from any player,
@@ -108,33 +102,23 @@ namespace Frenzied.Core.Input
             }
         }
 
-
-        #endregion
-
-        #region Methods
-
-
         /// <summary>
         /// Reads the latest state of the keyboard and gamepad.
         /// </summary>
         public void Update()
         {
+            LastMouseState = CurrentMouseState;
+            CurrentMouseState = Mouse.GetState();
+
+            // get keyboard and gamepad states for all user.
             for (int i = 0; i < MaxInputs; i++)
             {
                 LastKeyboardStates[i] = CurrentKeyboardStates[i];
                 LastGamePadStates[i] = CurrentGamePadStates[i];
 
                 CurrentKeyboardStates[i] = Keyboard.GetState((PlayerIndex)i);
-                CurrentGamePadStates[i] = GamePad.GetState((PlayerIndex)i);
+                CurrentGamePadStates[i] = GamePad.GetState((PlayerIndex)i);                
             }
-#if ANDROID	|| PSM		
-			CurrentTouchState = TouchPanel.GetState();
-			Gestures.Clear();
-			while(TouchPanel.IsGestureAvailable)
-			{
-				Gestures.Add(TouchPanel.ReadGesture());
-			}
-#endif
         }
 
 
@@ -213,8 +197,5 @@ namespace Frenzied.Core.Input
                    IsNewButtonPress(Buttons.B, playerIndex) ||
                    IsNewButtonPress(Buttons.Back, playerIndex);
         }
-
-
-        #endregion
     }
 }

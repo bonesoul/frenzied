@@ -1,4 +1,5 @@
-﻿using Frenzied.Core.Screen;
+﻿using Frenzied.Core.Assets;
+using Frenzied.Core.Screen;
 using Frenzied.Screens;
 using Microsoft.Xna.Framework;
 
@@ -11,16 +12,12 @@ namespace Frenzied
     {
         GraphicsDeviceManager _graphics;
 
-        private readonly ScreenManager _screenManager;
+        private ScreenManager _screenManager;
 
         public FrenziedGame()
         {
             _graphics = new GraphicsDeviceManager(this);
-            Content.RootDirectory = "Content";
-
-            // create the screen manager
-            this._screenManager = new ScreenManager(this);
-            Components.Add(_screenManager);
+            Content.RootDirectory = "Content";         
         }
 
         /// <summary>
@@ -33,9 +30,17 @@ namespace Frenzied
         {
             this.IsMouseVisible = true;
 
+            // init the asset manager.
+            var assetManager = new AssetManager(this);
+            this.Components.Add(assetManager);
+
+            // create the screen manager
+            this._screenManager = new ScreenManager(this);
+            Components.Add(_screenManager);
+
             // add the background screen to the screen manager
-            this._screenManager.AddScreen(new BackgroundScreen());
-            this._screenManager.AddScreen(new GamePlayScreen());
+            this._screenManager.AddScreen(new BackgroundScreen(this));
+            this._screenManager.AddScreen(new GamePlayScreen(this));
 
             base.Initialize();
         }
