@@ -160,7 +160,7 @@
     <Content Include="Assets\StoreLogo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Graphics\" />
+    <Folder Include="Core\Graphics\" />
     <Folder Include="Utils\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">

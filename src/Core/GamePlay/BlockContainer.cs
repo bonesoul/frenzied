@@ -27,6 +27,8 @@ namespace Frenzied.Core.GamePlay
     {
         public static Vector2 Size = new Vector2(205, 205);
 
+        private static int _offset = 5;
+
         public Vector2 Position { get; private set; }
         public Rectangle Bounds { get; private set; }
 
@@ -90,7 +92,10 @@ namespace Frenzied.Core.GamePlay
                         break;
                 }
 
-                var bounds = new Rectangle((int)@pos.X, (int)@pos.Y, 50, 50);
+                @pos.X += _offset;
+                @pos.Y += _offset;
+
+                var bounds = new Rectangle((int)@pos.X, (int)@pos.Y, 100, 100);
 
                 if(pair.Value==Block.empty)
                     continue;
