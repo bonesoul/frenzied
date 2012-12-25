@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Frenzied.Core.GamePlay;
 using Frenzied.Core.Screen;
 using Microsoft.Xna.Framework;
@@ -18,6 +19,7 @@ namespace Frenzied.Screens
     public class GamePlayScreen : GameScreen
     {
         private Dictionary<BlockContainerPosition, BlockContainer> _blockContainers = new Dictionary<BlockContainerPosition, BlockContainer>();
+        private BlockGenerator _blockGenerator;
 
         public GamePlayScreen(Game game) 
             : base(game)
@@ -42,6 +44,10 @@ namespace Frenzied.Screens
             this._blockContainers.Add(BlockContainerPosition.bottom,
                                       new BlockContainer(this.Game, new Vector2(midScreenX - BlockContainer.Size.X/2,midScreenY + BlockContainer.Size.Y - offset)));
 
+            this._blockGenerator = new BlockGenerator(this.Game, new Vector2(midScreenX - BlockContainer.Size.X/2,
+                                                                  midScreenY + BlockContainer.Size.Y - offset));
+
+
             base.LoadContent();
         }
 
@@ -50,11 +56,17 @@ namespace Frenzied.Screens
             if (input.CurrentMouseState.LeftButton== ButtonState.Pressed && input.LastMouseState.LeftButton== ButtonState.Released)
             {
                 var mouseState = input.CurrentMouseState;
-                foreach (var container in this._blockContainers)
+                foreach (var pair in this._blockContainers)
                 {
-                    if (container.Value.Bounds.Contains(mouseState.X, mouseState.Y))
+                    var container = pair.Value;
+                    if (container.Bounds.Contains(mouseState.X, mouseState.Y))
                     {
-                        container.Value.AddBlock(BlockPosition.topleft, Block.green);
+                        if (this._blockGenerator.IsEmpty)
+                            continue;
+
+                        var block = this._blockGenerator.UseCurrentBlock();
+                        container.AddBlock(block);
+
                         break;
                     }
                 }
@@ -63,6 +75,8 @@ namespace Frenzied.Screens
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
+            this._blockGenerator.Update(gameTime);
+
             foreach (var pair in this._blockContainers)
             {
                 pair.Value.Update(gameTime);

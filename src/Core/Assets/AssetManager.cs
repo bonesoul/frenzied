@@ -57,15 +57,15 @@ namespace Frenzied.Core.Assets
 
         public Texture2D GetBlockTexture(Block block)
         {
-            switch (block)
+            switch (block.Color)
             {
-                case Block.orange:
+                case BlockColor.orange:
                     return this.BlockTextures[Color.Orange];
                     break;
-                case Block.purple:
+                case BlockColor.purple:
                     return this.BlockTextures[Color.Purple];
                     break;
-                case Block.green:
+                case BlockColor.green:
                     return this.BlockTextures[Color.Green];
                     break;
                 default:

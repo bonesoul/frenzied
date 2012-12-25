@@ -7,101 +7,60 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Frenzied.Core.GamePlay
 {
-    public enum BlockPosition
-    {
-        topleft,
-        topright,
-        bottomleft,
-        bottomright
-    }
-
-    public enum Block
-    {
-        empty,
-        orange,
-        purple,
-        green
-    }
-
     public class BlockContainer : DrawableGameComponent
     {
-        public static Vector2 Size = new Vector2(205, 205);
+        public static Vector2 Size = new Vector2(210, 210);
 
-        private static int _offset = 5;
+        private Dictionary<BlockLocation, Block> _blocks = new Dictionary<BlockLocation, Block>();
 
-        public Vector2 Position { get; private set; }
-        public Rectangle Bounds { get; private set; }
-
-        private Dictionary<BlockPosition, Block> _blocks = new Dictionary<BlockPosition, Block>();  
+        public Vector2 Position { get; protected set; }
+        public Rectangle Bounds { get; protected set; }
 
         public BlockContainer(Game game, Vector2 position)
             : base(game)
         {
             this.Position = position;
-            this.Bounds = new Rectangle((int)position.X, (int)position.Y, (int)position.X + (int)Size.X, (int)position.Y + (int)Size.Y);
+            this.Bounds = new Rectangle((int)position.X, (int)position.Y, (int)Size.X, (int)Size.Y);
 
-            this._blocks[BlockPosition.topleft] =  Block.empty;
-            this._blocks[BlockPosition.topright] = Block.empty;
-            this._blocks[BlockPosition.topright] = Block.empty;
-            this._blocks[BlockPosition.bottomright] = Block.empty;
+            this._blocks[BlockLocation.topleft] = new Block(BlockLocation.topleft);
+            this._blocks[BlockLocation.topright] = new Block(BlockLocation.topright);
+            this._blocks[BlockLocation.bottomleft] = new Block(BlockLocation.bottomleft);
+            this._blocks[BlockLocation.bottomright] = new Block(BlockLocation.bottomright);
         }
 
-        public void AddBlock(BlockPosition position, Block block)
+        public bool IsEmpty(BlockLocation position)
         {
-            if (block == Block.empty) // users can't empty blocks!
+            return this._blocks[position].IsEmpty;
+        }
+
+        public void AddBlock(Block block)
+        {
+            if (block.IsEmpty) // users can't empty blocks!
                 return;
 
-            this._blocks[position] = block;
-        }
+            if (!this._blocks[block.Location].IsEmpty)
+                return;
 
-        protected override void LoadContent()
-        {
-            base.LoadContent();
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
+            this._blocks[block.Location] = block;
+            block.AttachTo(this);
         }
 
         public override void Draw(GameTime gameTime)
         {
             ScreenManager.Instance.SpriteBatch.Begin();
             ScreenManager.Instance.SpriteBatch.Draw(AssetManager.Instance.BlockContainerTexture,
-                                                    new Rectangle((Int32)this.Position.X, (Int32)this.Position.Y, 205, 205),
+                                                    this.Bounds,
                                                     Color.White);
 
             foreach (var pair in this._blocks)
             {
-                Vector2 @pos = new Vector2();
-                switch (pair.Key)
-                {
-                    case BlockPosition.topleft:
-                        @pos = this.Position;
-                        break;
-                    case BlockPosition.topright:
-                        @pos = new Vector2(this.Position.X + 50, this.Position.Y);
-                        break;
-                    case BlockPosition.bottomleft:
-                        @pos=new Vector2(this.Position.X,this.Position.Y);
-                        break;
-                    case BlockPosition.bottomright:
-                        @pos = new Vector2(this.Position.X + 50, this.Position.Y + 50);
-                        break;
-                    default:
-                        break;
-                }
+                var block = pair.Value;
 
-                @pos.X += _offset;
-                @pos.Y += _offset;
-
-                var bounds = new Rectangle((int)@pos.X, (int)@pos.Y, 100, 100);
-
-                if(pair.Value==Block.empty)
+                if(block.IsEmpty)
                     continue;
 
                 var texture = AssetManager.Instance.GetBlockTexture(pair.Value);
-                ScreenManager.Instance.SpriteBatch.Draw(texture, bounds, Color.White);
+                ScreenManager.Instance.SpriteBatch.Draw(texture, block.Bounds, Color.White);
             }
 
             ScreenManager.Instance.SpriteBatch.End();   
