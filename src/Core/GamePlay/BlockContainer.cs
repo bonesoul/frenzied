@@ -22,16 +22,33 @@ namespace Frenzied.Core.GamePlay
             this.Position = position;
             this.Bounds = new Rectangle((int)position.X, (int)position.Y, (int)Size.X, (int)Size.Y);
 
-            this._blocks[BlockLocation.topleft] = new Block(BlockLocation.topleft);
-            this._blocks[BlockLocation.topright] = new Block(BlockLocation.topright);
-            this._blocks[BlockLocation.bottomleft] = new Block(BlockLocation.bottomleft);
-            this._blocks[BlockLocation.bottomright] = new Block(BlockLocation.bottomright);
+            this._blocks[BlockLocation.topleft] = new Block(BlockLocation.none);
+            this._blocks[BlockLocation.topright] = new Block(BlockLocation.none);
+            this._blocks[BlockLocation.bottomleft] = new Block(BlockLocation.none);
+            this._blocks[BlockLocation.bottomright] = new Block(BlockLocation.none);
         }
 
         public bool IsEmpty(BlockLocation position)
         {
             return this._blocks[position].IsEmpty;
         }
+
+        public bool IsFull()
+        {
+            return !this.IsEmpty(BlockLocation.topleft) && !this.IsEmpty(BlockLocation.topright) && !this.IsEmpty(BlockLocation.bottomleft) && !this.IsEmpty(BlockLocation.bottomright);
+        }
+
+        private void Explode()
+        {
+            if (!this.IsFull())
+                return;
+
+            this._blocks[BlockLocation.topleft] = new Block(BlockLocation.none);
+            this._blocks[BlockLocation.topright] = new Block(BlockLocation.none);
+            this._blocks[BlockLocation.bottomleft] = new Block(BlockLocation.none);
+            this._blocks[BlockLocation.bottomright] = new Block(BlockLocation.none);
+        }
+
 
         public void AddBlock(Block block)
         {
@@ -43,6 +60,12 @@ namespace Frenzied.Core.GamePlay
 
             this._blocks[block.Location] = block;
             block.AttachTo(this);
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            if(this.IsFull())
+                this.Explode();
         }
 
         public override void Draw(GameTime gameTime)
@@ -59,7 +82,7 @@ namespace Frenzied.Core.GamePlay
                 if(block.IsEmpty)
                     continue;
 
-                var texture = AssetManager.Instance.GetBlockTexture(pair.Value);
+                var texture = AssetManager.Instance.GetBlockTexture(block);
                 ScreenManager.Instance.SpriteBatch.Draw(texture, block.Bounds, Color.White);
             }
 

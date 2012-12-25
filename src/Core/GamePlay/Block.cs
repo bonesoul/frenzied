@@ -9,6 +9,7 @@ namespace Frenzied.Core.GamePlay
 {
     public enum BlockColor
     {
+        none,
         orange,
         purple,
         green
@@ -16,6 +17,7 @@ namespace Frenzied.Core.GamePlay
 
     public enum BlockLocation
     {
+        none,
         topleft,
         topright,
         bottomleft,
@@ -24,7 +26,7 @@ namespace Frenzied.Core.GamePlay
 
     public class Block
     {
-        private const int PositionOffset = 5;
+        public const int PositionOffset = 5;
 
         public static Vector2 Size = new Vector2(100, 100);
 

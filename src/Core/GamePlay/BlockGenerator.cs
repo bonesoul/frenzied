@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Frenzied.Core.Assets;
+using Frenzied.Core.Screen;
 using Microsoft.Xna.Framework;
 
 namespace Frenzied.Core.GamePlay
@@ -17,11 +19,14 @@ namespace Frenzied.Core.GamePlay
 
         private readonly Random _randomizer = new Random(Environment.TickCount);
 
-        public BlockGenerator(Game game, Vector2 position)
+        private List<BlockContainer> _containers; 
+
+        public BlockGenerator(Game game, Vector2 position, List<BlockContainer> containers)
             : base(game)
         {
             this.Position = position;
             this.Bounds = new Rectangle((int)position.X, (int)position.Y, (int)Size.X, (int)Size.Y);
+            this._containers = containers;
             this.CurretBlock = null;
         }
 
@@ -38,23 +43,82 @@ namespace Frenzied.Core.GamePlay
             base.Update(gameTime);
         }
 
-        public Block UseCurrentBlock()
+        public void Generate()
         {
-            var block = this.CurretBlock;
-            this.Generate();
-            return block;
+            var color = _randomizer.Next(1,3);
+            var availableLocations = this.GetAvailableLocations();
+            if (availableLocations.Count == 0)
+                return;
+
+            var locationIndex = _randomizer.Next(availableLocations.Count);
+            var location = availableLocations[locationIndex];
+
+            this.CurretBlock = new Block((BlockLocation)location, (BlockColor)color);
         }
 
-        private void Generate()
+        private List<BlockLocation> GetAvailableLocations()
         {
-            var location = _randomizer.Next(4);
-            var color = _randomizer.Next(3);
-            this.CurretBlock = new Block((BlockLocation)location, (BlockColor)color);
+            var availableLocations=new List<BlockLocation>();
+
+            foreach (var container in this._containers)
+            {
+                if (container.IsEmpty(BlockLocation.topleft) && !availableLocations.Contains(BlockLocation.topleft))
+                        availableLocations.Add(BlockLocation.topleft);
+                else if (container.IsEmpty(BlockLocation.topright) && !availableLocations.Contains(BlockLocation.topright))
+                    availableLocations.Add(BlockLocation.topright);
+                else if (container.IsEmpty(BlockLocation.bottomleft) && !availableLocations.Contains(BlockLocation.bottomleft))
+                    availableLocations.Add(BlockLocation.bottomleft);
+                else if (container.IsEmpty(BlockLocation.bottomright) && !availableLocations.Contains(BlockLocation.bottomright))
+                    availableLocations.Add(BlockLocation.bottomright);
+            }
+
+            return availableLocations;
         }
 
         protected override void LoadContent()
         {
             base.LoadContent();
+        }
+
+        public override void Draw(GameTime gameTime)
+        {
+            if (this.IsEmpty)
+                return;
+
+            ScreenManager.Instance.SpriteBatch.Begin();
+
+            var texture = AssetManager.Instance.GetBlockTexture(this.CurretBlock);
+
+
+            Rectangle blockRectangle=new Rectangle();
+            switch (this.CurretBlock.Location)
+            {
+                case BlockLocation.topleft:
+                    blockRectangle = new Rectangle(this.Bounds.X + Block.PositionOffset,
+                                                this.Bounds.Y + Block.PositionOffset, (int)Block.Size.X, (int)Block.Size.Y);
+                    break;
+                case BlockLocation.topright:
+                    blockRectangle = new Rectangle(this.Bounds.X + (int)Block.Size.X + Block.PositionOffset,
+                                                this.Bounds.Y + Block.PositionOffset, (int)Block.Size.X, (int)Block.Size.Y);
+                    break;
+                case BlockLocation.bottomleft:
+                    blockRectangle = new Rectangle(this.Bounds.X + Block.PositionOffset,
+                                                this.Bounds.Y + (int)Block.Size.Y + Block.PositionOffset, (int)Block.Size.X, (int)Block.Size.Y);
+                    break;
+                case BlockLocation.bottomright:
+                    blockRectangle = new Rectangle(this.Bounds.X + (int)Block.Size.X + Block.PositionOffset,
+                                                this.Bounds.Y + (int)Block.Size.Y + Block.PositionOffset, (int)Block.Size.X, (int)Block.Size.Y);
+                    break;
+                default:
+                    break;
+            }
+
+            ScreenManager.Instance.SpriteBatch.Draw(texture, blockRectangle, Color.White);
+                
+
+            ScreenManager.Instance.SpriteBatch.End();   
+            
+            base.Draw(gameTime);
         }
     }
 }
