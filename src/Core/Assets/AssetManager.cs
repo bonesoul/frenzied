@@ -7,6 +7,7 @@ using Frenzied.Core.GamePlay;
 using Frenzied.Core.Screen;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 
 namespace Frenzied.Core.Assets
 {
@@ -45,7 +46,7 @@ namespace Frenzied.Core.Assets
         }
 
         public void LoadContent()
-        {
+        {            
             this.BlockContainerTexture = Game.Content.Load<Texture2D>(@"Textures/BlockContainer");
             this.BackgroundTexture = Game.Content.Load<Texture2D>(@"Textures/Background");
 

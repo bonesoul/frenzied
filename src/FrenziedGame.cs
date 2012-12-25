@@ -1,4 +1,5 @@
 ﻿using Frenzied.Core.Assets;
+using Frenzied.Core.Audio;
 using Frenzied.Core.Screen;
 using Frenzied.Screens;
 using Microsoft.Xna.Framework;
@@ -33,6 +34,10 @@ namespace Frenzied
             // init the asset manager.
             var assetManager = new AssetManager(this);
             this.Components.Add(assetManager);
+
+            // init the audio manager.
+            var audioManager = new AudioManager(this);
+            this.Components.Add(audioManager);
 
             // create the screen manager
             this._screenManager = new ScreenManager(this);
