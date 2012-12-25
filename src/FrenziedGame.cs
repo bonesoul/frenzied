@@ -1,6 +1,9 @@
 ﻿using Frenzied.Core.Assets;
 using Frenzied.Core.Audio;
+using Frenzied.Core.Graphics;
 using Frenzied.Core.Screen;
+using Frenzied.Debugging.Stats.VoxeliqStudios.Voxeliq.Debugging;
+using Frenzied.Debugging.VoxeliqStudios.Voxeliq.Debugging;
 using Frenzied.Screens;
 using Microsoft.Xna.Framework;
 
@@ -11,13 +14,16 @@ namespace Frenzied
     /// </summary>
     public class FrenziedGame : Game
     {
-        GraphicsDeviceManager _graphics;
+        /// <summary>
+        /// Graphics device manager.
+        /// </summary>
+        GraphicsDeviceManager _graphicsDeviceManager;
 
         private ScreenManager _screenManager;
 
         public FrenziedGame()
         {
-            _graphics = new GraphicsDeviceManager(this);
+            _graphicsDeviceManager = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";         
         }
 
@@ -35,9 +41,8 @@ namespace Frenzied
             var assetManager = new AssetManager(this);
             this.Components.Add(assetManager);
 
-            // init the audio manager.
-            var audioManager = new AudioManager(this);
-            this.Components.Add(audioManager);
+            var graphicsManager = new GraphicsManager(this._graphicsDeviceManager, this); // start the screen manager.
+            graphicsManager.ToggleVerticalSync();
 
             // create the screen manager
             this._screenManager = new ScreenManager(this);
@@ -46,6 +51,14 @@ namespace Frenzied
             // add the background screen to the screen manager
             this._screenManager.AddScreen(new BackgroundScreen(this));
             this._screenManager.AddScreen(new GamePlayScreen(this));
+
+            // add debug components
+            this.Components.Add(new Statistics(this));
+            this.Components.Add(new StatisticsGraphs(this));
+
+            // init the audio manager.
+            var audioManager = new AudioManager(this);
+            this.Components.Add(audioManager);
 
             base.Initialize();
         }
