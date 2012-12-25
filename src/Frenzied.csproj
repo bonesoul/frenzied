@@ -118,10 +118,11 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="Content\Music\The_resilient_sheep.xnb" />
     <None Include="Frenzied_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Music\The_resilient_sheep.mp3" />
+    <Content Include="Content\Music\The_resilient_sheep.wma" />
     <Content Include="Content\Textures\Background.png" />
     <Content Include="Content\Textures\Blank.png" />
     <Content Include="Content\Textures\Blocks\GreenBlock.png" />
