@@ -107,6 +107,7 @@
     <Compile Include="Core\GamePlay\BlockGenerator.cs" />
     <Compile Include="Core\Graphics\Drawing\PrimitiveBatch.cs" />
     <Compile Include="Core\Graphics\GraphicsManager.cs" />
+    <Compile Include="Core\Input\Cursor.cs" />
     <Compile Include="Core\Input\InputState.cs" />
     <Compile Include="Core\Screen\GameScreen.cs" />
     <Compile Include="Core\Screen\ScreenManager.cs" />
@@ -135,6 +136,7 @@
     <Content Include="Content\Music\The_resilient_sheep.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Textures\cursor.png" />
     <None Include="Content\Fonts\calibri.xnb" />
     <None Include="Content\Fonts\CalibriDebug.xnb" />
     <None Include="Content\Fonts\calibrismall.xnb" />

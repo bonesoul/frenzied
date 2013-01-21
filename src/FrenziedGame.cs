@@ -1,11 +1,14 @@
 ﻿using Frenzied.Core.Assets;
 using Frenzied.Core.Audio;
 using Frenzied.Core.Graphics;
+using Frenzied.Core.Input;
 using Frenzied.Core.Screen;
 using Frenzied.Debugging.Stats.VoxeliqStudios.Voxeliq.Debugging;
 using Frenzied.Debugging.VoxeliqStudios.Voxeliq.Debugging;
 using Frenzied.Screens;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Frenzied
 {
@@ -60,6 +63,9 @@ namespace Frenzied
             var audioManager = new AudioManager(this);
             this.Components.Add(audioManager);
 
+            var cursor = new Cursor(this);
+            this.Components.Add(cursor);
+
             base.Initialize();
         }
 
@@ -69,6 +75,7 @@ namespace Frenzied
         /// </summary>
         protected override void LoadContent()
         {
+            base.LoadContent();
         }
 
         /// <summary>
@@ -87,8 +94,6 @@ namespace Frenzied
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // TODO: Add your update logic here
-
             base.Update(gameTime);
         }
 
