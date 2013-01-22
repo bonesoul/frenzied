@@ -100,19 +100,24 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Common\Extensions\NumberExtensions.cs" />
     <Compile Include="Core\Assets\AssetManager.cs" />
     <Compile Include="Core\Audio\AudioManager.cs" />
     <Compile Include="Core\GamePlay\Block.cs" />
     <Compile Include="Core\GamePlay\BlockContainer.cs" />
     <Compile Include="Core\GamePlay\BlockGenerator.cs" />
+    <Compile Include="Core\Graphics\Drawing\BasicShapes.cs" />
     <Compile Include="Core\Graphics\Drawing\PrimitiveBatch.cs" />
     <Compile Include="Core\Graphics\GraphicsManager.cs" />
     <Compile Include="Core\Input\Cursor.cs" />
     <Compile Include="Core\Input\InputState.cs" />
     <Compile Include="Core\Screen\GameScreen.cs" />
     <Compile Include="Core\Screen\ScreenManager.cs" />
-    <Compile Include="Debugging\Stats\StatsGraph.cs" />
-    <Compile Include="Debugging\Stats\Statistics.cs" />
+    <Compile Include="Debugging\Graphs\DebugGraph.cs" />
+    <Compile Include="Debugging\Graphs\GraphManager.cs" />
+    <Compile Include="Debugging\Graphs\Implementations\FPSGraph.cs" />
+    <Compile Include="Debugging\Graphs\Implementations\MemGraph.cs" />
+    <Compile Include="Debugging\Statistics.cs" />
     <Compile Include="Extensions\StringBuilderExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="FrenziedGame.cs" />
@@ -150,6 +155,14 @@
     </Content>
     <Content Include="..\Content\Fonts\calibrismall.xnb">
       <Link>Content\Fonts\calibrismall.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Content\Fonts\Verdana.spritefont">
+      <Link>Content\Fonts\Verdana.spritefont</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Content\Fonts\Verdana.xnb">
+      <Link>Content\Fonts\Verdana.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Frenzied_TemporaryKey.pfx" />
@@ -192,9 +205,7 @@
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Utils\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
       <HintPath>..\..\dep\monogame\windows8\MonoGame.Framework.dll</HintPath>

@@ -1,14 +1,19 @@
-﻿using Frenzied.Core.Assets;
+﻿/*
+ * Frenzied Game, Copyright (C) 2012 - 2013 Int6 Studios - All Rights Reserved. - http://www.int6.org
+ *
+ * This file is part of Frenzied Game project. Unauthorized copying of this file, via any medium is strictly prohibited.
+ * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
+ */
+
+using Frenzied.Core.Assets;
 using Frenzied.Core.Audio;
 using Frenzied.Core.Graphics;
 using Frenzied.Core.Input;
 using Frenzied.Core.Screen;
-using Frenzied.Debugging.Stats.VoxeliqStudios.Voxeliq.Debugging;
-using Frenzied.Debugging.VoxeliqStudios.Voxeliq.Debugging;
+using Frenzied.Debugging;
+using Frenzied.Debugging.Graphs;
 using Frenzied.Screens;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
 namespace Frenzied
 {
@@ -57,7 +62,7 @@ namespace Frenzied
 
             // add debug components
             this.Components.Add(new Statistics(this));
-            this.Components.Add(new StatisticsGraphs(this));
+            this.Components.Add(new GraphManager(this));
 
             // init the audio manager.
             var audioManager = new AudioManager(this);
