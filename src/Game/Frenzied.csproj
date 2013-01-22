@@ -124,55 +124,67 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="..\..\bin\debug\content\Content\Fonts\calibri.xnb">
-      <Link>Content\Fonts\calibri.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\bin\debug\content\Content\Fonts\CalibriDebug.xnb">
-      <Link>Content\Fonts\CalibriDebug.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\bin\debug\content\Content\Fonts\calibrismall.xnb">
-      <Link>Content\Fonts\calibrismall.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\bin\debug\content\Content\Music\The_resilient_sheep.xnb">
+    <Content Include="..\..\bin\debug\content\Content\Music\The_resilient_sheep.xnb">
       <Link>Content\Music\The_resilient_sheep.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\bin\debug\content\Content\Textures\Background.xnb">
-      <Link>Content\Textures\Background.xnb</Link>
+    </Content>
+    <Content Include="..\Content\Fonts\calibri.spritefont">
+      <Link>Content\Fonts\calibri.spritefont</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\bin\debug\content\Content\Textures\Blank.xnb">
-      <Link>Content\Textures\Blank.xnb</Link>
+    </Content>
+    <Content Include="..\Content\Fonts\CalibriDebug.spritefont">
+      <Link>Content\Fonts\CalibriDebug.spritefont</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\bin\debug\content\Content\Textures\BlockContainer.xnb">
-      <Link>Content\Textures\BlockContainer.xnb</Link>
+    </Content>
+    <Content Include="..\Content\Fonts\calibrismall.spritefont">
+      <Link>Content\Fonts\calibrismall.spritefont</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\bin\debug\content\Content\Textures\Blocks\GreenBlock.xnb">
-      <Link>Content\Textures\Blocks\GreenBlock.xnb</Link>
+    </Content>
+    <Content Include="..\Content\Fonts\calibri.xnb">
+      <Link>Content\Fonts\calibri.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\bin\debug\content\Content\Textures\Blocks\OrangeBlock.xnb">
-      <Link>Content\Textures\Blocks\OrangeBlock.xnb</Link>
+    </Content>
+    <Content Include="..\Content\Fonts\CalibriDebug.xnb">
+      <Link>Content\Fonts\CalibriDebug.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\bin\debug\content\Content\Textures\Blocks\PurpleBlock.xnb">
-      <Link>Content\Textures\Blocks\PurpleBlock.xnb</Link>
+    </Content>
+    <Content Include="..\Content\Fonts\calibrismall.xnb">
+      <Link>Content\Fonts\calibrismall.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\bin\debug\content\Content\Textures\cursor.xnb">
-      <Link>Content\Textures\cursor.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
+    </Content>
     <None Include="Frenzied_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\bin\debug\content\Content\Music\The_resilient_sheep.wma">
       <Link>Content\Music\The_resilient_sheep.wma</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Content\Textures\Background.png">
+      <Link>Content\Textures\Background.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Content\Textures\Blank.png">
+      <Link>Content\Textures\Blank.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Content\Textures\BlockContainer.png">
+      <Link>Content\Textures\BlockContainer.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Content\Textures\Blocks\GreenBlock.png">
+      <Link>Content\Textures\Blocks\GreenBlock.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Content\Textures\Blocks\OrangeBlock.png">
+      <Link>Content\Textures\Blocks\OrangeBlock.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Content\Textures\Blocks\PurpleBlock.png">
+      <Link>Content\Textures\Blocks\PurpleBlock.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Content\Textures\cursor.png">
+      <Link>Content\Textures\cursor.png</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Logo.png" />
