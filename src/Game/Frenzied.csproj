@@ -19,7 +19,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\bin\debug\windows\monogame\metro\</OutputPath>
     <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -28,7 +28,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\..\bin\release\windows\monogame\metro\</OutputPath>
     <DefineConstants>TRACE;NETFX_CORE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -124,44 +124,67 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <Content Include="Content\Fonts\calibri.spritefont">
+    <Content Include="..\..\bin\debug\content\Content\Music\The_resilient_sheep.xnb">
+      <Link>Content\Music\The_resilient_sheep.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Fonts\CalibriDebug.spritefont">
+    <Content Include="..\Content\Fonts\calibri.spritefont">
+      <Link>Content\Fonts\calibri.spritefont</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Fonts\calibrismall.spritefont">
+    <Content Include="..\Content\Fonts\CalibriDebug.spritefont">
+      <Link>Content\Fonts\CalibriDebug.spritefont</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Music\The_resilient_sheep.xnb">
+    <Content Include="..\Content\Fonts\calibrismall.spritefont">
+      <Link>Content\Fonts\calibrismall.spritefont</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\cursor.png" />
-    <None Include="Content\Fonts\calibri.xnb" />
-    <None Include="Content\Fonts\CalibriDebug.xnb" />
-    <None Include="Content\Fonts\calibrismall.xnb" />
+    <Content Include="..\Content\Fonts\calibri.xnb">
+      <Link>Content\Fonts\calibri.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Content\Fonts\CalibriDebug.xnb">
+      <Link>Content\Fonts\CalibriDebug.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Content\Fonts\calibrismall.xnb">
+      <Link>Content\Fonts\calibrismall.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Frenzied_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Music\The_resilient_sheep.wma">
+    <Content Include="..\..\bin\debug\content\Content\Music\The_resilient_sheep.wma">
+      <Link>Content\Music\The_resilient_sheep.wma</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\Background.png">
+    <Content Include="..\Content\Textures\Background.png">
+      <Link>Content\Textures\Background.png</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\Blank.png">
+    <Content Include="..\Content\Textures\Blank.png">
+      <Link>Content\Textures\Blank.png</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\Blocks\GreenBlock.png">
+    <Content Include="..\Content\Textures\BlockContainer.png">
+      <Link>Content\Textures\BlockContainer.png</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\Blocks\OrangeBlock.png">
+    <Content Include="..\Content\Textures\Blocks\GreenBlock.png">
+      <Link>Content\Textures\Blocks\GreenBlock.png</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\Blocks\PurpleBlock.png">
+    <Content Include="..\Content\Textures\Blocks\OrangeBlock.png">
+      <Link>Content\Textures\Blocks\OrangeBlock.png</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Textures\BlockContainer.png">
+    <Content Include="..\Content\Textures\Blocks\PurpleBlock.png">
+      <Link>Content\Textures\Blocks\PurpleBlock.png</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Content\Textures\cursor.png">
+      <Link>Content\Textures\cursor.png</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Logo.png" />
@@ -173,37 +196,41 @@
     <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MonoGame.Framework.Windows8, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\MonoGame\MonoGame.Framework\bin\Release\MonoGame.Framework.Windows8.dll</HintPath>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>..\..\dep\monogame\windows8\MonoGame.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="SharpDX, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\MonoGame\MonoGame.Framework\bin\Release\SharpDX.dll</HintPath>
+    <Reference Include="SharpDX">
+      <HintPath>..\..\dep\monogame\windows8\SharpDX.dll</HintPath>
     </Reference>
-    <Reference Include="SharpDX.Direct2D1, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\MonoGame\MonoGame.Framework\bin\Release\SharpDX.Direct2D1.dll</HintPath>
+    <Reference Include="SharpDX.D3DCompiler">
+      <HintPath>..\..\dep\monogame\windows8\SharpDX.D3DCompiler.dll</HintPath>
     </Reference>
-    <Reference Include="SharpDX.Direct3D11, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\MonoGame\MonoGame.Framework\bin\Release\SharpDX.Direct3D11.dll</HintPath>
+    <Reference Include="SharpDX.Direct2D1">
+      <HintPath>..\..\dep\monogame\windows8\SharpDX.Direct2D1.dll</HintPath>
     </Reference>
-    <Reference Include="SharpDX.DXGI, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\MonoGame\MonoGame.Framework\bin\Release\SharpDX.DXGI.dll</HintPath>
+    <Reference Include="SharpDX.Direct3D11">
+      <HintPath>..\..\dep\monogame\windows8\SharpDX.Direct3D11.dll</HintPath>
     </Reference>
-    <Reference Include="SharpDX.MediaFoundation, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\MonoGame\MonoGame.Framework\bin\Release\SharpDX.MediaFoundation.dll</HintPath>
+    <Reference Include="SharpDX.DXGI">
+      <HintPath>..\..\dep\monogame\windows8\SharpDX.DXGI.dll</HintPath>
     </Reference>
-    <Reference Include="SharpDX.XAudio2, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\MonoGame\MonoGame.Framework\bin\Release\SharpDX.XAudio2.dll</HintPath>
+    <Reference Include="SharpDX.MediaFoundation">
+      <HintPath>..\..\dep\monogame\windows8\SharpDX.MediaFoundation.dll</HintPath>
     </Reference>
-    <Reference Include="SharpDX.XInput, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\MonoGame\MonoGame.Framework\bin\Release\SharpDX.XInput.dll</HintPath>
+    <Reference Include="SharpDX.Toolkit">
+      <HintPath>..\..\dep\monogame\windows8\SharpDX.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Toolkit.Game">
+      <HintPath>..\..\dep\monogame\windows8\SharpDX.Toolkit.Game.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Toolkit.Graphics">
+      <HintPath>..\..\dep\monogame\windows8\SharpDX.Toolkit.Graphics.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.XAudio2">
+      <HintPath>..\..\dep\monogame\windows8\SharpDX.XAudio2.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.XInput">
+      <HintPath>..\..\dep\monogame\windows8\SharpDX.XInput.dll</HintPath>
     </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">

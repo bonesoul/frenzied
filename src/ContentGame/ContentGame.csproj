@@ -38,7 +38,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\x86\Debug</OutputPath>
+    <OutputPath>..\..\bin\debug\content\</OutputPath>
     <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -50,7 +50,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\x86\Release</OutputPath>
+    <OutputPath>..\..\bin\release\content\</OutputPath>
     <DefineConstants>TRACE;WINDOWS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -83,7 +83,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FrenziedContent.contentproj">
+    <ProjectReference Include="..\Content\Content.contentproj">
       <Name>FrenziedContent %28Content%29</Name>
       <XnaReferenceType>Content</XnaReferenceType>
       <Project>{49796CBA-FA0E-4778-896D-65CBD54CB3F7}</Project>
