@@ -9,7 +9,7 @@ using System;
 using System.Globalization;
 using System.Text;
 
-namespace Frenzied.Extensions
+namespace Frenzied.Common.Extensions
 {
     /// <summary>
     /// Options for StringBuilder extension methods.

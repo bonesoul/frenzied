@@ -177,6 +177,7 @@ namespace Frenzied.Core.Screen
         /// </summary>
         public virtual void LoadContent() { }
 
+        public virtual void Initialize() { }
 
         /// <summary>
         /// Unload content for the screen.

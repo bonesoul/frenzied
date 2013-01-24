@@ -5,6 +5,7 @@
  * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
  */
 
+using System;
 using System.Collections.Generic;
 using Frenzied.Core.GamePlay;
 using Frenzied.Core.Screen;
@@ -15,12 +16,22 @@ namespace Frenzied.Screens
 {
     public class GamePlayScreen : GameScreen
     {
+        private IScoreManager _scoreManager;
         private List<BlockContainer> _blockContainers = new List<BlockContainer>();
         private BlockGenerator _blockGenerator;
 
         public GamePlayScreen(Game game) 
             : base(game)
         {            
+        }
+
+        public override void Initialize()
+        {
+            this._scoreManager = (IScoreManager)this.Game.Services.GetService(typeof(IScoreManager));
+            if (this._scoreManager == null)
+                throw new NullReferenceException("Can not find score manager component.");
+
+            base.Initialize();
         }
 
         public override void LoadContent()
@@ -45,25 +56,29 @@ namespace Frenzied.Screens
 
         public override void HandleInput(Core.Input.InputState input)
         {
-            if (input.CurrentMouseState.LeftButton== ButtonState.Pressed && input.LastMouseState.LeftButton== ButtonState.Released)
+            if (input.CurrentMouseState.LeftButton != ButtonState.Pressed || input.LastMouseState.LeftButton != ButtonState.Released) 
+                return;
+
+            var mouseState = input.CurrentMouseState;
+
+            foreach (var container in this._blockContainers)
             {
-                var mouseState = input.CurrentMouseState;
-                foreach (var container in this._blockContainers)
+                if (!container.Bounds.Contains(mouseState.X, mouseState.Y)) 
+                    continue;
+
+                if (this._blockGenerator.IsEmpty)
+                    continue;
+
+                if (!container.IsEmpty(this._blockGenerator.CurretBlock.Location))
                 {
-                    if (!container.Bounds.Contains(mouseState.X, mouseState.Y)) 
-                        continue;
-
-                    if (this._blockGenerator.IsEmpty)
-                        continue;
-
-                    if (! container.IsEmpty(this._blockGenerator.CurretBlock.Location))
-                        continue;
-
-                    container.AddBlock(this._blockGenerator.CurretBlock);
-                    this._blockGenerator.Generate();
-
-                    break;
+                    this._scoreManager.WrongMove();
+                    continue;
                 }
+
+                container.AddBlock(this._blockGenerator.CurretBlock);
+                this._blockGenerator.Generate();
+
+                break;
             }
         }
 

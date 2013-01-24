@@ -5,13 +5,14 @@
  * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
  */
 
+using Frenzied.Common.Debug;
+using Frenzied.Common.Debug.Graphs;
 using Frenzied.Core.Assets;
 using Frenzied.Core.Audio;
+using Frenzied.Core.GamePlay;
 using Frenzied.Core.Graphics;
 using Frenzied.Core.Input;
 using Frenzied.Core.Screen;
-using Frenzied.Debugging;
-using Frenzied.Debugging.Graphs;
 using Frenzied.Screens;
 using Microsoft.Xna.Framework;
 
@@ -55,6 +56,10 @@ namespace Frenzied
             // create the screen manager
             this._screenManager = new ScreenManager(this);
             Components.Add(_screenManager);
+
+            // create the score manager
+            var scoreManager = new ScoreManager(this);
+            this.Components.Add(scoreManager);
 
             // add the background screen to the screen manager
             this._screenManager.AddScreen(new BackgroundScreen(this));

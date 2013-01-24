@@ -64,11 +64,11 @@ namespace Frenzied.Core.Assets
         {
             switch (block.Color)
             {
-                case BlockColor.orange:
+                case BlockColor.Orange:
                     return this.BlockTextures[Color.Orange];
-                case BlockColor.purple:
+                case BlockColor.Purple:
                     return this.BlockTextures[Color.Purple];
-                case BlockColor.green:
+                case BlockColor.Green:
                     return this.BlockTextures[Color.Green];
                 default:
                     return null;

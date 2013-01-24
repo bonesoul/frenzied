@@ -5,6 +5,7 @@
  * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
  */
 
+using System;
 using System.Collections.Generic;
 using Frenzied.Core.Assets;
 using Frenzied.Core.Screen;
@@ -16,7 +17,14 @@ namespace Frenzied.Core.GamePlay
     {
         public static Vector2 Size = new Vector2(210, 210);
 
-        private Dictionary<BlockLocation, Block> _blocks = new Dictionary<BlockLocation, Block>();
+        private readonly Dictionary<BlockLocation, Block> _blockLocations = new Dictionary<BlockLocation, Block>();
+
+        private IScoreManager _scoreManager;
+
+        public IEnumerable<Block> Blocks
+        {
+            get { return this._blockLocations.Values; }
+        }
 
         public Vector2 Position { get; protected set; }
         public Rectangle Bounds { get; protected set; }
@@ -27,15 +35,19 @@ namespace Frenzied.Core.GamePlay
             this.Position = position;
             this.Bounds = new Rectangle((int)position.X, (int)position.Y, (int)Size.X, (int)Size.Y);
 
-            this._blocks[BlockLocation.topleft] = new Block(BlockLocation.none);
-            this._blocks[BlockLocation.topright] = new Block(BlockLocation.none);
-            this._blocks[BlockLocation.bottomleft] = new Block(BlockLocation.none);
-            this._blocks[BlockLocation.bottomright] = new Block(BlockLocation.none);
+            this._blockLocations[BlockLocation.topleft] = new Block(BlockLocation.none);
+            this._blockLocations[BlockLocation.topright] = new Block(BlockLocation.none);
+            this._blockLocations[BlockLocation.bottomleft] = new Block(BlockLocation.none);
+            this._blockLocations[BlockLocation.bottomright] = new Block(BlockLocation.none);
+
+            this._scoreManager = (IScoreManager)this.Game.Services.GetService(typeof(IScoreManager));
+            if (this._scoreManager == null)
+                throw new NullReferenceException("Can not find score manager component.");
         }
 
         public bool IsEmpty(BlockLocation position)
         {
-            return this._blocks[position].IsEmpty;
+            return this._blockLocations[position].IsEmpty;
         }
 
         public bool IsFull()
@@ -48,10 +60,12 @@ namespace Frenzied.Core.GamePlay
             if (!this.IsFull())
                 return;
 
-            this._blocks[BlockLocation.topleft] = new Block(BlockLocation.none);
-            this._blocks[BlockLocation.topright] = new Block(BlockLocation.none);
-            this._blocks[BlockLocation.bottomleft] = new Block(BlockLocation.none);
-            this._blocks[BlockLocation.bottomright] = new Block(BlockLocation.none);
+            this._scoreManager.CorrectMove(this);
+
+            this._blockLocations[BlockLocation.topleft] = new Block(BlockLocation.none);
+            this._blockLocations[BlockLocation.topright] = new Block(BlockLocation.none);
+            this._blockLocations[BlockLocation.bottomleft] = new Block(BlockLocation.none);
+            this._blockLocations[BlockLocation.bottomright] = new Block(BlockLocation.none);
         }
 
 
@@ -60,10 +74,10 @@ namespace Frenzied.Core.GamePlay
             if (block.IsEmpty) // users can't empty blocks!
                 return;
 
-            if (!this._blocks[block.Location].IsEmpty)
+            if (!this._blockLocations[block.Location].IsEmpty)
                 return;
 
-            this._blocks[block.Location] = block;
+            this._blockLocations[block.Location] = block;
             block.AttachTo(this);
         }
 
@@ -80,7 +94,7 @@ namespace Frenzied.Core.GamePlay
                                                     this.Bounds,
                                                     Color.White);
 
-            foreach (var pair in this._blocks)
+            foreach (var pair in this._blockLocations)
             {
                 var block = pair.Value;
 

@@ -98,6 +98,11 @@ namespace Frenzied.Core.Screen
         {
             base.Initialize();
 
+            foreach (var screen in screens)
+            {
+                screen.Initialize();
+            }
+
             isInitialized = true;
         }
 

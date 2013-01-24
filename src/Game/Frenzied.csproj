@@ -106,6 +106,7 @@
     <Compile Include="Core\GamePlay\Block.cs" />
     <Compile Include="Core\GamePlay\BlockContainer.cs" />
     <Compile Include="Core\GamePlay\BlockGenerator.cs" />
+    <Compile Include="Core\GamePlay\ScoreManager.cs" />
     <Compile Include="Core\Graphics\Drawing\BasicShapes.cs" />
     <Compile Include="Core\Graphics\Drawing\PrimitiveBatch.cs" />
     <Compile Include="Core\Graphics\GraphicsManager.cs" />
@@ -113,12 +114,12 @@
     <Compile Include="Core\Input\InputState.cs" />
     <Compile Include="Core\Screen\GameScreen.cs" />
     <Compile Include="Core\Screen\ScreenManager.cs" />
-    <Compile Include="Debugging\Graphs\DebugGraph.cs" />
-    <Compile Include="Debugging\Graphs\GraphManager.cs" />
-    <Compile Include="Debugging\Graphs\Implementations\FPSGraph.cs" />
-    <Compile Include="Debugging\Graphs\Implementations\MemGraph.cs" />
-    <Compile Include="Debugging\Statistics.cs" />
-    <Compile Include="Extensions\StringBuilderExtensions.cs" />
+    <Compile Include="Common\Debug\Graphs\DebugGraph.cs" />
+    <Compile Include="Common\Debug\Graphs\GraphManager.cs" />
+    <Compile Include="Common\Debug\Graphs\Implementations\FPSGraph.cs" />
+    <Compile Include="Common\Debug\Graphs\Implementations\MemGraph.cs" />
+    <Compile Include="Common\Debug\Statistics.cs" />
+    <Compile Include="Common\Extensions\StringBuilderExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="FrenziedGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

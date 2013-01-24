@@ -11,10 +11,10 @@ namespace Frenzied.Core.GamePlay
 {
     public enum BlockColor
     {
-        none,
-        orange,
-        purple,
-        green
+        None,
+        Orange,
+        Purple,
+        Green
     }
 
     public enum BlockLocation
