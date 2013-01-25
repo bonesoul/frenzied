@@ -49,7 +49,7 @@ namespace Frenzied.Core.GamePlay
 
         public void Generate()
         {
-            var color = _randomizer.Next(1,3);
+            var color = _randomizer.Next(1,4);
             var availableLocations = this.GetAvailableLocations();
             if (availableLocations.Count == 0)
                 return;

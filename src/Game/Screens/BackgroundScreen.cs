@@ -63,11 +63,11 @@ namespace Frenzied.Screens
         /// <param name="gameTime"></param>
         public override void Draw(GameTime gameTime)
         {
-            ScreenManager.SpriteBatch.Begin();
-            ScreenManager.SpriteBatch.Draw(AssetManager.Instance.BackgroundTexture, ScreenManager.Game.GraphicsDevice.Viewport.Bounds, Color.White * TransitionAlpha);
-            ScreenManager.SpriteBatch.End();            
+            //ScreenManager.SpriteBatch.Begin();
+            //ScreenManager.SpriteBatch.Draw(AssetManager.Instance.BackgroundTexture, ScreenManager.Game.GraphicsDevice.Viewport.Bounds, Color.White * TransitionAlpha);
+            //ScreenManager.SpriteBatch.End();            
 
-            base.Draw(gameTime);
+            //base.Draw(gameTime);
         }
         #endregion
     }
