@@ -62,7 +62,7 @@ namespace Frenzied
             this.Components.Add(scoreManager);
 
             // add the background screen to the screen manager
-            this._screenManager.AddScreen(new BackgroundScreen(this));
+            //this._screenManager.AddScreen(new BackgroundScreen(this));
             this._screenManager.AddScreen(new GamePlayScreen(this));
 
             // add debug components

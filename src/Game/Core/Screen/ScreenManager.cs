@@ -180,7 +180,11 @@ namespace Frenzied.Core.Screen
                     // give it a chance to handle input.
                     if (!otherScreenHasFocus)
                     {
+                        #if DESKTOP
                         screen.HandleInput(input);
+                        #elif METRO
+                        screen.HandleInput(Microsoft.Xna.Framework.Input.Touch.TouchPanel.GetState());
+                        #endif
 
                         otherScreenHasFocus = true;
                     }

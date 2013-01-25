@@ -17,7 +17,7 @@ namespace Frenzied
         /// </summary>
         static void Main()
         {
-            #if XNA
+            #if XNA && DESKTOP
             using (var game = new FrenziedGame())
             {
                 game.Run();
