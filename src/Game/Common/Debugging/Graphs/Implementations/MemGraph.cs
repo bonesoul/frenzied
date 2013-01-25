@@ -10,7 +10,7 @@ using Frenzied.Common.Extensions;
 using Frenzied.Core.Graphics.Drawing;
 using Microsoft.Xna.Framework;
 
-namespace Frenzied.Common.Debug.Graphs.Implementations
+namespace Frenzied.Common.Debugging.Graphs.Implementations
 {
     public class MemGraph : DebugGraph
     {

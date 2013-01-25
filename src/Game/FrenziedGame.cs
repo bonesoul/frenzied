@@ -6,8 +6,8 @@
  */
 
 using System;
-using Frenzied.Common.Debug;
-using Frenzied.Common.Debug.Graphs;
+using Frenzied.Common.Debugging;
+using Frenzied.Common.Debugging.Graphs;
 using Frenzied.Core.Assets;
 using Frenzied.Core.Audio;
 using Frenzied.Core.Components;

@@ -10,7 +10,7 @@ using Frenzied.Core.Graphics.Drawing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Frenzied.Common.Debug.Graphs
+namespace Frenzied.Common.Debugging.Graphs
 {
     /// <summary>
     /// DebugGraph is a special graph module that can draw graphs for debugging purposes.

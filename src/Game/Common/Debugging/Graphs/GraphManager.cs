@@ -7,13 +7,13 @@
 
 using System;
 using System.Collections.Generic;
-using Frenzied.Common.Debug.Graphs.Implementations;
+using Frenzied.Common.Debugging.Graphs.Implementations;
 using Frenzied.Core.Assets;
 using Frenzied.Core.Graphics.Drawing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Frenzied.Common.Debug.Graphs
+namespace Frenzied.Common.Debugging.Graphs
 {
     /// <summary>
     /// GraphManager can render debug graphs.

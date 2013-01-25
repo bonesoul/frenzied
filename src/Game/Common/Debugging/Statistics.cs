@@ -12,7 +12,7 @@ using Frenzied.Core.Assets;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Frenzied.Common.Debug
+namespace Frenzied.Common.Debugging
 {
     /// <summary>
     /// Allows interaction with the statistics service.

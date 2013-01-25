@@ -100,6 +100,11 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Common\Debugging\Graphs\DebugGraph.cs" />
+    <Compile Include="Common\Debugging\Graphs\GraphManager.cs" />
+    <Compile Include="Common\Debugging\Graphs\Implementations\FPSGraph.cs" />
+    <Compile Include="Common\Debugging\Graphs\Implementations\MemGraph.cs" />
+    <Compile Include="Common\Debugging\Statistics.cs" />
     <Compile Include="Common\Extensions\NumberExtensions.cs" />
     <Compile Include="Common\Extensions\Vector2Extensions.cs" />
     <Compile Include="Core\Assets\AssetManager.cs" />
@@ -118,11 +123,6 @@
     <Compile Include="Core\Input\InputState.cs" />
     <Compile Include="Core\Screen\GameScreen.cs" />
     <Compile Include="Core\Screen\ScreenManager.cs" />
-    <Compile Include="Common\Debug\Graphs\DebugGraph.cs" />
-    <Compile Include="Common\Debug\Graphs\GraphManager.cs" />
-    <Compile Include="Common\Debug\Graphs\Implementations\FPSGraph.cs" />
-    <Compile Include="Common\Debug\Graphs\Implementations\MemGraph.cs" />
-    <Compile Include="Common\Debug\Statistics.cs" />
     <Compile Include="Common\Extensions\StringBuilderExtensions.cs" />
     <Compile Include="Effects\Metaball.cs" />
     <Compile Include="Program.cs" />
