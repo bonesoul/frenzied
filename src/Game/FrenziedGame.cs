@@ -5,10 +5,13 @@
  * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
  */
 
+using System;
 using Frenzied.Common.Debug;
 using Frenzied.Common.Debug.Graphs;
 using Frenzied.Core.Assets;
 using Frenzied.Core.Audio;
+using Frenzied.Core.Components;
+using Frenzied.Core.Config;
 using Frenzied.Core.GamePlay;
 using Frenzied.Core.Graphics;
 using Frenzied.Core.Input;
@@ -24,6 +27,11 @@ namespace Frenzied
     public class FrenziedGame : Game
     {
         /// <summary>
+        /// The game configuration.
+        /// </summary>
+        public GameConfig Configuration { get; private set; }
+
+        /// <summary>
         /// Graphics device manager.
         /// </summary>
         GraphicsDeviceManager _graphicsDeviceManager;
@@ -32,6 +40,23 @@ namespace Frenzied
 
         public FrenziedGame()
         {
+            if (_instance != null)
+                throw new Exception("Can not instantiate the game more than once!");
+
+            _instance = this;
+
+            var config = new GameConfig
+                {
+                    Background =
+                        {
+                            MetaballCount = 50,
+                            MetaballRadius = 128,
+                            MetaballScale = 1f
+                        },
+                };
+
+            this.Configuration = config;
+
             _graphicsDeviceManager = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";         
         }
@@ -53,6 +78,9 @@ namespace Frenzied
             var graphicsManager = new GraphicsManager(this._graphicsDeviceManager, this); // start the screen manager.
             graphicsManager.ToggleVerticalSync();
 
+            var background = new Background(this);
+            this.Components.Add(background);
+
             // create the screen manager
             this._screenManager = new ScreenManager(this);
             Components.Add(_screenManager);
@@ -63,8 +91,8 @@ namespace Frenzied
 
             // add the background screen to the screen manager
             //this._screenManager.AddScreen(new BackgroundScreen(this));
-            //this._screenManager.AddScreen(new GamePlayScreen(this));
-            this._screenManager.AddScreen(new MenuScreen(this));
+            this._screenManager.AddScreen(new GamePlayScreen(this));
+            //this._screenManager.AddScreen(new MenuScreen(this));
 
             // add debug components
             this.Components.Add(new Statistics(this));
@@ -114,9 +142,17 @@ namespace Frenzied
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.SteelBlue);
-
             base.Draw(gameTime);
+        }
+
+        private static FrenziedGame _instance; // the memory instance.
+
+        /// <summary>
+        /// Returns the memory instance of Engine.
+        /// </summary>
+        public static FrenziedGame Instance
+        {
+            get { return _instance; }
         }
     }
 }

@@ -101,8 +101,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Common\Extensions\NumberExtensions.cs" />
+    <Compile Include="Common\Extensions\Vector2Extensions.cs" />
     <Compile Include="Core\Assets\AssetManager.cs" />
     <Compile Include="Core\Audio\AudioManager.cs" />
+    <Compile Include="Core\Components\Background.cs" />
+    <Compile Include="Core\Config\BackgroundConfig.cs" />
+    <Compile Include="Core\Config\GameConfig.cs" />
     <Compile Include="Core\GamePlay\Block.cs" />
     <Compile Include="Core\GamePlay\BlockContainer.cs" />
     <Compile Include="Core\GamePlay\BlockGenerator.cs" />
@@ -120,6 +124,7 @@
     <Compile Include="Common\Debug\Graphs\Implementations\MemGraph.cs" />
     <Compile Include="Common\Debug\Statistics.cs" />
     <Compile Include="Common\Extensions\StringBuilderExtensions.cs" />
+    <Compile Include="Effects\Metaball.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="FrenziedGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

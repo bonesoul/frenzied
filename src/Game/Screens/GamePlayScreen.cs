@@ -61,7 +61,6 @@ namespace Frenzied.Screens
         }
         #endif
 
-        #if DESKTOP
         public override void HandleInput(Core.Input.InputState input)
         {
             if (input.CurrentMouseState.LeftButton != ButtonState.Pressed || input.LastMouseState.LeftButton != ButtonState.Released) 
@@ -89,7 +88,6 @@ namespace Frenzied.Screens
                 break;
             }
         }
-        #endif
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {

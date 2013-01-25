@@ -271,14 +271,12 @@ namespace Frenzied.Core.Screen
         }
 
 
-        #if DESKTOP
         /// <summary>
         /// Allows the screen to handle user input. Unlike Update, this method
         /// is only called when the screen is active, and not when some other
         /// screen has taken the focus.
         /// </summary>
         public virtual void HandleInput(InputState input) { }
-        #endif
 
         #if METRO
         public virtual void HandleInput(Microsoft.Xna.Framework.Input.Touch.TouchCollection state) { }
