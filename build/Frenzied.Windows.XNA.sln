@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Content", "..\src\Content\Content.contentproj", "{49796CBA-FA0E-4778-896D-65CBD54CB3F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContentGame", "..\src\ContentGame\ContentGame.csproj", "{259E80E2-B920-4F14-A7DF-12183B764949}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frenzied.Windows.XNA", "..\src\Game\Frenzied.Windows.XNA.csproj", "{259E80E2-B920-4F14-A7DF-12183B764949}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

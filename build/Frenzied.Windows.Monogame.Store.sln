@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frenzied", "..\src\Game\Frenzied.csproj", "{51C82C57-EA9A-4AC8-B5DC-8D15825B079E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frenzied.Windows.Monogame.Store", "..\src\Game\Frenzied.Windows.Monogame.Store.csproj", "{51C82C57-EA9A-4AC8-B5DC-8D15825B079E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

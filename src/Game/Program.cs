@@ -17,8 +17,15 @@ namespace Frenzied
         /// </summary>
         static void Main()
         {
-            var factory = new MonoGame.Framework.GameFrameworkViewSource<FrenziedGame>();
-            Windows.ApplicationModel.Core.CoreApplication.Run(factory);
+            #if XNA
+            using (var game = new FrenziedGame())
+            {
+                game.Run();
+            }
+            #elif MONOGAME && METRO
+                var factory = new MonoGame.Framework.GameFrameworkViewSource<FrenziedGame>();
+                Windows.ApplicationModel.Core.CoreApplication.Run(factory);
+            #endif
         }
     }
 }
