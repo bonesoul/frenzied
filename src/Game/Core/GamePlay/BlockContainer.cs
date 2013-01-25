@@ -20,6 +20,7 @@ namespace Frenzied.Core.GamePlay
         private readonly Dictionary<BlockLocation, Block> _blockLocations = new Dictionary<BlockLocation, Block>();
 
         private IScoreManager _scoreManager;
+        private IAssetManager _assetManager;
 
         public IEnumerable<Block> Blocks
         {
@@ -41,6 +42,8 @@ namespace Frenzied.Core.GamePlay
             this._blockLocations[BlockLocation.bottomright] = new Block(BlockLocation.none);
 
             this._scoreManager = (IScoreManager)this.Game.Services.GetService(typeof(IScoreManager));
+            this._assetManager = (IAssetManager) this.Game.Services.GetService(typeof (IAssetManager));
+
             if (this._scoreManager == null)
                 throw new NullReferenceException("Can not find score manager component.");
         }
@@ -59,6 +62,8 @@ namespace Frenzied.Core.GamePlay
         {
             if (!this.IsFull())
                 return;
+
+            this._assetManager.Sounds.Explode.Play();
 
             this._scoreManager.CorrectMove(this);
 

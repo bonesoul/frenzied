@@ -110,7 +110,7 @@ namespace Frenzied.Core.GamePlay
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            _spriteFont = this._assetManager.Verdana;
+            _spriteFont = this._assetManager.GoodDog;
         }
 
         public override void Draw(GameTime gameTime)
@@ -127,7 +127,7 @@ namespace Frenzied.Core.GamePlay
             _stringBuilder.Length = 0;
             _stringBuilder.Append("score:");
             _stringBuilder.Append(this.Score);
-            _spriteBatch.DrawString(_spriteFont, _stringBuilder, new Vector2(5, 110), Color.White);
+            _spriteBatch.DrawString(_spriteFont, _stringBuilder, new Vector2(5, 130), Color.White);
 
 
             _spriteBatch.End();

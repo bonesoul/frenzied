@@ -60,22 +60,12 @@ namespace Frenzied.Core.Components
 
             var scheme = new ColorScheme
                 {
-                    BackgroundColor = Color.DarkRed,
-                    GlowColor = Color.Red,
-                    GradientStartColor = Color.Yellow,
-                    GradientEndColor = Color.Red
+                    BackgroundColor = new Color(51,51,51),
+                    GlowColor = Color.DarkGray,
+                    GradientStartColor = Color.DarkGray,
+                    GradientEndColor = Color.Gray
                 };
             this.ApplyColorScheme(scheme);
-
-            var scheme2 = new ColorScheme
-                {
-                    BackgroundColor = Color.DarkBlue,
-                    GlowColor = Color.Blue,
-                    GradientStartColor = Color.Cyan,
-                    GradientEndColor = Color.Blue
-                };
-                
-            this.ApplyColorScheme(scheme2);
         }
 
         public void ApplyColorScheme(ColorScheme scheme)

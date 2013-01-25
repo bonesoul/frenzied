@@ -136,22 +136,6 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <Content Include="..\..\bin\debug\content\Content\Music\The_resilient_sheep.xnb">
-      <Link>Content\Music\The_resilient_sheep.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\Content\Fonts\calibri.spritefont">
-      <Link>Content\Fonts\calibri.spritefont</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\Content\Fonts\CalibriDebug.spritefont">
-      <Link>Content\Fonts\CalibriDebug.spritefont</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\Content\Fonts\calibrismall.spritefont">
-      <Link>Content\Fonts\calibrismall.spritefont</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="..\Content\Fonts\calibri.xnb">
       <Link>Content\Fonts\calibri.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -164,21 +148,45 @@
       <Link>Content\Fonts\calibrismall.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\Content\Fonts\Verdana.spritefont">
-      <Link>Content\Fonts\Verdana.spritefont</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="..\Content\Fonts\Verdana.xnb">
       <Link>Content\Fonts\Verdana.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Content\Music\The_resilient_sheep.xnb">
+      <Link>Content\Music\The_resilient_sheep.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Content\Fonts\GoodDog.xnb">
+      <Link>Content\Fonts\GoodDog.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Content\Sounds\Coins\0.xnb">
+      <Link>Content\Sounds\Coins\0.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Content\Sounds\Coins\1.xnb">
+      <Link>Content\Sounds\Coins\1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Content\Sounds\Coins\2.xnb">
+      <Link>Content\Sounds\Coins\2.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Content\Sounds\Coins\3.xnb">
+      <Link>Content\Sounds\Coins\3.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Content\Sounds\Coins\4.xnb">
+      <Link>Content\Sounds\Coins\4.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Content\Sounds\Explode\0.xnb">
+      <Link>Content\Sounds\Explode\0.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Frenzied_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\bin\debug\content\Content\Music\The_resilient_sheep.wma">
-      <Link>Content\Music\The_resilient_sheep.wma</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="..\Content\Textures\Background.png">
       <Link>Content\Textures\Background.png</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

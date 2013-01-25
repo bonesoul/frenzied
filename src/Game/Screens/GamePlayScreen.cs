@@ -8,6 +8,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Frenzied.Core.Assets;
 using Frenzied.Core.GamePlay;
 using Frenzied.Core.Screen;
 using Microsoft.Xna.Framework;
@@ -18,6 +19,8 @@ namespace Frenzied.Screens
     public class GamePlayScreen : GameScreen
     {
         private IScoreManager _scoreManager;
+        private IAssetManager _assetManager;
+
         private List<BlockContainer> _blockContainers = new List<BlockContainer>();
         private BlockGenerator _blockGenerator;
 
@@ -28,6 +31,8 @@ namespace Frenzied.Screens
         public override void Initialize()
         {
             this._scoreManager = (IScoreManager)this.Game.Services.GetService(typeof(IScoreManager));
+            this._assetManager = (IAssetManager) this.Game.Services.GetService(typeof (IAssetManager));
+
             if (this._scoreManager == null)
                 throw new NullReferenceException("Can not find score manager component.");
 
@@ -57,7 +62,6 @@ namespace Frenzied.Screens
         #if METRO
         public override void HandleInput(Microsoft.Xna.Framework.Input.Touch.TouchCollection state)
         {
-            Debug.WriteLine(state.Count);
         }
         #endif
 
@@ -81,6 +85,8 @@ namespace Frenzied.Screens
                     this._scoreManager.WrongMove();
                     continue;
                 }
+
+                this._assetManager.Sounds.CoinEffect.PlayRandom();
 
                 container.AddBlock(this._blockGenerator.CurretBlock);
                 this._blockGenerator.Generate();
