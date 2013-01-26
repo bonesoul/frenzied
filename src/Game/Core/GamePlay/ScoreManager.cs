@@ -119,7 +119,7 @@ namespace Frenzied.Core.GamePlay
 
             // lives
             _stringBuilder.Length = 0;
-            _stringBuilder.Append("lives:");
+            _stringBuilder.Append("lifes:");
             _stringBuilder.Append(this.Lives);
             _spriteBatch.DrawString(_spriteFont, _stringBuilder, new Vector2(5, 100), Color.White);
 

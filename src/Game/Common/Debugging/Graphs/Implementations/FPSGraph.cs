@@ -18,8 +18,7 @@ namespace Frenzied.Common.Debugging.Graphs.Implementations
 
         public FPSGraph(Game game, Rectangle bounds)
             : base(game, bounds)
-        {
-        }
+        { }
 
         protected override void Initialize()
         {
@@ -60,7 +59,7 @@ namespace Frenzied.Common.Debugging.Graphs.Implementations
 
         public override void DrawGraph(GameTime gameTime)
         {
-            BasicShapes.DrawSolidPolygon(this.PrimitiveBatch, Background, 4, Color.Black, true);
+            BasicShapes.DrawSolidPolygon(this.PrimitiveBatch, BackgroundPolygon, 4, Color.Black, true);
 
             float x = Bounds.X;
             float deltaX = Bounds.Width / (float)ValuesToGraph;

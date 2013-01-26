@@ -48,7 +48,7 @@ namespace Frenzied.Common.Debugging.Graphs
         /// <summary>
         /// Used for drawing the background shape.
         /// </summary>
-        protected readonly Vector2[] Background = new Vector2[4];
+        protected readonly Vector2[] BackgroundPolygon = new Vector2[4];
 
         /// <summary>
         /// Current maximum value.
@@ -132,10 +132,10 @@ namespace Frenzied.Common.Debugging.Graphs
         public void LoadContent()
         {
             // calculate the coordinates for drawing the background.
-            Background[0] = new Vector2(Bounds.X - 2, Bounds.Y - 2); // top left
-            Background[3] = new Vector2(Bounds.X + 2 + Bounds.Width, Bounds.Y - 2); // top right
-            Background[1] = new Vector2(Bounds.X - 2, Bounds.Y + Bounds.Height + 14); // bottom left
-            Background[2] = new Vector2(Bounds.X + 2 + Bounds.Width, Bounds.Y + Bounds.Height + 14); // bottom right
+            BackgroundPolygon[0] = new Vector2(Bounds.X - 2, Bounds.Y - 2); // top left
+            BackgroundPolygon[3] = new Vector2(Bounds.X + 2 + Bounds.Width, Bounds.Y - 2); // top right
+            BackgroundPolygon[1] = new Vector2(Bounds.X - 2, Bounds.Y + Bounds.Height + 14); // bottom left
+            BackgroundPolygon[2] = new Vector2(Bounds.X + 2 + Bounds.Width, Bounds.Y + Bounds.Height + 14); // bottom right
         }
 
         /// <summary>

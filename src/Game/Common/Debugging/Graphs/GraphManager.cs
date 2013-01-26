@@ -46,8 +46,8 @@ namespace Frenzied.Common.Debugging.Graphs
         public override void Initialize()
         {
             // create the graphs modules.
-            this._graphs.Add(new FPSGraph(this.Game, new Rectangle(this.Game.GraphicsDevice.Viewport.Bounds.Width - 280, 10, 270, 35)));
-            this._graphs.Add(new MemGraph(this.Game, new Rectangle(this.Game.GraphicsDevice.Viewport.Bounds.Width - 280, 65, 270, 35)));
+            this._graphs.Add(new FPSGraph(this.Game, new Rectangle(this.Game.GraphicsDevice.Viewport.Bounds.Width - 280, 40, 270, 35)));
+            this._graphs.Add(new MemGraph(this.Game, new Rectangle(this.Game.GraphicsDevice.Viewport.Bounds.Width - 280, 95, 270, 35)));
 
             // import required services.
             this._assetManager = (IAssetManager)this.Game.Services.GetService(typeof(IAssetManager));

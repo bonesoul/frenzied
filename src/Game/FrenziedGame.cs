@@ -95,7 +95,7 @@ namespace Frenzied
             //this._screenManager.AddScreen(new MenuScreen(this));
 
             // add debug components
-            this.Components.Add(new Statistics(this));
+            this.Components.Add(new DebugBar(this));
             this.Components.Add(new GraphManager(this));
 
             // init the audio manager.
