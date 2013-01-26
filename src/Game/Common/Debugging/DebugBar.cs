@@ -6,13 +6,9 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Frenzied.Common.Extensions;
 using Frenzied.Core.Assets;
-using Frenzied.Core.Components;
 using Frenzied.Core.Graphics.Drawing;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -138,6 +134,10 @@ namespace Frenzied.Common.Debugging
 
             _primitiveBatch.End(); // end the batch.
 
+            // restore old states.
+            this.Game.GraphicsDevice.RasterizerState = previousRasterizerState;
+            this.Game.GraphicsDevice.DepthStencilState = previousDepthStencilState;
+
             _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
 
             // Attention: DO NOT use string.format as it's slower than string concat.
@@ -155,10 +155,6 @@ namespace Frenzied.Common.Debugging
             _spriteBatch.DrawString(_spriteFont, _stringBuilder, new Vector2(this._bounds.X + 75, this._bounds.Y + 5), Color.White);
 
             _spriteBatch.End();
-
-            // restore old states.
-            this.Game.GraphicsDevice.RasterizerState = previousRasterizerState;
-            this.Game.GraphicsDevice.DepthStencilState = previousDepthStencilState;
         }
     }
 }
