@@ -12,9 +12,8 @@ using Frenzied.GamePlay;
 using Frenzied.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Input.Touch;
 #if METRO
-
+using Microsoft.Xna.Framework.Input.Touch;
 #endif
 
 namespace Frenzied.Screen.Implementations
