@@ -18,6 +18,9 @@ using Frenzied.Core.Input;
 using Frenzied.Core.Screen;
 using Frenzied.Screens;
 using Microsoft.Xna.Framework;
+#if METRO
+using Microsoft.Xna.Framework.Input.Touch;
+#endif
 
 namespace Frenzied
 {
@@ -78,7 +81,7 @@ namespace Frenzied
             #endif
 
             #if METRO
-            Microsoft.Xna.Framework.Input.Touch.TouchPanel.EnabledGestures = Microsoft.Xna.Framework.Input.Touch.GestureType.Tap;
+            TouchPanel.EnabledGestures = GestureType.Tap;
             #endif
 
             // init the asset manager.

@@ -7,12 +7,14 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using Frenzied.Core.Assets;
 using Frenzied.Core.GamePlay;
 using Frenzied.Core.Screen;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+#if METRO
+using Microsoft.Xna.Framework.Input.Touch;
+#endif
 
 namespace Frenzied.Screens
 {
@@ -62,10 +64,10 @@ namespace Frenzied.Screens
         #if METRO
         public override void HandleGestures()
         {
-            while (Microsoft.Xna.Framework.Input.Touch.TouchPanel.IsGestureAvailable)
+            while (TouchPanel.IsGestureAvailable)
             {
-                var gesture = Microsoft.Xna.Framework.Input.Touch.TouchPanel.ReadGesture();
-                if (gesture.GestureType == Microsoft.Xna.Framework.Input.Touch.GestureType.Tap)
+                var gesture = TouchPanel.ReadGesture();
+                if (gesture.GestureType == GestureType.Tap)
                     HandleClick((int)gesture.Position.X, (int)gesture.Position.Y);
 
             }
