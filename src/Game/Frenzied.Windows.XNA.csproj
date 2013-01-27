@@ -74,11 +74,11 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Debugging\DebugBar.cs" />
     <Compile Include="Common\Debugging\Graphs\DebugGraph.cs" />
     <Compile Include="Common\Debugging\Graphs\GraphManager.cs" />
     <Compile Include="Common\Debugging\Graphs\Implementations\FPSGraph.cs" />
     <Compile Include="Common\Debugging\Graphs\Implementations\MemGraph.cs" />
-    <Compile Include="Common\Debugging\Statistics.cs" />
     <Compile Include="Common\Extensions\NumberExtensions.cs" />
     <Compile Include="Common\Extensions\StringBuilderExtensions.cs" />
     <Compile Include="Common\Extensions\Vector2Extensions.cs" />

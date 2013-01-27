@@ -71,6 +71,12 @@ namespace Frenzied
         {
             this.IsMouseVisible = true;
 
+            #if DESKTOP
+            this._graphicsDeviceManager.PreferredBackBufferWidth = 1280;
+            this._graphicsDeviceManager.PreferredBackBufferHeight = 720;
+            this._graphicsDeviceManager.ApplyChanges();
+            #endif
+
             // init the asset manager.
             var assetManager = new AssetManager(this);
             this.Components.Add(assetManager);

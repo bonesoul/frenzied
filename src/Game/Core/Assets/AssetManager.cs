@@ -94,13 +94,13 @@ namespace Frenzied.Core.Assets
         /// </summary>
         public class SoundsEffects
         {
-            public Coins CoinEffect { get; private set; }
+            public BlockEffect CoinEffect { get; private set; }
 
             public SoundEffect Explode { get; private set; }
 
             public SoundsEffects()
             {
-                this.CoinEffect = new Coins();
+                this.CoinEffect = new BlockEffect();
             }
 
             public void LoadContent(Game game)
@@ -109,18 +109,18 @@ namespace Frenzied.Core.Assets
                 this.CoinEffect.LoadContent(game);
             }
 
-            public class Coins
+            public class BlockEffect
             {
                 private Random _random = new Random();
                 private readonly List<SoundEffect> _effects = new List<SoundEffect>();
 
                 public void LoadContent(Game game)
                 {
-                    this._effects.Add(game.Content.Load<SoundEffect>(@"Sounds/Coins/0"));
-                    this._effects.Add(game.Content.Load<SoundEffect>(@"Sounds/Coins/1"));
-                    this._effects.Add(game.Content.Load<SoundEffect>(@"Sounds/Coins/2"));
-                    this._effects.Add(game.Content.Load<SoundEffect>(@"Sounds/Coins/3"));
-                    this._effects.Add(game.Content.Load<SoundEffect>(@"Sounds/Coins/4"));
+                    this._effects.Add(game.Content.Load<SoundEffect>(@"Sounds/Blocks/0"));
+                    this._effects.Add(game.Content.Load<SoundEffect>(@"Sounds/Blocks/1"));
+                    this._effects.Add(game.Content.Load<SoundEffect>(@"Sounds/Blocks/2"));
+                    this._effects.Add(game.Content.Load<SoundEffect>(@"Sounds/Blocks/3"));
+                    this._effects.Add(game.Content.Load<SoundEffect>(@"Sounds/Blocks/4"));
                 }
 
                 public void PlayRandom()

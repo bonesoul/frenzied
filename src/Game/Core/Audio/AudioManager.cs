@@ -32,7 +32,7 @@ namespace Frenzied.Core.Audio
 
         public override void Initialize()
         {
-            this._backgroundSong = Game.Content.Load<Song>(@"Music/The_resilient_sheep");
+            this._backgroundSong = Game.Content.Load<Song>(@"Music/Dragon Soul");
             this.PlayBackroundSong();
 
             base.Initialize();
