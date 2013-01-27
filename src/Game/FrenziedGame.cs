@@ -6,17 +6,17 @@
  */
 
 using System;
-using Frenzied.Common.Debugging;
-using Frenzied.Common.Debugging.Graphs;
-using Frenzied.Core.Assets;
-using Frenzied.Core.Audio;
-using Frenzied.Core.Components;
-using Frenzied.Core.Config;
-using Frenzied.Core.GamePlay;
-using Frenzied.Core.Graphics;
-using Frenzied.Core.Input;
-using Frenzied.Core.Screen;
-using Frenzied.Screens;
+using Frenzied.Assets;
+using Frenzied.Audio;
+using Frenzied.Components;
+using Frenzied.Config;
+using Frenzied.GamePlay;
+using Frenzied.Graphics;
+using Frenzied.Input;
+using Frenzied.Screen;
+using Frenzied.Screen.Implementations;
+using Frenzied.Utils.Debugging;
+using Frenzied.Utils.Debugging.Graphs;
 using Microsoft.Xna.Framework;
 #if METRO
 using Microsoft.Xna.Framework.Input.Touch;
