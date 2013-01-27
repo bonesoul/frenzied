@@ -77,6 +77,10 @@ namespace Frenzied
             this._graphicsDeviceManager.ApplyChanges();
             #endif
 
+            #if METRO
+            Microsoft.Xna.Framework.Input.Touch.TouchPanel.EnabledGestures = Microsoft.Xna.Framework.Input.Touch.GestureType.Tap;
+            #endif
+
             // init the asset manager.
             var assetManager = new AssetManager(this);
             this.Components.Add(assetManager);

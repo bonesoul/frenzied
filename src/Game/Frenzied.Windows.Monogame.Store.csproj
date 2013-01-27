@@ -160,28 +160,32 @@
       <Link>Content\Fonts\GoodDog.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\Content\Sounds\Coins\0.xnb">
-      <Link>Content\Sounds\Coins\0.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\Content\Sounds\Coins\1.xnb">
-      <Link>Content\Sounds\Coins\1.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\Content\Sounds\Coins\2.xnb">
-      <Link>Content\Sounds\Coins\2.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\Content\Sounds\Coins\3.xnb">
-      <Link>Content\Sounds\Coins\3.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\Content\Sounds\Coins\4.xnb">
-      <Link>Content\Sounds\Coins\4.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="..\Content\Sounds\Explode\0.xnb">
       <Link>Content\Sounds\Explode\0.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Content\Sounds\Blocks\0.xnb">
+      <Link>Content\Sounds\Blocks\0.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Content\Sounds\Blocks\1.xnb">
+      <Link>Content\Sounds\Blocks\1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Content\Sounds\Blocks\2.xnb">
+      <Link>Content\Sounds\Blocks\2.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Content\Sounds\Blocks\3.xnb">
+      <Link>Content\Sounds\Blocks\3.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Content\Sounds\Blocks\4.xnb">
+      <Link>Content\Sounds\Blocks\4.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Content\Music\Dragon Soul.xnb">
+      <Link>Content\Music\Dragon Soul.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Frenzied_TemporaryKey.pfx" />

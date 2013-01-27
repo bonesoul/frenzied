@@ -279,7 +279,7 @@ namespace Frenzied.Core.Screen
         public virtual void HandleInput(InputState input) { }
 
         #if METRO
-        public virtual void HandleInput(Microsoft.Xna.Framework.Input.Touch.TouchCollection state) { }
+        public virtual void HandleGestures() { }
         #endif
 
         /// <summary>

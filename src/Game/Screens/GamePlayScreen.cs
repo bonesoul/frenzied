@@ -60,21 +60,23 @@ namespace Frenzied.Screens
         }
 
         #if METRO
-        public override void HandleInput(Microsoft.Xna.Framework.Input.Touch.TouchCollection state)
+        public override void HandleGestures()
         {
+            while (Microsoft.Xna.Framework.Input.Touch.TouchPanel.IsGestureAvailable)
+            {
+                var gesture = Microsoft.Xna.Framework.Input.Touch.TouchPanel.ReadGesture();
+                if (gesture.GestureType == Microsoft.Xna.Framework.Input.Touch.GestureType.Tap)
+                    HandleClick((int)gesture.Position.X, (int)gesture.Position.Y);
+
+            }
         }
         #endif
 
-        public override void HandleInput(Core.Input.InputState input)
+        private void HandleClick(int X, int Y)
         {
-            if (input.CurrentMouseState.LeftButton != ButtonState.Pressed || input.LastMouseState.LeftButton != ButtonState.Released) 
-                return;
-
-            var mouseState = input.CurrentMouseState;
-
             foreach (var container in this._blockContainers)
             {
-                if (!container.Bounds.Contains(mouseState.X, mouseState.Y)) 
+                if (!container.Bounds.Contains(X, Y))
                     continue;
 
                 if (this._blockGenerator.IsEmpty)
@@ -93,6 +95,14 @@ namespace Frenzied.Screens
 
                 break;
             }
+        }
+
+        public override void HandleInput(Core.Input.InputState input)
+        {
+            if (input.CurrentMouseState.LeftButton != ButtonState.Pressed || input.LastMouseState.LeftButton != ButtonState.Released) 
+                return;
+
+            this.HandleClick(input.CurrentMouseState.X, input.CurrentMouseState.Y);
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
