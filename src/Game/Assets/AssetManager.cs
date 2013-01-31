@@ -17,7 +17,6 @@ namespace Frenzied.Assets
     public interface IAssetManager
     {
         Texture2D BlockContainerTexture { get; }
-        Texture2D BackgroundTexture { get; }
         Dictionary<Color, Texture2D> BlockTextures { get; }
         Texture2D BlockProgressBar { get; }
         SpriteFont Verdana { get; }
@@ -36,7 +35,6 @@ namespace Frenzied.Assets
         }
 
         public Texture2D BlockContainerTexture { get; private set; }
-        public Texture2D BackgroundTexture { get; private set; }
         public Dictionary<Color, Texture2D> BlockTextures { get; private set; }
         public Texture2D BlockProgressBar { get; private set; }
         public SpriteFont Verdana { get; private set; }
@@ -62,7 +60,6 @@ namespace Frenzied.Assets
         public void LoadContent()
         {            
             this.BlockContainerTexture = Game.Content.Load<Texture2D>(@"Textures/BlockContainer");
-            this.BackgroundTexture = Game.Content.Load<Texture2D>(@"Textures/Background");
 
             this.BlockTextures = new Dictionary<Color, Texture2D>();
             this.BlockTextures[Color.Orange] = this.Game.Content.Load<Texture2D>(@"Textures/Blocks/OrangeBlock");
