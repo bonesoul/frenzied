@@ -13,8 +13,7 @@ using Frenzied.Config;
 using Frenzied.GamePlay;
 using Frenzied.Graphics;
 using Frenzied.Input;
-using Frenzied.Screen;
-using Frenzied.Screen.Implementations;
+using Frenzied.Screens;
 using Frenzied.Utils.Debugging;
 using Frenzied.Utils.Debugging.Graphs;
 using Microsoft.Xna.Framework;
@@ -112,7 +111,7 @@ namespace Frenzied
 
             // add the background screen to the screen manager
             //this._screenManager.AddScreen(new BackgroundScreen(this));
-            this._screenManager.AddScreen(new GamePlayScreen(this));
+            //this._screenManager.AddScreen(new GamePlayScreenOld(this));
             //this._screenManager.AddScreen(new MenuScreen(this));
 
             // add debug components

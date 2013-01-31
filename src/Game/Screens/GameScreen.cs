@@ -1,15 +1,21 @@
-﻿/*
- * Frenzied Game, Copyright (C) 2012 - 2013 Int6 Studios - All Rights Reserved. - http://www.int6.org
- *
- * This file is part of Frenzied Game project. Unauthorized copying of this file, via any medium is strictly prohibited.
- * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
- */
+#region File Description
+//-----------------------------------------------------------------------------
+// GameScreen.cs
+//
+// Microsoft XNA Community Game Platform
+// Copyright (C) Microsoft Corporation. All rights reserved.
+//-----------------------------------------------------------------------------
+#endregion
+
+#region Using Statements
 
 using System;
-using Frenzied.Input;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input.Touch;
 
-namespace Frenzied.Screen
+#endregion
+
+namespace Frenzied.Screens
 {
     /// <summary>
     /// Enum describes the screen transition state.
@@ -30,7 +36,6 @@ namespace Frenzied.Screen
     /// want to quit" message box, and the main game itself are all implemented
     /// as screens.
     /// </summary>
-    /// <remarks>Based on a class in the Game State Management sample.</remarks>
     public abstract class GameScreen
     {
         #region Properties
@@ -94,12 +99,12 @@ namespace Frenzied.Screen
 
         /// <summary>
         /// Gets the current alpha of the screen transition, ranging
-        /// from 255 (fully active, no transition) to 0 (transitioned
+        /// from 1 (fully active, no transition) to 0 (transitioned
         /// fully off to nothing).
         /// </summary>
-        public byte TransitionAlpha
+        public float TransitionAlpha
         {
-            get { return (byte)(255 - TransitionPosition * 255); }
+            get { return 1f - TransitionPosition; }
         }
 
 
@@ -160,24 +165,60 @@ namespace Frenzied.Screen
         ScreenManager screenManager;
 
 
+        /// <summary>
+        /// Gets the index of the player who is currently controlling this screen,
+        /// or null if it is accepting input from any player. This is used to lock
+        /// the game to a specific player profile. The main menu responds to input
+        /// from any connected gamepad, but whichever player makes a selection from
+        /// this menu is given control over all subsequent screens, so other gamepads
+        /// are inactive until the controlling player returns to the main menu.
+        /// </summary>
+        public PlayerIndex? ControllingPlayer
+        {
+            get { return controllingPlayer; }
+            internal set { controllingPlayer = value; }
+        }
+
+        PlayerIndex? controllingPlayer;
+
+
+        /// <summary>
+        /// Gets the gestures the screen is interested in. Screens should be as specific
+        /// as possible with gestures to increase the accuracy of the gesture engine.
+        /// For example, most menus only need Tap or perhaps Tap and VerticalDrag to operate.
+        /// These gestures are handled by the ScreenManager when screens change and
+        /// all gestures are placed in the InputState passed to the HandleInput method.
+        /// </summary>
+        public GestureType EnabledGestures
+        {
+            get { return enabledGestures; }
+            protected set
+            {
+                enabledGestures = value;
+
+                // the screen manager handles this during screen changes, but
+                // if this screen is active and the gesture types are changing,
+                // we have to update the TouchPanel ourself.
+                if (ScreenState == ScreenState.Active)
+                {
+                    TouchPanel.EnabledGestures = value;
+                }
+            }
+        }
+
+        GestureType enabledGestures = GestureType.None;
+
+
         #endregion
 
         #region Initialization
 
-
-        public Game Game { get; protected set; }
-
-        public GameScreen(Game game)
-        {
-            this.Game = game;
-        }
 
         /// <summary>
         /// Load graphics content for the screen.
         /// </summary>
         public virtual void LoadContent() { }
 
-        public virtual void Initialize() { }
 
         /// <summary>
         /// Unload content for the screen.
@@ -260,7 +301,8 @@ namespace Frenzied.Screen
             transitionPosition += transitionDelta * direction;
 
             // Did we reach the end of the transition?
-            if ((transitionPosition <= 0) || (transitionPosition >= 1))
+            if (((direction < 0) && (transitionPosition <= 0)) ||
+                ((direction > 0) && (transitionPosition >= 1)))
             {
                 transitionPosition = MathHelper.Clamp(transitionPosition, 0, 1);
                 return false;
@@ -278,9 +320,6 @@ namespace Frenzied.Screen
         /// </summary>
         public virtual void HandleInput(InputState input) { }
 
-        #if METRO || ANDROID
-        public virtual void HandleGestures() { }
-        #endif
 
         /// <summary>
         /// This is called when the screen should draw itself.

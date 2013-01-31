@@ -1,17 +1,24 @@
-﻿/*
- * Frenzied Game, Copyright (C) 2012 - 2013 Int6 Studios - All Rights Reserved. - http://www.int6.org
- *
- * This file is part of Frenzied Game project. Unauthorized copying of this file, via any medium is strictly prohibited.
- * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
- */
+#region File Description
+//-----------------------------------------------------------------------------
+// ScreenManager.cs
+//
+// Microsoft XNA Community Game Platform
+// Copyright (C) Microsoft Corporation. All rights reserved.
+//-----------------------------------------------------------------------------
+#endregion
 
+#region Using Statements
+
+using System.Diagnostics;
 using System.Collections.Generic;
-using Frenzied.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input.Touch;
 
-namespace Frenzied.Screen
+#endregion
+
+namespace Frenzied.Screens
 {
     /// <summary>
     /// The screen manager is a component which manages one or more GameScreen
@@ -19,7 +26,6 @@ namespace Frenzied.Screen
     /// methods at the appropriate times, and automatically routes input to the
     /// topmost active screen.
     /// </summary>
-    /// <remarks>Based on a class in the Game State Management sample.</remarks>
     public class ScreenManager : DrawableGameComponent
     {
         #region Fields
@@ -36,8 +42,6 @@ namespace Frenzied.Screen
         bool isInitialized;
 
         bool traceEnabled;
-
-        public static ScreenManager Instance { get; private set; }
 
         #endregion
 
@@ -87,7 +91,9 @@ namespace Frenzied.Screen
         public ScreenManager(Game game)
             : base(game)
         {
-            Instance = this;
+            // we must set EnabledGestures before we can query for them, but
+            // we don't assume the game wants to read them.
+            TouchPanel.EnabledGestures = GestureType.None;
         }
 
 
@@ -97,11 +103,6 @@ namespace Frenzied.Screen
         public override void Initialize()
         {
             base.Initialize();
-
-            foreach (var screen in screens)
-            {
-                screen.Initialize();
-            }
 
             isInitialized = true;
         }
@@ -116,7 +117,8 @@ namespace Frenzied.Screen
             ContentManager content = Game.Content;
 
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            blankTexture = content.Load<Texture2D>("Textures/Blank");
+            font = content.Load<SpriteFont>(@"Fonts\Verdana");
+            blankTexture = content.Load<Texture2D>(@"Textures\Blank");
 
             // Tell each of the screens to load their content.
             foreach (GameScreen screen in screens)
@@ -182,11 +184,6 @@ namespace Frenzied.Screen
                     {
                         screen.HandleInput(input);
 
-                        #if METRO || ANDROID
-                        if (Microsoft.Xna.Framework.Input.Touch.TouchPanel.IsGestureAvailable)
-                            screen.HandleGestures();
-                        #endif
-
                         otherScreenHasFocus = true;
                     }
 
@@ -213,7 +210,7 @@ namespace Frenzied.Screen
             foreach (GameScreen screen in screens)
                 screenNames.Add(screen.GetType().Name);
 
-            // TODO Trace.WriteLine(string.Join(", ", screenNames.ToArray()));
+            Debug.WriteLine(string.Join(", ", screenNames.ToArray()));
         }
 
 
@@ -232,19 +229,6 @@ namespace Frenzied.Screen
         }
 
 
-        /// <summary>
-        /// Draw an empty rectangle of the given size and color.
-        /// </summary>
-        /// <param name="rectangle">The destination rectangle.</param>
-        /// <param name="color">The color of the rectangle.</param>
-        public void DrawRectangle(Rectangle rectangle, Color color)
-        {
-            SpriteBatch.Begin();
-            SpriteBatch.Draw(blankTexture, rectangle, color);
-            SpriteBatch.End();
-        }
-
-
         #endregion
 
         #region Public Methods
@@ -253,8 +237,9 @@ namespace Frenzied.Screen
         /// <summary>
         /// Adds a new screen to the screen manager.
         /// </summary>
-        public void AddScreen(GameScreen screen)
+        public void AddScreen(GameScreen screen, PlayerIndex? controllingPlayer)
         {
+            screen.ControllingPlayer = controllingPlayer;
             screen.ScreenManager = this;
             screen.IsExiting = false;
 
@@ -265,6 +250,9 @@ namespace Frenzied.Screen
             }
 
             screens.Add(screen);
+
+            // update the TouchPanel to respond to gestures this screen is interested in
+            TouchPanel.EnabledGestures = screen.EnabledGestures;
         }
 
 
@@ -284,6 +272,13 @@ namespace Frenzied.Screen
 
             screens.Remove(screen);
             screensToUpdate.Remove(screen);
+
+            // if there is a screen still in the manager, update TouchPanel
+            // to respond to gestures that screen is interested in.
+            if (screens.Count > 0)
+            {
+                TouchPanel.EnabledGestures = screens[screens.Count - 1].EnabledGestures;
+            }
         }
 
 
@@ -302,7 +297,7 @@ namespace Frenzied.Screen
         /// Helper draws a translucent black fullscreen sprite, used for fading
         /// screens in and out, and for darkening the background behind popups.
         /// </summary>
-        public void FadeBackBufferToBlack(int alpha)
+        public void FadeBackBufferToBlack(float alpha)
         {
             Viewport viewport = GraphicsDevice.Viewport;
 
@@ -310,7 +305,7 @@ namespace Frenzied.Screen
 
             spriteBatch.Draw(blankTexture,
                              new Rectangle(0, 0, viewport.Width, viewport.Height),
-                             new Color(0, 0, 0, (byte)alpha));
+                             Color.Black * alpha);
 
             spriteBatch.End();
         }
