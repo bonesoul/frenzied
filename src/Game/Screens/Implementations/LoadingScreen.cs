@@ -1,11 +1,9 @@
-#region File Description
-//-----------------------------------------------------------------------------
-// LoadingScreen.cs
-//
-// Microsoft XNA Community Game Platform
-// Copyright (C) Microsoft Corporation. All rights reserved.
-//-----------------------------------------------------------------------------
-#endregion
+/*
+ * Frenzied Game, Copyright (C) 2012 - 2013 Int6 Studios - All Rights Reserved. - http://www.int6.org
+ *
+ * This file is part of Frenzied Game project. Unauthorized copying of this file, via any medium is strictly prohibited.
+ * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
+ */
 
 #region Using Statements
 
@@ -68,7 +66,12 @@ namespace Frenzied.Screens.Implementations
         {
             // Tell all the current screens to transition off.
             foreach (GameScreen screen in screenManager.GetScreens())
+            {
+                if(screen is BackgroundScreen)
+                    continue;
+
                 screen.ExitScreen();
+            }
 
             // Create and activate the loading screen.
             LoadingScreen loadingScreen = new LoadingScreen(screenManager,
@@ -125,7 +128,7 @@ namespace Frenzied.Screens.Implementations
             // screens to be gone: in order for the transition to look good we must
             // have actually drawn a frame without them before we perform the load.
             if ((ScreenState == ScreenState.Active) &&
-                (ScreenManager.GetScreens().Length == 1))
+                (ScreenManager.GetScreens().Length == 2))
             {
                 otherScreensAreGone = true;
             }

@@ -1,15 +1,16 @@
-#region File Description
-//-----------------------------------------------------------------------------
-// BackgroundScreen.cs
-//
-// Microsoft XNA Community Game Platform
-// Copyright (C) Microsoft Corporation. All rights reserved.
-//-----------------------------------------------------------------------------
-#endregion
+/*
+ * Frenzied Game, Copyright (C) 2012 - 2013 Int6 Studios - All Rights Reserved. - http://www.int6.org
+ *
+ * This file is part of Frenzied Game project. Unauthorized copying of this file, via any medium is strictly prohibited.
+ * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
+ */
 
 #region Using Statements
 
 using System;
+using System.Collections.Generic;
+using Frenzied.Graphics.Effects;
+using Frenzied.Utils.Extensions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -25,15 +26,13 @@ namespace Frenzied.Screens.Implementations
     /// </summary>
     class BackgroundScreen : GameScreen
     {
-        #region Fields
+        private ColorScheme _colorScheme;
 
-        ContentManager content;
-        Texture2D backgroundTexture;
-
-        #endregion
-
-        #region Initialization
-
+        private Texture2D metaballTexture;
+        private List<Metaball> balls = new List<Metaball>();
+        private RenderTarget2D metaballTarget;
+        private SpriteBatch spriteBatch;
+        private AlphaTestEffect effect;
 
         /// <summary>
         /// Constructor.
@@ -54,10 +53,37 @@ namespace Frenzied.Screens.Implementations
         /// </summary>
         public override void LoadContent()
         {
-            if (content == null)
-                content = new ContentManager(ScreenManager.Game.Services, "Content");
+            spriteBatch = new SpriteBatch(FrenziedGame.Instance.GraphicsDevice);
+            metaballTarget = new RenderTarget2D(FrenziedGame.Instance.GraphicsDevice, FrenziedGame.Instance.GraphicsDevice.Viewport.Width, FrenziedGame.Instance.GraphicsDevice.Viewport.Height);
 
-            backgroundTexture = content.Load<Texture2D>(@"Textures\Background");
+            // initialize the alpha test effect.
+            effect = new AlphaTestEffect(FrenziedGame.Instance.GraphicsDevice);
+            var viewport = FrenziedGame.Instance.GraphicsDevice.Viewport;
+            effect.Projection = Matrix.CreateTranslation(-0.5f, -0.5f, 0) * Matrix.CreateOrthographicOffCenter(0, viewport.Width, viewport.Height, 0, 0, 1);
+            effect.ReferenceAlpha = 256;
+
+            // create a bunch of metaballs
+            var rand = new Random();
+            for (int i = 0; i < FrenziedGame.Instance.Configuration.Background.MetaballCount; i++)
+            {
+                var ball = new Metaball
+                {
+                    Position =
+                        new Vector2(rand.Next(FrenziedGame.Instance.GraphicsDevice.Viewport.Width), rand.Next(FrenziedGame.Instance.GraphicsDevice.Viewport.Height)) -
+                        new Vector2(128),
+                    Velocity = rand.NextVector2(1)
+                };
+                balls.Add(ball);
+            }
+
+            var scheme = new ColorScheme
+            {
+                BackgroundColor = new Color(51, 51, 51),
+                GlowColor = Color.DarkGray,
+                GradientStartColor = Color.DarkGray,
+                GradientEndColor = Color.Gray
+            };
+            this.ApplyColorScheme(scheme);
         }
 
 
@@ -66,13 +92,7 @@ namespace Frenzied.Screens.Implementations
         /// </summary>
         public override void UnloadContent()
         {
-            content.Unload();
         }
-
-
-        #endregion
-
-        #region Update and Draw
 
 
         /// <summary>
@@ -85,6 +105,9 @@ namespace Frenzied.Screens.Implementations
         public override void Update(GameTime gameTime, bool otherScreenHasFocus,
                                                        bool coveredByOtherScreen)
         {
+            foreach (var ball in balls)
+                ball.Update();
+
             base.Update(gameTime, otherScreenHasFocus, false);
         }
 
@@ -94,19 +117,56 @@ namespace Frenzied.Screens.Implementations
         /// </summary>
         public override void Draw(GameTime gameTime)
         {
-            SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
-            Viewport viewport = ScreenManager.GraphicsDevice.Viewport;
-            Rectangle fullscreen = new Rectangle(0, 0, viewport.Width, viewport.Height);
+            // first we render the metaballs to a render target using additive blending
+            FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(metaballTarget);
+            FrenziedGame.Instance.GraphicsDevice.Clear(Color.Transparent);
 
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive);
+            foreach (var ball in balls)
+                spriteBatch.Draw(ball.Texture, ball.Position, null, Color.White, 0f, Vector2.Zero, FrenziedGame.Instance.Configuration.Background.MetaballScale, SpriteEffects.None, 0f);
+            spriteBatch.End();
 
-            spriteBatch.Draw(backgroundTexture, fullscreen,
-                             new Color(TransitionAlpha, TransitionAlpha, TransitionAlpha));
+            // now we render everything to the backbuffer
+            FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(null);
+            FrenziedGame.Instance.GraphicsDevice.Clear(this._colorScheme.BackgroundColor);
 
+            // draw a faint glow behind the metaballs. We accomplish this by rendering the 
+            // metaball texture without threshholding it. This is purely aesthetic.
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Additive);
+            foreach (var ball in balls)
+            {
+                var tint = new Color(ball.Glow.ToVector3() * 0.34f);
+                spriteBatch.Draw(ball.Texture, ball.Position, null, tint, 0f, Vector2.Zero, FrenziedGame.Instance.Configuration.Background.MetaballScale, SpriteEffects.None, 0f);
+            }
+            spriteBatch.End();
+
+            // now draw the metaball's render target to the screen using the AlphaTestEffect to threshhold it.
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.Opaque, null, null, null, effect);
+            spriteBatch.Draw(metaballTarget, Vector2.Zero, Color.White);
             spriteBatch.End();
         }
 
+        public void ApplyColorScheme(ColorScheme scheme)
+        {
+            this._colorScheme = scheme;
 
-        #endregion
+            metaballTexture = Metaball.GenerateTexture(
+                FrenziedGame.Instance.Configuration.Background.MetaballRadius,
+                Metaball.CreateTwoColorPicker(this._colorScheme.GradientStartColor, this._colorScheme.GradientEndColor));
+
+            foreach (var ball in this.balls)
+            {
+                ball.Texture = metaballTexture;
+                ball.Glow = this._colorScheme.GlowColor;
+            }
+        }
+
+        public class ColorScheme
+        {
+            public Color BackgroundColor { get; set; }
+            public Color GradientStartColor { get; set; }
+            public Color GradientEndColor { get; set; }
+            public Color GlowColor { get; set; }
+        }
     }
 }

@@ -8,7 +8,6 @@
 using System;
 using Frenzied.Assets;
 using Frenzied.Audio;
-using Frenzied.Components;
 using Frenzied.Config;
 using Frenzied.GamePlay;
 using Frenzied.Graphics;
@@ -99,8 +98,8 @@ namespace Frenzied
             var graphicsManager = new GraphicsManager(this._graphicsDeviceManager, this); // start the screen manager.
             graphicsManager.ToggleVerticalSync();
 
-            var background = new Background(this);
-            this.Components.Add(background);
+            //var background = new Background(this);
+            //this.Components.Add(background);
 
             // create the screen manager
             this._screenManager = new ScreenManager(this);
