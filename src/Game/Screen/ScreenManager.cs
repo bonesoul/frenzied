@@ -181,9 +181,9 @@ namespace Frenzied.Screen
                     if (!otherScreenHasFocus)
                     {
                         screen.HandleInput(input);
-                        
-                        #if METRO
-                        if(Microsoft.Xna.Framework.Input.Touch.TouchPanel.IsGestureAvailable)
+
+                        #if METRO || ANDROID
+                        if (Microsoft.Xna.Framework.Input.Touch.TouchPanel.IsGestureAvailable)
                             screen.HandleGestures();
                         #endif
 

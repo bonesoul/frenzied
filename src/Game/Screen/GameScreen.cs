@@ -278,7 +278,7 @@ namespace Frenzied.Screen
         /// </summary>
         public virtual void HandleInput(InputState input) { }
 
-        #if METRO
+        #if METRO || ANDROID
         public virtual void HandleGestures() { }
         #endif
 

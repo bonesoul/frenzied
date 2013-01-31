@@ -12,7 +12,7 @@ using Frenzied.GamePlay;
 using Frenzied.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-#if METRO
+#if METRO || ANDROID
 using Microsoft.Xna.Framework.Input.Touch;
 #endif
 
@@ -60,7 +60,7 @@ namespace Frenzied.Screen.Implementations
             base.LoadContent();
         }
 
-        #if METRO
+        #if METRO || ANDROID
         public override void HandleGestures()
         {
             while (TouchPanel.IsGestureAvailable)

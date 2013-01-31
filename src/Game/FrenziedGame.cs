@@ -18,7 +18,8 @@ using Frenzied.Screen.Implementations;
 using Frenzied.Utils.Debugging;
 using Frenzied.Utils.Debugging.Graphs;
 using Microsoft.Xna.Framework;
-#if METRO
+
+#if METRO || ANDROID
 using Microsoft.Xna.Framework.Input.Touch;
 #endif
 
@@ -80,7 +81,14 @@ namespace Frenzied
             this._graphicsDeviceManager.ApplyChanges();
             #endif
 
-            #if METRO
+            #if METRO || ANDROID
+            TouchPanel.EnabledGestures = GestureType.Tap;
+            #endif
+
+            #if ANDROID
+            this._graphicsDeviceManager.PreferredBackBufferWidth = 800;
+            this._graphicsDeviceManager.PreferredBackBufferHeight = 480;
+            this._graphicsDeviceManager.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
             TouchPanel.EnabledGestures = GestureType.Tap;
             #endif
 
