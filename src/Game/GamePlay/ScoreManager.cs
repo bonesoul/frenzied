@@ -61,6 +61,7 @@ namespace Frenzied.GamePlay
             var orangeBlocks = 0;
             var purpleBlocks = 0;
             var greenBlocks = 0;
+            var blueBlocks = 0;
 
             foreach (var block in container.Blocks)
             {
@@ -78,6 +79,9 @@ namespace Frenzied.GamePlay
                     case BlockColor.Green:
                         greenBlocks++;
                         break;
+                    case BlockColor.Blue:
+                        blueBlocks++;
+                        break;
                 }
             }
 
@@ -88,6 +92,8 @@ namespace Frenzied.GamePlay
                 mostSameColor = purpleBlocks;
             if (greenBlocks > mostSameColor)
                 mostSameColor = greenBlocks;
+            if (blueBlocks > mostSameColor)
+                mostSameColor = blueBlocks;
 
             if (mostSameColor == 4)
                 this.Score += 100;

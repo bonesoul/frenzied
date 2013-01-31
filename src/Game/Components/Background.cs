@@ -19,7 +19,6 @@ namespace Frenzied.Components
         private ColorScheme _colorScheme; 
 
         Texture2D metaballTexture;
-        Color[] glowColors;
         List<Metaball> balls = new List<Metaball>();
         RenderTarget2D metaballTarget;
         SpriteBatch spriteBatch;

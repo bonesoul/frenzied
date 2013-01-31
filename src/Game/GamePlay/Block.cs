@@ -14,7 +14,8 @@ namespace Frenzied.GamePlay
         None,
         Orange,
         Purple,
-        Green
+        Green,
+        Blue,
     }
 
     public enum BlockLocation

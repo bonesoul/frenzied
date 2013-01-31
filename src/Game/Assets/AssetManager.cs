@@ -66,6 +66,7 @@ namespace Frenzied.Assets
             this.BlockTextures[Color.Orange] = this.Game.Content.Load<Texture2D>(@"Textures/Blocks/OrangeBlock");
             this.BlockTextures[Color.Purple] = this.Game.Content.Load<Texture2D>(@"Textures/Blocks/PurpleBlock");
             this.BlockTextures[Color.Green] = this.Game.Content.Load<Texture2D>(@"Textures/Blocks/GreenBlock");
+            this.BlockTextures[Color.Blue] = this.Game.Content.Load<Texture2D>(@"Textures/Blocks/BlueBlock");
 
             this.Verdana = Game.Content.Load<SpriteFont>(@"Fonts/Verdana");
             this.GoodDog = Game.Content.Load<SpriteFont>(@"Fonts/GoodDog");
@@ -83,6 +84,8 @@ namespace Frenzied.Assets
                     return this.BlockTextures[Color.Purple];
                 case BlockColor.Green:
                     return this.BlockTextures[Color.Green];
+                case BlockColor.Blue:
+                    return this.BlockTextures[Color.Blue];
                 default:
                     return null;
             }
