@@ -5,13 +5,11 @@
  * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
  */
 
-#region Using Statements
+// based on: http://xbox.create.msdn.com/en-US/education/catalog/sample/game_state_management
 
 using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input.Touch;
-
-#endregion
 
 namespace Frenzied.Screens
 {
