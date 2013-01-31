@@ -19,6 +19,7 @@ namespace Frenzied.Assets
         Texture2D BlockContainerTexture { get; }
         Texture2D BackgroundTexture { get; }
         Dictionary<Color, Texture2D> BlockTextures { get; }
+        Texture2D BlockProgressBar { get; }
         SpriteFont Verdana { get; }
         SpriteFont GoodDog { get; }
 
@@ -37,10 +38,11 @@ namespace Frenzied.Assets
         public Texture2D BlockContainerTexture { get; private set; }
         public Texture2D BackgroundTexture { get; private set; }
         public Dictionary<Color, Texture2D> BlockTextures { get; private set; }
+        public Texture2D BlockProgressBar { get; private set; }
         public SpriteFont Verdana { get; private set; }
         public SpriteFont GoodDog { get; private set; }
 
-        public AssetManager.SoundsEffects Sounds { get; private set; }
+        public SoundsEffects Sounds { get; private set; }
 
         public AssetManager(Game game)
             : base(game)
@@ -67,6 +69,8 @@ namespace Frenzied.Assets
             this.BlockTextures[Color.Purple] = this.Game.Content.Load<Texture2D>(@"Textures/Blocks/PurpleBlock");
             this.BlockTextures[Color.Green] = this.Game.Content.Load<Texture2D>(@"Textures/Blocks/GreenBlock");
             this.BlockTextures[Color.Blue] = this.Game.Content.Load<Texture2D>(@"Textures/Blocks/BlueBlock");
+
+            this.BlockProgressBar = this.Game.Content.Load<Texture2D>(@"Textures/Blocks/BlockProgressBar");
 
             this.Verdana = Game.Content.Load<SpriteFont>(@"Fonts/Verdana");
             this.GoodDog = Game.Content.Load<SpriteFont>(@"Fonts/GoodDog");

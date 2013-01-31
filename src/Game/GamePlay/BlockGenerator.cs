@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using Frenzied.Assets;
 using Frenzied.Screen;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Frenzied.GamePlay
 {
@@ -22,8 +23,11 @@ namespace Frenzied.GamePlay
         public Block CurretBlock { get; private set; }
 
         private readonly Random _randomizer = new Random(Environment.TickCount);
+        private Texture2D _progressBarTexture;
 
-        private List<BlockContainer> _containers; 
+        private List<BlockContainer> _containers;
+
+        
 
         public BlockGenerator(Game game, Vector2 position, List<BlockContainer> containers)
             : base(game)
@@ -32,6 +36,8 @@ namespace Frenzied.GamePlay
             this.Bounds = new Rectangle((int)position.X, (int)position.Y, (int)Size.X, (int)Size.Y);
             this._containers = containers;
             this.CurretBlock = null;
+
+            this._progressBarTexture = AssetManager.Instance.BlockProgressBar;
         }
 
         public bool IsEmpty
@@ -79,11 +85,6 @@ namespace Frenzied.GamePlay
             return availableLocations;
         }
 
-        protected override void LoadContent()
-        {
-            base.LoadContent();
-        }
-
         public override void Draw(GameTime gameTime)
         {
             if (this.IsEmpty)
@@ -94,7 +95,7 @@ namespace Frenzied.GamePlay
             var texture = AssetManager.Instance.GetBlockTexture(this.CurretBlock);
 
 
-            Rectangle blockRectangle=new Rectangle();
+            var blockRectangle=new Rectangle();
             switch (this.CurretBlock.Location)
             {
                 case BlockLocation.topleft:
@@ -118,6 +119,11 @@ namespace Frenzied.GamePlay
             }
 
             ScreenManager.Instance.SpriteBatch.Draw(texture, blockRectangle, Color.White);
+
+            // progressbar.
+
+            ScreenManager.Instance.SpriteBatch.Draw(this._progressBarTexture, new Rectangle(5, 200, 125, 10),
+                                                    Color.White);
                 
 
             ScreenManager.Instance.SpriteBatch.End();   

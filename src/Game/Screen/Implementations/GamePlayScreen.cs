@@ -57,7 +57,6 @@ namespace Frenzied.Screen.Implementations
 
             this._blockGenerator = new BlockGenerator(this.Game, new Vector2(midScreenX - BlockContainer.Size.X / 2, midScreenY - offset), this._blockContainers);
 
-
             base.LoadContent();
         }
 
