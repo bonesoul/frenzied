@@ -81,7 +81,7 @@ namespace Frenzied.Screens.Implementations
         {
             ContentManager content = ScreenManager.Game.Content;
 
-            gradientTexture = content.Load<Texture2D>("gradient");
+            gradientTexture = content.Load<Texture2D>(@"Textures\Gradient");
         }
 
 
