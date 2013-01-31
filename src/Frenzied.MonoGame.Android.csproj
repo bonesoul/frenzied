@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4531E3E4-06B5-4D2E-A9B2-031FBDDDB194}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VoxeliqGame</RootNamespace>
+    <AssemblyName>VoxeliqGame</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <AndroidApplication>true</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <AndroidSupportedAbis>armeabi%3barmeabi-v7a%3bx86</AndroidSupportedAbis>
+    <AndroidStoreUncompressedFileExtensions />
+    <MandroidI18n />
+    <TargetFrameworkVersion>v2.3</TargetFrameworkVersion>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;ANDROID, MONOGAME</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
+    <AndroidLinkMode>None</AndroidLinkMode>
+    <AndroidLinkSkip />
+    <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;ANDROID</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Android" />
+    <Reference Include="MonoGame.Framework, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dep\monogame\android\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="OpenTK" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AndroidActivity.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Game.cs" />
+    <Compile Include="Resources\Resource.Designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidAsset Include="..\..\bin\debug\windows\monogame\opengl\Content\Fonts\calibri.xnb">
+      <Link>Assets\Content\Fonts\calibri.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\windows\monogame\opengl\Content\Fonts\CalibriDebug.xnb">
+      <Link>Assets\Content\Fonts\CalibriDebug.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\windows\monogame\opengl\Content\Fonts\Verdana.xnb">
+      <Link>Assets\Content\Fonts\Verdana.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\windows\monogame\opengl\Content\Textures\AimedBlock.xnb">
+      <Link>Assets\Content\Textures\AimedBlock.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\windows\monogame\opengl\Content\Textures\cloudmap.xnb">
+      <Link>Assets\Content\Textures\cloudmap.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\windows\monogame\opengl\Content\Textures\cracks.xnb">
+      <Link>Assets\Content\Textures\cracks.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\windows\monogame\opengl\Content\Textures\roundedCorner.xnb">
+      <Link>Assets\Content\Textures\roundedCorner.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\windows\monogame\opengl\Content\Textures\starmap.xnb">
+      <Link>Assets\Content\Textures\starmap.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\windows\monogame\opengl\Content\Textures\terrain.xnb">
+      <Link>Assets\Content\Textures\terrain.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\windows\monogame\opengl\Content\MiiCompleteMap_0.xnb">
+      <Link>Assets\Content\MiiCompleteMap_0.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\windows\monogame\opengl\Content\Models\AimedBlock.xnb">
+      <Link>Assets\Content\Models\AimedBlock.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\windows\monogame\opengl\Content\Models\Mii.xnb">
+      <Link>Assets\Content\Models\Mii.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\windows\monogame\opengl\Content\Models\SkyDome.xnb">
+      <Link>Assets\Content\Models\SkyDome.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\windows\monogame\opengl\Content\Models\SkyDomeTexture_0.xnb">
+      <Link>Assets\Content\Models\SkyDomeTexture_0.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\windows\monogame\opengl\Content\Effects\BlockEffect.mgfxo">
+      <Link>Assets\Content\Effects\BlockEffect.mgfxo</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\windows\monogame\opengl\Content\Effects\DualTextured.mgfxo">
+      <Link>Assets\Content\Effects\DualTextured.mgfxo</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\windows\monogame\opengl\Content\Effects\PerlinNoise.mgfxo">
+      <Link>Assets\Content\Effects\PerlinNoise.mgfxo</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\windows\monogame\opengl\Content\Effects\PostProcessing\Bloom\BloomCombine.mgfxo">
+      <Link>Assets\Content\Effects\PostProcessing\Bloom\BloomCombine.mgfxo</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\windows\monogame\opengl\Content\Effects\PostProcessing\Bloom\BloomExtract.mgfxo">
+      <Link>Assets\Content\Effects\PostProcessing\Bloom\BloomExtract.mgfxo</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\windows\monogame\opengl\Content\Effects\PostProcessing\Bloom\GaussianBlur.mgfxo">
+      <Link>Assets\Content\Effects\PostProcessing\Bloom\GaussianBlur.mgfxo</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\windows\monogame\opengl\Content\Effects\SkyDome.mgfxo">
+      <Link>Assets\Content\Effects\SkyDome.mgfxo</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\windows\monogame\opengl\config.ini">
+      <Link>Assets\Content\config.ini</Link>
+    </AndroidAsset>
+    <None Include="Resources\AboutResources.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Values\Strings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Content\Audio\" />
+    <Folder Include="Resources\Layout\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Drawable\Splash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\Values\Styles.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Engine\VoxeliqEngine.Android.MonoGame.csproj">
+      <Project>{870CAB5A-2453-4C69-BF93-04825AF32B32}</Project>
+      <Name>VoxeliqEngine.Android.MonoGame</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Properties\AndroidManifest.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+     Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
