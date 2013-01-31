@@ -37,6 +37,8 @@ namespace Frenzied.Screens.Implementations
         {
             TransitionOnTime = TimeSpan.FromSeconds(1.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
+
+            this.EnabledGestures = GestureType.Tap;
         }
 
         /// <summary>
