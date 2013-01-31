@@ -98,8 +98,6 @@ namespace Frenzied
             var graphicsManager = new GraphicsManager(this._graphicsDeviceManager, this); // start the screen manager.
             graphicsManager.ToggleVerticalSync();
 
-            //var background = new Background(this);
-            //this.Components.Add(background);
 
             // create the screen manager
             this._screenManager = new ScreenManager(this);
