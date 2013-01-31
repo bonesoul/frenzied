@@ -19,7 +19,7 @@ namespace Frenzied.GamePlay
         int Lives { get; }
 
         void CorrectMove(BlockContainer container);
-        void WrongMove();
+        void TimeOut();
     }
 
     public class ScoreManager : DrawableGameComponent , IScoreManager
@@ -105,9 +105,10 @@ namespace Frenzied.GamePlay
                 this.Score += 1;
         }
 
-        public void WrongMove()
+        public void TimeOut()
         {
             this.Lives--;
+            this._assetManager.Sounds.Timeout.Play();
         }
 
         protected override void LoadContent()

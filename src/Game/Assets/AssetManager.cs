@@ -100,22 +100,25 @@ namespace Frenzied.Assets
         /// </summary>
         public class SoundsEffects
         {
-            public BlockEffect CoinEffect { get; private set; }
+            public BlockEffects BlockEffect { get; private set; }
 
             public SoundEffect Explode { get; private set; }
+            public SoundEffect Timeout { get; private set; }
 
             public SoundsEffects()
             {
-                this.CoinEffect = new BlockEffect();
+                this.BlockEffect = new BlockEffects();
             }
 
             public void LoadContent(Game game)
             {
                 this.Explode = game.Content.Load<SoundEffect>(@"Sounds/Explode/0");
-                this.CoinEffect.LoadContent(game);
+                this.Timeout = game.Content.Load<SoundEffect>(@"Sounds/Timeout/0");
+                
+                this.BlockEffect.LoadContent(game);
             }
 
-            public class BlockEffect
+            public class BlockEffects
             {
                 private Random _random = new Random();
                 private readonly List<SoundEffect> _effects = new List<SoundEffect>();

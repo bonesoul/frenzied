@@ -56,6 +56,7 @@ namespace Frenzied.Screen.Implementations
             this._blockContainers.Add(new BlockContainer(this.Game, new Vector2(midScreenX - BlockContainer.Size.X / 2, midScreenY + BlockContainer.Size.Y - offset)));
 
             this._blockGenerator = new BlockGenerator(this.Game, new Vector2(midScreenX - BlockContainer.Size.X / 2, midScreenY - offset), this._blockContainers);
+            this._blockGenerator.Initialize();
 
             base.LoadContent();
         }
@@ -84,15 +85,12 @@ namespace Frenzied.Screen.Implementations
                     continue;
 
                 if (!container.IsEmpty(this._blockGenerator.CurretBlock.Location))
-                {
-                    this._scoreManager.WrongMove();
                     continue;
-                }
 
-                this._assetManager.Sounds.CoinEffect.PlayRandom();
+                this._assetManager.Sounds.BlockEffect.PlayRandom();
 
                 container.AddBlock(this._blockGenerator.CurretBlock);
-                this._blockGenerator.Generate();
+                this._blockGenerator.CurrentBlockUsed();
 
                 break;
             }
