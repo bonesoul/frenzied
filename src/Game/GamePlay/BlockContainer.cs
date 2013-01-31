@@ -94,23 +94,23 @@ namespace Frenzied.GamePlay
 
         public override void Draw(GameTime gameTime)
         {
-            //ScreenManager.Instance.SpriteBatch.Begin();
-            //ScreenManager.Instance.SpriteBatch.Draw(AssetManager.Instance.BlockContainerTexture,
-            //                                        this.Bounds,
-            //                                        Color.White);
+            ScreenManager.Instance.SpriteBatch.Begin();
+            ScreenManager.Instance.SpriteBatch.Draw(AssetManager.Instance.BlockContainerTexture,
+                                                    this.Bounds,
+                                                    Color.White);
 
-            //foreach (var pair in this._blockLocations)
-            //{
-            //    var block = pair.Value;
+            foreach (var pair in this._blockLocations)
+            {
+                var block = pair.Value;
 
-            //    if(block.IsEmpty)
-            //        continue;
+                if (block.IsEmpty)
+                    continue;
 
-            //    var texture = AssetManager.Instance.GetBlockTexture(block);
-            //    ScreenManager.Instance.SpriteBatch.Draw(texture, block.Bounds, Color.White);
-            //}
+                var texture = AssetManager.Instance.GetBlockTexture(block);
+                ScreenManager.Instance.SpriteBatch.Draw(texture, block.Bounds, Color.White);
+            }
 
-            //ScreenManager.Instance.SpriteBatch.End();   
+            ScreenManager.Instance.SpriteBatch.End();   
 
             base.Draw(gameTime);
         }

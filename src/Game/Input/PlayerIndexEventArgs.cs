@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework;
 
 #endregion
 
-namespace Frenzied.Screens.Implementations
+namespace Frenzied.Input
 {
     /// <summary>
     /// Custom event argument which includes the index of the player who

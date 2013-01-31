@@ -11,6 +11,9 @@
 
 #endregion
 
+using Frenzied.Input;
+using Frenzied.Menu;
+
 namespace Frenzied.Screens.Implementations
 {
     /// <summary>
@@ -75,5 +78,13 @@ namespace Frenzied.Screens.Implementations
 
 
         #endregion
+
+        public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
+        {
+            // Darken down any other screens that were drawn beneath the popup.
+            ScreenManager.FadeBackBufferToBlack(TransitionAlpha * 2 / 2.7f);
+
+            base.Draw(gameTime);
+        }
     }
 }

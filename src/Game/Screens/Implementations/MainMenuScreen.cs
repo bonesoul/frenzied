@@ -7,6 +7,8 @@
 
 #region Using Statements
 
+using Frenzied.Input;
+using Frenzied.Menu;
 using Microsoft.Xna.Framework;
 
 #endregion

@@ -11,6 +11,9 @@
 
 #endregion
 
+using Frenzied.Input;
+using Frenzied.Menu;
+
 namespace Frenzied.Screens.Implementations
 {
     /// <summary>

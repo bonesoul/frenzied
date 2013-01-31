@@ -8,12 +8,15 @@
 #region Using Statements
 
 using System;
+using Frenzied.Input;
+using Frenzied.Screens;
+using Frenzied.Screens.Implementations;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 #endregion
 
-namespace Frenzied.Screens.Implementations
+namespace Frenzied.Menu
 {
     /// <summary>
     /// Helper class represents a single entry in a MenuScreen. By default this

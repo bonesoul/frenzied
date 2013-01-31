@@ -8,6 +8,7 @@
 // based on: http://xbox.create.msdn.com/en-US/education/catalog/sample/game_state_management
 
 using System;
+using Frenzied.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input.Touch;
 
@@ -316,6 +317,7 @@ namespace Frenzied.Screens
         /// </summary>
         public virtual void HandleInput(InputState input) { }
 
+        public virtual void HandleGestures() { }
 
         /// <summary>
         /// This is called when the screen should draw itself.

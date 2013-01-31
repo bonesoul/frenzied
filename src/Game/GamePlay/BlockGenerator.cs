@@ -122,53 +122,53 @@ namespace Frenzied.GamePlay
 
         public override void Draw(GameTime gameTime)
         {
-            //if (this.IsEmpty)
-            //    return;
+            if (this.IsEmpty)
+                return;
 
-            //ScreenManager.Instance.SpriteBatch.Begin();
+            ScreenManager.Instance.SpriteBatch.Begin();
 
-            //var texture = AssetManager.Instance.GetBlockTexture(this.CurretBlock);
-
-
-            //var blockRectangle=new Rectangle();
-            //switch (this.CurretBlock.Location)
-            //{
-            //    case BlockLocation.topleft:
-            //        blockRectangle = new Rectangle(this.Bounds.X + Block.PositionOffset,
-            //                                    this.Bounds.Y + Block.PositionOffset, (int)Block.Size.X, (int)Block.Size.Y);
-            //        break;
-            //    case BlockLocation.topright:
-            //        blockRectangle = new Rectangle(this.Bounds.X + (int)Block.Size.X + Block.PositionOffset,
-            //                                    this.Bounds.Y + Block.PositionOffset, (int)Block.Size.X, (int)Block.Size.Y);
-            //        break;
-            //    case BlockLocation.bottomleft:
-            //        blockRectangle = new Rectangle(this.Bounds.X + Block.PositionOffset,
-            //                                    this.Bounds.Y + (int)Block.Size.Y + Block.PositionOffset, (int)Block.Size.X, (int)Block.Size.Y);
-            //        break;
-            //    case BlockLocation.bottomright:
-            //        blockRectangle = new Rectangle(this.Bounds.X + (int)Block.Size.X + Block.PositionOffset,
-            //                                    this.Bounds.Y + (int)Block.Size.Y + Block.PositionOffset, (int)Block.Size.X, (int)Block.Size.Y);
-            //        break;
-            //    default:
-            //        break;
-            //}
-
-            //ScreenManager.Instance.SpriteBatch.Draw(texture, blockRectangle, Color.White);
-
-            //// progressbar.
+            var texture = AssetManager.Instance.GetBlockTexture(this.CurretBlock);
 
 
-            //var timeOutLeft = this.timeOut - (int) (gameTime.TotalGameTime.TotalMilliseconds - this._timeOutStart.TotalMilliseconds);
-            //timeOutLeft = (int)(timeOutLeft/1000);
-            //timeOutLeft++;
+            var blockRectangle = new Rectangle();
+            switch (this.CurretBlock.Location)
+            {
+                case BlockLocation.topleft:
+                    blockRectangle = new Rectangle(this.Bounds.X + Block.PositionOffset,
+                                                this.Bounds.Y + Block.PositionOffset, (int)Block.Size.X, (int)Block.Size.Y);
+                    break;
+                case BlockLocation.topright:
+                    blockRectangle = new Rectangle(this.Bounds.X + (int)Block.Size.X + Block.PositionOffset,
+                                                this.Bounds.Y + Block.PositionOffset, (int)Block.Size.X, (int)Block.Size.Y);
+                    break;
+                case BlockLocation.bottomleft:
+                    blockRectangle = new Rectangle(this.Bounds.X + Block.PositionOffset,
+                                                this.Bounds.Y + (int)Block.Size.Y + Block.PositionOffset, (int)Block.Size.X, (int)Block.Size.Y);
+                    break;
+                case BlockLocation.bottomright:
+                    blockRectangle = new Rectangle(this.Bounds.X + (int)Block.Size.X + Block.PositionOffset,
+                                                this.Bounds.Y + (int)Block.Size.Y + Block.PositionOffset, (int)Block.Size.X, (int)Block.Size.Y);
+                    break;
+                default:
+                    break;
+            }
 
-            //var width = (int)(31.25f * timeOutLeft);
+            ScreenManager.Instance.SpriteBatch.Draw(texture, blockRectangle, Color.White);
 
-            //ScreenManager.Instance.SpriteBatch.Draw(this._progressBarTexture, new Rectangle(5, 200, width, 10),new Rectangle(0,0,width,10),
-            //                                        Color.White);
-                
+            // progressbar.
 
-            //ScreenManager.Instance.SpriteBatch.End();   
+
+            var timeOutLeft = this.timeOut - (int)(gameTime.TotalGameTime.TotalMilliseconds - this._timeOutStart.TotalMilliseconds);
+            timeOutLeft = (int)(timeOutLeft / 1000);
+            timeOutLeft++;
+
+            var width = (int)(31.25f * timeOutLeft);
+
+            ScreenManager.Instance.SpriteBatch.Draw(this._progressBarTexture, new Rectangle(5, 200, width, 10), new Rectangle(0, 0, width, 10),
+                                                    Color.White);
+
+
+            ScreenManager.Instance.SpriteBatch.End();   
             
             base.Draw(gameTime);
         }

@@ -9,6 +9,7 @@
 
 using System.Diagnostics;
 using System.Collections.Generic;
+using Frenzied.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -42,6 +43,8 @@ namespace Frenzied.Screens
         bool traceEnabled;
 
         #endregion
+
+        public static ScreenManager Instance { get; private set; }
 
         #region Properties
 
@@ -89,6 +92,8 @@ namespace Frenzied.Screens
         public ScreenManager(Game game)
             : base(game)
         {
+            Instance = this;
+
             // we must set EnabledGestures before we can query for them, but
             // we don't assume the game wants to read them.
             TouchPanel.EnabledGestures = GestureType.None;
@@ -181,6 +186,9 @@ namespace Frenzied.Screens
                     if (!otherScreenHasFocus)
                     {
                         screen.HandleInput(input);
+
+                        if (TouchPanel.IsGestureAvailable)
+                            screen.HandleGestures();
 
                         otherScreenHasFocus = true;
                     }

@@ -9,6 +9,8 @@
 
 using System;
 using System.Collections.Generic;
+using Frenzied.Input;
+using Frenzied.Menu;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
