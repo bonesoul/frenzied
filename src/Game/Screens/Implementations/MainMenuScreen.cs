@@ -30,9 +30,9 @@ namespace Frenzied.Screens.Implementations
             : base("Main Menu")
         {
             // Create our menu entries.
-            MenuEntry playGameMenuEntry = new MenuEntry("Play Game");
-            MenuEntry optionsMenuEntry = new MenuEntry("Options");
-            MenuEntry exitMenuEntry = new MenuEntry("Exit");
+            var playGameMenuEntry = new MenuEntry("Play Game");
+            var optionsMenuEntry = new MenuEntry("Options");
+            var exitMenuEntry = new MenuEntry("Exit");
 
             // Hook up menu event handlers.
             playGameMenuEntry.Selected += PlayGameMenuEntrySelected;
