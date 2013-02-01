@@ -216,43 +216,30 @@
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
-      <HintPath>..\..\dep\monogame\windows8\MonoGame.Framework.dll</HintPath>
+      <HintPath>..\..\dep\monogame\WindowsMetro\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX">
-      <HintPath>..\..\dep\monogame\windows8\SharpDX.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpDX.D3DCompiler">
-      <HintPath>..\..\dep\monogame\windows8\SharpDX.D3DCompiler.dll</HintPath>
+      <HintPath>..\..\dep\monogame\WindowsMetro\SharpDX.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.Direct2D1">
-      <HintPath>..\..\dep\monogame\windows8\SharpDX.Direct2D1.dll</HintPath>
+      <HintPath>..\..\dep\monogame\WindowsMetro\SharpDX.Direct2D1.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.Direct3D11">
-      <HintPath>..\..\dep\monogame\windows8\SharpDX.Direct3D11.dll</HintPath>
+      <HintPath>..\..\dep\monogame\WindowsMetro\SharpDX.Direct3D11.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.DXGI">
-      <HintPath>..\..\dep\monogame\windows8\SharpDX.DXGI.dll</HintPath>
+      <HintPath>..\..\dep\monogame\WindowsMetro\SharpDX.DXGI.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.MediaFoundation">
-      <HintPath>..\..\dep\monogame\windows8\SharpDX.MediaFoundation.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpDX.Toolkit">
-      <HintPath>..\..\dep\monogame\windows8\SharpDX.Toolkit.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpDX.Toolkit.Game">
-      <HintPath>..\..\dep\monogame\windows8\SharpDX.Toolkit.Game.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpDX.Toolkit.Graphics">
-      <HintPath>..\..\dep\monogame\windows8\SharpDX.Toolkit.Graphics.dll</HintPath>
+      <HintPath>..\..\dep\monogame\WindowsMetro\SharpDX.MediaFoundation.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.XAudio2">
-      <HintPath>..\..\dep\monogame\windows8\SharpDX.XAudio2.dll</HintPath>
+      <HintPath>..\..\dep\monogame\WindowsMetro\SharpDX.XAudio2.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.XInput">
-      <HintPath>..\..\dep\monogame\windows8\SharpDX.XInput.dll</HintPath>
+      <HintPath>..\..\dep\monogame\WindowsMetro\SharpDX.XInput.dll</HintPath>
     </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
