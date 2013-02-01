@@ -47,6 +47,8 @@ namespace Frenzied.Menu
         /// </summary>
         Vector2 position;
 
+        private Rectangle _bounds;
+
         #endregion
 
         #region Properties
@@ -69,6 +71,12 @@ namespace Frenzied.Menu
         {
             get { return position; }
             set { position = value; }
+        }
+
+        public Rectangle Bounds
+        {
+            get { return _bounds; }
+            set { _bounds = value; }
         }
 
 
@@ -164,10 +172,26 @@ namespace Frenzied.Menu
             SpriteBatch spriteBatch = screenManager.SpriteBatch;
             SpriteFont font = screenManager.Font;
 
-            Vector2 origin = new Vector2(0, font.LineSpacing / 2);
+            //Vector2 origin = new Vector2(0, font.LineSpacing / 2);
+            Vector2 origin = new Vector2(0, 0);
+
+            var size = ScreenManager.Instance.Font.MeasureString(this.Text);
+            this.Bounds = new Rectangle((int)this.Position.X, (int)this.Position.Y, (int)(size.X*scale), (int)size.Y);
+
+            if (isSelected) // draw debug rectangle.
+            {
+                var rect = new Texture2D(screenManager.GraphicsDevice, this.Bounds.Width, this.Bounds.Height);
+                var data = new Color[this.Bounds.Width * this.Bounds.Height];
+                for (int i = 0; i < data.Length; ++i) data[i] = Color.Chocolate;
+                rect.SetData(data);
+
+                var coor = new Vector2(this.Bounds.X, this.Bounds.Y);
+                spriteBatch.Draw(rect, coor, Color.White);
+            }
 
             spriteBatch.DrawString(font, text, position, color, 0,
                                    origin, scale, SpriteEffects.None, 0);
+
         }
 
 
