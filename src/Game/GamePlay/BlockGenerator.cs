@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Frenzied.Assets;
-using Frenzied.Screen;
+using Frenzied.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -130,7 +130,7 @@ namespace Frenzied.GamePlay
             var texture = AssetManager.Instance.GetBlockTexture(this.CurretBlock);
 
 
-            var blockRectangle=new Rectangle();
+            var blockRectangle = new Rectangle();
             switch (this.CurretBlock.Location)
             {
                 case BlockLocation.topleft:
@@ -158,15 +158,15 @@ namespace Frenzied.GamePlay
             // progressbar.
 
 
-            var timeOutLeft = this.timeOut - (int) (gameTime.TotalGameTime.TotalMilliseconds - this._timeOutStart.TotalMilliseconds);
-            timeOutLeft = (int)(timeOutLeft/1000);
+            var timeOutLeft = this.timeOut - (int)(gameTime.TotalGameTime.TotalMilliseconds - this._timeOutStart.TotalMilliseconds);
+            timeOutLeft = (int)(timeOutLeft / 1000);
             timeOutLeft++;
 
             var width = (int)(31.25f * timeOutLeft);
 
-            ScreenManager.Instance.SpriteBatch.Draw(this._progressBarTexture, new Rectangle(5, 200, width, 10),new Rectangle(0,0,width,10),
+            ScreenManager.Instance.SpriteBatch.Draw(this._progressBarTexture, new Rectangle(5, 200, width, 10), new Rectangle(0, 0, width, 10),
                                                     Color.White);
-                
+
 
             ScreenManager.Instance.SpriteBatch.End();   
             

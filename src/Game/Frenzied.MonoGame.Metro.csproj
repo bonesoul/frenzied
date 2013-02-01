@@ -100,6 +100,18 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Input\PlayerIndexEventArgs.cs" />
+    <Compile Include="Menu\MenuEntry.cs" />
+    <Compile Include="Screens\GameScreen.cs" />
+    <Compile Include="Screens\Implementations\BackgroundScreen.cs" />
+    <Compile Include="Screens\Implementations\GameplayScreen.cs" />
+    <Compile Include="Screens\Implementations\LoadingScreen.cs" />
+    <Compile Include="Screens\Implementations\MainMenuScreen.cs" />
+    <Compile Include="Screens\Implementations\MenuScreen.cs" />
+    <Compile Include="Screens\Implementations\MessageBoxScreen.cs" />
+    <Compile Include="Screens\Implementations\OptionsMenuScreen.cs" />
+    <Compile Include="Screens\Implementations\PauseMenuScreen.cs" />
+    <Compile Include="Screens\ScreenManager.cs" />
     <Compile Include="Utils\Debugging\DebugBar.cs" />
     <Compile Include="Utils\Debugging\Graphs\DebugGraph.cs" />
     <Compile Include="Utils\Debugging\Graphs\GraphManager.cs" />
@@ -109,7 +121,6 @@
     <Compile Include="Utils\Extensions\Vector2Extensions.cs" />
     <Compile Include="Assets\AssetManager.cs" />
     <Compile Include="Audio\AudioManager.cs" />
-    <Compile Include="Components\Background.cs" />
     <Compile Include="Config\BackgroundConfig.cs" />
     <Compile Include="Config\GameConfig.cs" />
     <Compile Include="GamePlay\Block.cs" />
@@ -121,104 +132,85 @@
     <Compile Include="Graphics\GraphicsManager.cs" />
     <Compile Include="Input\Cursor.cs" />
     <Compile Include="Input\InputState.cs" />
-    <Compile Include="Screen\GameScreen.cs" />
-    <Compile Include="Screen\ScreenManager.cs" />
     <Compile Include="Utils\Extensions\StringBuilderExtensions.cs" />
     <Compile Include="Graphics\Effects\Metaball.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="FrenziedGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Screen\Implementations\BackgroundScreen.cs" />
-    <Compile Include="Screen\Implementations\GamePlayScreen.cs" />
-    <Compile Include="Screen\Implementations\MenuScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <Content Include="..\Content\Fonts\calibri.xnb">
-      <Link>Content\Fonts\calibri.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Music\Dragon Soul.wma">
+      <Link>Content\Music\Dragon Soul.wma</Link>
     </Content>
-    <Content Include="..\Content\Fonts\CalibriDebug.xnb">
-      <Link>Content\Fonts\CalibriDebug.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Fonts\GameFont.xnb">
+      <Link>Content\Fonts\GameFont.xnb</Link>
     </Content>
-    <Content Include="..\Content\Fonts\calibrismall.xnb">
-      <Link>Content\Fonts\calibrismall.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\Content\Fonts\Verdana.xnb">
-      <Link>Content\Fonts\Verdana.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\Content\Music\The_resilient_sheep.xnb">
-      <Link>Content\Music\The_resilient_sheep.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\Content\Fonts\GoodDog.xnb">
+    <Content Include="..\..\bin\debug\windows\xna\Content\Fonts\GoodDog.xnb">
       <Link>Content\Fonts\GoodDog.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="..\Content\Sounds\Explode\0.xnb">
-      <Link>Content\Sounds\Explode\0.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Fonts\MenuFont.xnb">
+      <Link>Content\Fonts\MenuFont.xnb</Link>
     </Content>
-    <Content Include="..\Content\Sounds\Blocks\0.xnb">
-      <Link>Content\Sounds\Blocks\0.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Fonts\Verdana.xnb">
+      <Link>Content\Fonts\Verdana.xnb</Link>
     </Content>
-    <Content Include="..\Content\Sounds\Blocks\1.xnb">
-      <Link>Content\Sounds\Blocks\1.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\Content\Sounds\Blocks\2.xnb">
-      <Link>Content\Sounds\Blocks\2.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\Content\Sounds\Blocks\3.xnb">
-      <Link>Content\Sounds\Blocks\3.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\Content\Sounds\Blocks\4.xnb">
-      <Link>Content\Sounds\Blocks\4.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\Content\Music\Dragon Soul.xnb">
+    <Content Include="..\..\bin\debug\windows\xna\Content\Music\Dragon Soul.xnb">
       <Link>Content\Music\Dragon Soul.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Sounds\Blocks\0.xnb">
+      <Link>Content\Sounds\Blocks\0.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Sounds\Blocks\1.xnb">
+      <Link>Content\Sounds\Blocks\1.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Sounds\Blocks\2.xnb">
+      <Link>Content\Sounds\Blocks\2.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Sounds\Blocks\3.xnb">
+      <Link>Content\Sounds\Blocks\3.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Sounds\Blocks\4.xnb">
+      <Link>Content\Sounds\Blocks\4.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Sounds\Explode\0.xnb">
+      <Link>Content\Sounds\Explode\0.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Sounds\Timeout\0.xnb">
+      <Link>Content\Sounds\Timeout\0.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Blocks\BlockProgressBar.xnb">
+      <Link>Content\Textures\Blocks\BlockProgressBar.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Blocks\BlueBlock.xnb">
+      <Link>Content\Textures\Blocks\BlueBlock.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Blocks\GreenBlock.xnb">
+      <Link>Content\Textures\Blocks\GreenBlock.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Blocks\OrangeBlock.xnb">
+      <Link>Content\Textures\Blocks\OrangeBlock.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Blocks\PurpleBlock.xnb">
+      <Link>Content\Textures\Blocks\PurpleBlock.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Blank.xnb">
+      <Link>Content\Textures\Blank.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\BlockContainer.xnb">
+      <Link>Content\Textures\BlockContainer.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\cursor.xnb">
+      <Link>Content\Textures\cursor.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Gradient.xnb">
+      <Link>Content\Textures\Gradient.xnb</Link>
     </Content>
     <None Include="Frenzied_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\Content\Textures\Background.png">
-      <Link>Content\Textures\Background.png</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\Content\Textures\Blank.png">
-      <Link>Content\Textures\Blank.png</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\Content\Textures\BlockContainer.png">
-      <Link>Content\Textures\BlockContainer.png</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\Content\Textures\Blocks\GreenBlock.png">
-      <Link>Content\Textures\Blocks\GreenBlock.png</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\Content\Textures\Blocks\OrangeBlock.png">
-      <Link>Content\Textures\Blocks\OrangeBlock.png</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\Content\Textures\Blocks\PurpleBlock.png">
-      <Link>Content\Textures\Blocks\PurpleBlock.png</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="..\Content\Textures\cursor.png">
-      <Link>Content\Textures\cursor.png</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Assets\Logo.png" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
