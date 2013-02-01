@@ -9,10 +9,13 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Frenzied.Input;
 using Frenzied.Menu;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
 
 #endregion
 
@@ -105,6 +108,32 @@ namespace Frenzied.Screens.Implementations
             else if (input.IsMenuCancel(ControllingPlayer, out playerIndex))
             {
                 OnCancel(playerIndex);
+            }
+
+            // handle mouse
+            if (input.CurrentMouseState.LeftButton == ButtonState.Pressed && input.LastMouseState.LeftButton == ButtonState.Released)
+                HandleClick(input.CurrentMouseState.X, input.CurrentMouseState.Y); // make sure we only process mouse click once.
+                
+            // handle gestures
+            if (input.Gestures.Count == 0)
+                return;
+
+            foreach (var gesture in input.Gestures)
+            {
+                if (gesture.GestureType == GestureType.Tap)
+                    HandleClick((int)gesture.Position.X, (int)gesture.Position.Y);
+            }
+        }
+
+        private void HandleClick(int X, int Y)
+        {
+            foreach (var entry in this.menuEntries) // loop the menu entries.
+            {
+                if (!entry.Bounds.Contains(X, Y)) // see if cursor is over an menu-entry.
+                    continue;
+
+                var index = this.menuEntries.IndexOf(entry); // find the menu-entry index.
+                OnSelectEntry(index, 0); // fire the select action.
             }
         }
 
