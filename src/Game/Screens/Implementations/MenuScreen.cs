@@ -59,6 +59,7 @@ namespace Frenzied.Screens.Implementations
         public MenuScreen(string menuTitle)
         {
             this.menuTitle = menuTitle;
+            this.EnabledGestures = GestureType.Tap;
 
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
