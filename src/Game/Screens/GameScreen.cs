@@ -317,7 +317,7 @@ namespace Frenzied.Screens
         /// </summary>
         public virtual void HandleInput(InputState input) { }
 
-        public virtual void HandleGestures() { }
+        public virtual void HandleGestures(InputState input) { }
 
         /// <summary>
         /// This is called when the screen should draw itself.

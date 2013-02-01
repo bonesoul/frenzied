@@ -8,23 +8,24 @@
 using Android.App;
 using Android.Content.PM;
 using Android.OS;
+using Microsoft.Xna.Framework;
 
 namespace Frenzied
 {
-    [Activity(Label = "GameName1"
+    [Activity(Label = "Frenzied"
         , MainLauncher = true
         , Icon = "@drawable/icon"
         , Theme = "@style/Theme.Splash"
         , AlwaysRetainTaskState = true
-        , LaunchMode = Android.Content.PM.LaunchMode.SingleInstance
+        , LaunchMode = LaunchMode.SingleInstance
         , ScreenOrientation = ScreenOrientation.SensorLandscape
         , ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]
-    public class AndroidActivity : Microsoft.Xna.Framework.AndroidGameActivity
+    public class AndroidActivity : AndroidGameActivity
     {
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            FrenziedGame.Activity = this;
+            Game.Activity = this;
             var g = new FrenziedGame();
             SetContentView(g.Window);
             g.Run();

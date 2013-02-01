@@ -80,15 +80,10 @@ namespace Frenzied
             this._graphicsDeviceManager.ApplyChanges();
             #endif
 
-            #if METRO || ANDROID
-            TouchPanel.EnabledGestures = GestureType.Tap;
-            #endif
-
             #if ANDROID
             this._graphicsDeviceManager.PreferredBackBufferWidth = 800;
             this._graphicsDeviceManager.PreferredBackBufferHeight = 480;
             this._graphicsDeviceManager.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
-            TouchPanel.EnabledGestures = GestureType.Tap;
             #endif
 
             // init the asset manager.

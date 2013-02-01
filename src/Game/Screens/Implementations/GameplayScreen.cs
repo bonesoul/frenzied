@@ -97,14 +97,15 @@ namespace Frenzied.Screens.Implementations
             this.HandleClick(input.CurrentMouseState.X, input.CurrentMouseState.Y);
         }
 
-        public override void HandleGestures()
+        public override void HandleGestures(InputState input)
         {
-            while (TouchPanel.IsGestureAvailable)
+            if (input.Gestures.Count == 0)
+                return;
+
+            foreach (var gesture in input.Gestures)
             {
-                var gesture = TouchPanel.ReadGesture();
                 if (gesture.GestureType == GestureType.Tap)
                     HandleClick((int)gesture.Position.X, (int)gesture.Position.Y);
-
             }
         }
 

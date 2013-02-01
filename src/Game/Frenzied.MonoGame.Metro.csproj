@@ -196,9 +196,6 @@
     <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Blocks\PurpleBlock.xnb">
       <Link>Content\Textures\Blocks\PurpleBlock.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Background.xnb">
-      <Link>Content\Textures\Background.xnb</Link>
-    </Content>
     <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Blank.xnb">
       <Link>Content\Textures\Blank.xnb</Link>
     </Content>

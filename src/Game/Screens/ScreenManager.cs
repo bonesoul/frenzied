@@ -96,7 +96,7 @@ namespace Frenzied.Screens
 
             // we must set EnabledGestures before we can query for them, but
             // we don't assume the game wants to read them.
-            // TouchPanel.EnabledGestures = GestureType.None;
+            TouchPanel.EnabledGestures = GestureType.None;
         }
 
 
@@ -187,8 +187,8 @@ namespace Frenzied.Screens
                     {
                         screen.HandleInput(input);
 
-                        if (TouchPanel.IsGestureAvailable)
-                            screen.HandleGestures();
+                        if (input.Gestures.Count > 0)
+                            screen.HandleGestures(input);
 
                         otherScreenHasFocus = true;
                     }
