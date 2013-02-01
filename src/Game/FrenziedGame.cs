@@ -8,13 +8,12 @@
 using System;
 using Frenzied.Assets;
 using Frenzied.Audio;
-using Frenzied.Components;
 using Frenzied.Config;
 using Frenzied.GamePlay;
 using Frenzied.Graphics;
 using Frenzied.Input;
-using Frenzied.Screen;
-using Frenzied.Screen.Implementations;
+using Frenzied.Screens;
+using Frenzied.Screens.Implementations;
 using Frenzied.Utils.Debugging;
 using Frenzied.Utils.Debugging.Graphs;
 using Microsoft.Xna.Framework;
@@ -81,15 +80,10 @@ namespace Frenzied
             this._graphicsDeviceManager.ApplyChanges();
             #endif
 
-            #if METRO || ANDROID
-            TouchPanel.EnabledGestures = GestureType.Tap;
-            #endif
-
             #if ANDROID
             this._graphicsDeviceManager.PreferredBackBufferWidth = 800;
             this._graphicsDeviceManager.PreferredBackBufferHeight = 480;
             this._graphicsDeviceManager.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
-            TouchPanel.EnabledGestures = GestureType.Tap;
             #endif
 
             // init the asset manager.
@@ -99,8 +93,6 @@ namespace Frenzied
             var graphicsManager = new GraphicsManager(this._graphicsDeviceManager, this); // start the screen manager.
             graphicsManager.ToggleVerticalSync();
 
-            var background = new Background(this);
-            this.Components.Add(background);
 
             // create the screen manager
             this._screenManager = new ScreenManager(this);
@@ -110,10 +102,11 @@ namespace Frenzied
             var scoreManager = new ScoreManager(this);
             this.Components.Add(scoreManager);
 
-            // add the background screen to the screen manager
-            //this._screenManager.AddScreen(new BackgroundScreen(this));
-            this._screenManager.AddScreen(new GamePlayScreen(this));
-            //this._screenManager.AddScreen(new MenuScreen(this));
+            // Activate the first screens.
+            this._screenManager.AddScreen(new BackgroundScreen(), null);
+            //this._screenManager.AddScreen(new MainMenuScreen(), null);
+            this._screenManager.AddScreen(new GameplayScreen(), null);
+
 
             // add debug components
             this.Components.Add(new DebugBar(this));

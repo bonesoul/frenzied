@@ -8,7 +8,7 @@
 using System;
 using System.Collections.Generic;
 using Frenzied.Assets;
-using Frenzied.Screen;
+using Frenzied.Screens;
 using Microsoft.Xna.Framework;
 
 namespace Frenzied.GamePlay
@@ -103,7 +103,7 @@ namespace Frenzied.GamePlay
             {
                 var block = pair.Value;
 
-                if(block.IsEmpty)
+                if (block.IsEmpty)
                     continue;
 
                 var texture = AssetManager.Instance.GetBlockTexture(block);
