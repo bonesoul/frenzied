@@ -84,6 +84,10 @@
     <Compile Include="GamePlay\Block.cs" />
     <Compile Include="GamePlay\BlockContainer.cs" />
     <Compile Include="GamePlay\BlockGenerator.cs" />
+    <Compile Include="GamePlay\GameModes\GameMode.cs" />
+    <Compile Include="GamePlay\GameModes\Shape.cs" />
+    <Compile Include="GamePlay\GameModes\ShapeContainer.cs" />
+    <Compile Include="GamePlay\GameModes\ShapeGenerator.cs" />
     <Compile Include="GamePlay\ScoreManager.cs" />
     <Compile Include="Graphics\Drawing\BasicShapes.cs" />
     <Compile Include="Graphics\Drawing\PrimitiveBatch.cs" />
