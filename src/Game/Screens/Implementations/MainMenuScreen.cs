@@ -5,13 +5,9 @@
  * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
  */
 
-#region Using Statements
-
 using Frenzied.Input;
 using Frenzied.Menu;
 using Microsoft.Xna.Framework;
-
-#endregion
 
 namespace Frenzied.Screens.Implementations
 {
@@ -20,36 +16,32 @@ namespace Frenzied.Screens.Implementations
     /// </summary>
     class MainMenuScreen : MenuScreen
     {
-        #region Initialization
-
-
-        /// <summary>
-        /// Constructor fills in the menu contents.
-        /// </summary>
         public MainMenuScreen()
             : base("Main Menu")
         {
             // Create our menu entries.
             var playGameMenuEntry = new MenuEntry("Play Game");
             var optionsMenuEntry = new MenuEntry("Options");
+            var aboutMenuEntry = new MenuEntry("About");
             var exitMenuEntry = new MenuEntry("Exit");
 
             // Hook up menu event handlers.
             playGameMenuEntry.Selected += PlayGameMenuEntrySelected;
             optionsMenuEntry.Selected += OptionsMenuEntrySelected;
+            aboutMenuEntry.Selected += aboutMenuEntry_Selected;
             exitMenuEntry.Selected += OnCancel;
 
             // Add entries to the menu.
             MenuEntries.Add(playGameMenuEntry);
             MenuEntries.Add(optionsMenuEntry);
+            MenuEntries.Add(aboutMenuEntry);
             MenuEntries.Add(exitMenuEntry);
         }
 
-
-        #endregion
-
-        #region Handle Input
-
+        void  aboutMenuEntry_Selected(object sender, PlayerIndexEventArgs e)
+        {
+            ScreenManager.AddScreen(new AboutScreen(), e.PlayerIndex);
+        }
 
         /// <summary>
         /// Event handler for when the Play Game menu entry is selected.
@@ -93,8 +85,5 @@ namespace Frenzied.Screens.Implementations
         {
             ScreenManager.Game.Exit();
         }
-
-
-        #endregion
     }
 }
