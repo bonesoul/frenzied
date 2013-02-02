@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frenzied.XNA.WinPhone7", "..\src\Game\Frenzied.XNA.WinPhone7.csproj", "{68942D65-0E5E-4747-8917-48DB9DF91957}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Content", "..\src\Content\Content.contentproj", "{49796CBA-FA0E-4778-896D-65CBD54CB3F7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Windows Phone = Debug|Windows Phone
+		Debug|x86 = Debug|x86
+		Release|Windows Phone = Release|Windows Phone
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{68942D65-0E5E-4747-8917-48DB9DF91957}.Debug|Windows Phone.ActiveCfg = Debug|Windows Phone
+		{68942D65-0E5E-4747-8917-48DB9DF91957}.Debug|Windows Phone.Build.0 = Debug|Windows Phone
+		{68942D65-0E5E-4747-8917-48DB9DF91957}.Debug|Windows Phone.Deploy.0 = Debug|Windows Phone
+		{68942D65-0E5E-4747-8917-48DB9DF91957}.Debug|x86.ActiveCfg = Debug|Windows Phone
+		{68942D65-0E5E-4747-8917-48DB9DF91957}.Release|Windows Phone.ActiveCfg = Release|Windows Phone
+		{68942D65-0E5E-4747-8917-48DB9DF91957}.Release|Windows Phone.Build.0 = Release|Windows Phone
+		{68942D65-0E5E-4747-8917-48DB9DF91957}.Release|Windows Phone.Deploy.0 = Release|Windows Phone
+		{68942D65-0E5E-4747-8917-48DB9DF91957}.Release|x86.ActiveCfg = Release|Windows Phone
+		{49796CBA-FA0E-4778-896D-65CBD54CB3F7}.Debug|Windows Phone.ActiveCfg = Debug|x86
+		{49796CBA-FA0E-4778-896D-65CBD54CB3F7}.Debug|x86.ActiveCfg = Debug|x86
+		{49796CBA-FA0E-4778-896D-65CBD54CB3F7}.Release|Windows Phone.ActiveCfg = Release|x86
+		{49796CBA-FA0E-4778-896D-65CBD54CB3F7}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
