@@ -60,6 +60,14 @@ namespace Frenzied
 
             this.Configuration = config;
 
+            #if WINPHONE7
+            // Frame rate is 30 fps by default for Windows Phone.
+            TargetElapsedTime = TimeSpan.FromTicks(333333);
+
+            // Extend battery life under lock.
+            InactiveSleepTime = TimeSpan.FromSeconds(1);
+            #endif
+
             _graphicsDeviceManager = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";         
         }
