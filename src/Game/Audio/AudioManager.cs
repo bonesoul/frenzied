@@ -35,9 +35,11 @@ namespace Frenzied.Audio
 
         private void PlayBackroundSong()
         {
+            #if !WINPHONE8
             MediaPlayer.IsRepeating = true;
             MediaPlayer.Play(this._backgroundSong);
             MediaPlayer.Volume = 0.3f;
+            #endif
         }
     }
 }

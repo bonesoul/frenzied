@@ -108,7 +108,9 @@ namespace Frenzied.GamePlay
         public void TimeOut()
         {
             this.Lives--;
+            #if !WINPHONE8
             this._assetManager.Sounds.Timeout.Play();
+            #endif
         }
 
         protected override void LoadContent()
