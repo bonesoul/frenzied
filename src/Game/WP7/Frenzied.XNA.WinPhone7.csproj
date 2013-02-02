@@ -33,7 +33,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\bin\debug\winphone\7\xna\</OutputPath>
+    <OutputPath>..\..\..\bin\debug\winphone\7\xna\</OutputPath>
     <DefineConstants>TRACE;DEBUG;XNA, WINPHONE7</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>

@@ -122,7 +122,9 @@ namespace Frenzied.Screens.Implementations
                 if (!container.IsEmpty(this._blockGenerator.CurretBlock.Location))
                     continue;
 
+                #if !WINPHONE8
                 this._assetManager.Sounds.BlockEffect.PlayRandom();
+                #endif
 
                 container.AddBlock(this._blockGenerator.CurretBlock);
                 this._blockGenerator.CurrentBlockUsed();

@@ -109,8 +109,10 @@ namespace Frenzied.Assets
 
             public void LoadContent(Game game)
             {
+                #if !WINPHONE8
                 this.Explode = game.Content.Load<SoundEffect>(@"Sounds/Explode/0");
                 this.Timeout = game.Content.Load<SoundEffect>(@"Sounds/Timeout/0");
+                #endif
                 
                 this.BlockEffect.LoadContent(game);
             }
@@ -122,11 +124,13 @@ namespace Frenzied.Assets
 
                 public void LoadContent(Game game)
                 {
+                    #if !WINPHONE8
                     this._effects.Add(game.Content.Load<SoundEffect>(@"Sounds/Blocks/0"));
                     this._effects.Add(game.Content.Load<SoundEffect>(@"Sounds/Blocks/1"));
                     this._effects.Add(game.Content.Load<SoundEffect>(@"Sounds/Blocks/2"));
                     this._effects.Add(game.Content.Load<SoundEffect>(@"Sounds/Blocks/3"));
                     this._effects.Add(game.Content.Load<SoundEffect>(@"Sounds/Blocks/4"));
+                    #endif
                 }
 
                 public void PlayRandom()
