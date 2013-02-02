@@ -39,11 +39,18 @@ using Android.App;
 [assembly: UsesPermission(Android.Manifest.Permission.WriteExternalStorage)]
 #endif
 
-#if WINPHONE7
+#if WINPHONE7 || WINPHONE8
 [assembly: NeutralResourcesLanguageAttribute("en-US")]
+#endif
 
+#if WINPHONE7
 // On Windows, the following GUID is for the ID of the typelib if this
 // project is exposed to COM. On other platforms, it unique identifies the
 // title storage container when deploying this assembly to the device.
 [assembly: Guid("868741df-2e75-4934-aff5-82b3ba5445c5")]
+#endif
+
+#if WINPHONE8
+// The following GUID is for the ID of the typelib if this project is exposed to COM
+[assembly: Guid("884d4b41-7b23-496c-ba72-db2c249b074e")]
 #endif

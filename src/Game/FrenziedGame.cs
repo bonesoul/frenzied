@@ -94,6 +94,12 @@ namespace Frenzied
             this._graphicsDeviceManager.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
             #endif
 
+            #if WINPHONE7
+            this._graphicsDeviceManager.PreferredBackBufferWidth = 480;
+            this._graphicsDeviceManager.PreferredBackBufferHeight = 800;
+            this._graphicsDeviceManager.IsFullScreen = true;
+            #endif
+
             // init the asset manager.
             var assetManager = new AssetManager(this);
             this.Components.Add(assetManager);
