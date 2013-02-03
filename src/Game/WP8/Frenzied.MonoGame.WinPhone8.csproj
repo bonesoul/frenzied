@@ -31,7 +31,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\..\..\bin\debug\winphone\8\xna\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;XNA, WINPHONE8</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;WINPHONE8, DIRECTX11, MONOGAME</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
@@ -180,6 +180,12 @@
     <Compile Include="..\Utils\Extensions\Vector2Extensions.cs">
       <Link>Utils\Extensions\Vector2Extensions.cs</Link>
     </Compile>
+    <Compile Include="..\Utils\Platform\PlatformInfo.cs">
+      <Link>Utils\Platform\PlatformInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Utils\Platform\VersionInfo.cs">
+      <Link>Utils\Platform\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -304,9 +310,6 @@
   </ItemGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <Reference Include="MonoGame.Framework" Condition=" '$(Platform)' == 'x86' ">
-      <HintPath>$(MSBuildExtensionsPath)\..\MonoGame\v3.0\Assemblies\WindowsPhone\x86\MonoGame.Framework.dll</HintPath>
-    </Reference>
     <Reference Include="MonoGame.Framework, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\dep\monogame\WinPhone8\x86\MonoGame.Framework.dll</HintPath>

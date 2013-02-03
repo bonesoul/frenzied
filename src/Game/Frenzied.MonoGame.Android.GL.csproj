@@ -25,7 +25,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\..\bin\debug\android\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;ANDROID, MONOGAME,</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;ANDROID, OPENGL, MONOGAME,</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
@@ -93,6 +93,8 @@
     <Compile Include="Utils\Extensions\NumberExtensions.cs" />
     <Compile Include="Utils\Extensions\StringBuilderExtensions.cs" />
     <Compile Include="Utils\Extensions\Vector2Extensions.cs" />
+    <Compile Include="Utils\Platform\PlatformInfo.cs" />
+    <Compile Include="Utils\Platform\VersionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="..\..\bin\debug\windows\xna\Content\Fonts\GameFont.xnb">

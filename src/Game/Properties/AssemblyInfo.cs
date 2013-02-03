@@ -1,7 +1,15 @@
-﻿using System.Reflection;
+﻿/*
+ * Frenzied Game, Copyright (C) 2012 - 2013 Int6 Studios - All Rights Reserved. - http://www.int6.org
+ *
+ * This file is part of Frenzied Game project. Unauthorized copying of this file, via any medium is strictly prohibited.
+ * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
+ */
+
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Resources;
+using Frenzied.Utils.Platform;
 
 #if ANDROID
 using Android.App;
@@ -26,11 +34,9 @@ using Android.App;
 //      Build Number
 //      Revision
 //
-// You can specify all the values or you can default the Build and Revision Numbers 
-// by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+
+// Set the assembly version from VersionInfo.cs file.
+[assembly: AssemblyVersion(VersionInfo.VersionPattern)]
 [assembly: ComVisible(false)]
 
 #if ANDROID

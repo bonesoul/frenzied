@@ -177,6 +177,12 @@
     <Compile Include="..\Utils\Extensions\Vector2Extensions.cs">
       <Link>Utils\Extensions\Vector2Extensions.cs</Link>
     </Compile>
+    <Compile Include="..\Utils\Platform\PlatformInfo.cs">
+      <Link>Utils\Platform\PlatformInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Utils\Platform\VersionInfo.cs">
+      <Link>Utils\Platform\VersionInfo.cs</Link>
+    </Compile>
     <None Include="Properties\AppManifest.xml">
       <XnaPlatformSpecific>true</XnaPlatformSpecific>
     </None>
