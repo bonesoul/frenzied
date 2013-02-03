@@ -63,7 +63,9 @@ namespace Frenzied.GamePlay
             if (!this.IsFull())
                 return;
 
+            #if !WINPHONE8
             this._assetManager.Sounds.Explode.Play();
+            #endif
 
             this._scoreManager.CorrectMove(this);
 

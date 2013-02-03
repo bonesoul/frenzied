@@ -118,6 +118,8 @@
     <Compile Include="Utils\Extensions\NumberExtensions.cs" />
     <Compile Include="Utils\Extensions\StringBuilderExtensions.cs" />
     <Compile Include="Utils\Extensions\Vector2Extensions.cs" />
+    <Compile Include="Utils\Platform\PlatformInfo.cs" />
+    <Compile Include="Utils\Platform\VersionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Content\Content.contentproj">
