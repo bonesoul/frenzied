@@ -20,7 +20,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\..\bin\debug\windows\monogame\metro\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;NETFX_CORE, WINDOWS, MONOGAME, METRO</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE, WINDOWS, METRO, MONOGAME, DIRECTX11</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -103,6 +103,7 @@
     <Compile Include="Input\PlayerIndexEventArgs.cs" />
     <Compile Include="Menu\MenuEntry.cs" />
     <Compile Include="Screens\GameScreen.cs" />
+    <Compile Include="Screens\Implementations\AboutScreen.cs" />
     <Compile Include="Screens\Implementations\BackgroundScreen.cs" />
     <Compile Include="Screens\Implementations\GameplayScreen.cs" />
     <Compile Include="Screens\Implementations\LoadingScreen.cs" />
@@ -137,6 +138,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="FrenziedGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\Platform\PlatformInfo.cs" />
+    <Compile Include="Utils\Platform\VersionInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

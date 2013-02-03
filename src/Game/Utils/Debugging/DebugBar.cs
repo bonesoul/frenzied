@@ -10,6 +10,7 @@ using System.Text;
 using Frenzied.Assets;
 using Frenzied.Graphics.Drawing;
 using Frenzied.Utils.Extensions;
+using Frenzied.Utils.Platform;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -51,15 +52,19 @@ namespace Frenzied.Utils.Debugging
         private Rectangle _bounds;
         private readonly Vector2[] _backgroundPolygon = new Vector2[4];
 
-        // for grabbing internal string, we should init string builder capacity and max capacity ctor so that, grabbed internal string is always valid. - http://www.gavpugh.com/2010/03/23/xnac-stringbuilder-to-string-with-no-garbage/
-        private readonly StringBuilder _stringBuilder = new StringBuilder(512, 512);
-
         // required services.       
         private IAssetManager _assetManager;
 
         // internal counters.
         private int _frameCounter = 0; // the frame count.
         private TimeSpan _elapsedTime = TimeSpan.Zero;
+
+        // for grabbing internal string, we should init string builder capacity and max capacity ctor so that, grabbed internal string is always valid. - http://www.gavpugh.com/2010/03/23/xnac-stringbuilder-to-string-with-no-garbage/
+        private readonly StringBuilder _stringBuilder = new StringBuilder(512, 512);
+
+        // platform info string.
+        private string _platformInfo;
+        private float _platformInfoStringWidth = 0f;
 
         public DebugBar(Game game)
             : base(game)
@@ -95,6 +100,17 @@ namespace Frenzied.Utils.Debugging
             this._backgroundPolygon[1] = new Vector2(_bounds.X - 2, _bounds.Y + _bounds.Height + 14); // bottom left
             this._backgroundPolygon[2] = new Vector2(_bounds.X + 2 + _bounds.Width, _bounds.Y + _bounds.Height + 14); // bottom right
             this._backgroundPolygon[3] = new Vector2(_bounds.X + 2 + _bounds.Width, _bounds.Y - 2); // top right
+
+            this._platformInfo = string.Format("platform: {0} / {1}-{2}        API: {3} / {4}-{5}        development-build: v{6}",
+                                               PlatformInfo.Platform,
+                                               PlatformInfo.DotNetFramework,
+                                               PlatformInfo.DotNetFrameworkVersion,
+                                               PlatformInfo.GraphicsApi,
+                                               PlatformInfo.GameFramework,
+                                               PlatformInfo.GameFrameworkVersion,
+                                               VersionInfo.Version);
+
+            this._platformInfoStringWidth = this._spriteFont.MeasureString(this._platformInfo).X;
         }
 
         /// <summary>
@@ -142,17 +158,20 @@ namespace Frenzied.Utils.Debugging
 
             // Attention: DO NOT use string.format as it's slower than string concat.
 
-            // FPS
+            // FPS.
             _stringBuilder.Length = 0;
             _stringBuilder.Append("fps:");
             _stringBuilder.Append(this.FPS);
             _spriteBatch.DrawString(_spriteFont, _stringBuilder, new Vector2(this._bounds.X + 5, this._bounds.Y + 5), Color.White);
 
-            // mem used
+            // mem used.
             _stringBuilder.Length = 0;
             _stringBuilder.Append("mem:");
             _stringBuilder.Append(this.MemoryUsed.GetKiloString());
             _spriteBatch.DrawString(_spriteFont, _stringBuilder, new Vector2(this._bounds.X + 75, this._bounds.Y + 5), Color.White);
+
+            // print platform-info.
+            _spriteBatch.DrawString(_spriteFont, this._platformInfo, new Vector2(this._bounds.Width - this._platformInfoStringWidth, this._bounds.Y + 5), Color.White);
 
             _spriteBatch.End();
         }

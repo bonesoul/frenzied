@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{68942D65-0E5E-4747-8917-48DB9DF91957}</ProjectGuid>
+    <ProjectTypeGuids>{6D335F3A-9D43-41b4-9D22-F6F17C4BE596};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">Windows Phone</Platform>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Frenzied</RootNamespace>
+    <AssemblyName>Frenzied</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
+    <XnaPlatform>Windows Phone</XnaPlatform>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaCrossPlatformGroupID>549316f5-0ffa-4381-906f-13a5d98f2606</XnaCrossPlatformGroupID>
+    <XnaOutputType>Game</XnaOutputType>
+    <XnaRefreshLevel>1</XnaRefreshLevel>
+    <WPTombstoneEnabled>false</WPTombstoneEnabled>
+    <XapFilename>$(AssemblyName).xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <XnaWindowsPhoneManifestTemplate>Properties\WMAppManifest.xml</XnaWindowsPhoneManifestTemplate>
+    <TileImage>Background.png</TileImage>
+    <TileTitle>Frenzied</TileTitle>
+    <SupportedCultures>
+    </SupportedCultures>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <Thumbnail>PhoneGameThumb.png</Thumbnail>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Windows Phone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\bin\debug\winphone\7\xna\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;XNA, WINPHONE7</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>true</NoStdLib>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <XnaCompressContent>false</XnaCompressContent>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|Windows Phone' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Windows Phone\Release</OutputPath>
+    <DefineConstants>TRACE;WINDOWS_PHONE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>true</NoStdLib>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <XnaCompressContent>false</XnaCompressContent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework" />
+    <Reference Include="Microsoft.Xna.Framework.Game" />
+    <Reference Include="Microsoft.Xna.Framework.Graphics" />
+    <Reference Include="Microsoft.Xna.Framework.GamerServices" />
+    <Reference Include="Microsoft.Xna.Framework.Input.Touch" />
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Net" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Assets\AssetManager.cs">
+      <Link>Assets\AssetManager.cs</Link>
+    </Compile>
+    <Compile Include="..\Audio\AudioManager.cs">
+      <Link>Audio\AudioManager.cs</Link>
+    </Compile>
+    <Compile Include="..\Config\BackgroundConfig.cs">
+      <Link>Config\BackgroundConfig.cs</Link>
+    </Compile>
+    <Compile Include="..\Config\GameConfig.cs">
+      <Link>Config\GameConfig.cs</Link>
+    </Compile>
+    <Compile Include="..\FrenziedGame.cs">
+      <Link>FrenziedGame.cs</Link>
+    </Compile>
+    <Compile Include="..\GamePlay\Block.cs">
+      <Link>GamePlay\Block.cs</Link>
+    </Compile>
+    <Compile Include="..\GamePlay\BlockContainer.cs">
+      <Link>GamePlay\BlockContainer.cs</Link>
+    </Compile>
+    <Compile Include="..\GamePlay\BlockGenerator.cs">
+      <Link>GamePlay\BlockGenerator.cs</Link>
+    </Compile>
+    <Compile Include="..\GamePlay\ScoreManager.cs">
+      <Link>GamePlay\ScoreManager.cs</Link>
+    </Compile>
+    <Compile Include="..\Graphics\Drawing\BasicShapes.cs">
+      <Link>Graphics\Drawing\BasicShapes.cs</Link>
+    </Compile>
+    <Compile Include="..\Graphics\Drawing\PrimitiveBatch.cs">
+      <Link>Graphics\Drawing\PrimitiveBatch.cs</Link>
+    </Compile>
+    <Compile Include="..\Graphics\Effects\Metaball.cs">
+      <Link>Graphics\Effects\Metaball.cs</Link>
+    </Compile>
+    <Compile Include="..\Graphics\GraphicsManager.cs">
+      <Link>Graphics\GraphicsManager.cs</Link>
+    </Compile>
+    <Compile Include="..\Input\Cursor.cs">
+      <Link>Input\Cursor.cs</Link>
+    </Compile>
+    <Compile Include="..\Input\InputState.cs">
+      <Link>Input\InputState.cs</Link>
+    </Compile>
+    <Compile Include="..\Input\PlayerIndexEventArgs.cs">
+      <Link>Input\PlayerIndexEventArgs.cs</Link>
+    </Compile>
+    <Compile Include="..\Menu\MenuEntry.cs">
+      <Link>Menu\MenuEntry.cs</Link>
+    </Compile>
+    <Compile Include="..\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Screens\GameScreen.cs">
+      <Link>Screens\GameScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\Screens\Implementations\AboutScreen.cs">
+      <Link>Screens\Implementations\AboutScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\Screens\Implementations\BackgroundScreen.cs">
+      <Link>Screens\Implementations\BackgroundScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\Screens\Implementations\GameplayScreen.cs">
+      <Link>Screens\Implementations\GameplayScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\Screens\Implementations\LoadingScreen.cs">
+      <Link>Screens\Implementations\LoadingScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\Screens\Implementations\MainMenuScreen.cs">
+      <Link>Screens\Implementations\MainMenuScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\Screens\Implementations\MenuScreen.cs">
+      <Link>Screens\Implementations\MenuScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\Screens\Implementations\MessageBoxScreen.cs">
+      <Link>Screens\Implementations\MessageBoxScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\Screens\Implementations\OptionsMenuScreen.cs">
+      <Link>Screens\Implementations\OptionsMenuScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\Screens\Implementations\PauseMenuScreen.cs">
+      <Link>Screens\Implementations\PauseMenuScreen.cs</Link>
+    </Compile>
+    <Compile Include="..\Screens\ScreenManager.cs">
+      <Link>Screens\ScreenManager.cs</Link>
+    </Compile>
+    <Compile Include="..\Utils\Debugging\DebugBar.cs">
+      <Link>Utils\Debugging\DebugBar.cs</Link>
+    </Compile>
+    <Compile Include="..\Utils\Debugging\Graphs\DebugGraph.cs">
+      <Link>Utils\Debugging\Graphs\DebugGraph.cs</Link>
+    </Compile>
+    <Compile Include="..\Utils\Debugging\Graphs\GraphManager.cs">
+      <Link>Utils\Debugging\Graphs\GraphManager.cs</Link>
+    </Compile>
+    <Compile Include="..\Utils\Debugging\Graphs\Implementations\FPSGraph.cs">
+      <Link>Utils\Debugging\Graphs\Implementations\FPSGraph.cs</Link>
+    </Compile>
+    <Compile Include="..\Utils\Debugging\Graphs\Implementations\MemGraph.cs">
+      <Link>Utils\Debugging\Graphs\Implementations\MemGraph.cs</Link>
+    </Compile>
+    <Compile Include="..\Utils\Extensions\NumberExtensions.cs">
+      <Link>Utils\Extensions\NumberExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Utils\Extensions\StringBuilderExtensions.cs">
+      <Link>Utils\Extensions\StringBuilderExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Utils\Extensions\Vector2Extensions.cs">
+      <Link>Utils\Extensions\Vector2Extensions.cs</Link>
+    </Compile>
+    <Compile Include="..\Utils\Platform\PlatformInfo.cs">
+      <Link>Utils\Platform\PlatformInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Utils\Platform\VersionInfo.cs">
+      <Link>Utils\Platform\VersionInfo.cs</Link>
+    </Compile>
+    <None Include="Properties\AppManifest.xml">
+      <XnaPlatformSpecific>true</XnaPlatformSpecific>
+    </None>
+    <None Include="Properties\WMAppManifest.xml">
+      <XnaPlatformSpecific>true</XnaPlatformSpecific>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PhoneGameThumb.png">
+      <XnaPlatformSpecific>true</XnaPlatformSpecific>
+    </Content>
+    <Content Include="Background.png">
+      <XnaPlatformSpecific>true</XnaPlatformSpecific>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Content\Content.contentproj">
+      <Project>{49796CBA-FA0E-4778-896D-65CBD54CB3F7}</Project>
+      <Name>Content</Name>
+      <XnaReferenceType>Content</XnaReferenceType>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
+  <!--
+      To modify your build process, add your task inside one of the targets below and uncomment it. 
+      Other similar extension points exist, see Microsoft.Common.targets.
+      <Target Name="BeforeBuild">
+      </Target>
+      <Target Name="AfterBuild">
+      </Target>
+    -->
+</Project>

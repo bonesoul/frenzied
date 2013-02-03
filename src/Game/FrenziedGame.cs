@@ -60,6 +60,14 @@ namespace Frenzied
 
             this.Configuration = config;
 
+            #if WINPHONE7
+            // Frame rate is 30 fps by default for Windows Phone.
+            TargetElapsedTime = TimeSpan.FromTicks(333333);
+
+            // Extend battery life under lock.
+            InactiveSleepTime = TimeSpan.FromSeconds(1);
+            #endif
+
             _graphicsDeviceManager = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";         
         }
@@ -84,6 +92,12 @@ namespace Frenzied
             this._graphicsDeviceManager.PreferredBackBufferWidth = 800;
             this._graphicsDeviceManager.PreferredBackBufferHeight = 480;
             this._graphicsDeviceManager.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
+            #endif
+
+            #if WINPHONE7
+            this._graphicsDeviceManager.PreferredBackBufferWidth = 480;
+            this._graphicsDeviceManager.PreferredBackBufferHeight = 800;
+            this._graphicsDeviceManager.IsFullScreen = true;
             #endif
 
             // init the asset manager.
