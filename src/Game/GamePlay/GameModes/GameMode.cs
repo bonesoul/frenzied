@@ -6,6 +6,7 @@
  */
 
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
 namespace Frenzied.GamePlay.GameModes
 {
@@ -14,6 +15,20 @@ namespace Frenzied.GamePlay.GameModes
     /// </summary>
     internal abstract class GameMode
     {
+        protected List<ShapeContainer> ShapeContainers;
 
+        protected GameMode()
+        {
+            this.ShapeContainers = new List<ShapeContainer>();
+        }
+
+        internal virtual void LoadContent()
+        { }
+
+        internal virtual void Update(GameTime gameTime) 
+        { }
+
+        internal virtual void Draw(GameTime gameTime)
+        { }
     }
 }

@@ -28,8 +28,9 @@ namespace Frenzied.GamePlay.GameModes
         /// </summary>
         public Rectangle Bounds { get; protected set; }
 
-        public ShapeContainer()
+        public ShapeContainer(Vector2 position)
         {
+            this.Position = position;
         }
     }
 }

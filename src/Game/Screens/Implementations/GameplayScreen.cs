@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using Frenzied.Assets;
 using Frenzied.GamePlay;
+using Frenzied.GamePlay.GameModes;
 using Frenzied.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -27,22 +28,30 @@ namespace Frenzied.Screens.Implementations
         private IScoreManager _scoreManager;
         private IAssetManager _assetManager;
 
+        private GameMode _gameMode;
+
         /// <summary>
-        /// Constructor.
+        /// Creates a new <see cref="GameplayScreen"/> instance.
         /// </summary>
-        public GameplayScreen()
+        public GameplayScreen(GameMode gameMode)
         {
+            this._gameMode = gameMode;
+
             TransitionOnTime = TimeSpan.FromSeconds(1.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
 
             this.EnabledGestures = GestureType.Tap;
         }
 
+        // TODO: implement initialize for gamescreens!
+
         /// <summary>
         /// Load graphics content for the game.
         /// </summary>
         public override void LoadContent()
         {
+            this._gameMode.LoadContent();
+
             this._scoreManager = (IScoreManager)FrenziedGame.Instance.Services.GetService(typeof(IScoreManager));
             this._assetManager = (IAssetManager)FrenziedGame.Instance.Services.GetService(typeof(IAssetManager));
 
