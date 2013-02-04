@@ -65,10 +65,10 @@ namespace Frenzied.Screens.Implementations
             // load block containers
             var offset = 100;
 
-            this._blockContainers.Add(new BlockContainer(FrenziedGame.Instance, new Vector2(midScreenX - BlockContainer.Size.X / 2, midScreenY - BlockContainer.Size.Y - offset)));
-            this._blockContainers.Add(new BlockContainer(FrenziedGame.Instance, new Vector2(midScreenX - BlockContainer.Size.X - offset, midScreenY - offset)));
-            this._blockContainers.Add(new BlockContainer(FrenziedGame.Instance, new Vector2(midScreenX + offset, midScreenY - offset)));
-            this._blockContainers.Add(new BlockContainer(FrenziedGame.Instance, new Vector2(midScreenX - BlockContainer.Size.X / 2, midScreenY + BlockContainer.Size.Y - offset)));
+            //this._blockContainers.Add(new BlockContainer(FrenziedGame.Instance, new Vector2(midScreenX - BlockContainer.Size.X / 2, midScreenY - BlockContainer.Size.Y - offset)));
+            //this._blockContainers.Add(new BlockContainer(FrenziedGame.Instance, new Vector2(midScreenX - BlockContainer.Size.X - offset, midScreenY - offset)));
+            //this._blockContainers.Add(new BlockContainer(FrenziedGame.Instance, new Vector2(midScreenX + offset, midScreenY - offset)));
+            //this._blockContainers.Add(new BlockContainer(FrenziedGame.Instance, new Vector2(midScreenX - BlockContainer.Size.X / 2, midScreenY + BlockContainer.Size.Y - offset)));
 
             this._blockGenerator = new BlockGenerator(FrenziedGame.Instance, new Vector2(midScreenX - BlockContainer.Size.X / 2, midScreenY - offset), this._blockContainers);
             this._blockGenerator.Initialize();
@@ -168,12 +168,14 @@ namespace Frenzied.Screens.Implementations
         /// </summary>
         public override void Draw(GameTime gameTime)
         {
-            foreach (var container in this._blockContainers)
-            {
-                container.Draw(gameTime);
-            }
+            this._gameMode.Draw(gameTime);
 
-            this._blockGenerator.Draw(gameTime);
+            //foreach (var container in this._blockContainers)
+            //{
+            //    container.Draw(gameTime);
+            //}
+
+            //this._blockGenerator.Draw(gameTime);
 
             base.Draw(gameTime);
         }

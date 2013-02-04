@@ -27,21 +27,17 @@ namespace Frenzied.GamePlay.GameModes.Implementations
             var screenCenter = new Vector2(FrenziedGame.Instance.GraphicsDevice.Viewport.Bounds.Width/2,
                                            FrenziedGame.Instance.GraphicsDevice.Viewport.Bounds.Height/2);
 
-            var topContainer = new BlockyContainer(new Vector2(screenCenter.X - BlockyContainer.Size.X,
-                                                               screenCenter.Y - BlockyContainer.Size.Y));
+            // add top container.
+            this.ShapeContainers.Add(new BlockyContainer(new Vector2(screenCenter.X - BlockyContainer.Size.X/2, screenCenter.Y - BlockyContainer.Size.Y*1.5f)));
+            // add right container.          
+            this.ShapeContainers.Add(new BlockyContainer(new Vector2(screenCenter.X + BlockyContainer.Size.X/2, screenCenter.Y - BlockyContainer.Size.Y/2)));
+            // add bottom container.
+            this.ShapeContainers.Add(new BlockyContainer(new Vector2(screenCenter.X - BlockyContainer.Size.X/2, screenCenter.Y + BlockyContainer.Size.Y/2)));
+            // add left container.
+            this.ShapeContainers.Add(new BlockyContainer(new Vector2(screenCenter.X - BlockyContainer.Size.X*1.5f, screenCenter.Y - BlockyContainer.Size.Y/2)));
 
 
             base.LoadContent();
-        }
-
-        internal override void Update(GameTime gameTime)
-        {
-            base.Update(gameTime);
-        }
-
-        internal override void Draw(GameTime gameTime)
-        {
-            base.Draw(gameTime);
         }
     }
 }

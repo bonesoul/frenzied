@@ -109,7 +109,7 @@ namespace Frenzied.GamePlay
         {
             this.Lives--;
             #if !WINPHONE8
-            this._assetManager.Sounds.Timeout.Play();
+            //this._assetManager.Sounds.Timeout.Play();
             #endif
         }
 

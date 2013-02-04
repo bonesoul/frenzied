@@ -6,6 +6,7 @@
  */
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,9 +29,33 @@ namespace Frenzied.GamePlay.GameModes
         /// </summary>
         public Rectangle Bounds { get; protected set; }
 
+        private readonly Dictionary<byte, Shape> _shapes;
+
+        public Shape this[byte index]
+        {
+            get { return this._shapes[index]; }
+            set
+            {
+                this._shapes[index] = value;
+                value.AttachTo(this);
+            }
+        }
+
         public ShapeContainer(Vector2 position)
         {
             this.Position = position;
+            this._shapes = new Dictionary<byte, Shape>();
         }
+
+        public virtual IEnumerable<Shape> GetEnumerator()
+        {
+            return null;
+        }
+
+        public virtual void Update(GameTime gameTime)
+        { }
+
+        public virtual void Draw(GameTime gameTime)
+        { }
     }
 }

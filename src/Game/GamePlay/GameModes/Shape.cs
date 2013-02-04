@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace Frenzied.GamePlay.GameModes
 {
@@ -26,6 +27,26 @@ namespace Frenzied.GamePlay.GameModes
         /// The location index of the shape in container.
         /// </summary>
         public byte LocationIndex { get; private set; }
+
+        /// <summary>
+        /// The position of the shape.
+        /// </summary>
+        public Vector2 Position { get; protected set; }
+
+        /// <summary>
+        /// The bounds of the shape.
+        /// </summary>
+        public Rectangle Bounds { get; protected set; }
+
+        /// <summary>
+        /// Size of the shape container.
+        /// </summary>
+        public Vector2 Size { get; protected set; }
+
+        /// <summary>
+        /// Parent shape container of the shape.
+        /// </summary>
+        public ShapeContainer Parent { get; protected set; }
 
         /// <summary>
         /// Creates a new instance of the shape.
@@ -46,20 +67,7 @@ namespace Frenzied.GamePlay.GameModes
             get { return this.ColorIndex == ShapeColor.None; }
         }
 
-        /// <summary>
-        /// Defines shape color.
-        /// </summary>
-        internal class ShapeColor
-        {
-            public const byte None = 0;
-        }
-
-        /// <summary>
-        /// Defines the location of the shape.
-        /// </summary>
-        internal class ShapeLocation
-        {
-            public const byte None = 0;
-        }
+        public virtual void AttachTo(ShapeContainer container)
+        { }
     }
 }

@@ -15,7 +15,7 @@ namespace Frenzied.GamePlay.GameModes
     /// </summary>
     internal abstract class GameMode
     {
-        protected List<ShapeContainer> ShapeContainers;
+        protected readonly List<ShapeContainer> ShapeContainers;
 
         protected GameMode()
         {
@@ -29,6 +29,11 @@ namespace Frenzied.GamePlay.GameModes
         { }
 
         internal virtual void Draw(GameTime gameTime)
-        { }
+        {
+            foreach (var container in this.ShapeContainers)
+            {
+                container.Draw(gameTime);
+            }
+        }
     }
 }
