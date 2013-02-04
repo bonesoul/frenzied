@@ -46,7 +46,7 @@ namespace Frenzied.GamePlay.GameModes
         /// <summary>
         /// Parent shape container of the shape.
         /// </summary>
-        public ShapeContainer Parent { get; set; }
+        public IContainer Parent { get; set; }
 
         /// <summary>
         /// Creates a new instance of the shape.

@@ -17,7 +17,7 @@ namespace Frenzied.GamePlay.GameModes
     /// <summary>
     /// Defines a shape container.
     /// </summary>
-    internal class ShapeContainer
+    internal class ShapeContainer : IContainer
     {
         /// <summary>
         /// The position of the shape container.
@@ -54,10 +54,10 @@ namespace Frenzied.GamePlay.GameModes
             this._shapes = new Dictionary<byte, Shape>();
         }
 
-        protected virtual void Attach(Shape shape)
+        public virtual void Attach(Shape shape)
         { }
 
-        protected virtual void Detach(Shape shape)
+        public virtual void Detach(Shape shape)
         { }
 
         public virtual IEnumerable<Shape> GetEnumerator()

@@ -31,7 +31,7 @@ namespace Frenzied.GamePlay.GameModes.Implementations
             this[BlockLocations.BottomLeft] = Shape.Empty;
         }
 
-        protected override void Attach(Shape shape)
+        public override void Attach(Shape shape)
         {
             shape.Parent = this;
 

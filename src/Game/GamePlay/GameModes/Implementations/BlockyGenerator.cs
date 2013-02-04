@@ -14,7 +14,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Frenzied.GamePlay.GameModes.Implementations
 {
-    internal class BlockyGenerator:ShapeGenerator
+    internal class BlockyGenerator : ShapeGenerator
     {
         public static Vector2 Size = new Vector2(210, 210);
 
@@ -26,7 +26,7 @@ namespace Frenzied.GamePlay.GameModes.Implementations
             this.CurrentShape = Shape.Empty;
         }
 
-        protected override void Attach(Shape shape)
+        public override void Attach(Shape shape)
         {
             shape.Parent = this;
 
@@ -52,7 +52,7 @@ namespace Frenzied.GamePlay.GameModes.Implementations
             shape.Bounds = new Rectangle((int)shape.Position.X, (int)shape.Position.Y, (int)shape.Size.X, (int)shape.Size.Y);
         }
 
-        protected override void Detach(Shape shape)
+        public override void Detach(Shape shape)
         {
             this.CurrentShape = Shape.Empty;
         }
@@ -60,16 +60,6 @@ namespace Frenzied.GamePlay.GameModes.Implementations
         public override bool IsEmpty()
         {
             return this.CurrentShape.IsEmpty;
-        }
-
-        public override bool IsEmpty(byte locationIndex)
-        {
-            throw new NotSupportedException();
-        }
-
-        public override bool IsFull()
-        {
-            throw new NotSupportedException();
         }
 
         public override void Update(GameTime gameTime)

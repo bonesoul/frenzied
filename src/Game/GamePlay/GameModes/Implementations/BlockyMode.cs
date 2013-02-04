@@ -53,6 +53,7 @@ namespace Frenzied.GamePlay.GameModes.Implementations
                     continue;
 
                 container[this.ShapeGenerator.CurrentShape.LocationIndex] = this.ShapeGenerator.CurrentShape;
+                break;
             }
         }
     }
