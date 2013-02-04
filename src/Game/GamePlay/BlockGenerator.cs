@@ -7,7 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using Frenzied.Assets;
 using Frenzied.Screens;
 using Microsoft.Xna.Framework;

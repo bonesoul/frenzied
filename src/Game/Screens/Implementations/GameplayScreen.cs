@@ -147,6 +147,8 @@ namespace Frenzied.Screens.Implementations
         public override void Update(GameTime gameTime, bool otherScreenHasFocus,
                                                        bool coveredByOtherScreen)
         {
+            this._gameMode.Update(gameTime);
+
             this._blockGenerator.Update(gameTime);
 
             foreach (var container in this._blockContainers)

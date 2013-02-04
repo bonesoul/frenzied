@@ -86,6 +86,7 @@
     <Compile Include="GamePlay\BlockGenerator.cs" />
     <Compile Include="GamePlay\GameModes\GameMode.cs" />
     <Compile Include="GamePlay\GameModes\Implementations\BlockColors.cs" />
+    <Compile Include="GamePlay\GameModes\Implementations\BlockyGenerator.cs" />
     <Compile Include="GamePlay\GameModes\Implementations\BlockLocations.cs" />
     <Compile Include="GamePlay\GameModes\Implementations\BlockShape.cs" />
     <Compile Include="GamePlay\GameModes\Implementations\BlockyContainer.cs" />

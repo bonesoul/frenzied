@@ -39,9 +39,21 @@ namespace Frenzied.GamePlay.GameModes.Implementations
             yield return this[BlockLocations.BottomLeft];
         }
 
-        public override void Update(GameTime gameTime)
+        public override bool IsEmpty()
         {
-            base.Update(gameTime);
+            return this.IsEmpty(BlockLocations.TopLeft) && this.IsEmpty(BlockLocations.TopRight) &&
+                   this.IsEmpty(BlockLocations.BottomLeft) && this.IsEmpty(BlockLocations.BottomRight);
+        }
+
+        public override bool IsEmpty(byte locationIndex)
+        {
+            return this[locationIndex].IsEmpty;
+        }
+
+        public override bool IsFull()
+        {
+            return !this.IsEmpty(BlockLocations.TopLeft) && !this.IsEmpty(BlockLocations.TopRight) &&
+                   !this.IsEmpty(BlockLocations.BottomLeft) && !this.IsEmpty(BlockLocations.BottomRight);
         }
 
         public override void Draw(GameTime gameTime)

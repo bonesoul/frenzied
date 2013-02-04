@@ -17,6 +17,8 @@ namespace Frenzied.GamePlay.GameModes
     {
         protected readonly List<ShapeContainer> ShapeContainers;
 
+        protected ShapeGenerator ShapeGenerator;
+
         protected GameMode()
         {
             this.ShapeContainers = new List<ShapeContainer>();
@@ -25,8 +27,10 @@ namespace Frenzied.GamePlay.GameModes
         internal virtual void LoadContent()
         { }
 
-        internal virtual void Update(GameTime gameTime) 
-        { }
+        internal virtual void Update(GameTime gameTime)
+        {
+            this.ShapeGenerator.Update(gameTime);
+        }
 
         internal virtual void Draw(GameTime gameTime)
         {
@@ -34,6 +38,8 @@ namespace Frenzied.GamePlay.GameModes
             {
                 container.Draw(gameTime);
             }
+
+            this.ShapeGenerator.Draw(gameTime);
         }
     }
 }

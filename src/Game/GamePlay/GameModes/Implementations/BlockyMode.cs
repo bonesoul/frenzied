@@ -27,15 +27,14 @@ namespace Frenzied.GamePlay.GameModes.Implementations
             var screenCenter = new Vector2(FrenziedGame.Instance.GraphicsDevice.Viewport.Bounds.Width/2,
                                            FrenziedGame.Instance.GraphicsDevice.Viewport.Bounds.Height/2);
 
-            // add top container.
-            this.ShapeContainers.Add(new BlockyContainer(new Vector2(screenCenter.X - BlockyContainer.Size.X/2, screenCenter.Y - BlockyContainer.Size.Y*1.5f)));
-            // add right container.          
-            this.ShapeContainers.Add(new BlockyContainer(new Vector2(screenCenter.X + BlockyContainer.Size.X/2, screenCenter.Y - BlockyContainer.Size.Y/2)));
-            // add bottom container.
-            this.ShapeContainers.Add(new BlockyContainer(new Vector2(screenCenter.X - BlockyContainer.Size.X/2, screenCenter.Y + BlockyContainer.Size.Y/2)));
-            // add left container.
-            this.ShapeContainers.Add(new BlockyContainer(new Vector2(screenCenter.X - BlockyContainer.Size.X*1.5f, screenCenter.Y - BlockyContainer.Size.Y/2)));
+            // add containers            
+            this.ShapeContainers.Add(new BlockyContainer(new Vector2(screenCenter.X - BlockyContainer.Size.X / 2, screenCenter.Y - BlockyContainer.Size.Y * 1.5f))); // top
+            this.ShapeContainers.Add(new BlockyContainer(new Vector2(screenCenter.X + BlockyContainer.Size.X / 2, screenCenter.Y - BlockyContainer.Size.Y / 2))); // right
+            this.ShapeContainers.Add(new BlockyContainer(new Vector2(screenCenter.X - BlockyContainer.Size.X/2, screenCenter.Y + BlockyContainer.Size.Y/2))); // bottom
+            this.ShapeContainers.Add(new BlockyContainer(new Vector2(screenCenter.X - BlockyContainer.Size.X*1.5f, screenCenter.Y - BlockyContainer.Size.Y/2))); // left
 
+            // add generator
+            this.ShapeGenerator = new BlockyGenerator(new Vector2(screenCenter.X - BlockyContainer.Size.X/2, screenCenter.Y - BlockyContainer.Size.Y/2), this.ShapeContainers);
 
             base.LoadContent();
         }

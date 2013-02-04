@@ -52,6 +52,22 @@ namespace Frenzied.GamePlay.GameModes
             return null;
         }
 
+        public virtual bool IsEmpty()
+        {
+            return true;
+        }
+
+
+        public virtual bool IsEmpty(byte locationIndex)
+        {
+            return true;
+        }
+
+        public virtual bool IsFull()
+        {
+            return false;
+        }
+
         public virtual void Update(GameTime gameTime)
         { }
 
