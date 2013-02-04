@@ -31,12 +31,12 @@ namespace Frenzied.GamePlay.GameModes
         /// <summary>
         /// The position of the shape.
         /// </summary>
-        public Vector2 Position { get; protected set; }
+        public Vector2 Position { get; set; }
 
         /// <summary>
         /// The bounds of the shape.
         /// </summary>
-        public Rectangle Bounds { get; protected set; }
+        public Rectangle Bounds { get; set; }
 
         /// <summary>
         /// Size of the shape container.
@@ -46,7 +46,7 @@ namespace Frenzied.GamePlay.GameModes
         /// <summary>
         /// Parent shape container of the shape.
         /// </summary>
-        public ShapeContainer Parent { get; protected set; }
+        public ShapeContainer Parent { get; set; }
 
         /// <summary>
         /// Creates a new instance of the shape.
@@ -59,15 +59,19 @@ namespace Frenzied.GamePlay.GameModes
             this.LocationIndex = locationIndex;
         }
 
+        public static Shape Empty { get; protected set; }
+
+        static Shape()
+        {
+            Empty = new Shape(ShapeColors.None, ShapeLocations.None);
+        }
+
         /// <summary>
         /// Is the shape empty - in other words; non-colored?
         /// </summary>
         public bool IsEmpty
         {
-            get { return this.ColorIndex == ShapeColor.None; }
+            get { return this.ColorIndex == ShapeColors.None; }
         }
-
-        public virtual void AttachTo(ShapeContainer container)
-        { }
     }
 }

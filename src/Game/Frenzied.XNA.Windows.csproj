@@ -92,10 +92,10 @@
     <Compile Include="GamePlay\GameModes\Implementations\BlockyContainer.cs" />
     <Compile Include="GamePlay\GameModes\Implementations\BlockyMode.cs" />
     <Compile Include="GamePlay\GameModes\Shape.cs" />
-    <Compile Include="GamePlay\GameModes\ShapeColor.cs" />
+    <Compile Include="GamePlay\GameModes\ShapeColors.cs" />
     <Compile Include="GamePlay\GameModes\ShapeContainer.cs" />
     <Compile Include="GamePlay\GameModes\ShapeGenerator.cs" />
-    <Compile Include="GamePlay\GameModes\ShapeLocation.cs" />
+    <Compile Include="GamePlay\GameModes\ShapeLocations.cs" />
     <Compile Include="GamePlay\ScoreManager.cs" />
     <Compile Include="Graphics\Drawing\BasicShapes.cs" />
     <Compile Include="Graphics\Drawing\PrimitiveBatch.cs" />

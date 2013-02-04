@@ -100,7 +100,7 @@ namespace Frenzied.Screens.Implementations
             if (input.CurrentMouseState.LeftButton != ButtonState.Pressed || input.LastMouseState.LeftButton != ButtonState.Released)
                 return;
 
-            this.HandleClick(input.CurrentMouseState.X, input.CurrentMouseState.Y);
+            this._gameMode.HandleClick(input.CurrentMouseState.X, input.CurrentMouseState.Y);
         }
 
         public override void HandleGestures(InputState input)
@@ -111,32 +111,32 @@ namespace Frenzied.Screens.Implementations
             foreach (var gesture in input.Gestures)
             {
                 if (gesture.GestureType == GestureType.Tap)
-                    HandleClick((int)gesture.Position.X, (int)gesture.Position.Y);
+                    this._gameMode.HandleClick((int)gesture.Position.X, (int)gesture.Position.Y);
             }
         }
 
         private void HandleClick(int X, int Y)
         {
-            foreach (var container in this._blockContainers)
-            {
-                if (!container.Bounds.Contains(X, Y))
-                    continue;
+            //foreach (var container in this._blockContainers)
+            //{
+            //    if (!container.Bounds.Contains(X, Y))
+            //        continue;
 
-                if (this._blockGenerator.IsEmpty)
-                    continue;
+            //    if (this._blockGenerator.IsEmpty)
+            //        continue;
 
-                if (!container.IsEmpty(this._blockGenerator.CurretBlock.Location))
-                    continue;
+            //    if (!container.IsEmpty(this._blockGenerator.CurretBlock.Location))
+            //        continue;
 
-                #if !WINPHONE8
-                this._assetManager.Sounds.BlockEffect.PlayRandom();
-                #endif
+            //    #if !WINPHONE8
+            //    this._assetManager.Sounds.BlockEffect.PlayRandom();
+            //    #endif
 
-                container.AddBlock(this._blockGenerator.CurretBlock);
-                this._blockGenerator.CurrentBlockUsed();
+            //    container.AddBlock(this._blockGenerator.CurretBlock);
+            //    this._blockGenerator.CurrentBlockUsed();
 
-                break;
-            }
+            //    break;
+            //}
         }
 
         /// <summary>
@@ -149,12 +149,12 @@ namespace Frenzied.Screens.Implementations
         {
             this._gameMode.Update(gameTime);
 
-            this._blockGenerator.Update(gameTime);
+            //this._blockGenerator.Update(gameTime);
 
-            foreach (var container in this._blockContainers)
-            {
-                container.Update(gameTime);
-            }
+            //foreach (var container in this._blockContainers)
+            //{
+            //    container.Update(gameTime);
+            //}
 
             // Gradually fade in or out depending on whether we are covered by the pause screen.
             if (coveredByOtherScreen)

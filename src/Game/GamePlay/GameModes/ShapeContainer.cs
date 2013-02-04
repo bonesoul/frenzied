@@ -33,11 +33,18 @@ namespace Frenzied.GamePlay.GameModes
 
         public Shape this[byte index]
         {
-            get { return this._shapes[index]; }
+            get { return this._shapes.ContainsKey(index) ? this._shapes[index] : Shape.Empty; }
             set
             {
                 this._shapes[index] = value;
-                value.AttachTo(this);
+
+                if (value.IsEmpty) 
+                    return;
+
+                if(value.Parent != null)
+                    value.Parent.Detach(value);
+
+                this.Attach(value);
             }
         }
 
@@ -46,6 +53,12 @@ namespace Frenzied.GamePlay.GameModes
             this.Position = position;
             this._shapes = new Dictionary<byte, Shape>();
         }
+
+        protected virtual void Attach(Shape shape)
+        { }
+
+        protected virtual void Detach(Shape shape)
+        { }
 
         public virtual IEnumerable<Shape> GetEnumerator()
         {
@@ -57,7 +70,6 @@ namespace Frenzied.GamePlay.GameModes
             return true;
         }
 
-
         public virtual bool IsEmpty(byte locationIndex)
         {
             return true;
@@ -67,6 +79,9 @@ namespace Frenzied.GamePlay.GameModes
         {
             return false;
         }
+
+        public virtual void Explode()
+        { }
 
         public virtual void Update(GameTime gameTime)
         { }

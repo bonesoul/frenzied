@@ -30,7 +30,9 @@ namespace Frenzied.GamePlay.GameModes
             protected set
             {
                 this._currentShape = value;
-                value.AttachTo(this);
+
+                if (!value.IsEmpty)
+                    this.Attach(value);
             }
         }
 

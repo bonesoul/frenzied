@@ -27,8 +27,16 @@ namespace Frenzied.GamePlay.GameModes
         internal virtual void LoadContent()
         { }
 
+        internal virtual void HandleClick(int X, int Y)
+        { }
+
         internal virtual void Update(GameTime gameTime)
         {
+            foreach (var container in this.ShapeContainers)
+            {
+                container.Update(gameTime);
+            }
+
             this.ShapeGenerator.Update(gameTime);
         }
 

@@ -25,10 +25,36 @@ namespace Frenzied.GamePlay.GameModes.Implementations
         {
             this.Bounds = new Rectangle((int)this.Position.X, (int)this.Position.Y, (int)Size.X, (int)Size.Y);
 
-            this[BlockLocations.TopLeft] = new BlockShape(BlockColors.Blue, BlockLocations.TopLeft);
-            this[BlockLocations.TopRight] = new BlockShape();
-            this[BlockLocations.BottomRight] = new BlockShape();
-            this[BlockLocations.BottomLeft] = new BlockShape();
+            this[BlockLocations.TopLeft] = Shape.Empty;
+            this[BlockLocations.TopRight] = Shape.Empty;
+            this[BlockLocations.BottomRight] = Shape.Empty;
+            this[BlockLocations.BottomLeft] = Shape.Empty;
+        }
+
+        protected override void Attach(Shape shape)
+        {
+            shape.Parent = this;
+
+            if (shape.LocationIndex == ShapeLocations.None)
+                return;
+
+            switch (shape.LocationIndex)
+            {
+                case BlockLocations.TopLeft:
+                    shape.Position = new Vector2(this.Position.X, this.Position.Y);
+                    break;
+                case BlockLocations.TopRight:
+                    shape.Position = new Vector2(this.Position.X + shape.Size.X, this.Position.Y);
+                    break;
+                case BlockLocations.BottomRight:
+                    shape.Position = new Vector2(this.Position.X + shape.Size.X, this.Position.Y + shape.Size.Y);
+                    break;
+                case BlockLocations.BottomLeft:
+                    shape.Position = new Vector2(this.Position.X, this.Position.Y + shape.Size.Y);
+                    break;
+            }
+
+            shape.Bounds = new Rectangle((int)shape.Position.X, (int)shape.Position.Y, (int)shape.Size.X, (int)shape.Size.Y);
         }
 
         public override IEnumerable<Shape> GetEnumerator()
@@ -56,6 +82,20 @@ namespace Frenzied.GamePlay.GameModes.Implementations
                    !this.IsEmpty(BlockLocations.BottomLeft) && !this.IsEmpty(BlockLocations.BottomRight);
         }
 
+        public override void Explode()
+        {
+            this[BlockLocations.TopLeft] = Shape.Empty;
+            this[BlockLocations.TopRight] = Shape.Empty;
+            this[BlockLocations.BottomRight] = Shape.Empty;
+            this[BlockLocations.BottomLeft] = Shape.Empty;
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            if (this.IsFull())
+                this.Explode();
+        }
+
         public override void Draw(GameTime gameTime)
         {            
             ScreenManager.Instance.SpriteBatch.Begin();
@@ -64,10 +104,10 @@ namespace Frenzied.GamePlay.GameModes.Implementations
 
             foreach (var shape in this.GetEnumerator())
             {
-                var block = ((BlockShape) shape);
-
-                if (block.IsEmpty)
+                if (shape.IsEmpty)
                     continue;
+
+                var block = ((BlockShape) shape);
 
                 var texture = GetBlockTexture(block);
                 ScreenManager.Instance.SpriteBatch.Draw(texture, block.Bounds, Color.White);

@@ -15,7 +15,7 @@ namespace Frenzied.GamePlay.GameModes
     /// <summary>
     /// Defines shape color.
     /// </summary>
-    internal class ShapeColor
+    internal class ShapeColors
     {
         public const byte None = 0;
     }

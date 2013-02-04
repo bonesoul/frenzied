@@ -5,6 +5,7 @@
  * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
  */
 
+using System;
 using System.Collections.Generic;
 using Frenzied.Assets;
 using Frenzied.Screens;
@@ -22,12 +23,53 @@ namespace Frenzied.GamePlay.GameModes.Implementations
         {
             this.Bounds = new Rectangle((int)this.Position.X, (int)this.Position.Y, (int)Size.X, (int)Size.Y);
 
-            this.CurrentShape = new BlockShape();
+            this.CurrentShape = Shape.Empty;
+        }
+
+        protected override void Attach(Shape shape)
+        {
+            shape.Parent = this;
+
+            if (shape.LocationIndex == ShapeLocations.None)
+                return;
+
+            switch (shape.LocationIndex)
+            {
+                case BlockLocations.TopLeft:
+                    shape.Position = new Vector2(this.Position.X, this.Position.Y);
+                    break;
+                case BlockLocations.TopRight:
+                    shape.Position = new Vector2(this.Position.X + shape.Size.X, this.Position.Y);
+                    break;
+                case BlockLocations.BottomRight:
+                    shape.Position = new Vector2(this.Position.X + shape.Size.X, this.Position.Y + shape.Size.Y);
+                    break;
+                case BlockLocations.BottomLeft:
+                    shape.Position = new Vector2(this.Position.X, this.Position.Y + shape.Size.Y);
+                    break;
+            }
+
+            shape.Bounds = new Rectangle((int)shape.Position.X, (int)shape.Position.Y, (int)shape.Size.X, (int)shape.Size.Y);
+        }
+
+        protected override void Detach(Shape shape)
+        {
+            this.CurrentShape = Shape.Empty;
         }
 
         public override bool IsEmpty()
         {
             return this.CurrentShape.IsEmpty;
+        }
+
+        public override bool IsEmpty(byte locationIndex)
+        {
+            throw new NotSupportedException();
+        }
+
+        public override bool IsFull()
+        {
+            throw new NotSupportedException();
         }
 
         public override void Update(GameTime gameTime)
@@ -47,7 +89,7 @@ namespace Frenzied.GamePlay.GameModes.Implementations
             var locationIndex = Randomizer.Next(availableLocations.Count);
             var location = availableLocations[locationIndex];
 
-            this.CurrentShape = new BlockShape((byte)location, (byte)color);
+            this.CurrentShape = new BlockShape((byte)color, (byte)location);
         }
 
         public override List<byte> GetAvailableLocations()
@@ -75,8 +117,11 @@ namespace Frenzied.GamePlay.GameModes.Implementations
 
             ScreenManager.Instance.SpriteBatch.Draw(AssetManager.Instance.BlockContainerTexture, this.Bounds, Color.White);
 
-            var texture = GetBlockTexture((BlockShape) this.CurrentShape);
-            ScreenManager.Instance.SpriteBatch.Draw(texture, this.CurrentShape.Bounds, Color.White);
+            if (!this.IsEmpty())
+            {
+                var texture = GetBlockTexture((BlockShape) this.CurrentShape);
+                ScreenManager.Instance.SpriteBatch.Draw(texture, this.CurrentShape.Bounds, Color.White);
+            }
 
             ScreenManager.Instance.SpriteBatch.End();
 

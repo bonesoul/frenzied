@@ -15,7 +15,7 @@ namespace Frenzied.GamePlay.GameModes.Implementations
     /// <summary>
     /// Defines shape color.
     /// </summary>
-    internal class BlockColors : ShapeColor
+    internal class BlockColors : ShapeColors
     {
         public const byte Orange = 1;
         public const byte Purple = 2;
