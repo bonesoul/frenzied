@@ -19,12 +19,7 @@ namespace Frenzied
         /// </summary>
         static void Main()
         {
-            PlatformManager.Instance.Startup();
-
-            #if MONOGAME && METRO
-                var factory = new MonoGame.Framework.GameFrameworkViewSource<FrenziedGame>();
-                Windows.ApplicationModel.Core.CoreApplication.Run(factory);
-            #endif
+            PlatformManager.Startup();
         }
     }
 }

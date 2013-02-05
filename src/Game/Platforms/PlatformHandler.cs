@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework;
 
 namespace Frenzied.Platforms
 {
-    public class Platform
+    public class PlatformHandler
     {
         protected GraphicsDeviceManager GraphicsDeviceManager;
 

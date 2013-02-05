@@ -20,10 +20,6 @@ using Frenzied.Utils.Debugging;
 using Frenzied.Utils.Debugging.Graphs;
 using Microsoft.Xna.Framework;
 
-#if METRO || ANDROID
-using Microsoft.Xna.Framework.Input.Touch;
-#endif
-
 namespace Frenzied
 {
     /// <summary>
@@ -83,10 +79,10 @@ namespace Frenzied
         protected override void Initialize()
         {
             // set platform specific stuff.
-            this.IsMouseVisible = PlatformManager.Instance.CurrentPlatform.PlatformConfig.IsMouseVisible;
-            this.IsFixedTimeStep = PlatformManager.Instance.CurrentPlatform.PlatformConfig.IsFixedTimeStep;
+            this.IsMouseVisible = PlatformManager.PlatformHandler.PlatformConfig.IsMouseVisible;
+            this.IsFixedTimeStep = PlatformManager.PlatformHandler.PlatformConfig.IsFixedTimeStep;
 
-            PlatformManager.Instance.Initialize(this._graphicsDeviceManager);        
+            PlatformManager.Initialize(this._graphicsDeviceManager);        
 
             // init the asset manager.
             var assetManager = new AssetManager(this);
@@ -118,7 +114,7 @@ namespace Frenzied
             var audioManager = new AudioManager(this);
             this.Components.Add(audioManager);
 
-            if (PlatformManager.Instance.CurrentPlatform.PlatformConfig.IsMouseVisible)
+            if (PlatformManager.PlatformHandler.PlatformConfig.IsMouseVisible)
             {
                 var cursor = new Cursor(this);
                 this.Components.Add(cursor);

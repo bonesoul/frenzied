@@ -6,49 +6,96 @@
  */
 
 using System;
-using Frenzied.Platforms.Android;
+using Frenzied.Platforms.WindowsMetro;
 using Microsoft.Xna.Framework;
 
 namespace Frenzied.Platforms
 {
-    public class PlatformManager
+    public static class PlatformManager
     {
-        public Platform CurrentPlatform { get; private set; }
+        public static Platforms Platform { get; private set; }
 
-        private PlatformManager()
+        public static string DotNetFramework { get; private set; }
+
+        public static Version DotNetFrameworkVersion { get; private set; }
+
+        public static GameFrameworks GameFramework { get; private set; }
+
+        public static Version GameFrameworkVersion { get; private set; }
+
+        public static GraphicsAPI GraphicsApi { get; private set; }
+
+        public static PlatformHandler PlatformHandler { get; private set; }
+
+        static PlatformManager()
         {
-            #if XNA && DESKTOP
+            IdentifyPlatform();
+        }
+
+        public static void Startup()
+        {
+            PlatformHandler.PlatformEntrance();
+        }
+
+        public static void Initialize(GraphicsDeviceManager graphicsDeviceManager)
+        {
+            PlatformHandler.Initialize(graphicsDeviceManager);
+        }
+
+        private static void IdentifyPlatform()
+        {
+            // find base platform.
+            #if DESKTOP
+                Platform = Platforms.Windows;
                 this.CurrentPlatform = new Windows.WindowsPlatform();
+            #elif METRO
+                Platform = Platforms.WindowsMetro;
+                PlatformHandler = new WindowsMetroPlatform();
             #elif WINPHONE7
                 this.CurrentPlatform = new WindowsPhone7.WindowsPhone7Platform();
             #elif WINPHONE8
                 this.CurrentPlatform = new WindowsPhone8.WindowsPhone8();
             #elif ANDROID
+                Platform = Platforms.Android;
                 this.CurrentPlatform = new Android.AndroidPlatform();
             #endif
 
-            if (this.CurrentPlatform == null)
+            if (PlatformHandler == null)
                 throw new Exception("Unsupported platform!");
+
+            // find dot.net framework.
+            DotNetFramework = IsRunningOnMono() ? "Mono" : ".Net";
+
+            // find dot.net framework and game framework version.
+            #if METRO
+                DotNetFrameworkVersion = System.Reflection.IntrospectionExtensions.GetTypeInfo(typeof(Object)).Assembly.GetName().Version;
+                GameFrameworkVersion = System.Reflection.IntrospectionExtensions.GetTypeInfo(typeof(Microsoft.Xna.Framework.Game)).Assembly.GetName().Version;
+            #else
+                DotNetFrameworkVersion = Environment.Version;
+                #if WINPHONE7 || WINPHONE8
+                    GameFrameworkVersion = new Version(typeof(Microsoft.Xna.Framework.Game).Assembly.FullName.Split(',')[1].Split('=')[1]);
+                #else
+                    GameFrameworkVersion = System.Reflection.Assembly.GetAssembly(typeof(Microsoft.Xna.Framework.Game)).GetName().Version;
+                #endif
+            #endif
+
+            // find game framework & graphics-api.
+            #if XNA
+                GameFramework = GameFrameworks.XNA;
+                GraphicsApi = GraphicsAPI.DirectX9;
+            #elif MONOGAME
+                GameFramework = GameFrameworks.MonoGame;
+                #if DIRECTX11
+                    GraphicsApi = GraphicsAPI.DirectX11;
+                #elif OPENGL
+                    GraphicsApi = GraphicsAPI.OpenGL;
+                #endif
+            #endif
         }
 
-        public void Startup()
+        public static bool IsRunningOnMono()
         {
-            this.CurrentPlatform.PlatformEntrance();
-        }
-
-        public void Initialize(GraphicsDeviceManager graphicsDeviceManager)
-        {
-            this.CurrentPlatform.Initialize(graphicsDeviceManager);
-        }
-
-        private static PlatformManager _instance = new PlatformManager(); // the memory instance.
-
-        /// <summary>
-        /// Returns the memory instance of Engine.
-        /// </summary>
-        public static PlatformManager Instance
-        {
-            get { return _instance; }
+            return Type.GetType("Mono.Runtime") != null;
         }
     }
 }
