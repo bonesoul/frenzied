@@ -8,6 +8,8 @@
 using System;
 using System.Text;
 using Frenzied.Assets;
+using Frenzied.GamePlay.GameModes;
+using Frenzied.GamePlay.GameModes.Implementations;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -18,7 +20,7 @@ namespace Frenzied.GamePlay
         int Score { get; }
         int Lives { get; }
 
-        void CorrectMove(BlockContainer container);
+        void CorrectMove(ShapeContainer container);
         void TimeOut();
     }
 
@@ -55,7 +57,7 @@ namespace Frenzied.GamePlay
             base.Initialize();
         }
 
-        public void CorrectMove(BlockContainer container)
+        public void CorrectMove(ShapeContainer container)
         {
             var emptyBlocks = 0;
             var orangeBlocks = 0;
@@ -63,23 +65,23 @@ namespace Frenzied.GamePlay
             var greenBlocks = 0;
             var blueBlocks = 0;
 
-            foreach (var block in container.Blocks)
+            foreach (var block in container.GetEnumerator())
             {
-                switch (block.Color)
+                switch (block.ColorIndex)
                 {
-                    case BlockColor.None:
+                    case BlockColors.None:
                         emptyBlocks++;
                         break;
-                    case BlockColor.Orange:
+                    case BlockColors.Orange:
                         orangeBlocks++;
                         break;
-                    case BlockColor.Purple:
+                    case BlockColors.Purple:
                         purpleBlocks++;
                         break;
-                    case BlockColor.Green:
+                    case BlockColors.Green:
                         greenBlocks++;
                         break;
-                    case BlockColor.Blue:
+                    case BlockColors.Blue:
                         blueBlocks++;
                         break;
                 }

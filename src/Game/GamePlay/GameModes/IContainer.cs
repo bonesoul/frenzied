@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Frenzied.GamePlay.GameModes
 {
-    internal interface IContainer
+    public interface IContainer
     {
         void Attach(Shape shape);
         void Detach(Shape shape);

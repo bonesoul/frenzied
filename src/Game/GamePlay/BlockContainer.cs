@@ -60,19 +60,19 @@ namespace Frenzied.GamePlay
 
         private void Explode()
         {
-            if (!this.IsFull())
-                return;
+            //if (!this.IsFull())
+            //    return;
 
-            #if !WINPHONE8
-            this._assetManager.Sounds.Explode.Play();
-            #endif
+            //#if !WINPHONE8
+            //this._assetManager.Sounds.Explode.Play();
+            //#endif
 
-            this._scoreManager.CorrectMove(this);
+            //this._scoreManager.CorrectMove(this);
 
-            this._blockLocations[BlockLocation.topleft] = new Block(BlockLocation.none);
-            this._blockLocations[BlockLocation.topright] = new Block(BlockLocation.none);
-            this._blockLocations[BlockLocation.bottomleft] = new Block(BlockLocation.none);
-            this._blockLocations[BlockLocation.bottomright] = new Block(BlockLocation.none);
+            //this._blockLocations[BlockLocation.topleft] = new Block(BlockLocation.none);
+            //this._blockLocations[BlockLocation.topright] = new Block(BlockLocation.none);
+            //this._blockLocations[BlockLocation.bottomleft] = new Block(BlockLocation.none);
+            //this._blockLocations[BlockLocation.bottomright] = new Block(BlockLocation.none);
         }
 
 

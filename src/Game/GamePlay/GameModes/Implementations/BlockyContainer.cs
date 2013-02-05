@@ -18,6 +18,7 @@ namespace Frenzied.GamePlay.GameModes.Implementations
 {
     internal class BlockyContainer : ShapeContainer
     {
+        private IScoreManager _scoreManager;
         public static Vector2 Size = new Vector2(210, 210);
 
         public BlockyContainer(Vector2 position)
@@ -29,6 +30,11 @@ namespace Frenzied.GamePlay.GameModes.Implementations
             this[BlockLocations.TopRight] = Shape.Empty;
             this[BlockLocations.BottomRight] = Shape.Empty;
             this[BlockLocations.BottomLeft] = Shape.Empty;
+
+            this._scoreManager = (IScoreManager)FrenziedGame.Instance.Services.GetService(typeof(IScoreManager));
+
+            if (this._scoreManager == null)
+                throw new NullReferenceException("Can not find score manager component.");
         }
 
         public override void Attach(Shape shape)
@@ -84,6 +90,11 @@ namespace Frenzied.GamePlay.GameModes.Implementations
 
         public override void Explode()
         {
+            if (!this.IsFull())
+                return;
+
+            this._scoreManager.CorrectMove(this);
+
             this[BlockLocations.TopLeft] = Shape.Empty;
             this[BlockLocations.TopRight] = Shape.Empty;
             this[BlockLocations.BottomRight] = Shape.Empty;

@@ -18,12 +18,26 @@ namespace Frenzied.GamePlay.GameModes.Implementations
     {
         public static Vector2 Size = new Vector2(210, 210);
 
+        private Texture2D _progressBarTexture;
+
+        private bool _generatorStarted = false;
+        private TimeSpan _timeOutStart;
+        private int timeOut = 4000;
+
+        // required services.       
+        private IScoreManager _scoreManager;
+
         public BlockyGenerator(Vector2 position, List<ShapeContainer> containers)
             : base(position, containers)
         {
             this.Bounds = new Rectangle((int)this.Position.X, (int)this.Position.Y, (int)Size.X, (int)Size.Y);
 
             this.CurrentShape = Shape.Empty;
+
+            this._scoreManager = (IScoreManager)FrenziedGame.Instance.Services.GetService(typeof(IScoreManager));
+            if (this._scoreManager == null)
+                throw new NullReferenceException("Can not find score manager component.");
+            this._progressBarTexture = AssetManager.Instance.BlockProgressBar;
         }
 
         public override void Attach(Shape shape)
@@ -66,6 +80,20 @@ namespace Frenzied.GamePlay.GameModes.Implementations
         {
             if (this.IsEmpty())
                 this.Generate();
+
+            if (this._generatorStarted)
+            {
+                this._timeOutStart = gameTime.TotalGameTime;
+                this._generatorStarted = true;
+            }
+            else
+            {
+                if (gameTime.TotalGameTime.TotalMilliseconds - this._timeOutStart.TotalMilliseconds > this.timeOut)
+                {
+                    this._scoreManager.TimeOut();
+                    this._timeOutStart = gameTime.TotalGameTime;
+                }
+            }
         }
 
         public override void Generate()
@@ -112,6 +140,18 @@ namespace Frenzied.GamePlay.GameModes.Implementations
                 var texture = GetBlockTexture((BlockShape) this.CurrentShape);
                 ScreenManager.Instance.SpriteBatch.Draw(texture, this.CurrentShape.Bounds, Color.White);
             }
+
+            // progressbar.
+
+
+            var timeOutLeft = this.timeOut - (int)(gameTime.TotalGameTime.TotalMilliseconds - this._timeOutStart.TotalMilliseconds);
+            timeOutLeft = (int)(timeOutLeft / 1000);
+            timeOutLeft++;
+
+            var width = (int)(31.25f * timeOutLeft);
+
+            ScreenManager.Instance.SpriteBatch.Draw(this._progressBarTexture, new Rectangle(5, 200, width, 10), new Rectangle(0, 0, width, 10),
+                                                    Color.White);
 
             ScreenManager.Instance.SpriteBatch.End();
 

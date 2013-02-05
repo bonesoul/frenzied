@@ -16,7 +16,7 @@ namespace Frenzied.GamePlay.GameModes
     /// <summary>
     /// Defines a basic shape for a game mode.
     /// </summary>
-    internal class Shape
+    public class Shape
     {
         /// <summary>
         /// The color of the shape.

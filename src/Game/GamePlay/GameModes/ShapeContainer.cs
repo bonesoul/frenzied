@@ -17,7 +17,7 @@ namespace Frenzied.GamePlay.GameModes
     /// <summary>
     /// Defines a shape container.
     /// </summary>
-    internal class ShapeContainer : IContainer
+    public class ShapeContainer : IContainer
     {
         /// <summary>
         /// The position of the shape container.
