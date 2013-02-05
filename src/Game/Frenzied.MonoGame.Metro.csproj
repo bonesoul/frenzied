@@ -232,7 +232,6 @@
     </Content>
     <None Include="Package.StoreAssociation.xml" />
     <None Include="Frenzied.MonoGame.Metro_StoreKey.pfx" />
-    <None Include="Platforms\WindowsMetro\Package.StoreAssociation.xml" />
     <None Include="Platforms\WindowsMetro\Game1_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>

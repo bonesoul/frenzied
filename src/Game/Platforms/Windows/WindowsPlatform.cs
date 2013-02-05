@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework;
 
 namespace Frenzied.Platforms.Windows
 {
-    public class WindowsPlatform : Platform
+    public class WindowsPlatform : PlatformHandler
     {
         public WindowsPlatform()
         {

@@ -46,7 +46,7 @@ namespace Frenzied.Platforms
             // find base platform.
             #if DESKTOP
                 Platform = Platforms.Windows;
-                this.CurrentPlatform = new Windows.WindowsPlatform();
+                PlatformHandler = new Windows.WindowsPlatform();
             #elif METRO
                 Platform = Platforms.WindowsMetro;
                 PlatformHandler = new WindowsMetro.WindowsMetroPlatform();
