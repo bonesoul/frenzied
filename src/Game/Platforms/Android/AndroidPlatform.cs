@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework;
 
 namespace Frenzied.Platforms.Android
 {
-    public class AndroidPlatform : Platform
+    public class AndroidPlatform : PlatformHandler
     {
         public AndroidPlatform()
         {

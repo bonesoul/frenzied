@@ -49,7 +49,7 @@ namespace Frenzied.Platforms
                 this.CurrentPlatform = new Windows.WindowsPlatform();
             #elif METRO
                 Platform = Platforms.WindowsMetro;
-                PlatformHandler = new WindowsMetroPlatform();
+                PlatformHandler = new WindowsMetro.WindowsMetroPlatform();
             #elif WINPHONE7
                 Platform = Platforms.WindowsPhone7;
                 CurrentPlatform = new WindowsPhone7.WindowsPhone7Platform();
@@ -58,7 +58,7 @@ namespace Frenzied.Platforms
                 PlatformHandler = new WindowsPhone8.WindowsPhone8Platform();
             #elif ANDROID
                 Platform = Platforms.Android;
-                this.CurrentPlatform = new Android.AndroidPlatform();
+                PlatformHandler = new Android.AndroidPlatform();
             #endif
 
             if (PlatformHandler == null)

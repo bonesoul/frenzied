@@ -54,7 +54,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AndroidActivity.cs" />
     <Compile Include="Assets\AssetManager.cs" />
     <Compile Include="Audio\AudioManager.cs" />
     <Compile Include="Config\BackgroundConfig.cs" />
@@ -82,11 +81,14 @@
     <Compile Include="Input\InputState.cs" />
     <Compile Include="Input\PlayerIndexEventArgs.cs" />
     <Compile Include="Menu\MenuEntry.cs" />
+    <Compile Include="Platforms\Android\AndroidActivity.cs" />
     <Compile Include="Platforms\Android\AndroidPlatform.cs" />
-    <Compile Include="Platforms\Platform.cs" />
+    <Compile Include="Platforms\GameFrameworks.cs" />
+    <Compile Include="Platforms\GraphicsAPI.cs" />
     <Compile Include="Platforms\PlatformConfig.cs" />
-    <Compile Include="Platforms\PlatformInfo.cs" />
+    <Compile Include="Platforms\PlatformHandler.cs" />
     <Compile Include="Platforms\PlatformManager.cs" />
+    <Compile Include="Platforms\Platforms.cs" />
     <Compile Include="Platforms\VersionInfo.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
