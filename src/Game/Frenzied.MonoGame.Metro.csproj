@@ -100,6 +100,19 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="GamePlay\Implementations\BlockColors.cs" />
+    <Compile Include="GamePlay\Implementations\BlockLocations.cs" />
+    <Compile Include="GamePlay\Implementations\BlockShape.cs" />
+    <Compile Include="GamePlay\Implementations\BlockyContainer.cs" />
+    <Compile Include="GamePlay\Implementations\BlockyGenerator.cs" />
+    <Compile Include="GamePlay\Implementations\BlockyMode.cs" />
+    <Compile Include="GamePlay\Modes\GameMode.cs" />
+    <Compile Include="GamePlay\Modes\IContainer.cs" />
+    <Compile Include="GamePlay\Modes\Shape.cs" />
+    <Compile Include="GamePlay\Modes\ShapeColors.cs" />
+    <Compile Include="GamePlay\Modes\ShapeContainer.cs" />
+    <Compile Include="GamePlay\Modes\ShapeGenerator.cs" />
+    <Compile Include="GamePlay\Modes\ShapeLocations.cs" />
     <Compile Include="Input\PlayerIndexEventArgs.cs" />
     <Compile Include="Menu\MenuEntry.cs" />
     <Compile Include="Screens\GameScreen.cs" />
@@ -124,9 +137,6 @@
     <Compile Include="Audio\AudioManager.cs" />
     <Compile Include="Config\BackgroundConfig.cs" />
     <Compile Include="Config\GameConfig.cs" />
-    <Compile Include="GamePlay\Block.cs" />
-    <Compile Include="GamePlay\BlockContainer.cs" />
-    <Compile Include="GamePlay\BlockGenerator.cs" />
     <Compile Include="GamePlay\ScoreManager.cs" />
     <Compile Include="Graphics\Drawing\BasicShapes.cs" />
     <Compile Include="Graphics\Drawing\PrimitiveBatch.cs" />

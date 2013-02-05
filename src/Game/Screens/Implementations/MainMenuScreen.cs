@@ -5,6 +5,7 @@
  * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
  */
 
+using Frenzied.GamePlay.Implementations;
 using Frenzied.Input;
 using Frenzied.Menu;
 using Microsoft.Xna.Framework;
@@ -49,7 +50,7 @@ namespace Frenzied.Screens.Implementations
         void PlayGameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             LoadingScreen.Load(ScreenManager, true, e.PlayerIndex,
-                               new GameplayScreen());
+                               new GameplayScreen(new BlockyMode()));
         }
 
 
