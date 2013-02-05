@@ -13,6 +13,7 @@ using Frenzied.GamePlay;
 using Frenzied.GamePlay.Implementations;
 using Frenzied.Graphics;
 using Frenzied.Input;
+using Frenzied.Platforms;
 using Frenzied.Screens;
 using Frenzied.Screens.Implementations;
 using Frenzied.Utils.Debugging;
@@ -81,25 +82,11 @@ namespace Frenzied
         /// </summary>
         protected override void Initialize()
         {
-            this.IsMouseVisible = true;
+            // set platform specific stuff.
+            this.IsMouseVisible = PlatformManager.Instance.CurrentPlatform.PlatformConfig.IsMouseVisible;
+            this.IsFixedTimeStep = PlatformManager.Instance.CurrentPlatform.PlatformConfig.IsFixedTimeStep;
 
-            #if DESKTOP
-            this._graphicsDeviceManager.PreferredBackBufferWidth = 1280;
-            this._graphicsDeviceManager.PreferredBackBufferHeight = 720;
-            this._graphicsDeviceManager.ApplyChanges();
-            #endif
-
-            #if ANDROID
-            this._graphicsDeviceManager.PreferredBackBufferWidth = 800;
-            this._graphicsDeviceManager.PreferredBackBufferHeight = 480;
-            this._graphicsDeviceManager.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
-            #endif
-
-            #if WINPHONE7
-            this._graphicsDeviceManager.PreferredBackBufferWidth = 480;
-            this._graphicsDeviceManager.PreferredBackBufferHeight = 800;
-            this._graphicsDeviceManager.IsFullScreen = true;
-            #endif
+            PlatformManager.Instance.Initialize(this._graphicsDeviceManager);        
 
             // init the asset manager.
             var assetManager = new AssetManager(this);
@@ -131,8 +118,11 @@ namespace Frenzied
             var audioManager = new AudioManager(this);
             this.Components.Add(audioManager);
 
-            var cursor = new Cursor(this);
-            this.Components.Add(cursor);
+            if (PlatformManager.Instance.CurrentPlatform.PlatformConfig.IsMouseVisible)
+            {
+                var cursor = new Cursor(this);
+                this.Components.Add(cursor);
+            }
 
             base.Initialize();
         }

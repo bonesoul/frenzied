@@ -150,6 +150,21 @@
     <Compile Include="..\Menu\MenuEntry.cs">
       <Link>Menu\MenuEntry.cs</Link>
     </Compile>
+    <Compile Include="..\Platform\Platform.cs">
+      <Link>Platform\Platform.cs</Link>
+    </Compile>
+    <Compile Include="..\Platform\PlatformConfig.cs">
+      <Link>Platform\PlatformConfig.cs</Link>
+    </Compile>
+    <Compile Include="..\Platform\PlatformInfo.cs">
+      <Link>Platform\PlatformInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\Platform\PlatformManager.cs">
+      <Link>Platform\PlatformManager.cs</Link>
+    </Compile>
+    <Compile Include="..\Platform\VersionInfo.cs">
+      <Link>Platform\VersionInfo.cs</Link>
+    </Compile>
     <Compile Include="..\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
@@ -210,12 +225,6 @@
     <Compile Include="..\Utils\Extensions\Vector2Extensions.cs">
       <Link>Utils\Extensions\Vector2Extensions.cs</Link>
     </Compile>
-    <Compile Include="..\Utils\Platform\PlatformInfo.cs">
-      <Link>Utils\Platform\PlatformInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\Utils\Platform\VersionInfo.cs">
-      <Link>Utils\Platform\VersionInfo.cs</Link>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -223,6 +232,7 @@
     <Compile Include="GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Platform\Implementations\WindowsPhone8.cs" />
     <Compile Include="Resources\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

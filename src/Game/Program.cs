@@ -5,6 +5,8 @@
  * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
  */
 
+using Frenzied.Platforms;
+
 namespace Frenzied
 {
     /// <summary>
@@ -17,12 +19,9 @@ namespace Frenzied
         /// </summary>
         static void Main()
         {
-            #if XNA && DESKTOP
-            using (var game = new FrenziedGame())
-            {
-                game.Run();
-            }
-            #elif MONOGAME && METRO
+            PlatformManager.Instance.Startup();
+
+            #if MONOGAME && METRO
                 var factory = new MonoGame.Framework.GameFrameworkViewSource<FrenziedGame>();
                 Windows.ApplicationModel.Core.CoreApplication.Run(factory);
             #endif

@@ -66,153 +66,163 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\Assets\AssetManager.cs">
+    <Compile Include="..\..\Assets\AssetManager.cs">
       <Link>Assets\AssetManager.cs</Link>
     </Compile>
-    <Compile Include="..\Audio\AudioManager.cs">
+    <Compile Include="..\..\Audio\AudioManager.cs">
       <Link>Audio\AudioManager.cs</Link>
     </Compile>
-    <Compile Include="..\Config\BackgroundConfig.cs">
+    <Compile Include="..\..\Config\BackgroundConfig.cs">
       <Link>Config\BackgroundConfig.cs</Link>
     </Compile>
-    <Compile Include="..\Config\GameConfig.cs">
+    <Compile Include="..\..\Config\GameConfig.cs">
       <Link>Config\GameConfig.cs</Link>
     </Compile>
-    <Compile Include="..\FrenziedGame.cs">
+    <Compile Include="..\..\FrenziedGame.cs">
       <Link>FrenziedGame.cs</Link>
     </Compile>
-    <Compile Include="..\GamePlay\Implementations\BlockColors.cs">
+    <Compile Include="..\..\GamePlay\Implementations\BlockColors.cs">
       <Link>GamePlay\Implementations\BlockColors.cs</Link>
     </Compile>
-    <Compile Include="..\GamePlay\Implementations\BlockLocations.cs">
+    <Compile Include="..\..\GamePlay\Implementations\BlockLocations.cs">
       <Link>GamePlay\Implementations\BlockLocations.cs</Link>
     </Compile>
-    <Compile Include="..\GamePlay\Implementations\BlockShape.cs">
+    <Compile Include="..\..\GamePlay\Implementations\BlockShape.cs">
       <Link>GamePlay\Implementations\BlockShape.cs</Link>
     </Compile>
-    <Compile Include="..\GamePlay\Implementations\BlockyContainer.cs">
+    <Compile Include="..\..\GamePlay\Implementations\BlockyContainer.cs">
       <Link>GamePlay\Implementations\BlockyContainer.cs</Link>
     </Compile>
-    <Compile Include="..\GamePlay\Implementations\BlockyGenerator.cs">
+    <Compile Include="..\..\GamePlay\Implementations\BlockyGenerator.cs">
       <Link>GamePlay\Implementations\BlockyGenerator.cs</Link>
     </Compile>
-    <Compile Include="..\GamePlay\Implementations\BlockyMode.cs">
+    <Compile Include="..\..\GamePlay\Implementations\BlockyMode.cs">
       <Link>GamePlay\Implementations\BlockyMode.cs</Link>
     </Compile>
-    <Compile Include="..\GamePlay\Modes\GameMode.cs">
+    <Compile Include="..\..\GamePlay\Modes\GameMode.cs">
       <Link>GamePlay\Modes\GameMode.cs</Link>
     </Compile>
-    <Compile Include="..\GamePlay\Modes\IContainer.cs">
+    <Compile Include="..\..\GamePlay\Modes\IContainer.cs">
       <Link>GamePlay\Modes\IContainer.cs</Link>
     </Compile>
-    <Compile Include="..\GamePlay\Modes\Shape.cs">
+    <Compile Include="..\..\GamePlay\Modes\Shape.cs">
       <Link>GamePlay\Modes\Shape.cs</Link>
     </Compile>
-    <Compile Include="..\GamePlay\Modes\ShapeColors.cs">
+    <Compile Include="..\..\GamePlay\Modes\ShapeColors.cs">
       <Link>GamePlay\Modes\ShapeColors.cs</Link>
     </Compile>
-    <Compile Include="..\GamePlay\Modes\ShapeContainer.cs">
+    <Compile Include="..\..\GamePlay\Modes\ShapeContainer.cs">
       <Link>GamePlay\Modes\ShapeContainer.cs</Link>
     </Compile>
-    <Compile Include="..\GamePlay\Modes\ShapeGenerator.cs">
+    <Compile Include="..\..\GamePlay\Modes\ShapeGenerator.cs">
       <Link>GamePlay\Modes\ShapeGenerator.cs</Link>
     </Compile>
-    <Compile Include="..\GamePlay\Modes\ShapeLocations.cs">
+    <Compile Include="..\..\GamePlay\Modes\ShapeLocations.cs">
       <Link>GamePlay\Modes\ShapeLocations.cs</Link>
     </Compile>
-    <Compile Include="..\GamePlay\ScoreManager.cs">
+    <Compile Include="..\..\GamePlay\ScoreManager.cs">
       <Link>GamePlay\ScoreManager.cs</Link>
     </Compile>
-    <Compile Include="..\Graphics\Drawing\BasicShapes.cs">
+    <Compile Include="..\..\Graphics\Drawing\BasicShapes.cs">
       <Link>Graphics\Drawing\BasicShapes.cs</Link>
     </Compile>
-    <Compile Include="..\Graphics\Drawing\PrimitiveBatch.cs">
+    <Compile Include="..\..\Graphics\Drawing\PrimitiveBatch.cs">
       <Link>Graphics\Drawing\PrimitiveBatch.cs</Link>
     </Compile>
-    <Compile Include="..\Graphics\Effects\Metaball.cs">
+    <Compile Include="..\..\Graphics\Effects\Metaball.cs">
       <Link>Graphics\Effects\Metaball.cs</Link>
     </Compile>
-    <Compile Include="..\Graphics\GraphicsManager.cs">
+    <Compile Include="..\..\Graphics\GraphicsManager.cs">
       <Link>Graphics\GraphicsManager.cs</Link>
     </Compile>
-    <Compile Include="..\Input\Cursor.cs">
+    <Compile Include="..\..\Input\Cursor.cs">
       <Link>Input\Cursor.cs</Link>
     </Compile>
-    <Compile Include="..\Input\InputState.cs">
+    <Compile Include="..\..\Input\InputState.cs">
       <Link>Input\InputState.cs</Link>
     </Compile>
-    <Compile Include="..\Input\PlayerIndexEventArgs.cs">
+    <Compile Include="..\..\Input\PlayerIndexEventArgs.cs">
       <Link>Input\PlayerIndexEventArgs.cs</Link>
     </Compile>
-    <Compile Include="..\Menu\MenuEntry.cs">
+    <Compile Include="..\..\Menu\MenuEntry.cs">
       <Link>Menu\MenuEntry.cs</Link>
     </Compile>
-    <Compile Include="..\Properties\AssemblyInfo.cs">
+    <Compile Include="..\..\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="..\Screens\GameScreen.cs">
+    <Compile Include="..\..\Screens\GameScreen.cs">
       <Link>Screens\GameScreen.cs</Link>
     </Compile>
-    <Compile Include="..\Screens\Implementations\AboutScreen.cs">
+    <Compile Include="..\..\Screens\Implementations\AboutScreen.cs">
       <Link>Screens\Implementations\AboutScreen.cs</Link>
     </Compile>
-    <Compile Include="..\Screens\Implementations\BackgroundScreen.cs">
+    <Compile Include="..\..\Screens\Implementations\BackgroundScreen.cs">
       <Link>Screens\Implementations\BackgroundScreen.cs</Link>
     </Compile>
-    <Compile Include="..\Screens\Implementations\GameplayScreen.cs">
+    <Compile Include="..\..\Screens\Implementations\GameplayScreen.cs">
       <Link>Screens\Implementations\GameplayScreen.cs</Link>
     </Compile>
-    <Compile Include="..\Screens\Implementations\LoadingScreen.cs">
+    <Compile Include="..\..\Screens\Implementations\LoadingScreen.cs">
       <Link>Screens\Implementations\LoadingScreen.cs</Link>
     </Compile>
-    <Compile Include="..\Screens\Implementations\MainMenuScreen.cs">
+    <Compile Include="..\..\Screens\Implementations\MainMenuScreen.cs">
       <Link>Screens\Implementations\MainMenuScreen.cs</Link>
     </Compile>
-    <Compile Include="..\Screens\Implementations\MenuScreen.cs">
+    <Compile Include="..\..\Screens\Implementations\MenuScreen.cs">
       <Link>Screens\Implementations\MenuScreen.cs</Link>
     </Compile>
-    <Compile Include="..\Screens\Implementations\MessageBoxScreen.cs">
+    <Compile Include="..\..\Screens\Implementations\MessageBoxScreen.cs">
       <Link>Screens\Implementations\MessageBoxScreen.cs</Link>
     </Compile>
-    <Compile Include="..\Screens\Implementations\OptionsMenuScreen.cs">
+    <Compile Include="..\..\Screens\Implementations\OptionsMenuScreen.cs">
       <Link>Screens\Implementations\OptionsMenuScreen.cs</Link>
     </Compile>
-    <Compile Include="..\Screens\Implementations\PauseMenuScreen.cs">
+    <Compile Include="..\..\Screens\Implementations\PauseMenuScreen.cs">
       <Link>Screens\Implementations\PauseMenuScreen.cs</Link>
     </Compile>
-    <Compile Include="..\Screens\ScreenManager.cs">
+    <Compile Include="..\..\Screens\ScreenManager.cs">
       <Link>Screens\ScreenManager.cs</Link>
     </Compile>
-    <Compile Include="..\Utils\Debugging\DebugBar.cs">
+    <Compile Include="..\..\Utils\Debugging\DebugBar.cs">
       <Link>Utils\Debugging\DebugBar.cs</Link>
     </Compile>
-    <Compile Include="..\Utils\Debugging\Graphs\DebugGraph.cs">
+    <Compile Include="..\..\Utils\Debugging\Graphs\DebugGraph.cs">
       <Link>Utils\Debugging\Graphs\DebugGraph.cs</Link>
     </Compile>
-    <Compile Include="..\Utils\Debugging\Graphs\GraphManager.cs">
+    <Compile Include="..\..\Utils\Debugging\Graphs\GraphManager.cs">
       <Link>Utils\Debugging\Graphs\GraphManager.cs</Link>
     </Compile>
-    <Compile Include="..\Utils\Debugging\Graphs\Implementations\FPSGraph.cs">
+    <Compile Include="..\..\Utils\Debugging\Graphs\Implementations\FPSGraph.cs">
       <Link>Utils\Debugging\Graphs\Implementations\FPSGraph.cs</Link>
     </Compile>
-    <Compile Include="..\Utils\Debugging\Graphs\Implementations\MemGraph.cs">
+    <Compile Include="..\..\Utils\Debugging\Graphs\Implementations\MemGraph.cs">
       <Link>Utils\Debugging\Graphs\Implementations\MemGraph.cs</Link>
     </Compile>
-    <Compile Include="..\Utils\Extensions\NumberExtensions.cs">
+    <Compile Include="..\..\Utils\Extensions\NumberExtensions.cs">
       <Link>Utils\Extensions\NumberExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Utils\Extensions\StringBuilderExtensions.cs">
+    <Compile Include="..\..\Utils\Extensions\StringBuilderExtensions.cs">
       <Link>Utils\Extensions\StringBuilderExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Utils\Extensions\Vector2Extensions.cs">
+    <Compile Include="..\..\Utils\Extensions\Vector2Extensions.cs">
       <Link>Utils\Extensions\Vector2Extensions.cs</Link>
     </Compile>
-    <Compile Include="..\Utils\Platform\PlatformInfo.cs">
-      <Link>Utils\Platform\PlatformInfo.cs</Link>
+    <Compile Include="..\Platform.cs">
+      <Link>Platforms\Platform.cs</Link>
     </Compile>
-    <Compile Include="..\Utils\Platform\VersionInfo.cs">
-      <Link>Utils\Platform\VersionInfo.cs</Link>
+    <Compile Include="..\PlatformConfig.cs">
+      <Link>Platforms\PlatformConfig.cs</Link>
     </Compile>
+    <Compile Include="..\PlatformInfo.cs">
+      <Link>Platforms\PlatformInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\PlatformManager.cs">
+      <Link>Platforms\PlatformManager.cs</Link>
+    </Compile>
+    <Compile Include="..\VersionInfo.cs">
+      <Link>Platforms\VersionInfo.cs</Link>
+    </Compile>
+    <Compile Include="Platforms\WindowsPhone7\WindowsPhone7.cs" />
     <None Include="Properties\AppManifest.xml">
       <XnaPlatformSpecific>true</XnaPlatformSpecific>
     </None>
@@ -229,7 +239,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Content\Content.contentproj">
+    <ProjectReference Include="..\..\..\Content\Content.contentproj">
       <Project>{49796CBA-FA0E-4778-896D-65CBD54CB3F7}</Project>
       <Name>Content</Name>
       <XnaReferenceType>Content</XnaReferenceType>

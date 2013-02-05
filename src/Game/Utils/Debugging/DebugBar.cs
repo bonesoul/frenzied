@@ -9,8 +9,8 @@ using System;
 using System.Text;
 using Frenzied.Assets;
 using Frenzied.Graphics.Drawing;
+using Frenzied.Platforms;
 using Frenzied.Utils.Extensions;
-using Frenzied.Utils.Platform;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
