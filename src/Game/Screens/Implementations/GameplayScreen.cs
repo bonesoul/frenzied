@@ -7,13 +7,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using Frenzied.Assets;
 using Frenzied.GamePlay;
+using Frenzied.GamePlay.Modes;
 using Frenzied.Input;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 
@@ -21,51 +19,41 @@ namespace Frenzied.Screens.Implementations
 {
     class GameplayScreen : GameScreen
     {
-        private List<BlockContainer> _blockContainers = new List<BlockContainer>();
-        private BlockGenerator _blockGenerator;
-
         float pauseAlpha;
 
         // required services.
         private IScoreManager _scoreManager;
         private IAssetManager _assetManager;
 
+        private GameMode _gameMode;
+
         /// <summary>
-        /// Constructor.
+        /// Creates a new <see cref="GameplayScreen"/> instance.
         /// </summary>
-        public GameplayScreen()
+        public GameplayScreen(GameMode gameMode)
         {
+            this._gameMode = gameMode;
+
             TransitionOnTime = TimeSpan.FromSeconds(1.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
 
             this.EnabledGestures = GestureType.Tap;
         }
 
+        // TODO: implement initialize for gamescreens!
+
         /// <summary>
         /// Load graphics content for the game.
         /// </summary>
         public override void LoadContent()
         {
+            this._gameMode.LoadContent();
+
             this._scoreManager = (IScoreManager)FrenziedGame.Instance.Services.GetService(typeof(IScoreManager));
             this._assetManager = (IAssetManager)FrenziedGame.Instance.Services.GetService(typeof(IAssetManager));
 
             if (this._scoreManager == null)
                 throw new NullReferenceException("Can not find score manager component.");
-
-            var midScreenX = FrenziedGame.Instance.GraphicsDevice.Viewport.Bounds.Width / 2;
-            var midScreenY = FrenziedGame.Instance.GraphicsDevice.Viewport.Bounds.Height / 2;
-
-
-            // load block containers
-            var offset = 100;
-
-            this._blockContainers.Add(new BlockContainer(FrenziedGame.Instance, new Vector2(midScreenX - BlockContainer.Size.X / 2, midScreenY - BlockContainer.Size.Y - offset)));
-            this._blockContainers.Add(new BlockContainer(FrenziedGame.Instance, new Vector2(midScreenX - BlockContainer.Size.X - offset, midScreenY - offset)));
-            this._blockContainers.Add(new BlockContainer(FrenziedGame.Instance, new Vector2(midScreenX + offset, midScreenY - offset)));
-            this._blockContainers.Add(new BlockContainer(FrenziedGame.Instance, new Vector2(midScreenX - BlockContainer.Size.X / 2, midScreenY + BlockContainer.Size.Y - offset)));
-
-            this._blockGenerator = new BlockGenerator(FrenziedGame.Instance, new Vector2(midScreenX - BlockContainer.Size.X / 2, midScreenY - offset), this._blockContainers);
-            this._blockGenerator.Initialize();
 
             base.LoadContent();
         }
@@ -94,7 +82,7 @@ namespace Frenzied.Screens.Implementations
             if (input.CurrentMouseState.LeftButton != ButtonState.Pressed || input.LastMouseState.LeftButton != ButtonState.Released)
                 return;
 
-            this.HandleClick(input.CurrentMouseState.X, input.CurrentMouseState.Y);
+            this._gameMode.HandleClick(input.CurrentMouseState.X, input.CurrentMouseState.Y);
         }
 
         public override void HandleGestures(InputState input)
@@ -105,31 +93,7 @@ namespace Frenzied.Screens.Implementations
             foreach (var gesture in input.Gestures)
             {
                 if (gesture.GestureType == GestureType.Tap)
-                    HandleClick((int)gesture.Position.X, (int)gesture.Position.Y);
-            }
-        }
-
-        private void HandleClick(int X, int Y)
-        {
-            foreach (var container in this._blockContainers)
-            {
-                if (!container.Bounds.Contains(X, Y))
-                    continue;
-
-                if (this._blockGenerator.IsEmpty)
-                    continue;
-
-                if (!container.IsEmpty(this._blockGenerator.CurretBlock.Location))
-                    continue;
-
-                #if !WINPHONE8
-                this._assetManager.Sounds.BlockEffect.PlayRandom();
-                #endif
-
-                container.AddBlock(this._blockGenerator.CurretBlock);
-                this._blockGenerator.CurrentBlockUsed();
-
-                break;
+                    this._gameMode.HandleClick((int)gesture.Position.X, (int)gesture.Position.Y);
             }
         }
 
@@ -141,12 +105,7 @@ namespace Frenzied.Screens.Implementations
         public override void Update(GameTime gameTime, bool otherScreenHasFocus,
                                                        bool coveredByOtherScreen)
         {
-            this._blockGenerator.Update(gameTime);
-
-            foreach (var container in this._blockContainers)
-            {
-                container.Update(gameTime);
-            }
+            this._gameMode.Update(gameTime);
 
             // Gradually fade in or out depending on whether we are covered by the pause screen.
             if (coveredByOtherScreen)
@@ -162,12 +121,7 @@ namespace Frenzied.Screens.Implementations
         /// </summary>
         public override void Draw(GameTime gameTime)
         {
-            foreach (var container in this._blockContainers)
-            {
-                container.Draw(gameTime);
-            }
-
-            this._blockGenerator.Draw(gameTime);
+            this._gameMode.Draw(gameTime);
 
             base.Draw(gameTime);
         }

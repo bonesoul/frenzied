@@ -8,6 +8,7 @@
 using System;
 using System.Collections.Generic;
 using Frenzied.GamePlay;
+using Frenzied.GamePlay.Implementations;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -75,18 +76,18 @@ namespace Frenzied.Assets
             this.Sounds.LoadContent(this.Game);
         }
 
-        public Texture2D GetBlockTexture(Block block)
+        public Texture2D GetBlockTexture(BlockShape block)
         {
-            switch (block.Color)
+            switch (block.ColorIndex)
             {
-                case BlockColor.Orange:
-                    return this.BlockTextures[Color.Orange];
-                case BlockColor.Purple:
-                    return this.BlockTextures[Color.Purple];
-                case BlockColor.Green:
-                    return this.BlockTextures[Color.Green];
-                case BlockColor.Blue:
-                    return this.BlockTextures[Color.Blue];
+                case BlockColors.Orange:
+                    return AssetManager.Instance.BlockTextures[Color.Orange];
+                case BlockColors.Purple:
+                    return AssetManager.Instance.BlockTextures[Color.Purple];
+                case BlockColors.Green:
+                    return AssetManager.Instance.BlockTextures[Color.Green];
+                case BlockColors.Blue:
+                    return AssetManager.Instance.BlockTextures[Color.Blue];
                 default:
                     return null;
             }
