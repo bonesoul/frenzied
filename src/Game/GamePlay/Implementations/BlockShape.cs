@@ -5,15 +5,12 @@
  * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
  */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Frenzied.GamePlay.Modes;
 using Microsoft.Xna.Framework;
 
-namespace Frenzied.GamePlay.GameModes.Implementations
+namespace Frenzied.GamePlay.Implementations
 {
-    internal class BlockShape : Shape
+    public class BlockShape : Shape
     {
         public BlockShape(byte colorIndex, byte locationIndex)
             : base(colorIndex, locationIndex)

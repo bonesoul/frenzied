@@ -8,11 +8,12 @@
 using System;
 using System.Collections.Generic;
 using Frenzied.Assets;
+using Frenzied.GamePlay.Modes;
 using Frenzied.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Frenzied.GamePlay.GameModes.Implementations
+namespace Frenzied.GamePlay.Implementations
 {
     internal class BlockyGenerator : ShapeGenerator
     {
@@ -137,7 +138,7 @@ namespace Frenzied.GamePlay.GameModes.Implementations
 
             if (!this.IsEmpty())
             {
-                var texture = GetBlockTexture((BlockShape) this.CurrentShape);
+                var texture = AssetManager.Instance.GetBlockTexture((BlockShape)this.CurrentShape);
                 ScreenManager.Instance.SpriteBatch.Draw(texture, this.CurrentShape.Bounds, Color.White);
             }
 
@@ -156,23 +157,6 @@ namespace Frenzied.GamePlay.GameModes.Implementations
             ScreenManager.Instance.SpriteBatch.End();
 
             base.Draw(gameTime);
-        }
-
-        public Texture2D GetBlockTexture(BlockShape block)
-        {
-            switch (block.ColorIndex)
-            {
-                case BlockColors.Orange:
-                    return AssetManager.Instance.BlockTextures[Color.Orange];
-                case BlockColors.Purple:
-                    return AssetManager.Instance.BlockTextures[Color.Purple];
-                case BlockColors.Green:
-                    return AssetManager.Instance.BlockTextures[Color.Green];
-                case BlockColors.Blue:
-                    return AssetManager.Instance.BlockTextures[Color.Blue];
-                default:
-                    return null;
-            }
         }
     }
 }

@@ -7,11 +7,9 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Microsoft.Xna.Framework;
 
-namespace Frenzied.GamePlay.GameModes
+namespace Frenzied.GamePlay.Modes
 {
     /// <summary>
     /// Shape generator for game-modes.

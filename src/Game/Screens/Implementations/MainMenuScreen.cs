@@ -5,7 +5,7 @@
  * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
  */
 
-using Frenzied.GamePlay.GameModes.Implementations;
+using Frenzied.GamePlay.Implementations;
 using Frenzied.Input;
 using Frenzied.Menu;
 using Microsoft.Xna.Framework;

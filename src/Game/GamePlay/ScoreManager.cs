@@ -8,8 +8,8 @@
 using System;
 using System.Text;
 using Frenzied.Assets;
-using Frenzied.GamePlay.GameModes;
-using Frenzied.GamePlay.GameModes.Implementations;
+using Frenzied.GamePlay.Implementations;
+using Frenzied.GamePlay.Modes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 

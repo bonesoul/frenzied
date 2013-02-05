@@ -8,7 +8,7 @@
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 
-namespace Frenzied.GamePlay.GameModes
+namespace Frenzied.GamePlay.Modes
 {
     /// <summary>
     /// Game mode class that defines a game-mode.

@@ -7,14 +7,12 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Frenzied.Assets;
+using Frenzied.GamePlay.Modes;
 using Frenzied.Screens;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
-namespace Frenzied.GamePlay.GameModes.Implementations
+namespace Frenzied.GamePlay.Implementations
 {
     internal class BlockyContainer : ShapeContainer
     {
@@ -120,30 +118,13 @@ namespace Frenzied.GamePlay.GameModes.Implementations
 
                 var block = ((BlockShape) shape);
 
-                var texture = GetBlockTexture(block);
+                var texture = AssetManager.Instance.GetBlockTexture(block);
                 ScreenManager.Instance.SpriteBatch.Draw(texture, block.Bounds, Color.White);
             }
 
             ScreenManager.Instance.SpriteBatch.End();
 
             base.Draw(gameTime);
-        }
-
-        public Texture2D GetBlockTexture(BlockShape block)
-        {
-            switch (block.ColorIndex)
-            {
-                case BlockColors.Orange:
-                    return AssetManager.Instance.BlockTextures[Color.Orange];
-                case BlockColors.Purple:
-                    return AssetManager.Instance.BlockTextures[Color.Purple];
-                case BlockColors.Green:
-                    return AssetManager.Instance.BlockTextures[Color.Green];
-                case BlockColors.Blue:
-                    return AssetManager.Instance.BlockTextures[Color.Blue];
-                default:
-                    return null;
-            }
         }
     }
 }

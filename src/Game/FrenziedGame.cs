@@ -10,7 +10,7 @@ using Frenzied.Assets;
 using Frenzied.Audio;
 using Frenzied.Config;
 using Frenzied.GamePlay;
-using Frenzied.GamePlay.GameModes.Implementations;
+using Frenzied.GamePlay.Implementations;
 using Frenzied.Graphics;
 using Frenzied.Input;
 using Frenzied.Screens;
