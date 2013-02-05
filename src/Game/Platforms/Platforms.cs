@@ -13,8 +13,8 @@ namespace Frenzied.Platforms
     {
         Windows,
         WindowsMetro,
-        WinPhone7,
-        WinPhone8,
+        WindowsPhone7,
+        WindowsPhone8,
         Linux,
         MacOS,
         Android,

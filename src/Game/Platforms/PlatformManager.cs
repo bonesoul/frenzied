@@ -6,7 +6,6 @@
  */
 
 using System;
-using Frenzied.Platforms.WindowsMetro;
 using Microsoft.Xna.Framework;
 
 namespace Frenzied.Platforms
@@ -52,9 +51,11 @@ namespace Frenzied.Platforms
                 Platform = Platforms.WindowsMetro;
                 PlatformHandler = new WindowsMetroPlatform();
             #elif WINPHONE7
-                this.CurrentPlatform = new WindowsPhone7.WindowsPhone7Platform();
+                Platform = Platforms.WindowsPhone7;
+                CurrentPlatform = new WindowsPhone7.WindowsPhone7Platform();
             #elif WINPHONE8
-                this.CurrentPlatform = new WindowsPhone8.WindowsPhone8();
+                Platform = Platforms.WindowsPhone8;
+                PlatformHandler = new WindowsPhone8.WindowsPhone8Platform();
             #elif ANDROID
                 Platform = Platforms.Android;
                 this.CurrentPlatform = new Android.AndroidPlatform();

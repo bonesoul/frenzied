@@ -7,7 +7,7 @@
 
 using Frenzied.Resources;
 
-namespace Frenzied
+namespace Frenzied.Platforms.WindowsPhone8
 {
     /// <summary>
     /// Provides access to string resources.
