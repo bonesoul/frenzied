@@ -9,8 +9,8 @@ using System;
 using System.Text;
 using Frenzied.Assets;
 using Frenzied.Graphics.Drawing;
+using Frenzied.Platforms;
 using Frenzied.Utils.Extensions;
-using Frenzied.Utils.Platform;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -102,12 +102,12 @@ namespace Frenzied.Utils.Debugging
             this._backgroundPolygon[3] = new Vector2(_bounds.X + 2 + _bounds.Width, _bounds.Y - 2); // top right
 
             this._platformInfo = string.Format("platform: {0} / {1}-{2}        API: {3} / {4}-{5}        development-build: v{6}",
-                                               PlatformInfo.Platform,
-                                               PlatformInfo.DotNetFramework,
-                                               PlatformInfo.DotNetFrameworkVersion,
-                                               PlatformInfo.GraphicsApi,
-                                               PlatformInfo.GameFramework,
-                                               PlatformInfo.GameFrameworkVersion,
+                                               PlatformManager.Platform,
+                                               PlatformManager.DotNetFramework,
+                                               PlatformManager.DotNetFrameworkVersion,
+                                               PlatformManager.GraphicsApi,
+                                               PlatformManager.GameFramework,
+                                               PlatformManager.GameFrameworkVersion,
                                                VersionInfo.Version);
 
             this._platformInfoStringWidth = this._spriteFont.MeasureString(this._platformInfo).X;

@@ -5,17 +5,20 @@
  * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
  */
 
-using Frenzied.Resources;
+using Microsoft.Xna.Framework;
 
-namespace Frenzied
+namespace Frenzied.Platforms
 {
-    /// <summary>
-    /// Provides access to string resources.
-    /// </summary>
-    public class LocalizedStrings
+    public class PlatformHandler
     {
-        private static AppResources _localizedResources = new AppResources();
+        protected GraphicsDeviceManager GraphicsDeviceManager;
 
-        public AppResources LocalizedResources { get { return _localizedResources; } }
+        public PlatformConfig PlatformConfig;
+
+        public virtual void PlatformEntrance() 
+        { }
+
+        public virtual void Initialize(GraphicsDeviceManager graphicsDeviceManager)
+        { }
     }
 }

@@ -1,12 +1,11 @@
 ﻿/*
- * Copyright (C) 2011 - 2013 Int6 Studios - http://www.int6.org,
- * Voxeliq Engine - http://www.voxeliq.org - https://github.com/raistlinthewiz/voxeliq
+ * Frenzied Game, Copyright (C) 2012 - 2013 Int6 Studios - All Rights Reserved. - http://www.int6.org
  *
- * This program is free software; you can redistribute it and/or modify 
- * it under the terms of the Microsoft Public License (Ms-PL).
+ * This file is part of Frenzied Game project. Unauthorized copying of this file, via any medium is strictly prohibited.
+ * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
  */
 
-namespace Frenzied.Utils.Platform
+namespace Frenzied.Platforms
 {
     /// <summary>
     /// Version info.

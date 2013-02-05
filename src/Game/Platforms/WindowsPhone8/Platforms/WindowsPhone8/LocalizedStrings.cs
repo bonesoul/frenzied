@@ -5,21 +5,17 @@
  * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
  */
 
-using Frenzied.Platforms;
+using Frenzied.Resources;
 
-namespace Frenzied
+namespace Frenzied.Platforms.WindowsPhone8
 {
     /// <summary>
-    /// The main class.
+    /// Provides access to string resources.
     /// </summary>
-    public static class Program
+    public class LocalizedStrings
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        static void Main()
-        {
-            PlatformManager.Startup();
-        }
+        private static AppResources _localizedResources = new AppResources();
+
+        public AppResources LocalizedResources { get { return _localizedResources; } }
     }
 }

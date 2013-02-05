@@ -8,7 +8,7 @@
 using Microsoft.Phone.Controls;
 using MonoGame.Framework.WindowsPhone;
 
-namespace Frenzied
+namespace Frenzied.Platforms.WindowsPhone8
 {
     public partial class GamePage : PhoneApplicationPage
     {
