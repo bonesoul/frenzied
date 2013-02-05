@@ -13,15 +13,12 @@ using Frenzied.GamePlay;
 using Frenzied.GamePlay.Implementations;
 using Frenzied.Graphics;
 using Frenzied.Input;
+using Frenzied.Platforms;
 using Frenzied.Screens;
 using Frenzied.Screens.Implementations;
 using Frenzied.Utils.Debugging;
 using Frenzied.Utils.Debugging.Graphs;
 using Microsoft.Xna.Framework;
-
-#if METRO || ANDROID
-using Microsoft.Xna.Framework.Input.Touch;
-#endif
 
 namespace Frenzied
 {
@@ -81,25 +78,11 @@ namespace Frenzied
         /// </summary>
         protected override void Initialize()
         {
-            this.IsMouseVisible = true;
+            // set platform specific stuff.
+            this.IsMouseVisible = PlatformManager.PlatformHandler.PlatformConfig.IsMouseVisible;
+            this.IsFixedTimeStep = PlatformManager.PlatformHandler.PlatformConfig.IsFixedTimeStep;
 
-            #if DESKTOP
-            this._graphicsDeviceManager.PreferredBackBufferWidth = 1280;
-            this._graphicsDeviceManager.PreferredBackBufferHeight = 720;
-            this._graphicsDeviceManager.ApplyChanges();
-            #endif
-
-            #if ANDROID
-            this._graphicsDeviceManager.PreferredBackBufferWidth = 800;
-            this._graphicsDeviceManager.PreferredBackBufferHeight = 480;
-            this._graphicsDeviceManager.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
-            #endif
-
-            #if WINPHONE7
-            this._graphicsDeviceManager.PreferredBackBufferWidth = 480;
-            this._graphicsDeviceManager.PreferredBackBufferHeight = 800;
-            this._graphicsDeviceManager.IsFullScreen = true;
-            #endif
+            PlatformManager.Initialize(this._graphicsDeviceManager);        
 
             // init the asset manager.
             var assetManager = new AssetManager(this);
@@ -122,7 +105,6 @@ namespace Frenzied
             //this._screenManager.AddScreen(new MainMenuScreen(), null);
             this._screenManager.AddScreen(new GameplayScreen(new BlockyMode()), null);
 
-
             // add debug components
             this.Components.Add(new DebugBar(this));
             this.Components.Add(new GraphManager(this));
@@ -131,8 +113,11 @@ namespace Frenzied
             var audioManager = new AudioManager(this);
             this.Components.Add(audioManager);
 
-            var cursor = new Cursor(this);
-            this.Components.Add(cursor);
+            if (PlatformManager.PlatformHandler.PlatformConfig.IsMouseVisible)
+            {
+                var cursor = new Cursor(this);
+                this.Components.Add(cursor);
+            }
 
             base.Initialize();
         }

@@ -21,7 +21,7 @@
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
     <XapFilename>Frenzied_$(Configuration)_$(Platform).xap</XapFilename>
     <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
-    <SilverlightAppEntry>Frenzied.App</SilverlightAppEntry>
+    <SilverlightAppEntry>Frenzied.Platforms.WindowsPhone8.App</SilverlightAppEntry>
     <ValidateXaml>true</ValidateXaml>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
@@ -69,160 +69,176 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\Assets\AssetManager.cs">
+    <Compile Include="..\..\Assets\AssetManager.cs">
       <Link>Assets\AssetManager.cs</Link>
     </Compile>
-    <Compile Include="..\Audio\AudioManager.cs">
+    <Compile Include="..\..\Audio\AudioManager.cs">
       <Link>Audio\AudioManager.cs</Link>
     </Compile>
-    <Compile Include="..\Config\BackgroundConfig.cs">
+    <Compile Include="..\..\Config\BackgroundConfig.cs">
       <Link>Config\BackgroundConfig.cs</Link>
     </Compile>
-    <Compile Include="..\Config\GameConfig.cs">
+    <Compile Include="..\..\Config\GameConfig.cs">
       <Link>Config\GameConfig.cs</Link>
     </Compile>
-    <Compile Include="..\FrenziedGame.cs">
+    <Compile Include="..\..\FrenziedGame.cs">
       <Link>FrenziedGame.cs</Link>
     </Compile>
-    <Compile Include="..\GamePlay\Implementations\BlockColors.cs">
+    <Compile Include="..\..\GamePlay\Implementations\BlockColors.cs">
       <Link>GamePlay\Implementations\BlockColors.cs</Link>
     </Compile>
-    <Compile Include="..\GamePlay\Implementations\BlockLocations.cs">
+    <Compile Include="..\..\GamePlay\Implementations\BlockLocations.cs">
       <Link>GamePlay\Implementations\BlockLocations.cs</Link>
     </Compile>
-    <Compile Include="..\GamePlay\Implementations\BlockShape.cs">
+    <Compile Include="..\..\GamePlay\Implementations\BlockShape.cs">
       <Link>GamePlay\Implementations\BlockShape.cs</Link>
     </Compile>
-    <Compile Include="..\GamePlay\Implementations\BlockyContainer.cs">
+    <Compile Include="..\..\GamePlay\Implementations\BlockyContainer.cs">
       <Link>GamePlay\Implementations\BlockyContainer.cs</Link>
     </Compile>
-    <Compile Include="..\GamePlay\Implementations\BlockyGenerator.cs">
+    <Compile Include="..\..\GamePlay\Implementations\BlockyGenerator.cs">
       <Link>GamePlay\Implementations\BlockyGenerator.cs</Link>
     </Compile>
-    <Compile Include="..\GamePlay\Implementations\BlockyMode.cs">
+    <Compile Include="..\..\GamePlay\Implementations\BlockyMode.cs">
       <Link>GamePlay\Implementations\BlockyMode.cs</Link>
     </Compile>
-    <Compile Include="..\GamePlay\Modes\GameMode.cs">
+    <Compile Include="..\..\GamePlay\Modes\GameMode.cs">
       <Link>GamePlay\Modes\GameMode.cs</Link>
     </Compile>
-    <Compile Include="..\GamePlay\Modes\IContainer.cs">
+    <Compile Include="..\..\GamePlay\Modes\IContainer.cs">
       <Link>GamePlay\Modes\IContainer.cs</Link>
     </Compile>
-    <Compile Include="..\GamePlay\Modes\Shape.cs">
+    <Compile Include="..\..\GamePlay\Modes\Shape.cs">
       <Link>GamePlay\Modes\Shape.cs</Link>
     </Compile>
-    <Compile Include="..\GamePlay\Modes\ShapeColors.cs">
+    <Compile Include="..\..\GamePlay\Modes\ShapeColors.cs">
       <Link>GamePlay\Modes\ShapeColors.cs</Link>
     </Compile>
-    <Compile Include="..\GamePlay\Modes\ShapeContainer.cs">
+    <Compile Include="..\..\GamePlay\Modes\ShapeContainer.cs">
       <Link>GamePlay\Modes\ShapeContainer.cs</Link>
     </Compile>
-    <Compile Include="..\GamePlay\Modes\ShapeGenerator.cs">
+    <Compile Include="..\..\GamePlay\Modes\ShapeGenerator.cs">
       <Link>GamePlay\Modes\ShapeGenerator.cs</Link>
     </Compile>
-    <Compile Include="..\GamePlay\Modes\ShapeLocations.cs">
+    <Compile Include="..\..\GamePlay\Modes\ShapeLocations.cs">
       <Link>GamePlay\Modes\ShapeLocations.cs</Link>
     </Compile>
-    <Compile Include="..\GamePlay\ScoreManager.cs">
+    <Compile Include="..\..\GamePlay\ScoreManager.cs">
       <Link>GamePlay\ScoreManager.cs</Link>
     </Compile>
-    <Compile Include="..\Graphics\Drawing\BasicShapes.cs">
+    <Compile Include="..\..\Graphics\Drawing\BasicShapes.cs">
       <Link>Graphics\Drawing\BasicShapes.cs</Link>
     </Compile>
-    <Compile Include="..\Graphics\Drawing\PrimitiveBatch.cs">
+    <Compile Include="..\..\Graphics\Drawing\PrimitiveBatch.cs">
       <Link>Graphics\Drawing\PrimitiveBatch.cs</Link>
     </Compile>
-    <Compile Include="..\Graphics\Effects\Metaball.cs">
+    <Compile Include="..\..\Graphics\Effects\Metaball.cs">
       <Link>Graphics\Effects\Metaball.cs</Link>
     </Compile>
-    <Compile Include="..\Graphics\GraphicsManager.cs">
+    <Compile Include="..\..\Graphics\GraphicsManager.cs">
       <Link>Graphics\GraphicsManager.cs</Link>
     </Compile>
-    <Compile Include="..\Input\Cursor.cs">
+    <Compile Include="..\..\Input\Cursor.cs">
       <Link>Input\Cursor.cs</Link>
     </Compile>
-    <Compile Include="..\Input\InputState.cs">
+    <Compile Include="..\..\Input\InputState.cs">
       <Link>Input\InputState.cs</Link>
     </Compile>
-    <Compile Include="..\Input\PlayerIndexEventArgs.cs">
+    <Compile Include="..\..\Input\PlayerIndexEventArgs.cs">
       <Link>Input\PlayerIndexEventArgs.cs</Link>
     </Compile>
-    <Compile Include="..\Menu\MenuEntry.cs">
+    <Compile Include="..\..\Menu\MenuEntry.cs">
       <Link>Menu\MenuEntry.cs</Link>
     </Compile>
-    <Compile Include="..\Properties\AssemblyInfo.cs">
+    <Compile Include="..\..\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="..\Screens\GameScreen.cs">
+    <Compile Include="..\..\Screens\GameScreen.cs">
       <Link>Screens\GameScreen.cs</Link>
     </Compile>
-    <Compile Include="..\Screens\Implementations\AboutScreen.cs">
+    <Compile Include="..\..\Screens\Implementations\AboutScreen.cs">
       <Link>Screens\Implementations\AboutScreen.cs</Link>
     </Compile>
-    <Compile Include="..\Screens\Implementations\BackgroundScreen.cs">
+    <Compile Include="..\..\Screens\Implementations\BackgroundScreen.cs">
       <Link>Screens\Implementations\BackgroundScreen.cs</Link>
     </Compile>
-    <Compile Include="..\Screens\Implementations\GameplayScreen.cs">
+    <Compile Include="..\..\Screens\Implementations\GameplayScreen.cs">
       <Link>Screens\Implementations\GameplayScreen.cs</Link>
     </Compile>
-    <Compile Include="..\Screens\Implementations\LoadingScreen.cs">
+    <Compile Include="..\..\Screens\Implementations\LoadingScreen.cs">
       <Link>Screens\Implementations\LoadingScreen.cs</Link>
     </Compile>
-    <Compile Include="..\Screens\Implementations\MainMenuScreen.cs">
+    <Compile Include="..\..\Screens\Implementations\MainMenuScreen.cs">
       <Link>Screens\Implementations\MainMenuScreen.cs</Link>
     </Compile>
-    <Compile Include="..\Screens\Implementations\MenuScreen.cs">
+    <Compile Include="..\..\Screens\Implementations\MenuScreen.cs">
       <Link>Screens\Implementations\MenuScreen.cs</Link>
     </Compile>
-    <Compile Include="..\Screens\Implementations\MessageBoxScreen.cs">
+    <Compile Include="..\..\Screens\Implementations\MessageBoxScreen.cs">
       <Link>Screens\Implementations\MessageBoxScreen.cs</Link>
     </Compile>
-    <Compile Include="..\Screens\Implementations\OptionsMenuScreen.cs">
+    <Compile Include="..\..\Screens\Implementations\OptionsMenuScreen.cs">
       <Link>Screens\Implementations\OptionsMenuScreen.cs</Link>
     </Compile>
-    <Compile Include="..\Screens\Implementations\PauseMenuScreen.cs">
+    <Compile Include="..\..\Screens\Implementations\PauseMenuScreen.cs">
       <Link>Screens\Implementations\PauseMenuScreen.cs</Link>
     </Compile>
-    <Compile Include="..\Screens\ScreenManager.cs">
+    <Compile Include="..\..\Screens\ScreenManager.cs">
       <Link>Screens\ScreenManager.cs</Link>
     </Compile>
-    <Compile Include="..\Utils\Debugging\DebugBar.cs">
+    <Compile Include="..\..\Utils\Debugging\DebugBar.cs">
       <Link>Utils\Debugging\DebugBar.cs</Link>
     </Compile>
-    <Compile Include="..\Utils\Debugging\Graphs\DebugGraph.cs">
+    <Compile Include="..\..\Utils\Debugging\Graphs\DebugGraph.cs">
       <Link>Utils\Debugging\Graphs\DebugGraph.cs</Link>
     </Compile>
-    <Compile Include="..\Utils\Debugging\Graphs\GraphManager.cs">
+    <Compile Include="..\..\Utils\Debugging\Graphs\GraphManager.cs">
       <Link>Utils\Debugging\Graphs\GraphManager.cs</Link>
     </Compile>
-    <Compile Include="..\Utils\Debugging\Graphs\Implementations\FPSGraph.cs">
+    <Compile Include="..\..\Utils\Debugging\Graphs\Implementations\FPSGraph.cs">
       <Link>Utils\Debugging\Graphs\Implementations\FPSGraph.cs</Link>
     </Compile>
-    <Compile Include="..\Utils\Debugging\Graphs\Implementations\MemGraph.cs">
+    <Compile Include="..\..\Utils\Debugging\Graphs\Implementations\MemGraph.cs">
       <Link>Utils\Debugging\Graphs\Implementations\MemGraph.cs</Link>
     </Compile>
-    <Compile Include="..\Utils\Extensions\NumberExtensions.cs">
+    <Compile Include="..\..\Utils\Extensions\NumberExtensions.cs">
       <Link>Utils\Extensions\NumberExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Utils\Extensions\StringBuilderExtensions.cs">
+    <Compile Include="..\..\Utils\Extensions\StringBuilderExtensions.cs">
       <Link>Utils\Extensions\StringBuilderExtensions.cs</Link>
     </Compile>
-    <Compile Include="..\Utils\Extensions\Vector2Extensions.cs">
+    <Compile Include="..\..\Utils\Extensions\Vector2Extensions.cs">
       <Link>Utils\Extensions\Vector2Extensions.cs</Link>
     </Compile>
-    <Compile Include="..\Utils\Platform\PlatformInfo.cs">
-      <Link>Utils\Platform\PlatformInfo.cs</Link>
+    <Compile Include="..\GameFrameworks.cs">
+      <Link>Platform\GameFrameworks.cs</Link>
     </Compile>
-    <Compile Include="..\Utils\Platform\VersionInfo.cs">
-      <Link>Utils\Platform\VersionInfo.cs</Link>
+    <Compile Include="..\GraphicsAPI.cs">
+      <Link>Platform\GraphicsAPI.cs</Link>
     </Compile>
-    <Compile Include="App.xaml.cs">
+    <Compile Include="..\PlatformConfig.cs">
+      <Link>Platform\PlatformConfig.cs</Link>
+    </Compile>
+    <Compile Include="..\PlatformHandler.cs">
+      <Link>Platform\PlatformHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\PlatformManager.cs">
+      <Link>Platform\PlatformManager.cs</Link>
+    </Compile>
+    <Compile Include="..\Platforms.cs">
+      <Link>Platform\Platforms.cs</Link>
+    </Compile>
+    <Compile Include="..\VersionInfo.cs">
+      <Link>Platform\VersionInfo.cs</Link>
+    </Compile>
+    <Compile Include="Platforms\WindowsPhone8\App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LocalizedStrings.cs" />
-    <Compile Include="GamePage.xaml.cs">
+    <Compile Include="Platforms\WindowsPhone8\LocalizedStrings.cs" />
+    <Compile Include="Platforms\WindowsPhone8\GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Platforms\WindowsPhone8\WindowsPhone8Platform.cs" />
     <Compile Include="Resources\AppResources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -230,85 +246,85 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
+    <ApplicationDefinition Include="Platforms\WindowsPhone8\App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
-    <Page Include="GamePage.xaml">
+    <Page Include="Platforms\WindowsPhone8\GamePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\..\bin\debug\windows\xna\Content\Fonts\GameFont.xnb">
+    <Content Include="..\..\..\..\bin\debug\windows\xna\Content\Music\Dragon Soul.wma">
+      <Link>Content\Music\Dragon Soul.wma</Link>
+    </Content>
+    <Content Include="..\..\..\..\bin\debug\windows\xna\Content\Fonts\GameFont.xnb">
       <Link>Content\Fonts\GameFont.xnb</Link>
     </Content>
-    <Content Include="..\..\..\bin\debug\windows\xna\Content\Fonts\GoodDog.xnb">
+    <Content Include="..\..\..\..\bin\debug\windows\xna\Content\Fonts\GoodDog.xnb">
       <Link>Content\Fonts\GoodDog.xnb</Link>
     </Content>
-    <Content Include="..\..\..\bin\debug\windows\xna\Content\Fonts\MenuFont.xnb">
+    <Content Include="..\..\..\..\bin\debug\windows\xna\Content\Fonts\MenuFont.xnb">
       <Link>Content\Fonts\MenuFont.xnb</Link>
     </Content>
-    <Content Include="..\..\..\bin\debug\windows\xna\Content\Fonts\Verdana.xnb">
+    <Content Include="..\..\..\..\bin\debug\windows\xna\Content\Fonts\Verdana.xnb">
       <Link>Content\Fonts\Verdana.xnb</Link>
     </Content>
-    <Content Include="..\..\..\bin\debug\windows\xna\Content\Music\Dragon Soul.xnb">
+    <Content Include="..\..\..\..\bin\debug\windows\xna\Content\Music\Dragon Soul.xnb">
       <Link>Content\Music\Dragon Soul.xnb</Link>
     </Content>
-    <Content Include="..\..\..\bin\debug\windows\xna\Content\Sounds\Blocks\0.xnb">
+    <Content Include="..\..\..\..\bin\debug\windows\xna\Content\Sounds\Blocks\0.xnb">
       <Link>Content\Sounds\Blocks\0.xnb</Link>
     </Content>
-    <Content Include="..\..\..\bin\debug\windows\xna\Content\Sounds\Blocks\1.xnb">
+    <Content Include="..\..\..\..\bin\debug\windows\xna\Content\Sounds\Blocks\1.xnb">
       <Link>Content\Sounds\Blocks\1.xnb</Link>
     </Content>
-    <Content Include="..\..\..\bin\debug\windows\xna\Content\Sounds\Blocks\2.xnb">
+    <Content Include="..\..\..\..\bin\debug\windows\xna\Content\Sounds\Blocks\2.xnb">
       <Link>Content\Sounds\Blocks\2.xnb</Link>
     </Content>
-    <Content Include="..\..\..\bin\debug\windows\xna\Content\Sounds\Blocks\3.xnb">
+    <Content Include="..\..\..\..\bin\debug\windows\xna\Content\Sounds\Blocks\3.xnb">
       <Link>Content\Sounds\Blocks\3.xnb</Link>
     </Content>
-    <Content Include="..\..\..\bin\debug\windows\xna\Content\Sounds\Blocks\4.xnb">
+    <Content Include="..\..\..\..\bin\debug\windows\xna\Content\Sounds\Blocks\4.xnb">
       <Link>Content\Sounds\Blocks\4.xnb</Link>
     </Content>
-    <Content Include="..\..\..\bin\debug\windows\xna\Content\Sounds\Timeout\0.xnb">
+    <Content Include="..\..\..\..\bin\debug\windows\xna\Content\Sounds\Explode\0.xnb">
+      <Link>Content\Sounds\Explode\0.xnb</Link>
+    </Content>
+    <Content Include="..\..\..\..\bin\debug\windows\xna\Content\Sounds\Timeout\0.xnb">
       <Link>Content\Sounds\Timeout\0.xnb</Link>
     </Content>
-    <Content Include="..\..\..\bin\debug\windows\xna\Content\Textures\Blank.xnb">
-      <Link>Content\Textures\Blank.xnb</Link>
-    </Content>
-    <Content Include="..\..\..\bin\debug\windows\xna\Content\Textures\BlockContainer.xnb">
-      <Link>Content\Textures\BlockContainer.xnb</Link>
-    </Content>
-    <Content Include="..\..\..\bin\debug\windows\xna\Content\Textures\Blocks\BlockProgressBar.xnb">
+    <Content Include="..\..\..\..\bin\debug\windows\xna\Content\Textures\Blocks\BlockProgressBar.xnb">
       <Link>Content\Textures\Blocks\BlockProgressBar.xnb</Link>
     </Content>
-    <Content Include="..\..\..\bin\debug\windows\xna\Content\Textures\Blocks\BlueBlock.xnb">
+    <Content Include="..\..\..\..\bin\debug\windows\xna\Content\Textures\Blocks\BlueBlock.xnb">
       <Link>Content\Textures\Blocks\BlueBlock.xnb</Link>
     </Content>
-    <Content Include="..\..\..\bin\debug\windows\xna\Content\Textures\Blocks\GreenBlock.xnb">
+    <Content Include="..\..\..\..\bin\debug\windows\xna\Content\Textures\Blocks\GreenBlock.xnb">
       <Link>Content\Textures\Blocks\GreenBlock.xnb</Link>
     </Content>
-    <Content Include="..\..\..\bin\debug\windows\xna\Content\Textures\Blocks\OrangeBlock.xnb">
+    <Content Include="..\..\..\..\bin\debug\windows\xna\Content\Textures\Blocks\OrangeBlock.xnb">
       <Link>Content\Textures\Blocks\OrangeBlock.xnb</Link>
     </Content>
-    <Content Include="..\..\..\bin\debug\windows\xna\Content\Textures\Blocks\PurpleBlock.xnb">
+    <Content Include="..\..\..\..\bin\debug\windows\xna\Content\Textures\Blocks\PurpleBlock.xnb">
       <Link>Content\Textures\Blocks\PurpleBlock.xnb</Link>
     </Content>
-    <Content Include="..\..\..\bin\debug\windows\xna\Content\Textures\cursor.xnb">
+    <Content Include="..\..\..\..\bin\debug\windows\xna\Content\Textures\Blank.xnb">
+      <Link>Content\Textures\Blank.xnb</Link>
+    </Content>
+    <Content Include="..\..\..\..\bin\debug\windows\xna\Content\Textures\BlockContainer.xnb">
+      <Link>Content\Textures\BlockContainer.xnb</Link>
+    </Content>
+    <Content Include="..\..\..\..\bin\debug\windows\xna\Content\Textures\cursor.xnb">
       <Link>Content\Textures\cursor.xnb</Link>
     </Content>
-    <Content Include="..\..\..\bin\debug\windows\xna\Content\Textures\Gradient.xnb">
+    <Content Include="..\..\..\..\bin\debug\windows\xna\Content\Textures\Gradient.xnb">
       <Link>Content\Textures\Gradient.xnb</Link>
-    </Content>
-    <Content Include="..\..\..\bin\debug\windows\xna\Content\Sounds\Explode\0.xnb">
-      <Link>Content\Sounds\Explode\0.xnb</Link>
     </Content>
     <None Include="Properties\AppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\..\bin\debug\windows\xna\Content\Music\Dragon Soul.wma">
-      <Link>Content\Music\Dragon Soul.wma</Link>
-    </Content>
     <Content Include="Assets\AlignmentGrid.png" />
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -339,33 +355,28 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <Reference Include="MonoGame.Framework, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\dep\monogame\WinPhone8\x86\MonoGame.Framework.dll</HintPath>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>..\..\..\..\dep\monogame\WinPhone8\x86\MonoGame.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="SharpDX, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\dep\monogame\WinPhone8\x86\SharpDX.dll</HintPath>
+    <Reference Include="SharpDX">
+      <HintPath>..\..\..\..\dep\monogame\WinPhone8\x86\SharpDX.dll</HintPath>
     </Reference>
-    <Reference Include="SharpDX.Direct3D11, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\dep\monogame\WinPhone8\x86\SharpDX.Direct3D11.dll</HintPath>
+    <Reference Include="SharpDX.Direct3D11">
+      <HintPath>..\..\..\..\dep\monogame\WinPhone8\x86\SharpDX.Direct3D11.dll</HintPath>
     </Reference>
-    <Reference Include="SharpDX.DXGI, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\dep\monogame\WinPhone8\x86\SharpDX.DXGI.dll</HintPath>
+    <Reference Include="SharpDX.DXGI">
+      <HintPath>..\..\..\..\dep\monogame\WinPhone8\x86\SharpDX.DXGI.dll</HintPath>
     </Reference>
-    <Reference Include="SharpDX.MediaFoundation, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\dep\monogame\WinPhone8\x86\SharpDX.MediaFoundation.dll</HintPath>
+    <Reference Include="SharpDX.MediaFoundation">
+      <HintPath>..\..\..\..\dep\monogame\WinPhone8\x86\SharpDX.MediaFoundation.dll</HintPath>
     </Reference>
-    <Reference Include="SharpDX.XAudio2, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\dep\monogame\WinPhone8\x86\SharpDX.XAudio2.dll</HintPath>
+    <Reference Include="SharpDX.WP8">
+      <HintPath>..\..\..\..\dep\monogame\WinPhone8\x86\SharpDX.WP8.winmd</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.XAudio2">
+      <HintPath>..\..\..\..\dep\monogame\WinPhone8\x86\SharpDX.XAudio2.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <Target Name="MonoGame_RemoveXnaAssemblies" AfterTargets="ImplicitlyExpandTargetFramework">

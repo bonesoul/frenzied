@@ -9,7 +9,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Resources;
-using Frenzied.Utils.Platform;
+using Frenzied.Platforms;
 
 #if ANDROID
 using Android.App;

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="64dbd1c9-6211-4194-aa7c-b68d72f6f310" Publisher="CN=shala_000" Version="0.1.0.0" />
+  <Identity Name="61403VoxeliqStudios.Frenzied" Publisher="CN=7906D2AC-9038-4181-B0DE-328000DB88A9" Version="0.1.0.0" />
   <Properties>
     <DisplayName>Frenzied</DisplayName>
     <PublisherDisplayName>Int6 Studios</PublisherDisplayName>

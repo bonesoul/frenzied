@@ -10,13 +10,13 @@ using Android.Content.PM;
 using Android.OS;
 using Microsoft.Xna.Framework;
 
-namespace Frenzied
+namespace Frenzied.Platforms.Android
 {
     [Activity(Label = "Frenzied"
         , MainLauncher = true
         , Icon = "@drawable/icon"
         , Theme = "@style/Theme.Splash"
-        , AlwaysRetainTaskState = true
+        , AlwaysRetainTaskState = false
         , LaunchMode = LaunchMode.SingleInstance
         , ScreenOrientation = ScreenOrientation.SensorLandscape
         , ConfigurationChanges = ConfigChanges.Orientation | ConfigChanges.Keyboard | ConfigChanges.KeyboardHidden)]
@@ -26,9 +26,9 @@ namespace Frenzied
         {
             base.OnCreate(bundle);
             Game.Activity = this;
-            var g = new FrenziedGame();
-            SetContentView(g.Window);
-            g.Run();
+            var game = new FrenziedGame();
+            SetContentView(game.Window);
+            game.Run();
         }
     }
 }
