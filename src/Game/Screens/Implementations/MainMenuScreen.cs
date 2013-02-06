@@ -50,7 +50,7 @@ namespace Frenzied.Screens.Implementations
         void PlayGameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
             LoadingScreen.Load(ScreenManager, true, e.PlayerIndex,
-                               new GameplayScreen(new BlockyMode()));
+                               new GameplayScreen(new BlockMode()));
         }
 
 

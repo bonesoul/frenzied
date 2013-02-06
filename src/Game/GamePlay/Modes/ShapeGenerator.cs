@@ -26,12 +26,21 @@ namespace Frenzied.GamePlay.Modes
         /// </summary>
         public Rectangle Bounds { get; protected set; }
 
+        /// <summary>
+        /// The shape containers in associated game-mode.
+        /// </summary>
         protected readonly List<ShapeContainer> Containers;
 
+        /// <summary>
+        /// Randomizer.
+        /// </summary>
         protected readonly Random Randomizer = new Random(Environment.TickCount);
 
-        private Shape _currentShape;
+        private Shape _currentShape; // latest generated shape.
 
+        /// <summary>
+        /// The latest generated shape.
+        /// </summary>
         public Shape CurrentShape
         {
             get { return this._currentShape; }
@@ -44,34 +53,66 @@ namespace Frenzied.GamePlay.Modes
             }
         }
 
+        /// <summary>
+        /// Creates a new shape generator instance.
+        /// </summary>
+        /// <param name="position">The position of the generator.</param>
+        /// <param name="containers">The shape containers in associated game mode.</param>
         public ShapeGenerator(Vector2 position, List<ShapeContainer> containers)
         {
             this.Position = position;
             this.Containers = containers;
         }
 
+        /// <summary>
+        /// Is container empty?
+        /// </summary>
+        /// <returns>Returns true if container is empty, false otherwise.</returns>
         public virtual bool IsEmpty()
         {
             return true;
         }
 
+        /// <summary>
+        /// Attachs a shape to ShapeGenerator.
+        /// </summary>
+        /// <param name="shape"><see cref="Shape"/></param>
         public virtual void Attach(Shape shape)
         { }
 
+        /// <summary>
+        /// Detachs a shape from ShapeGenerator.
+        /// </summary>
+        /// <param name="shape"><see cref="Shape"/></param>
         public virtual void Detach(Shape shape)
         { }
 
+        /// <summary>
+        /// Generates a new shape.
+        /// </summary>
         public virtual void Generate()
         { }
 
+        /// <summary>
+        /// Gets available locations for generating a shape.
+        /// </summary>
+        /// <returns>The list of available locations.</returns>
         public virtual List<byte> GetAvailableLocations()
         {
             return null;
         }
 
+        /// <summary>
+        /// Updates generator.
+        /// </summary>
+        /// <param name="gameTime"><see cref="GameTime"/></param>
         public virtual void Update(GameTime gameTime)
         { }
 
+        /// <summary>
+        /// Draws the shape generator.
+        /// </summary>
+        /// <param name="gameTime"><see cref="GameTime"/></param>
         public virtual void Draw(GameTime gameTime)
         { }
     }

@@ -84,11 +84,11 @@
     <Compile Include="GamePlay\Modes\GameMode.cs" />
     <Compile Include="GamePlay\Modes\IContainer.cs" />
     <Compile Include="GamePlay\Implementations\BlockColors.cs" />
-    <Compile Include="GamePlay\Implementations\BlockyGenerator.cs" />
+    <Compile Include="GamePlay\Implementations\BlockGenerator.cs" />
     <Compile Include="GamePlay\Implementations\BlockLocations.cs" />
     <Compile Include="GamePlay\Implementations\BlockShape.cs" />
-    <Compile Include="GamePlay\Implementations\BlockyContainer.cs" />
-    <Compile Include="GamePlay\Implementations\BlockyMode.cs" />
+    <Compile Include="GamePlay\Implementations\BlockContainer.cs" />
+    <Compile Include="GamePlay\Implementations\BlockMode.cs" />
     <Compile Include="GamePlay\Modes\Shape.cs" />
     <Compile Include="GamePlay\Modes\ShapeColors.cs" />
     <Compile Include="GamePlay\Modes\ShapeContainer.cs" />

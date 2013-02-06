@@ -45,6 +45,11 @@ namespace Frenzied.GamePlay.Modes
         public IContainer Parent { get; set; }
 
         /// <summary>
+        /// Returns an empty shape.
+        /// </summary>
+        public static Shape Empty { get; protected set; }
+
+        /// <summary>
         /// Creates a new instance of the shape.
         /// </summary>
         /// <param name="colorIndex">The color index of the shape.</param>
@@ -55,19 +60,20 @@ namespace Frenzied.GamePlay.Modes
             this.LocationIndex = locationIndex;
         }
 
-        public static Shape Empty { get; protected set; }
-
-        static Shape()
-        {
-            Empty = new Shape(ShapeColors.None, ShapeLocations.None);
-        }
-
         /// <summary>
         /// Is the shape empty - in other words; non-colored?
         /// </summary>
         public bool IsEmpty
         {
             get { return this.ColorIndex == ShapeColors.None; }
+        }
+
+        /// <summary>
+        /// Static constructor for Shape.
+        /// </summary>
+        static Shape()
+        {
+            Empty = new Shape(ShapeColors.None, ShapeLocations.None); // create our empty shape instance.
         }
     }
 }

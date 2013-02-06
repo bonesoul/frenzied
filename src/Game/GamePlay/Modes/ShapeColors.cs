@@ -12,6 +12,9 @@ namespace Frenzied.GamePlay.Modes
     /// </summary>
     internal class ShapeColors
     {
+        /// <summary>
+        /// No color assigned (empty).
+        /// </summary>
         public const byte None = 0;
     }
 }

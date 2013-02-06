@@ -12,6 +12,9 @@ namespace Frenzied.GamePlay.Modes
     /// </summary>
     internal class ShapeLocations
     {
+        /// <summary>
+        /// No location is defined for the shape.
+        /// </summary>
         public const byte None = 0;
     }
 }

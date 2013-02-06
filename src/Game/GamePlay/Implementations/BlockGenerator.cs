@@ -15,7 +15,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Frenzied.GamePlay.Implementations
 {
-    internal class BlockyGenerator : ShapeGenerator
+    internal class BlockGenerator : ShapeGenerator
     {
         public static Vector2 Size = new Vector2(210, 210);
 
@@ -28,7 +28,7 @@ namespace Frenzied.GamePlay.Implementations
         // required services.       
         private IScoreManager _scoreManager;
 
-        public BlockyGenerator(Vector2 position, List<ShapeContainer> containers)
+        public BlockGenerator(Vector2 position, List<ShapeContainer> containers)
             : base(position, containers)
         {
             this.Bounds = new Rectangle((int)this.Position.X, (int)this.Position.Y, (int)Size.X, (int)Size.Y);

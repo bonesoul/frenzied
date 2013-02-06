@@ -14,12 +14,12 @@ using Microsoft.Xna.Framework;
 
 namespace Frenzied.GamePlay.Implementations
 {
-    internal class BlockyContainer : ShapeContainer
+    internal class BlockContainer : ShapeContainer
     {
         private IScoreManager _scoreManager;
         public static Vector2 Size = new Vector2(210, 210);
 
-        public BlockyContainer(Vector2 position)
+        public BlockContainer(Vector2 position)
             : base(position)
         {
             this.Bounds = new Rectangle((int)this.Position.X, (int)this.Position.Y, (int)Size.X, (int)Size.Y);
