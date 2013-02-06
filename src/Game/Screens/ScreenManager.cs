@@ -139,6 +139,7 @@ namespace Frenzied.Screens
             // Tell each of the screens to unload their content.
             foreach (GameScreen screen in screens)
             {
+                screen.Initialize();
                 screen.UnloadContent();
             }
         }
@@ -252,6 +253,7 @@ namespace Frenzied.Screens
             // If we have a graphics device, tell the screen to load content.
             if (isInitialized)
             {
+                screen.Initialize();
                 screen.LoadContent();
             }
 

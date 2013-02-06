@@ -7,13 +7,24 @@
 
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Frenzied.GamePlay.Modes
 {
+    public interface IGameMode
+    {
+        /// <summary>
+        /// Returns a texture for a given shape.
+        /// </summary>
+        /// <param name="shape">The shape to query for.</param>
+        /// <returns><see cref="Shape"/></returns>
+        Texture2D GetShapeTexture(Shape shape);
+    }
+
     /// <summary>
     /// Game mode class that defines a game-mode.
     /// </summary>
-    public abstract class GameMode
+    public abstract class GameMode : IGameMode
     {
         /// <summary>
         /// The shape containers.
@@ -34,18 +45,26 @@ namespace Frenzied.GamePlay.Modes
         }
 
         /// <summary>
+        /// Initializes the game-mode.
+        /// </summary>
+        public virtual void Initialize() { }
+
+        /// <summary>
         /// Loads content for game-mode.
         /// </summary>
-        public virtual void LoadContent()
-        { }
+        public virtual void LoadContent() { }
 
         /// <summary>
         /// Handles click.
         /// </summary>
         /// <param name="X">The x position of the cursor.</param>
         /// <param name="Y">The y position of the cursor.</param>
-        public virtual void HandleClick(int X, int Y)
-        { }
+        public virtual void HandleClick(int X, int Y) { }
+
+        public virtual Texture2D GetShapeTexture(Shape shape)
+        {
+            return null;
+        }
 
         /// <summary>
         /// Updates game-mode.

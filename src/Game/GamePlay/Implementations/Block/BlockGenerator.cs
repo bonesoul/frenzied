@@ -27,6 +27,7 @@ namespace Frenzied.GamePlay.Implementations.Block
 
         // required services.       
         private IScoreManager _scoreManager;
+        private IGameMode _gameMode;  
 
         public BlockGenerator(Vector2 position, List<ShapeContainer> containers)
             : base(position, containers)
@@ -35,7 +36,9 @@ namespace Frenzied.GamePlay.Implementations.Block
 
             this.CurrentShape = Shape.Empty;
 
+            this._gameMode = (IGameMode)FrenziedGame.Instance.Services.GetService(typeof(IGameMode));
             this._scoreManager = (IScoreManager)FrenziedGame.Instance.Services.GetService(typeof(IScoreManager));
+
             if (this._scoreManager == null)
                 throw new NullReferenceException("Can not find score manager component.");
 
@@ -131,23 +134,6 @@ namespace Frenzied.GamePlay.Implementations.Block
             return availableLocations;
         }
 
-        public Texture2D GetBlockTexture(BlockShape block)
-        {
-            switch (block.ColorIndex)
-            {
-                case BlockColors.Orange:
-                    return AssetManager.Instance.BlockTextures[Color.Orange];
-                case BlockColors.Purple:
-                    return AssetManager.Instance.BlockTextures[Color.Purple];
-                case BlockColors.Green:
-                    return AssetManager.Instance.BlockTextures[Color.Green];
-                case BlockColors.Blue:
-                    return AssetManager.Instance.BlockTextures[Color.Blue];
-                default:
-                    return null;
-            }
-        }
-
         public override void Draw(GameTime gameTime)
         {
             ScreenManager.Instance.SpriteBatch.Begin();
@@ -156,7 +142,7 @@ namespace Frenzied.GamePlay.Implementations.Block
 
             if (!this.IsEmpty())
             {
-                var texture = GetBlockTexture((BlockShape)this.CurrentShape);
+                var texture = this._gameMode.GetShapeTexture(this.CurrentShape);
                 ScreenManager.Instance.SpriteBatch.Draw(texture, this.CurrentShape.Bounds, Color.White);
             }
 

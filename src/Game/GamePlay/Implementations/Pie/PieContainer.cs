@@ -17,8 +17,10 @@ namespace Frenzied.GamePlay.Implementations.Pie
 {
     public class PieContainer : ShapeContainer
     {
-        private IScoreManager _scoreManager;
         public static Vector2 Size = new Vector2(210, 210);
+
+        private IScoreManager _scoreManager;
+        private IGameMode _gameMode;       
 
         public PieContainer(Vector2 position)
             : base(position)
@@ -32,6 +34,7 @@ namespace Frenzied.GamePlay.Implementations.Pie
             this[PieLocations.BottomMiddle] = Shape.Empty;
             this[PieLocations.BottomLeft] = Shape.Empty;
 
+            this._gameMode = (IGameMode)FrenziedGame.Instance.Services.GetService(typeof(IGameMode));
             this._scoreManager = (IScoreManager)FrenziedGame.Instance.Services.GetService(typeof(IScoreManager));
 
             if (this._scoreManager == null)
@@ -114,22 +117,6 @@ namespace Frenzied.GamePlay.Implementations.Pie
                 this.Explode();
         }
 
-        public Texture2D GetPieTexture(PieShape block)
-        {
-            switch (block.ColorIndex)
-            {
-                case PieColors.Orange:
-                    return AssetManager.Instance.PieTextures[Color.Orange];
-                case PieColors.Purple:
-                    return AssetManager.Instance.PieTextures[Color.Purple];
-                case PieColors.Green:
-                    return AssetManager.Instance.PieTextures[Color.Green];
-                case PieColors.Blue:
-                    return AssetManager.Instance.PieTextures[Color.Blue];
-                default:
-                    return null;
-            }
-        }
 
         public override void Draw(GameTime gameTime)
         {
@@ -144,7 +131,7 @@ namespace Frenzied.GamePlay.Implementations.Pie
 
                 var pie = ((PieShape)shape);
 
-                var texture = GetPieTexture(pie);
+                var texture = this._gameMode.GetShapeTexture(pie);
                 ScreenManager.Instance.SpriteBatch.Draw(texture, new Vector2(this.Bounds.Center.X, this.Bounds.Center.Y), null,
                                         Color.White, MathHelper.ToRadians(pie.LocationIndex * 60f), new Vector2(48, 95),
                                         1f, SpriteEffects.None, 0);

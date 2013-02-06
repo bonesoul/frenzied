@@ -20,6 +20,7 @@ namespace Frenzied.GamePlay.Implementations.Pie
 
         // required services.       
         private IScoreManager _scoreManager;
+        private IGameMode _gameMode;
 
         public PieGenerator(Vector2 position, List<ShapeContainer> containers)
             : base(position, containers)
@@ -28,7 +29,9 @@ namespace Frenzied.GamePlay.Implementations.Pie
 
             this.CurrentShape = Shape.Empty;
 
+            this._gameMode = (IGameMode) FrenziedGame.Instance.Services.GetService(typeof (IGameMode));
             this._scoreManager = (IScoreManager)FrenziedGame.Instance.Services.GetService(typeof(IScoreManager));
+
             if (this._scoreManager == null)
                 throw new NullReferenceException("Can not find score manager component.");
         }
@@ -108,23 +111,6 @@ namespace Frenzied.GamePlay.Implementations.Pie
             return availableLocations;
         }
 
-        public Texture2D GetPieTexture(PieShape block)
-        {
-            switch (block.ColorIndex)
-            {
-                case PieColors.Orange:
-                    return AssetManager.Instance.PieTextures[Color.Orange];
-                case PieColors.Purple:
-                    return AssetManager.Instance.PieTextures[Color.Purple];
-                case PieColors.Green:
-                    return AssetManager.Instance.PieTextures[Color.Green];
-                case PieColors.Blue:
-                    return AssetManager.Instance.PieTextures[Color.Blue];
-                default:
-                    return null;
-            }
-        }
-
         public override void Draw(GameTime gameTime)
         {
             ScreenManager.Instance.SpriteBatch.Begin();
@@ -133,7 +119,7 @@ namespace Frenzied.GamePlay.Implementations.Pie
 
             if (!this.IsEmpty())
             {
-                var texture = GetPieTexture((PieShape)this.CurrentShape);
+                var texture = this._gameMode.GetShapeTexture(this.CurrentShape);
                 ScreenManager.Instance.SpriteBatch.Draw(texture, new Vector2(this.Bounds.Center.X, this.Bounds.Center.Y), null,
                                                         Color.White, MathHelper.ToRadians(this.CurrentShape.LocationIndex * 60f), new Vector2(48, 95),
                                                         1f, SpriteEffects.None, 0);

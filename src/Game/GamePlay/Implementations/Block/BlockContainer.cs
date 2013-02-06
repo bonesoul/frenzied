@@ -17,8 +17,10 @@ namespace Frenzied.GamePlay.Implementations.Block
 {
     internal class BlockContainer : ShapeContainer
     {
-        private IScoreManager _scoreManager;
         public static Vector2 Size = new Vector2(210, 210);
+
+        private IScoreManager _scoreManager;
+        private IGameMode _gameMode;  
 
         public BlockContainer(Vector2 position)
             : base(position)
@@ -30,6 +32,7 @@ namespace Frenzied.GamePlay.Implementations.Block
             this[BlockLocations.BottomRight] = Shape.Empty;
             this[BlockLocations.BottomLeft] = Shape.Empty;
 
+            this._gameMode = (IGameMode)FrenziedGame.Instance.Services.GetService(typeof(IGameMode));
             this._scoreManager = (IScoreManager)FrenziedGame.Instance.Services.GetService(typeof(IScoreManager));
 
             if (this._scoreManager == null)
@@ -106,23 +109,6 @@ namespace Frenzied.GamePlay.Implementations.Block
                 this.Explode();
         }
 
-        public Texture2D GetBlockTexture(BlockShape block)
-        {
-            switch (block.ColorIndex)
-            {
-                case BlockColors.Orange:
-                    return AssetManager.Instance.BlockTextures[Color.Orange];
-                case BlockColors.Purple:
-                    return AssetManager.Instance.BlockTextures[Color.Purple];
-                case BlockColors.Green:
-                    return AssetManager.Instance.BlockTextures[Color.Green];
-                case BlockColors.Blue:
-                    return AssetManager.Instance.BlockTextures[Color.Blue];
-                default:
-                    return null;
-            }
-        }
-
         public override void Draw(GameTime gameTime)
         {            
             ScreenManager.Instance.SpriteBatch.Begin();
@@ -136,7 +122,7 @@ namespace Frenzied.GamePlay.Implementations.Block
 
                 var block = ((BlockShape) shape);
 
-                var texture = GetBlockTexture(block);
+                var texture = this._gameMode.GetShapeTexture(block);
                 ScreenManager.Instance.SpriteBatch.Draw(texture, block.Bounds, Color.White);
             }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Frenzied.Assets;
 using Frenzied.GamePlay.Implementations.Block;
 using Frenzied.GamePlay.Modes;
 using Microsoft.Xna.Framework;
@@ -19,14 +20,31 @@ namespace Frenzied.GamePlay.Implementations.Pie
             this.ShapeContainers.Add(new PieContainer(new Vector2(screenCenter.X - PieContainer.Size.X * 1.5f , screenCenter.Y - PieContainer.Size.Y * 1.5f))); // top-left
             this.ShapeContainers.Add(new PieContainer(new Vector2(screenCenter.X - PieContainer.Size.X / 2, screenCenter.Y - PieContainer.Size.Y * 1.5f))); // top-middle
             this.ShapeContainers.Add(new PieContainer(new Vector2(screenCenter.X + PieContainer.Size.X / 2 , screenCenter.Y - PieContainer.Size.Y * 1.5f))); // top-right
-            //this.ShapeContainers.Add(new PieContainer(new Vector2(screenCenter.X + PieContainer.Size.X / 2, screenCenter.Y - PieContainer.Size.Y / 2))); // right
             this.ShapeContainers.Add(new PieContainer(new Vector2(screenCenter.X + PieContainer.Size.X / 2, screenCenter.Y + PieContainer.Size.Y / 2))); // bottom-right
             this.ShapeContainers.Add(new PieContainer(new Vector2(screenCenter.X - PieContainer.Size.X / 2, screenCenter.Y + PieContainer.Size.Y / 2))); // bottom-middle
             this.ShapeContainers.Add(new PieContainer(new Vector2(screenCenter.X - PieContainer.Size.X * 1.5f, screenCenter.Y + PieContainer.Size.Y / 2))); // bottom-right
+            //this.ShapeContainers.Add(new PieContainer(new Vector2(screenCenter.X + PieContainer.Size.X / 2, screenCenter.Y - PieContainer.Size.Y / 2))); // right
             //this.ShapeContainers.Add(new PieContainer(new Vector2(screenCenter.X - PieContainer.Size.X * 1.5f, screenCenter.Y - PieContainer.Size.Y / 2))); // left                                    
 
-            // add generator
+            // add generator.
             this.ShapeGenerator = new PieGenerator(new Vector2(screenCenter.X - BlockContainer.Size.X / 2, screenCenter.Y - BlockContainer.Size.Y / 2), this.ShapeContainers);
+        }
+
+        public override Microsoft.Xna.Framework.Graphics.Texture2D GetShapeTexture(Shape shape)
+        {
+            switch (shape.ColorIndex)
+            {
+                case PieColors.Orange:
+                    return AssetManager.Instance.PieTextures[Color.Orange];
+                case PieColors.Purple:
+                    return AssetManager.Instance.PieTextures[Color.Purple];
+                case PieColors.Green:
+                    return AssetManager.Instance.PieTextures[Color.Green];
+                case PieColors.Blue:
+                    return AssetManager.Instance.PieTextures[Color.Blue];
+                default:
+                    return null;
+            }
         }
 
         public override void HandleClick(int X, int Y)

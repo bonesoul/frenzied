@@ -5,6 +5,7 @@
  * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
  */
 
+using Frenzied.Assets;
 using Frenzied.GamePlay.Modes;
 using Microsoft.Xna.Framework;
 
@@ -45,6 +46,23 @@ namespace Frenzied.GamePlay.Implementations.Block
 
                 container[this.ShapeGenerator.CurrentShape.LocationIndex] = this.ShapeGenerator.CurrentShape;
                 break;
+            }
+        }
+
+        public override Microsoft.Xna.Framework.Graphics.Texture2D GetShapeTexture(Shape shape)
+        {
+            switch (shape.ColorIndex)
+            {
+                case BlockColors.Orange:
+                    return AssetManager.Instance.BlockTextures[Color.Orange];
+                case BlockColors.Purple:
+                    return AssetManager.Instance.BlockTextures[Color.Purple];
+                case BlockColors.Green:
+                    return AssetManager.Instance.BlockTextures[Color.Green];
+                case BlockColors.Blue:
+                    return AssetManager.Instance.BlockTextures[Color.Blue];
+                default:
+                    return null;
             }
         }
     }
