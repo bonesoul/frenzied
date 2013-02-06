@@ -13,7 +13,7 @@ using Frenzied.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Frenzied.GamePlay.Implementations.Pie
+namespace Frenzied.GamePlay.Implementations.PieMode
 {
     public class PieContainer : ShapeContainer
     {
@@ -133,7 +133,7 @@ namespace Frenzied.GamePlay.Implementations.Pie
 
                 var texture = this._gameMode.GetShapeTexture(pie);
                 ScreenManager.Instance.SpriteBatch.Draw(texture, new Vector2(this.Bounds.Center.X, this.Bounds.Center.Y), null,
-                                        Color.White, MathHelper.ToRadians(pie.LocationIndex * 60f), new Vector2(48, 95),
+                                        Color.White, MathHelper.ToRadians(pie.LocationIndex * 60f ), new Vector2(48, 95),
                                         1f, SpriteEffects.None, 0);
             }
 

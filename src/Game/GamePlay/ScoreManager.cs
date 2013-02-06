@@ -8,8 +8,7 @@
 using System;
 using System.Text;
 using Frenzied.Assets;
-using Frenzied.GamePlay.Implementations;
-using Frenzied.GamePlay.Implementations.Block;
+using Frenzied.GamePlay.Implementations.BlockyMode;
 using Frenzied.GamePlay.Modes;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

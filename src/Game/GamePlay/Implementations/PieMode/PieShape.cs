@@ -8,7 +8,7 @@
 using Frenzied.GamePlay.Modes;
 using Microsoft.Xna.Framework;
 
-namespace Frenzied.GamePlay.Implementations.Pie
+namespace Frenzied.GamePlay.Implementations.PieMode
 {
     public class PieShape : Shape
     {

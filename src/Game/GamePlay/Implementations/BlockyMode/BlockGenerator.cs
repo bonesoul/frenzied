@@ -13,7 +13,7 @@ using Frenzied.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Frenzied.GamePlay.Implementations.Block
+namespace Frenzied.GamePlay.Implementations.BlockyMode
 {
     internal class BlockGenerator : ShapeGenerator
     {

@@ -7,7 +7,7 @@
 
 using Frenzied.GamePlay.Modes;
 
-namespace Frenzied.GamePlay.Implementations.Block
+namespace Frenzied.GamePlay.Implementations.BlockyMode
 {
     /// <summary>
     /// Defines shape color.

@@ -7,7 +7,7 @@
 
 using Frenzied.GamePlay.Modes;
 
-namespace Frenzied.GamePlay.Implementations.Pie
+namespace Frenzied.GamePlay.Implementations.PieMode
 {
     /// <summary>
     /// Defines shape color.

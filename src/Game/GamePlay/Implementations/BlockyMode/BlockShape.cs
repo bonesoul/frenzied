@@ -8,7 +8,7 @@
 using Frenzied.GamePlay.Modes;
 using Microsoft.Xna.Framework;
 
-namespace Frenzied.GamePlay.Implementations.Block
+namespace Frenzied.GamePlay.Implementations.BlockyMode
 {
     public class BlockShape : Shape
     {
