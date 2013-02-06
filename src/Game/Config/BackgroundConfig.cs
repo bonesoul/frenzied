@@ -24,7 +24,7 @@
         /// <summary>
         /// Creates a new instance of background component config.
         /// </summary>
-        internal BackgroundConfig()
+        public BackgroundConfig()
         {
             // set the defaults.
             this.MetaballRadius = 128;
@@ -36,7 +36,7 @@
         /// Validates the configuration.
         /// </summary>
         /// <returns></returns>
-        internal bool Validate()
+        public bool Validate()
         {
             return true;
         }

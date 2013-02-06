@@ -6,16 +6,16 @@
  */
 
 using Frenzied.GamePlay.Modes;
-using Microsoft.Xna.Framework;
 
-namespace Frenzied.GamePlay.Implementations
+namespace Frenzied.GamePlay.Implementations.Pie
 {
-    public class BlockShape : Shape
+    public class PieLocations : ShapeLocations
     {
-        public BlockShape(byte colorIndex, byte locationIndex)
-            : base(colorIndex, locationIndex)
-        {
-            this.Size = new Vector2(100, 100);
-        }
+        public const byte TopLeft = 1;
+        public const byte TopMiddle = 2;
+        public const byte TopRight = 3;
+        public const byte BottomRight = 4;
+        public const byte BottomMiddle = 5;
+        public const byte BottomLeft = 6;
     }
 }

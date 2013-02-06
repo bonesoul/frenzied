@@ -8,18 +8,14 @@
 using Frenzied.GamePlay.Modes;
 using Microsoft.Xna.Framework;
 
-namespace Frenzied.GamePlay.Implementations
+namespace Frenzied.GamePlay.Implementations.Block
 {
     /// <summary>
     /// Blocked game mode.
     /// </summary>
-    internal class BlockMode : GameMode
+    public class BlockMode : GameMode
     {
-        public BlockMode()
-            : base()
-        { }
-
-        internal override void LoadContent()
+        public override void LoadContent()
         {
             var screenCenter = new Vector2(FrenziedGame.Instance.GraphicsDevice.Viewport.Bounds.Width/2,
                                            FrenziedGame.Instance.GraphicsDevice.Viewport.Bounds.Height/2);
@@ -32,11 +28,9 @@ namespace Frenzied.GamePlay.Implementations
 
             // add generator
             this.ShapeGenerator = new BlockGenerator(new Vector2(screenCenter.X - BlockContainer.Size.X/2, screenCenter.Y - BlockContainer.Size.Y/2), this.ShapeContainers);
-
-            base.LoadContent();
         }
 
-        internal override void HandleClick(int X, int Y)
+        public override void HandleClick(int X, int Y)
         {
             if (this.ShapeGenerator.IsEmpty())
                 return;

@@ -11,6 +11,8 @@ using Frenzied.Audio;
 using Frenzied.Config;
 using Frenzied.GamePlay;
 using Frenzied.GamePlay.Implementations;
+using Frenzied.GamePlay.Implementations.Block;
+using Frenzied.GamePlay.Implementations.Pie;
 using Frenzied.Graphics;
 using Frenzied.Input;
 using Frenzied.Platforms;
@@ -103,7 +105,7 @@ namespace Frenzied
             // Activate the first screens.
             this._screenManager.AddScreen(new BackgroundScreen(), null);
             //this._screenManager.AddScreen(new MainMenuScreen(), null);
-            this._screenManager.AddScreen(new GameplayScreen(new BlockMode()), null);
+            this._screenManager.AddScreen(new GameplayScreen(new PieMode()), null);
 
             // add debug components
             this.Components.Add(new DebugBar(this));

@@ -26,7 +26,7 @@ namespace Frenzied.Config
         /// Validates the configuration.
         /// </summary>
         /// <returns></returns>
-        internal bool Validate()
+        public bool Validate()
         {
             // valide all the subconfigurations. 
             if (!this.Background.Validate())

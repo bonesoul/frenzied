@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using Frenzied.GamePlay;
 using Frenzied.GamePlay.Implementations;
+using Frenzied.GamePlay.Implementations.Block;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
@@ -19,6 +20,8 @@ namespace Frenzied.Assets
     {
         Texture2D BlockContainerTexture { get; }
         Dictionary<Color, Texture2D> BlockTextures { get; }
+        Texture2D PieContainerTexture { get; }
+        Dictionary<Color, Texture2D> PieTextures { get; }
         Texture2D BlockProgressBar { get; }
         SpriteFont Verdana { get; }
         SpriteFont GoodDog { get; }
@@ -37,6 +40,8 @@ namespace Frenzied.Assets
 
         public Texture2D BlockContainerTexture { get; private set; }
         public Dictionary<Color, Texture2D> BlockTextures { get; private set; }
+        public Texture2D PieContainerTexture { get; private set; }
+        public Dictionary<Color, Texture2D> PieTextures { get; private set; }
         public Texture2D BlockProgressBar { get; private set; }
         public SpriteFont Verdana { get; private set; }
         public SpriteFont GoodDog { get; private set; }
@@ -59,14 +64,20 @@ namespace Frenzied.Assets
         }
 
         public void LoadContent()
-        {            
-            this.BlockContainerTexture = Game.Content.Load<Texture2D>(@"Textures/BlockContainer");
-
+        {
             this.BlockTextures = new Dictionary<Color, Texture2D>();
+            this.BlockContainerTexture = Game.Content.Load<Texture2D>(@"Textures/BlockContainer");
             this.BlockTextures[Color.Orange] = this.Game.Content.Load<Texture2D>(@"Textures/Blocks/OrangeBlock");
             this.BlockTextures[Color.Purple] = this.Game.Content.Load<Texture2D>(@"Textures/Blocks/PurpleBlock");
             this.BlockTextures[Color.Green] = this.Game.Content.Load<Texture2D>(@"Textures/Blocks/GreenBlock");
             this.BlockTextures[Color.Blue] = this.Game.Content.Load<Texture2D>(@"Textures/Blocks/BlueBlock");
+
+            this.PieTextures = new Dictionary<Color, Texture2D>();
+            this.PieContainerTexture = Game.Content.Load<Texture2D>(@"Textures/Pies/Chart");
+            this.PieTextures[Color.Orange] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/OrangePie");
+            this.PieTextures[Color.Purple] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/PurplePie");
+            this.PieTextures[Color.Green] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/GreenPie");
+            this.PieTextures[Color.Blue] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/BluePie");
 
             this.BlockProgressBar = this.Game.Content.Load<Texture2D>(@"Textures/Blocks/BlockProgressBar");
 
@@ -74,23 +85,6 @@ namespace Frenzied.Assets
             this.GoodDog = Game.Content.Load<SpriteFont>(@"Fonts/GoodDog");
 
             this.Sounds.LoadContent(this.Game);
-        }
-
-        public Texture2D GetBlockTexture(BlockShape block)
-        {
-            switch (block.ColorIndex)
-            {
-                case BlockColors.Orange:
-                    return AssetManager.Instance.BlockTextures[Color.Orange];
-                case BlockColors.Purple:
-                    return AssetManager.Instance.BlockTextures[Color.Purple];
-                case BlockColors.Green:
-                    return AssetManager.Instance.BlockTextures[Color.Green];
-                case BlockColors.Blue:
-                    return AssetManager.Instance.BlockTextures[Color.Blue];
-                default:
-                    return null;
-            }
         }
 
         /// <summary>

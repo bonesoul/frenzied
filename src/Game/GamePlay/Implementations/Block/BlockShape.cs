@@ -5,16 +5,17 @@
  * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
  */
 
-namespace Frenzied.GamePlay.Modes
+using Frenzied.GamePlay.Modes;
+using Microsoft.Xna.Framework;
+
+namespace Frenzied.GamePlay.Implementations.Block
 {
-    /// <summary>
-    /// Defines the location of the shape.
-    /// </summary>
-    public class ShapeLocations
+    public class BlockShape : Shape
     {
-        /// <summary>
-        /// No location is defined for the shape.
-        /// </summary>
-        public const byte None = 0;
+        public BlockShape(byte colorIndex, byte locationIndex)
+            : base(colorIndex, locationIndex)
+        {
+            this.Size = new Vector2(100, 100);
+        }
     }
 }

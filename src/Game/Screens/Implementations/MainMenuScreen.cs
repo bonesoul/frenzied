@@ -6,6 +6,7 @@
  */
 
 using Frenzied.GamePlay.Implementations;
+using Frenzied.GamePlay.Implementations.Block;
 using Frenzied.Input;
 using Frenzied.Menu;
 using Microsoft.Xna.Framework;

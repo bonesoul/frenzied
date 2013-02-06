@@ -10,7 +10,7 @@ namespace Frenzied.GamePlay.Modes
     /// <summary>
     /// Defines shape color.
     /// </summary>
-    internal class ShapeColors
+    public class ShapeColors
     {
         /// <summary>
         /// No color assigned (empty).

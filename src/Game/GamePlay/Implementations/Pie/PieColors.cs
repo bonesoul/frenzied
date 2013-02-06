@@ -7,12 +7,12 @@
 
 using Frenzied.GamePlay.Modes;
 
-namespace Frenzied.GamePlay.Implementations
+namespace Frenzied.GamePlay.Implementations.Pie
 {
     /// <summary>
     /// Defines shape color.
     /// </summary>
-    internal class BlockColors : ShapeColors
+    public class PieColors : ShapeColors
     {
         public const byte Orange = 1;
         public const byte Purple = 2;

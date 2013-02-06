@@ -13,7 +13,7 @@ using Frenzied.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Frenzied.GamePlay.Implementations
+namespace Frenzied.GamePlay.Implementations.Block
 {
     internal class BlockGenerator : ShapeGenerator
     {
@@ -38,6 +38,7 @@ namespace Frenzied.GamePlay.Implementations
             this._scoreManager = (IScoreManager)FrenziedGame.Instance.Services.GetService(typeof(IScoreManager));
             if (this._scoreManager == null)
                 throw new NullReferenceException("Can not find score manager component.");
+
             this._progressBarTexture = AssetManager.Instance.BlockProgressBar;
         }
 
@@ -119,15 +120,32 @@ namespace Frenzied.GamePlay.Implementations
             {
                 if (container.IsEmpty(BlockLocations.TopLeft) && !availableLocations.Contains(BlockLocations.TopLeft))
                     availableLocations.Add(BlockLocations.TopLeft);
-                else if (container.IsEmpty(BlockLocations.TopRight) && !availableLocations.Contains(BlockLocations.TopRight))
+                if (container.IsEmpty(BlockLocations.TopRight) && !availableLocations.Contains(BlockLocations.TopRight))
                     availableLocations.Add(BlockLocations.TopRight);
-                else if (container.IsEmpty(BlockLocations.BottomLeft) && !availableLocations.Contains(BlockLocations.BottomLeft))
+                if (container.IsEmpty(BlockLocations.BottomLeft) && !availableLocations.Contains(BlockLocations.BottomLeft))
                     availableLocations.Add(BlockLocations.BottomLeft);
-                else if (container.IsEmpty(BlockLocations.BottomRight) && !availableLocations.Contains(BlockLocations.BottomRight))
+                if (container.IsEmpty(BlockLocations.BottomRight) && !availableLocations.Contains(BlockLocations.BottomRight))
                     availableLocations.Add(BlockLocations.BottomRight);
             }
 
             return availableLocations;
+        }
+
+        public Texture2D GetBlockTexture(BlockShape block)
+        {
+            switch (block.ColorIndex)
+            {
+                case BlockColors.Orange:
+                    return AssetManager.Instance.BlockTextures[Color.Orange];
+                case BlockColors.Purple:
+                    return AssetManager.Instance.BlockTextures[Color.Purple];
+                case BlockColors.Green:
+                    return AssetManager.Instance.BlockTextures[Color.Green];
+                case BlockColors.Blue:
+                    return AssetManager.Instance.BlockTextures[Color.Blue];
+                default:
+                    return null;
+            }
         }
 
         public override void Draw(GameTime gameTime)
@@ -138,13 +156,11 @@ namespace Frenzied.GamePlay.Implementations
 
             if (!this.IsEmpty())
             {
-                var texture = AssetManager.Instance.GetBlockTexture((BlockShape)this.CurrentShape);
+                var texture = GetBlockTexture((BlockShape)this.CurrentShape);
                 ScreenManager.Instance.SpriteBatch.Draw(texture, this.CurrentShape.Bounds, Color.White);
             }
 
             // progressbar.
-
-
             var timeOutLeft = this.timeOut - (int)(gameTime.TotalGameTime.TotalMilliseconds - this._timeOutStart.TotalMilliseconds);
             timeOutLeft = (int)(timeOutLeft / 1000);
             timeOutLeft++;

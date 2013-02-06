@@ -13,7 +13,7 @@ namespace Frenzied.GamePlay.Modes
     /// <summary>
     /// Game mode class that defines a game-mode.
     /// </summary>
-    internal abstract class GameMode
+    public abstract class GameMode
     {
         /// <summary>
         /// The shape containers.
@@ -36,7 +36,7 @@ namespace Frenzied.GamePlay.Modes
         /// <summary>
         /// Loads content for game-mode.
         /// </summary>
-        internal virtual void LoadContent()
+        public virtual void LoadContent()
         { }
 
         /// <summary>
@@ -44,14 +44,14 @@ namespace Frenzied.GamePlay.Modes
         /// </summary>
         /// <param name="X">The x position of the cursor.</param>
         /// <param name="Y">The y position of the cursor.</param>
-        internal virtual void HandleClick(int X, int Y)
+        public virtual void HandleClick(int X, int Y)
         { }
 
         /// <summary>
         /// Updates game-mode.
         /// </summary>
         /// <param name="gameTime"><see cref="GameTime"/></param>
-        internal virtual void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             // update containers.
             foreach (var container in this.ShapeContainers)
@@ -67,7 +67,7 @@ namespace Frenzied.GamePlay.Modes
         /// Draws game-mode.
         /// </summary>
         /// <param name="gameTime"><see cref="GameTime"/></param>
-        internal virtual void Draw(GameTime gameTime)
+        public virtual void Draw(GameTime gameTime)
         {
             // draw containers.
             foreach (var container in this.ShapeContainers)

@@ -5,16 +5,15 @@
  * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
  */
 
-namespace Frenzied.GamePlay.Modes
+using Frenzied.GamePlay.Modes;
+
+namespace Frenzied.GamePlay.Implementations.Block
 {
-    /// <summary>
-    /// Defines the location of the shape.
-    /// </summary>
-    public class ShapeLocations
+    public class BlockLocations : ShapeLocations
     {
-        /// <summary>
-        /// No location is defined for the shape.
-        /// </summary>
-        public const byte None = 0;
+        public const byte TopLeft = 1;
+        public const byte TopRight = 2;
+        public const byte BottomRight = 3;
+        public const byte BottomLeft = 4;
     }
 }

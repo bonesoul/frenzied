@@ -14,7 +14,7 @@ namespace Frenzied.GamePlay.Modes
     /// <summary>
     /// Shape generator for game-modes.
     /// </summary>
-    internal class ShapeGenerator : IContainer
+    public class ShapeGenerator : IContainer
     {
         /// <summary>
         /// The position of the shape container.
@@ -99,7 +99,7 @@ namespace Frenzied.GamePlay.Modes
         /// <returns>The list of available locations.</returns>
         public virtual List<byte> GetAvailableLocations()
         {
-            return null;
+            return new List<byte>();
         }
 
         /// <summary>

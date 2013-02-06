@@ -11,8 +11,9 @@ using Frenzied.Assets;
 using Frenzied.GamePlay.Modes;
 using Frenzied.Screens;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
-namespace Frenzied.GamePlay.Implementations
+namespace Frenzied.GamePlay.Implementations.Block
 {
     internal class BlockContainer : ShapeContainer
     {
@@ -105,6 +106,23 @@ namespace Frenzied.GamePlay.Implementations
                 this.Explode();
         }
 
+        public Texture2D GetBlockTexture(BlockShape block)
+        {
+            switch (block.ColorIndex)
+            {
+                case BlockColors.Orange:
+                    return AssetManager.Instance.BlockTextures[Color.Orange];
+                case BlockColors.Purple:
+                    return AssetManager.Instance.BlockTextures[Color.Purple];
+                case BlockColors.Green:
+                    return AssetManager.Instance.BlockTextures[Color.Green];
+                case BlockColors.Blue:
+                    return AssetManager.Instance.BlockTextures[Color.Blue];
+                default:
+                    return null;
+            }
+        }
+
         public override void Draw(GameTime gameTime)
         {            
             ScreenManager.Instance.SpriteBatch.Begin();
@@ -118,7 +136,7 @@ namespace Frenzied.GamePlay.Implementations
 
                 var block = ((BlockShape) shape);
 
-                var texture = AssetManager.Instance.GetBlockTexture(block);
+                var texture = GetBlockTexture(block);
                 ScreenManager.Instance.SpriteBatch.Draw(texture, block.Bounds, Color.White);
             }
 
