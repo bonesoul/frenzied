@@ -19,6 +19,11 @@ namespace Frenzied.GamePlay.Modes
         /// <param name="shape">The shape to query for.</param>
         /// <returns><see cref="Shape"/></returns>
         Texture2D GetShapeTexture(Shape shape);
+
+        /// <summary>
+        /// The rule-set for the game-mode.
+        /// </summary>
+        RuleSet RuleSet { get; }
     }
 
     /// <summary>
@@ -37,10 +42,16 @@ namespace Frenzied.GamePlay.Modes
         protected ShapeGenerator ShapeGenerator;
 
         /// <summary>
+        /// The rule-set for the game-mode.
+        /// </summary>
+        public RuleSet RuleSet { get; protected set; }
+
+        /// <summary>
         /// Creates a new GameMode instance.
         /// </summary>
         protected GameMode()
         {
+            this.RuleSet = new RuleSet();
             this.ShapeContainers = new List<ShapeContainer>();
         }
 

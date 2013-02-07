@@ -81,11 +81,13 @@
     <Compile Include="Config\BackgroundConfig.cs" />
     <Compile Include="Config\GameConfig.cs" />
     <Compile Include="FrenziedGame.cs" />
+    <Compile Include="GamePlay\Implementations\BlockyMode\BlockRuleSet.cs" />
     <Compile Include="GamePlay\Implementations\PieMode\PieColors.cs" />
     <Compile Include="GamePlay\Implementations\PieMode\PieContainer.cs" />
     <Compile Include="GamePlay\Implementations\PieMode\PieGenerator.cs" />
     <Compile Include="GamePlay\Implementations\PieMode\PieLocations.cs" />
     <Compile Include="GamePlay\Implementations\PieMode\PieMode.cs" />
+    <Compile Include="GamePlay\Implementations\PieMode\PieRuleSet.cs" />
     <Compile Include="GamePlay\Implementations\PieMode\PieShape.cs" />
     <Compile Include="GamePlay\Modes\GameMode.cs" />
     <Compile Include="GamePlay\Modes\IContainer.cs" />
@@ -95,6 +97,7 @@
     <Compile Include="GamePlay\Implementations\BlockyMode\BlockShape.cs" />
     <Compile Include="GamePlay\Implementations\BlockyMode\BlockContainer.cs" />
     <Compile Include="GamePlay\Implementations\BlockyMode\BlockMode.cs" />
+    <Compile Include="GamePlay\Modes\RuleSet.cs" />
     <Compile Include="GamePlay\Modes\Shape.cs" />
     <Compile Include="GamePlay\Modes\ShapeColors.cs" />
     <Compile Include="GamePlay\Modes\ShapeContainer.cs" />

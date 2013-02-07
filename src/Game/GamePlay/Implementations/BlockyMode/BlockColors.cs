@@ -5,6 +5,7 @@
  * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
  */
 
+using System.Collections.Generic;
 using Frenzied.GamePlay.Modes;
 
 namespace Frenzied.GamePlay.Implementations.BlockyMode
@@ -18,5 +19,18 @@ namespace Frenzied.GamePlay.Implementations.BlockyMode
         public const byte Purple = 2;
         public const byte Green = 3;
         public const byte Blue = 4;
+
+        public new static IEnumerable<byte> GetEnumerator()
+        {
+            yield return Orange;
+            yield return Purple;
+            yield return Green;
+            yield return Blue;
+        }
+
+        public new static byte[] ToArray()
+        {
+            return new[] { Orange, Purple, Green, Blue };
+        }
     }
 }

@@ -14,6 +14,11 @@ namespace Frenzied.GamePlay.Implementations.PieMode
 {
     public class PieMode : GameMode
     {
+        public PieMode()
+        {
+            this.RuleSet = new PieRuleSet();
+        }
+
         public override void LoadContent()
         {
             var screenCenter = new Vector2(FrenziedGame.Instance.GraphicsDevice.Viewport.Bounds.Width / 2,

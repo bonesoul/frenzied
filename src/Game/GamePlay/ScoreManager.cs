@@ -20,8 +20,9 @@ namespace Frenzied.GamePlay
         int Score { get; }
         int Lives { get; }
 
-        void CorrectMove(ShapeContainer container);
         void TimeOut();
+
+        void AddScore(int score);
     }
 
     public class ScoreManager : DrawableGameComponent , IScoreManager
@@ -57,62 +58,17 @@ namespace Frenzied.GamePlay
             base.Initialize();
         }
 
-        public void CorrectMove(ShapeContainer container)
-        {
-            var emptyBlocks = 0;
-            var orangeBlocks = 0;
-            var purpleBlocks = 0;
-            var greenBlocks = 0;
-            var blueBlocks = 0;
-
-            foreach (var block in container.GetEnumerator())
-            {
-                switch (block.ColorIndex)
-                {
-                    case BlockColors.None:
-                        emptyBlocks++;
-                        break;
-                    case BlockColors.Orange:
-                        orangeBlocks++;
-                        break;
-                    case BlockColors.Purple:
-                        purpleBlocks++;
-                        break;
-                    case BlockColors.Green:
-                        greenBlocks++;
-                        break;
-                    case BlockColors.Blue:
-                        blueBlocks++;
-                        break;
-                }
-            }
-
-            var mostSameColor = 0;
-            if (orangeBlocks > mostSameColor)
-                mostSameColor = orangeBlocks;
-            if (purpleBlocks > mostSameColor)
-                mostSameColor = purpleBlocks;
-            if (greenBlocks > mostSameColor)
-                mostSameColor = greenBlocks;
-            if (blueBlocks > mostSameColor)
-                mostSameColor = blueBlocks;
-
-            if (mostSameColor == 4)
-                this.Score += 100;
-            if (mostSameColor == 3)
-                this.Score += 50;
-            if (mostSameColor == 2)
-                this.Score += 10;
-            if (mostSameColor == 1)
-                this.Score += 1;
-        }
-
         public void TimeOut()
         {
             this.Lives--;
             #if !WINPHONE8
             //this._assetManager.Sounds.Timeout.Play();
             #endif
+        }
+
+        public void AddScore(int score)
+        {
+            this.Score += score;
         }
 
         protected override void LoadContent()

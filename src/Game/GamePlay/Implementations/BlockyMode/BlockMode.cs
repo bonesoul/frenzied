@@ -16,6 +16,11 @@ namespace Frenzied.GamePlay.Implementations.BlockyMode
     /// </summary>
     public class BlockMode : GameMode
     {
+        public BlockMode()
+        {
+            this.RuleSet = new BlockRuleSet();
+        }
+
         public override void LoadContent()
         {
             var screenCenter = new Vector2(FrenziedGame.Instance.GraphicsDevice.Viewport.Bounds.Width/2,
