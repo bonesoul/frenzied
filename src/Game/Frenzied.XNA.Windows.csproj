@@ -141,6 +141,7 @@
     <Compile Include="Utils\Extensions\StringBuilderExtensions.cs" />
     <Compile Include="Utils\Extensions\Vector2Extensions.cs" />
     <Compile Include="Platforms\VersionInfo.cs" />
+    <Compile Include="Utils\Services\ServiceHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Content\Content.contentproj">

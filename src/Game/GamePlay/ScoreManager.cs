@@ -10,6 +10,7 @@ using System.Text;
 using Frenzied.Assets;
 using Frenzied.GamePlay.Implementations.BlockyMode;
 using Frenzied.GamePlay.Modes;
+using Frenzied.Utils.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -22,6 +23,10 @@ namespace Frenzied.GamePlay
 
         void TimeOut();
 
+        /// <summary>
+        /// Adds score to current score.
+        /// </summary>
+        /// <param name="score"></param>
         void AddScore(int score);
     }
 
@@ -32,6 +37,7 @@ namespace Frenzied.GamePlay
 
         // required services.       
         private IAssetManager _assetManager;
+        private IGameMode _gameMode;
 
         // resources.
         private SpriteBatch _spriteBatch;
@@ -48,12 +54,12 @@ namespace Frenzied.GamePlay
 
         public override void Initialize()
         {
-            this.Score = 0;
-            this.Lives = 5;
+            // import required services.
+            this._gameMode = ServiceHelper.GetService<IGameMode>(typeof(IGameMode));
+            this._assetManager = ServiceHelper.GetService<IAssetManager>(typeof (IAssetManager));        
 
-            this._assetManager = (IAssetManager)this.Game.Services.GetService(typeof(IAssetManager));
-            if (this._assetManager == null)
-                throw new NullReferenceException("Can not find asset manager component.");
+            this.Score = 0;
+            this.Lives = this._gameMode.RuleSet.StartingLifes;
 
             base.Initialize();
         }

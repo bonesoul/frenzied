@@ -11,6 +11,7 @@ using Frenzied.Assets;
 using Frenzied.Graphics.Drawing;
 using Frenzied.Platforms;
 using Frenzied.Utils.Extensions;
+using Frenzied.Utils.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -77,10 +78,8 @@ namespace Frenzied.Utils.Debugging
         /// </summary>
         public override void Initialize()
         {
-            this._assetManager = (IAssetManager)this.Game.Services.GetService(typeof(IAssetManager));
-
-            if (this._assetManager == null)
-                throw new NullReferenceException("Can not find asset manager component.");
+            // import required services.
+            this._assetManager = ServiceHelper.GetService<IAssetManager>(typeof(IAssetManager)); 
 
             base.Initialize();
         }

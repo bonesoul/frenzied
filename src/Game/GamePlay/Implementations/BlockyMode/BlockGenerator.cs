@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using Frenzied.Assets;
 using Frenzied.GamePlay.Modes;
 using Frenzied.Screens;
+using Frenzied.Utils.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -23,7 +24,6 @@ namespace Frenzied.GamePlay.Implementations.BlockyMode
 
         private bool _generatorStarted = false;
         private TimeSpan _timeOutStart;
-        private int timeOut = 4000;
 
         // required services.       
         private IScoreManager _scoreManager;
@@ -32,16 +32,20 @@ namespace Frenzied.GamePlay.Implementations.BlockyMode
         public BlockGenerator(Vector2 position, List<ShapeContainer> containers)
             : base(position, containers)
         {
+            this.CurrentShape = Shape.Empty;
+        }
+
+        public override void Initialize()
+        {
             this.Bounds = new Rectangle((int)this.Position.X, (int)this.Position.Y, (int)Size.X, (int)Size.Y);
 
-            this.CurrentShape = Shape.Empty;
+            // import required services.
+            this._gameMode = ServiceHelper.GetService<IGameMode>(typeof(IGameMode));
+            this._scoreManager = ServiceHelper.GetService<IScoreManager>(typeof(IScoreManager));
+        }
 
-            this._gameMode = (IGameMode)FrenziedGame.Instance.Services.GetService(typeof(IGameMode));
-            this._scoreManager = (IScoreManager)FrenziedGame.Instance.Services.GetService(typeof(IScoreManager));
-
-            if (this._scoreManager == null)
-                throw new NullReferenceException("Can not find score manager component.");
-
+        public override void LoadContent()
+        {
             this._progressBarTexture = AssetManager.Instance.BlockProgressBar;
         }
 
@@ -93,7 +97,7 @@ namespace Frenzied.GamePlay.Implementations.BlockyMode
             }
             else
             {
-                if (gameTime.TotalGameTime.TotalMilliseconds - this._timeOutStart.TotalMilliseconds > this.timeOut)
+                if (gameTime.TotalGameTime.TotalMilliseconds - this._timeOutStart.TotalMilliseconds > this._gameMode.RuleSet.ShapePlacementTimeout)
                 {
                     this._scoreManager.TimeOut();
                     this._timeOutStart = gameTime.TotalGameTime;
@@ -147,7 +151,7 @@ namespace Frenzied.GamePlay.Implementations.BlockyMode
             }
 
             // progressbar.
-            var timeOutLeft = this.timeOut - (int)(gameTime.TotalGameTime.TotalMilliseconds - this._timeOutStart.TotalMilliseconds);
+            var timeOutLeft = this._gameMode.RuleSet.ShapePlacementTimeout - (int)(gameTime.TotalGameTime.TotalMilliseconds - this._timeOutStart.TotalMilliseconds);
             timeOutLeft = (int)(timeOutLeft / 1000);
             timeOutLeft++;
 

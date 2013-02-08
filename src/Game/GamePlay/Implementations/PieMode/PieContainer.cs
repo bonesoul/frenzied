@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using Frenzied.Assets;
 using Frenzied.GamePlay.Modes;
 using Frenzied.Screens;
+using Frenzied.Utils.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -24,6 +25,9 @@ namespace Frenzied.GamePlay.Implementations.PieMode
 
         public PieContainer(Vector2 position)
             : base(position)
+        { }
+
+        public override void Initialize()
         {
             this.Bounds = new Rectangle((int)this.Position.X, (int)this.Position.Y, (int)Size.X, (int)Size.Y);
 
@@ -34,11 +38,9 @@ namespace Frenzied.GamePlay.Implementations.PieMode
             this[PieLocations.BottomMiddle] = Shape.Empty;
             this[PieLocations.BottomLeft] = Shape.Empty;
 
-            this._gameMode = (IGameMode)FrenziedGame.Instance.Services.GetService(typeof(IGameMode));
-            this._scoreManager = (IScoreManager)FrenziedGame.Instance.Services.GetService(typeof(IScoreManager));
-
-            if (this._scoreManager == null)
-                throw new NullReferenceException("Can not find score manager component.");
+            // import required services.
+            this._gameMode = ServiceHelper.GetService<IGameMode>(typeof (IGameMode));
+            this._scoreManager = ServiceHelper.GetService<IScoreManager>(typeof (IScoreManager));
         }
 
         public override void Attach(Shape shape)

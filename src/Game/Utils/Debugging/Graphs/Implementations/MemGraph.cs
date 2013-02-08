@@ -8,6 +8,7 @@
 using System.Linq;
 using Frenzied.Graphics.Drawing;
 using Frenzied.Utils.Extensions;
+using Frenzied.Utils.Services;
 using Microsoft.Xna.Framework;
 
 namespace Frenzied.Utils.Debugging.Graphs.Implementations
@@ -25,7 +26,7 @@ namespace Frenzied.Utils.Debugging.Graphs.Implementations
         protected override void Initialize()
         {
             // import required services.
-            this._statistics = (IStatistics)this.Game.Services.GetService(typeof(IStatistics));
+            this._statistics = ServiceHelper.GetService<IStatistics>(typeof(IStatistics)); 
         }
 
         public override void Update(GameTime gameTime)

@@ -27,8 +27,6 @@ namespace Frenzied.Screens
     /// </summary>
     public class ScreenManager : DrawableGameComponent
     {
-        #region Fields
-
         List<GameScreen> screens = new List<GameScreen>();
         List<GameScreen> screensToUpdate = new List<GameScreen>();
 
@@ -42,12 +40,7 @@ namespace Frenzied.Screens
 
         bool traceEnabled;
 
-        #endregion
-
         public static ScreenManager Instance { get; private set; }
-
-        #region Properties
-
 
         /// <summary>
         /// A default SpriteBatch shared by all the screens. This saves
@@ -80,12 +73,6 @@ namespace Frenzied.Screens
             set { traceEnabled = value; }
         }
 
-
-        #endregion
-
-        #region Initialization
-
-
         /// <summary>
         /// Constructs a new screen manager component.
         /// </summary>
@@ -105,9 +92,14 @@ namespace Frenzied.Screens
         /// </summary>
         public override void Initialize()
         {
-            base.Initialize();
-
             isInitialized = true;
+
+            foreach (var screen in this.screens)
+            {
+                screen.Initialize();
+            }
+
+            base.Initialize();
         }
 
 
@@ -139,16 +131,9 @@ namespace Frenzied.Screens
             // Tell each of the screens to unload their content.
             foreach (GameScreen screen in screens)
             {
-                screen.Initialize();
                 screen.UnloadContent();
             }
         }
-
-
-        #endregion
-
-        #region Update and Draw
-
 
         /// <summary>
         /// Allows each screen to run logic.
@@ -235,12 +220,6 @@ namespace Frenzied.Screens
             }
         }
 
-
-        #endregion
-
-        #region Public Methods
-
-
         /// <summary>
         /// Adds a new screen to the screen manager.
         /// </summary>
@@ -317,8 +296,5 @@ namespace Frenzied.Screens
 
             spriteBatch.End();
         }
-
-
-        #endregion
     }
 }

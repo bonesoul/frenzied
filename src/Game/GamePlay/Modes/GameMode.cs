@@ -58,12 +58,32 @@ namespace Frenzied.GamePlay.Modes
         /// <summary>
         /// Initializes the game-mode.
         /// </summary>
-        public virtual void Initialize() { }
+        public virtual void Initialize()
+        {
+            // initialize generator.
+            this.ShapeGenerator.Initialize();
+
+            // initialize containers.
+            foreach (var container in this.ShapeContainers)
+            {
+                container.Initialize();
+            }
+        }
 
         /// <summary>
         /// Loads content for game-mode.
         /// </summary>
-        public virtual void LoadContent() { }
+        public virtual void LoadContent()
+        {
+            // load-content for generator.
+            this.ShapeGenerator.LoadContent();
+
+            // load-content for containers.
+            foreach (var container in this.ShapeContainers)
+            {
+                container.LoadContent();
+            }
+        }
 
         /// <summary>
         /// Handles click.
@@ -83,14 +103,14 @@ namespace Frenzied.GamePlay.Modes
         /// <param name="gameTime"><see cref="GameTime"/></param>
         public virtual void Update(GameTime gameTime)
         {
+            // update shape generator.
+            this.ShapeGenerator.Update(gameTime);
+
             // update containers.
             foreach (var container in this.ShapeContainers)
             {
                 container.Update(gameTime);
             }
-
-            // update shape generator.
-            this.ShapeGenerator.Update(gameTime);
         }
 
         /// <summary>
@@ -99,14 +119,14 @@ namespace Frenzied.GamePlay.Modes
         /// <param name="gameTime"><see cref="GameTime"/></param>
         public virtual void Draw(GameTime gameTime)
         {
+            // draw generator.
+            this.ShapeGenerator.Draw(gameTime);
+
             // draw containers.
             foreach (var container in this.ShapeContainers)
             {
                 container.Draw(gameTime);
             }
-
-            // draw generator.
-            this.ShapeGenerator.Draw(gameTime);
         }
     }
 }
