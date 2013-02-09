@@ -65,6 +65,16 @@ namespace Frenzied.GamePlay.Modes
         }
 
         /// <summary>
+        /// Initializes the shape-generator.
+        /// </summary>
+        public virtual void Initialize() { }
+
+        /// <summary>
+        /// Loads content for shape-generator.
+        /// </summary>
+        public virtual void LoadContent() { }
+
+        /// <summary>
         /// Is container empty?
         /// </summary>
         /// <returns>Returns true if container is empty, false otherwise.</returns>

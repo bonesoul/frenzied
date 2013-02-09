@@ -7,9 +7,6 @@
 
 using System;
 using System.Collections.Generic;
-using Frenzied.GamePlay;
-using Frenzied.GamePlay.Implementations;
-using Frenzied.GamePlay.Implementations.Block;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;

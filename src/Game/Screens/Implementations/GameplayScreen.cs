@@ -11,6 +11,7 @@ using Frenzied.Assets;
 using Frenzied.GamePlay;
 using Frenzied.GamePlay.Modes;
 using Frenzied.Input;
+using Frenzied.Utils.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
@@ -33,14 +34,26 @@ namespace Frenzied.Screens.Implementations
         public GameplayScreen(GameMode gameMode)
         {
             this._gameMode = gameMode;
+            FrenziedGame.Instance.Services.AddService(typeof(IGameMode), gameMode); // export the service.
 
             TransitionOnTime = TimeSpan.FromSeconds(1.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
-
-            this.EnabledGestures = GestureType.Tap;
         }
 
-        // TODO: implement initialize for gamescreens!
+        public override void Initialize()
+        {
+            // import required services.
+            this._assetManager = ServiceHelper.GetService<IAssetManager>(typeof(IAssetManager));
+            this._scoreManager = ServiceHelper.GetService<IScoreManager>(typeof(IScoreManager));
+
+            // initialize game-mode.
+            this._gameMode.Initialize();
+
+            // set stuff.
+            this.EnabledGestures = GestureType.Tap;
+
+            base.Initialize();
+        }
 
         /// <summary>
         /// Load graphics content for the game.
@@ -48,12 +61,6 @@ namespace Frenzied.Screens.Implementations
         public override void LoadContent()
         {
             this._gameMode.LoadContent();
-
-            this._scoreManager = (IScoreManager)FrenziedGame.Instance.Services.GetService(typeof(IScoreManager));
-            this._assetManager = (IAssetManager)FrenziedGame.Instance.Services.GetService(typeof(IAssetManager));
-
-            if (this._scoreManager == null)
-                throw new NullReferenceException("Can not find score manager component.");
 
             base.LoadContent();
         }

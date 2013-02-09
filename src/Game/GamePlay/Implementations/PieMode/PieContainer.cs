@@ -10,18 +10,24 @@ using System.Collections.Generic;
 using Frenzied.Assets;
 using Frenzied.GamePlay.Modes;
 using Frenzied.Screens;
+using Frenzied.Utils.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Frenzied.GamePlay.Implementations.Pie
+namespace Frenzied.GamePlay.Implementations.PieMode
 {
     public class PieContainer : ShapeContainer
     {
-        private IScoreManager _scoreManager;
         public static Vector2 Size = new Vector2(210, 210);
+
+        private IScoreManager _scoreManager;
+        private IGameMode _gameMode;       
 
         public PieContainer(Vector2 position)
             : base(position)
+        { }
+
+        public override void Initialize()
         {
             this.Bounds = new Rectangle((int)this.Position.X, (int)this.Position.Y, (int)Size.X, (int)Size.Y);
 
@@ -32,10 +38,9 @@ namespace Frenzied.GamePlay.Implementations.Pie
             this[PieLocations.BottomMiddle] = Shape.Empty;
             this[PieLocations.BottomLeft] = Shape.Empty;
 
-            this._scoreManager = (IScoreManager)FrenziedGame.Instance.Services.GetService(typeof(IScoreManager));
-
-            if (this._scoreManager == null)
-                throw new NullReferenceException("Can not find score manager component.");
+            // import required services.
+            this._gameMode = ServiceHelper.GetService<IGameMode>(typeof (IGameMode));
+            this._scoreManager = ServiceHelper.GetService<IScoreManager>(typeof (IScoreManager));
         }
 
         public override void Attach(Shape shape)
@@ -98,7 +103,7 @@ namespace Frenzied.GamePlay.Implementations.Pie
             if (!this.IsFull())
                 return;
 
-            this._scoreManager.CorrectMove(this);
+            this._scoreManager.AddScore(this._gameMode.RuleSet.CalculateExplosionScore(this));
 
             this[PieLocations.TopLeft] = Shape.Empty;
             this[PieLocations.TopMiddle] = Shape.Empty;
@@ -114,22 +119,6 @@ namespace Frenzied.GamePlay.Implementations.Pie
                 this.Explode();
         }
 
-        public Texture2D GetPieTexture(PieShape block)
-        {
-            switch (block.ColorIndex)
-            {
-                case PieColors.Orange:
-                    return AssetManager.Instance.PieTextures[Color.Orange];
-                case PieColors.Purple:
-                    return AssetManager.Instance.PieTextures[Color.Purple];
-                case PieColors.Green:
-                    return AssetManager.Instance.PieTextures[Color.Green];
-                case PieColors.Blue:
-                    return AssetManager.Instance.PieTextures[Color.Blue];
-                default:
-                    return null;
-            }
-        }
 
         public override void Draw(GameTime gameTime)
         {
@@ -144,9 +133,9 @@ namespace Frenzied.GamePlay.Implementations.Pie
 
                 var pie = ((PieShape)shape);
 
-                var texture = GetPieTexture(pie);
+                var texture = this._gameMode.GetShapeTexture(pie);
                 ScreenManager.Instance.SpriteBatch.Draw(texture, new Vector2(this.Bounds.Center.X, this.Bounds.Center.Y), null,
-                                        Color.White, MathHelper.ToRadians(pie.LocationIndex * 60f), new Vector2(48, 95),
+                                        Color.White, MathHelper.ToRadians(pie.LocationIndex * 60f ), new Vector2(48, 95),
                                         1f, SpriteEffects.None, 0);
             }
 

@@ -7,13 +7,29 @@
 
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Frenzied.GamePlay.Modes
 {
+    public interface IGameMode
+    {
+        /// <summary>
+        /// Returns a texture for a given shape.
+        /// </summary>
+        /// <param name="shape">The shape to query for.</param>
+        /// <returns><see cref="Shape"/></returns>
+        Texture2D GetShapeTexture(Shape shape);
+
+        /// <summary>
+        /// The rule-set for the game-mode.
+        /// </summary>
+        RuleSet RuleSet { get; }
+    }
+
     /// <summary>
     /// Game mode class that defines a game-mode.
     /// </summary>
-    public abstract class GameMode
+    public abstract class GameMode : IGameMode
     {
         /// <summary>
         /// The shape containers.
@@ -26,26 +42,60 @@ namespace Frenzied.GamePlay.Modes
         protected ShapeGenerator ShapeGenerator;
 
         /// <summary>
+        /// The rule-set for the game-mode.
+        /// </summary>
+        public RuleSet RuleSet { get; protected set; }
+
+        /// <summary>
         /// Creates a new GameMode instance.
         /// </summary>
         protected GameMode()
         {
+            this.RuleSet = new RuleSet();
             this.ShapeContainers = new List<ShapeContainer>();
+        }
+
+        /// <summary>
+        /// Initializes the game-mode.
+        /// </summary>
+        public virtual void Initialize()
+        {
+            // initialize generator.
+            this.ShapeGenerator.Initialize();
+
+            // initialize containers.
+            foreach (var container in this.ShapeContainers)
+            {
+                container.Initialize();
+            }
         }
 
         /// <summary>
         /// Loads content for game-mode.
         /// </summary>
         public virtual void LoadContent()
-        { }
+        {
+            // load-content for generator.
+            this.ShapeGenerator.LoadContent();
+
+            // load-content for containers.
+            foreach (var container in this.ShapeContainers)
+            {
+                container.LoadContent();
+            }
+        }
 
         /// <summary>
         /// Handles click.
         /// </summary>
         /// <param name="X">The x position of the cursor.</param>
         /// <param name="Y">The y position of the cursor.</param>
-        public virtual void HandleClick(int X, int Y)
-        { }
+        public virtual void HandleClick(int X, int Y) { }
+
+        public virtual Texture2D GetShapeTexture(Shape shape)
+        {
+            return null;
+        }
 
         /// <summary>
         /// Updates game-mode.
@@ -53,14 +103,14 @@ namespace Frenzied.GamePlay.Modes
         /// <param name="gameTime"><see cref="GameTime"/></param>
         public virtual void Update(GameTime gameTime)
         {
+            // update shape generator.
+            this.ShapeGenerator.Update(gameTime);
+
             // update containers.
             foreach (var container in this.ShapeContainers)
             {
                 container.Update(gameTime);
             }
-
-            // update shape generator.
-            this.ShapeGenerator.Update(gameTime);
         }
 
         /// <summary>
@@ -69,14 +119,14 @@ namespace Frenzied.GamePlay.Modes
         /// <param name="gameTime"><see cref="GameTime"/></param>
         public virtual void Draw(GameTime gameTime)
         {
+            // draw generator.
+            this.ShapeGenerator.Draw(gameTime);
+
             // draw containers.
             foreach (var container in this.ShapeContainers)
             {
                 container.Draw(gameTime);
             }
-
-            // draw generator.
-            this.ShapeGenerator.Draw(gameTime);
         }
     }
 }

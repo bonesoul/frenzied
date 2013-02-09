@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using Frenzied.Assets;
 using Frenzied.Graphics.Drawing;
 using Frenzied.Utils.Debugging.Graphs.Implementations;
+using Frenzied.Utils.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -50,9 +51,7 @@ namespace Frenzied.Utils.Debugging.Graphs
             this._graphs.Add(new MemGraph(this.Game, new Rectangle(this.Game.GraphicsDevice.Viewport.Bounds.Width - 280, 95, 270, 35)));
 
             // import required services.
-            this._assetManager = (IAssetManager)this.Game.Services.GetService(typeof(IAssetManager));
-            if (this._assetManager == null)
-                throw new NullReferenceException("Can not find asset manager component.");
+            this._assetManager = ServiceHelper.GetService<IAssetManager>(typeof(IAssetManager)); 
 
             base.Initialize();
         }

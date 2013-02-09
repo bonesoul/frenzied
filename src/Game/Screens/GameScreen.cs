@@ -211,6 +211,8 @@ namespace Frenzied.Screens
         #region Initialization
 
 
+        public virtual void Initialize () { }
+
         /// <summary>
         /// Load graphics content for the screen.
         /// </summary>

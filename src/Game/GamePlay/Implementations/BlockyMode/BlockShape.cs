@@ -8,11 +8,11 @@
 using Frenzied.GamePlay.Modes;
 using Microsoft.Xna.Framework;
 
-namespace Frenzied.GamePlay.Implementations.Pie
+namespace Frenzied.GamePlay.Implementations.BlockyMode
 {
-    public class PieShape : Shape
+    public class BlockShape : Shape
     {
-        public PieShape(byte colorIndex, byte locationIndex)
+        public BlockShape(byte colorIndex, byte locationIndex)
             : base(colorIndex, locationIndex)
         {
             this.Size = new Vector2(100, 100);

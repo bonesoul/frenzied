@@ -10,18 +10,23 @@ using System.Collections.Generic;
 using Frenzied.Assets;
 using Frenzied.GamePlay.Modes;
 using Frenzied.Screens;
+using Frenzied.Utils.Services;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
-namespace Frenzied.GamePlay.Implementations.Block
+namespace Frenzied.GamePlay.Implementations.BlockyMode
 {
     internal class BlockContainer : ShapeContainer
     {
-        private IScoreManager _scoreManager;
         public static Vector2 Size = new Vector2(210, 210);
+
+        private IScoreManager _scoreManager;
+        private IGameMode _gameMode;  
 
         public BlockContainer(Vector2 position)
             : base(position)
+        { }
+
+        public override void Initialize()
         {
             this.Bounds = new Rectangle((int)this.Position.X, (int)this.Position.Y, (int)Size.X, (int)Size.Y);
 
@@ -30,10 +35,9 @@ namespace Frenzied.GamePlay.Implementations.Block
             this[BlockLocations.BottomRight] = Shape.Empty;
             this[BlockLocations.BottomLeft] = Shape.Empty;
 
-            this._scoreManager = (IScoreManager)FrenziedGame.Instance.Services.GetService(typeof(IScoreManager));
-
-            if (this._scoreManager == null)
-                throw new NullReferenceException("Can not find score manager component.");
+            // import required services.
+            this._gameMode = ServiceHelper.GetService<IGameMode>(typeof(IGameMode));
+            this._scoreManager = ServiceHelper.GetService<IScoreManager>(typeof(IScoreManager));
         }
 
         public override void Attach(Shape shape)
@@ -92,7 +96,7 @@ namespace Frenzied.GamePlay.Implementations.Block
             if (!this.IsFull())
                 return;
 
-            this._scoreManager.CorrectMove(this);
+            this._scoreManager.AddScore(this._gameMode.RuleSet.CalculateExplosionScore(this));
 
             this[BlockLocations.TopLeft] = Shape.Empty;
             this[BlockLocations.TopRight] = Shape.Empty;
@@ -104,23 +108,6 @@ namespace Frenzied.GamePlay.Implementations.Block
         {
             if (this.IsFull())
                 this.Explode();
-        }
-
-        public Texture2D GetBlockTexture(BlockShape block)
-        {
-            switch (block.ColorIndex)
-            {
-                case BlockColors.Orange:
-                    return AssetManager.Instance.BlockTextures[Color.Orange];
-                case BlockColors.Purple:
-                    return AssetManager.Instance.BlockTextures[Color.Purple];
-                case BlockColors.Green:
-                    return AssetManager.Instance.BlockTextures[Color.Green];
-                case BlockColors.Blue:
-                    return AssetManager.Instance.BlockTextures[Color.Blue];
-                default:
-                    return null;
-            }
         }
 
         public override void Draw(GameTime gameTime)
@@ -136,7 +123,7 @@ namespace Frenzied.GamePlay.Implementations.Block
 
                 var block = ((BlockShape) shape);
 
-                var texture = GetBlockTexture(block);
+                var texture = this._gameMode.GetShapeTexture(block);
                 ScreenManager.Instance.SpriteBatch.Draw(texture, block.Bounds, Color.White);
             }
 
