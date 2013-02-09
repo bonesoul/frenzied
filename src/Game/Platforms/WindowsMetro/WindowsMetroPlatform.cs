@@ -30,8 +30,6 @@ namespace Frenzied.Platforms.WindowsMetro
         {
             this.GraphicsDeviceManager = graphicsDeviceManager;
 
-            this.GraphicsDeviceManager.PreferredBackBufferWidth = 1280;
-            this.GraphicsDeviceManager.PreferredBackBufferHeight = 720;
             this.GraphicsDeviceManager.ApplyChanges();
         }
     }

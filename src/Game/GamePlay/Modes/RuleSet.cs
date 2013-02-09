@@ -11,6 +11,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using Frenzied.GamePlay.Implementations.PieMode;
+using Frenzied.Platforms;
 
 namespace Frenzied.GamePlay.Modes
 {
@@ -63,7 +64,11 @@ namespace Frenzied.GamePlay.Modes
         public  int CalculateExplosionScore(ShapeContainer container)
         {
             // call associated ShapeColor type's color value's enumerator.
-            var colorIndexes = (IEnumerable<byte>)this.ShapeColorsType.GetMethod("GetEnumerator").Invoke(null, null);
+            #if !METRO
+                var colorIndexes = (IEnumerable<byte>)this.ShapeColorsType.GetMethod("GetEnumerator").Invoke(null, null);
+            #else
+                var colorIndexes = (IEnumerable<byte>) this.ShapeColorsType.GetRuntimeMethod("GetEnumerator", null).Invoke(null, null);
+            #endif
 
             // create a list of dictionary that holds colorIndex => colorUsageCount.
             var colorUsages = colorIndexes.ToDictionary<byte, byte, byte>(colorIndex => colorIndex, colorIndex => 0);
