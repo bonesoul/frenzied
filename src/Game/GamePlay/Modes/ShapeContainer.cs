@@ -63,6 +63,16 @@ namespace Frenzied.GamePlay.Modes
         }
 
         /// <summary>
+        /// Initializes the shape-container.
+        /// </summary>
+        public virtual void Initialize() { }
+
+        /// <summary>
+        /// Loads content for shape-container.
+        /// </summary>
+        public virtual void LoadContent() { }
+
+        /// <summary>
         /// Attachs a shape to ShapeContainer.
         /// </summary>
         /// <param name="shape"><see cref="Shape"/></param>

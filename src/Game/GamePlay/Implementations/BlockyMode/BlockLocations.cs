@@ -7,16 +7,13 @@
 
 using Frenzied.GamePlay.Modes;
 
-namespace Frenzied.GamePlay.Implementations.Pie
+namespace Frenzied.GamePlay.Implementations.BlockyMode
 {
-    /// <summary>
-    /// Defines shape color.
-    /// </summary>
-    public class PieColors : ShapeColors
+    public class BlockLocations : ShapeLocations
     {
-        public const byte Orange = 1;
-        public const byte Purple = 2;
-        public const byte Green = 3;
-        public const byte Blue = 4;
+        public const byte TopLeft = 1;
+        public const byte TopRight = 2;
+        public const byte BottomRight = 3;
+        public const byte BottomLeft = 4;
     }
 }

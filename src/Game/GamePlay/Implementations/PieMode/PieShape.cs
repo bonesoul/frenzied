@@ -6,17 +6,16 @@
  */
 
 using Frenzied.GamePlay.Modes;
+using Microsoft.Xna.Framework;
 
-namespace Frenzied.GamePlay.Implementations.Block
+namespace Frenzied.GamePlay.Implementations.PieMode
 {
-    /// <summary>
-    /// Defines shape color.
-    /// </summary>
-    public class BlockColors : ShapeColors
+    public class PieShape : Shape
     {
-        public const byte Orange = 1;
-        public const byte Purple = 2;
-        public const byte Green = 3;
-        public const byte Blue = 4;
+        public PieShape(byte colorIndex, byte locationIndex)
+            : base(colorIndex, locationIndex)
+        {
+            this.Size = new Vector2(100, 100);
+        }
     }
 }

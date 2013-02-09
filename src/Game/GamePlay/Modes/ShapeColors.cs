@@ -5,6 +5,8 @@
  * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
  */
 
+using System.Collections.Generic;
+
 namespace Frenzied.GamePlay.Modes
 {
     /// <summary>
@@ -16,5 +18,23 @@ namespace Frenzied.GamePlay.Modes
         /// No color assigned (empty).
         /// </summary>
         public const byte None = 0;
+
+        /// <summary>
+        /// Returns the enumerator for values in shape-colors list.
+        /// </summary>
+        /// <returns></returns>
+        public static IEnumerable<byte> GetEnumerator()
+        {
+            yield return None;
+        }
+
+        /// <summary>
+        /// Returns the array of shape-colors list.
+        /// </summary>
+        /// <returns></returns>
+        public static byte[] ToArray()
+        {
+            return new[] {None};
+        }
     }
 }

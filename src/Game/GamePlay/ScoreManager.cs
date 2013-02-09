@@ -8,9 +8,9 @@
 using System;
 using System.Text;
 using Frenzied.Assets;
-using Frenzied.GamePlay.Implementations;
-using Frenzied.GamePlay.Implementations.Block;
+using Frenzied.GamePlay.Implementations.BlockyMode;
 using Frenzied.GamePlay.Modes;
+using Frenzied.Utils.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -21,8 +21,13 @@ namespace Frenzied.GamePlay
         int Score { get; }
         int Lives { get; }
 
-        void CorrectMove(ShapeContainer container);
         void TimeOut();
+
+        /// <summary>
+        /// Adds score to current score.
+        /// </summary>
+        /// <param name="score"></param>
+        void AddScore(int score);
     }
 
     public class ScoreManager : DrawableGameComponent , IScoreManager
@@ -32,6 +37,7 @@ namespace Frenzied.GamePlay
 
         // required services.       
         private IAssetManager _assetManager;
+        private IGameMode _gameMode;
 
         // resources.
         private SpriteBatch _spriteBatch;
@@ -48,64 +54,14 @@ namespace Frenzied.GamePlay
 
         public override void Initialize()
         {
-            this.Score = 0;
-            this.Lives = 5;
+            // import required services.
+            this._gameMode = ServiceHelper.GetService<IGameMode>(typeof(IGameMode));
+            this._assetManager = ServiceHelper.GetService<IAssetManager>(typeof (IAssetManager));        
 
-            this._assetManager = (IAssetManager)this.Game.Services.GetService(typeof(IAssetManager));
-            if (this._assetManager == null)
-                throw new NullReferenceException("Can not find asset manager component.");
+            this.Score = 0;
+            this.Lives = this._gameMode.RuleSet.StartingLifes;
 
             base.Initialize();
-        }
-
-        public void CorrectMove(ShapeContainer container)
-        {
-            var emptyBlocks = 0;
-            var orangeBlocks = 0;
-            var purpleBlocks = 0;
-            var greenBlocks = 0;
-            var blueBlocks = 0;
-
-            foreach (var block in container.GetEnumerator())
-            {
-                switch (block.ColorIndex)
-                {
-                    case BlockColors.None:
-                        emptyBlocks++;
-                        break;
-                    case BlockColors.Orange:
-                        orangeBlocks++;
-                        break;
-                    case BlockColors.Purple:
-                        purpleBlocks++;
-                        break;
-                    case BlockColors.Green:
-                        greenBlocks++;
-                        break;
-                    case BlockColors.Blue:
-                        blueBlocks++;
-                        break;
-                }
-            }
-
-            var mostSameColor = 0;
-            if (orangeBlocks > mostSameColor)
-                mostSameColor = orangeBlocks;
-            if (purpleBlocks > mostSameColor)
-                mostSameColor = purpleBlocks;
-            if (greenBlocks > mostSameColor)
-                mostSameColor = greenBlocks;
-            if (blueBlocks > mostSameColor)
-                mostSameColor = blueBlocks;
-
-            if (mostSameColor == 4)
-                this.Score += 100;
-            if (mostSameColor == 3)
-                this.Score += 50;
-            if (mostSameColor == 2)
-                this.Score += 10;
-            if (mostSameColor == 1)
-                this.Score += 1;
         }
 
         public void TimeOut()
@@ -114,6 +70,11 @@ namespace Frenzied.GamePlay
             #if !WINPHONE8
             //this._assetManager.Sounds.Timeout.Play();
             #endif
+        }
+
+        public void AddScore(int score)
+        {
+            this.Score += score;
         }
 
         protected override void LoadContent()
