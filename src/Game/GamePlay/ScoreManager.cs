@@ -100,7 +100,35 @@ namespace Frenzied.GamePlay
             _spriteBatch.DrawString(_spriteFont, _stringBuilder, new Vector2(5, 130), Color.White);
 
 
+            for (int i = 0; i < timeOutLeft; i++)
+            {
+                this.DrawTimeOutPie(gameTime, 6-i);
+            }                
+
             _spriteBatch.End();
+        }
+
+        private TimeSpan _timeOutStart;
+        private int timeOutLeft;
+
+        public override void Update(GameTime gameTime)
+        {
+            if(_timeOutStart==TimeSpan.Zero)
+                this._timeOutStart = gameTime.TotalGameTime;
+
+            timeOutLeft = this._gameMode.RuleSet.ShapePlacementTimeout - (int)(gameTime.TotalGameTime.TotalMilliseconds - this._timeOutStart.TotalMilliseconds);
+            timeOutLeft = (int)(timeOutLeft / 1000);
+            timeOutLeft++;
+
+            if(timeOutLeft<0)
+                this._timeOutStart = gameTime.TotalGameTime;
+        }
+
+        private void DrawTimeOutPie(GameTime gameTime, int pieIndex)
+        {
+            var texture = AssetManager.Instance.PieTextures[Color.Orange];
+            _spriteBatch.Draw(texture, new Vector2(100, 300), null, Color.Green, MathHelper.ToRadians((float)(pieIndex * 60f *gameTime.TotalGameTime.TotalMilliseconds)),
+                              new Vector2(48, 95),0.5f, SpriteEffects.None, 0);
         }
     }
 }
