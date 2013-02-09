@@ -52,7 +52,7 @@ namespace Frenzied.Platforms
                 PlatformHandler = new WindowsMetro.WindowsMetroPlatform();
             #elif WINPHONE7
                 Platform = Platforms.WindowsPhone7;
-                CurrentPlatform = new WindowsPhone7.WindowsPhone7Platform();
+                PlatformHandler = new WindowsPhone7.WindowsPhone7Platform();
             #elif WINPHONE8
                 Platform = Platforms.WindowsPhone8;
                 PlatformHandler = new WindowsPhone8.WindowsPhone8Platform();
