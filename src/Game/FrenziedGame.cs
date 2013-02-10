@@ -12,6 +12,7 @@ using Frenzied.Config;
 using Frenzied.GamePlay;
 using Frenzied.GamePlay.Implementations.PieMode;
 using Frenzied.Graphics;
+using Frenzied.Graphics.Effects;
 using Frenzied.Input;
 using Frenzied.Platforms;
 using Frenzied.Screens;
@@ -19,6 +20,7 @@ using Frenzied.Screens.Implementations;
 using Frenzied.Utils.Debugging;
 using Frenzied.Utils.Debugging.Graphs;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace Frenzied
 {
@@ -38,6 +40,33 @@ namespace Frenzied
         GraphicsDeviceManager _graphicsDeviceManager;
 
         private ScreenManager _screenManager;
+
+        Random random = new Random();
+
+
+        SpriteBatch spriteBatch;
+
+        // Effect used to apply the edge detection and pencil sketch postprocessing.
+        Effect postprocessEffect;
+
+        // Overlay texture containing the pencil sketch stroke pattern.
+        Texture2D sketchTexture;
+
+        // Randomly offsets the sketch pattern to create a hand-drawn animation effect.
+        Vector2 sketchJitter;
+        TimeSpan timeToNextJitter;
+
+        // Custom rendertargets.
+        RenderTarget2D sceneRenderTarget;
+        RenderTarget2D normalDepthRenderTarget;
+
+        // Choose what display settings to use.
+        NonPhotoRealisticSettings Settings
+        {
+            get { return NonPhotoRealisticSettings.PresetSettings[settingsIndex]; }
+        }
+
+        int settingsIndex = 1;
 
         public FrenziedGame()
         {
@@ -101,7 +130,7 @@ namespace Frenzied
             this.Components.Add(scoreManager);
 
             // Activate the first screens.
-            this._screenManager.AddScreen(new BackgroundScreen(), null);
+            //this._screenManager.AddScreen(new BackgroundScreen(), null);
             //this._screenManager.AddScreen(new MainMenuScreen(), null);
             this._screenManager.AddScreen(new GameplayScreen(new PieMode()), null);
 
@@ -128,6 +157,25 @@ namespace Frenzied
         /// </summary>
         protected override void LoadContent()
         {
+            spriteBatch = new SpriteBatch(this.GraphicsDevice);
+
+            postprocessEffect = Content.Load<Effect>(@"Effects\PostprocessEffect");
+            sketchTexture = Content.Load<Texture2D>(@"Effects\SketchTexture");
+
+            // Change the model to use our custom cartoon shading effect.
+            Effect cartoonEffect = Content.Load<Effect>(@"Effects\CartoonEffect");
+
+            // Create two custom rendertargets.
+            PresentationParameters pp = this.GraphicsDevice.PresentationParameters;
+
+            sceneRenderTarget = new RenderTarget2D(this.GraphicsDevice,
+                                                   pp.BackBufferWidth, pp.BackBufferHeight, false,
+                                                   pp.BackBufferFormat, pp.DepthStencilFormat);
+
+            normalDepthRenderTarget = new RenderTarget2D(this.GraphicsDevice,
+                                                         pp.BackBufferWidth, pp.BackBufferHeight, false,
+                                                         pp.BackBufferFormat, pp.DepthStencilFormat);
+
             base.LoadContent();
         }
 
@@ -147,6 +195,20 @@ namespace Frenzied
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            // Update the sketch overlay texture jitter animation.
+            if (Settings.SketchJitterSpeed > 0)
+            {
+                timeToNextJitter -= gameTime.ElapsedGameTime;
+
+                if (timeToNextJitter <= TimeSpan.Zero)
+                {
+                    sketchJitter.X = (float)random.NextDouble();
+                    sketchJitter.Y = (float)random.NextDouble();
+
+                    timeToNextJitter += TimeSpan.FromSeconds(Settings.SketchJitterSpeed);
+                }
+            }
+
             base.Update(gameTime);
         }
 
@@ -156,7 +218,81 @@ namespace Frenzied
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            if (Settings.EnableEdgeDetect || Settings.EnableSketch)
+                this.GraphicsDevice.SetRenderTarget(sceneRenderTarget);
+            else
+                this.GraphicsDevice.SetRenderTarget(null);
+
+            this.GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            // Run the postprocessing filter over the scene that we just rendered.
+            if (Settings.EnableEdgeDetect || Settings.EnableSketch)
+            {
+                this.GraphicsDevice.SetRenderTarget(null);
+
+                ApplyPostprocess();
+            }
+
             base.Draw(gameTime);
+        }
+
+        /// <summary>
+        /// Helper applies the edge detection and pencil sketch postprocess effect.
+        /// </summary>
+        void ApplyPostprocess()
+        {
+            EffectParameterCollection parameters = postprocessEffect.Parameters;
+            string effectTechniqueName;
+
+            // Set effect parameters controlling the pencil sketch effect.
+            if (Settings.EnableSketch)
+            {
+                parameters["SketchThreshold"].SetValue(Settings.SketchThreshold);
+                parameters["SketchBrightness"].SetValue(Settings.SketchBrightness);
+                parameters["SketchJitter"].SetValue(sketchJitter);
+                parameters["SketchTexture"].SetValue(sketchTexture);
+            }
+
+            // Set effect parameters controlling the edge detection effect.
+            if (Settings.EnableEdgeDetect)
+            {
+                Vector2 resolution = new Vector2(sceneRenderTarget.Width,
+                                                 sceneRenderTarget.Height);
+
+                Texture2D normalDepthTexture = normalDepthRenderTarget;
+
+                parameters["EdgeWidth"].SetValue(Settings.EdgeWidth);
+                parameters["EdgeIntensity"].SetValue(Settings.EdgeIntensity);
+                parameters["ScreenResolution"].SetValue(resolution);
+                parameters["NormalDepthTexture"].SetValue(normalDepthTexture);
+
+                // Choose which effect technique to use.
+                if (Settings.EnableSketch)
+                {
+                    if (Settings.SketchInColor)
+                        effectTechniqueName = "EdgeDetectColorSketch";
+                    else
+                        effectTechniqueName = "EdgeDetectMonoSketch";
+                }
+                else
+                    effectTechniqueName = "EdgeDetect";
+            }
+            else
+            {
+                // If edge detection is off, just pick one of the sketch techniques.
+                if (Settings.SketchInColor)
+                    effectTechniqueName = "ColorSketch";
+                else
+                    effectTechniqueName = "MonoSketch";
+            }
+
+            // Activate the appropriate effect technique.
+            postprocessEffect.CurrentTechnique = postprocessEffect.Techniques[effectTechniqueName];
+
+            // Draw a fullscreen sprite to apply the postprocessing effect.
+            spriteBatch.Begin(0, BlendState.Opaque, null, null, null, postprocessEffect);
+            spriteBatch.Draw(sceneRenderTarget, Vector2.Zero, Color.White);
+            spriteBatch.End();
         }
 
         private static FrenziedGame _instance; // the memory instance.
