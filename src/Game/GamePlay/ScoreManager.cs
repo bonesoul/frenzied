@@ -6,6 +6,7 @@
  */
 
 using System;
+using System.Diagnostics;
 using System.Text;
 using Frenzied.Assets;
 using Frenzied.GamePlay.Implementations.BlockyMode;
@@ -100,34 +101,41 @@ namespace Frenzied.GamePlay
             _spriteBatch.DrawString(_spriteFont, _stringBuilder, new Vector2(5, 130), Color.White);
 
 
-            for (int i = 0; i < timeOutLeft; i++)
+            for (int i = 0; i < leftPiesCount; i++)
             {
-                this.DrawTimeOutPie(gameTime, 6-i);
+                this.DrawTimeOutPie(gameTime, 6 -i);
             }                
 
             _spriteBatch.End();
         }
 
-        private TimeSpan _timeOutStart;
-        private int timeOutLeft;
+        private TimeSpan _targetTimeout;
+        private int leftPiesCount;
 
         public override void Update(GameTime gameTime)
         {
-            if(_timeOutStart==TimeSpan.Zero)
-                this._timeOutStart = gameTime.TotalGameTime;
+            if (_targetTimeout == TimeSpan.Zero)
+            {
+                this._targetTimeout = gameTime.TotalGameTime +
+                                      new TimeSpan(0, 0, 0,0, this._gameMode.RuleSet.ShapePlacementTimeout);
+            }
 
-            timeOutLeft = this._gameMode.RuleSet.ShapePlacementTimeout - (int)(gameTime.TotalGameTime.TotalMilliseconds - this._timeOutStart.TotalMilliseconds);
-            timeOutLeft = (int)(timeOutLeft / 1000);
-            timeOutLeft++;
+            var left = this._targetTimeout - gameTime.TotalGameTime;
+            leftPiesCount = (int) (left.TotalMilliseconds/(this._gameMode.RuleSet.ShapePlacementTimeout/6));
+            leftPiesCount++;
 
-            if(timeOutLeft<0)
-                this._timeOutStart = gameTime.TotalGameTime;
+            if (gameTime.TotalGameTime >= _targetTimeout)
+            {
+                this._targetTimeout = gameTime.TotalGameTime +
+                                      new TimeSpan(0, 0, 0, 0, this._gameMode.RuleSet.ShapePlacementTimeout);
+            }
         }
 
         private void DrawTimeOutPie(GameTime gameTime, int pieIndex)
         {
             var texture = AssetManager.Instance.PieTextures[Color.Orange];
-            _spriteBatch.Draw(texture, new Vector2(100, 300), null, Color.Green, MathHelper.ToRadians((float)(pieIndex * 60f *gameTime.TotalGameTime.TotalMilliseconds)),
+            var radians = MathHelper.ToRadians((float) (pieIndex*60f - 30));
+            _spriteBatch.Draw(texture, new Vector2(100, 300), null, Color.Green, radians,
                               new Vector2(48, 95),0.5f, SpriteEffects.None, 0);
         }
     }
