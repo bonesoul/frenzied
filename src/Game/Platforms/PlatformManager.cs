@@ -53,6 +53,9 @@ namespace Frenzied.Platforms
 			#elif LINUX && DESKTOP
 				Platform = Platforms.Linux;
 				PlatformHandler = new Linux.LinuxPlatform();
+			#elif MACOS && DESKTOP
+				Platform=Platforms.MacOS;
+				PlatformHandler = new MacOS.MacOSPlatform();
             #elif WINPHONE7
                 Platform = Platforms.WindowsPhone7;
                 CurrentPlatform = new WindowsPhone7.WindowsPhone7Platform();
