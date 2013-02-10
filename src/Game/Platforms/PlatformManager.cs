@@ -65,6 +65,9 @@ namespace Frenzied.Platforms
             #elif ANDROID
                 Platform = Platforms.Android;
                 PlatformHandler = new Android.AndroidPlatform();
+			#elif IOS
+				Platform=Platforms.IOS;
+				PlatformHandler=new IOS.IOSPlatform();
             #endif
 
             if (PlatformHandler == null)
