@@ -36,7 +36,18 @@
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
-    <Reference Include="MonoGame.Framework" />
+    <Reference Include="Lidgren.Network">
+      <HintPath>..\..\dep\monogame\linux\Lidgren.Network.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>..\..\dep\monogame\linux\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK">
+      <HintPath>..\..\dep\monogame\linux\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="Tao.Sdl">
+      <HintPath>..\..\dep\monogame\linux\Tao.Sdl.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -107,7 +118,6 @@
     <Compile Include="Platforms\Linux\LinuxPlatform.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="..\..\..\Frenzied\src\Game\Content\" />
     <Folder Include="Assets\" />
     <Folder Include="Config\" />
     <Folder Include="GamePlay\" />
