@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1114CB8E-EA7A-4166-9B34-7B54D2E4CB73}</ProjectGuid>
+    <ProjectTypeGuids>{9B831FEF-F496-498F-9FE8-180DA5CB4258};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Frenzied</RootNamespace>
+    <MonoGamePlatform>Linux</MonoGamePlatform>
+    <AssemblyName>Frenzied</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\Debug\linux\monogame\</OutputPath>
+    <DefineConstants>DEBUG; LINUX; MONOGAME; DESKTOP</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>none</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\Release\linux\monogame\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Lidgren.Network">
+      <HintPath>..\..\dep\monogame\linux\Lidgren.Network.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>..\..\dep\monogame\linux\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK">
+      <HintPath>..\..\dep\monogame\linux\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="Tao.Sdl">
+      <HintPath>..\..\dep\monogame\linux\Tao.Sdl.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Assets\AssetManager.cs" />
+    <Compile Include="Config\BackgroundConfig.cs" />
+    <Compile Include="Config\GameConfig.cs" />
+    <Compile Include="GamePlay\ScoreManager.cs" />
+    <Compile Include="GamePlay\Implementations\BlockyMode\BlockColors.cs" />
+    <Compile Include="GamePlay\Implementations\BlockyMode\BlockContainer.cs" />
+    <Compile Include="GamePlay\Implementations\BlockyMode\BlockGenerator.cs" />
+    <Compile Include="GamePlay\Implementations\BlockyMode\BlockLocations.cs" />
+    <Compile Include="GamePlay\Implementations\BlockyMode\BlockMode.cs" />
+    <Compile Include="GamePlay\Implementations\BlockyMode\BlockRuleSet.cs" />
+    <Compile Include="GamePlay\Implementations\BlockyMode\BlockShape.cs" />
+    <Compile Include="GamePlay\Implementations\PieMode\PieColors.cs" />
+    <Compile Include="GamePlay\Implementations\PieMode\PieContainer.cs" />
+    <Compile Include="GamePlay\Implementations\PieMode\PieGenerator.cs" />
+    <Compile Include="GamePlay\Implementations\PieMode\PieLocations.cs" />
+    <Compile Include="GamePlay\Implementations\PieMode\PieMode.cs" />
+    <Compile Include="GamePlay\Implementations\PieMode\PieRuleSet.cs" />
+    <Compile Include="GamePlay\Implementations\PieMode\PieShape.cs" />
+    <Compile Include="GamePlay\Modes\GameMode.cs" />
+    <Compile Include="GamePlay\Modes\IContainer.cs" />
+    <Compile Include="GamePlay\Modes\RuleSet.cs" />
+    <Compile Include="GamePlay\Modes\Shape.cs" />
+    <Compile Include="GamePlay\Modes\ShapeColors.cs" />
+    <Compile Include="GamePlay\Modes\ShapeContainer.cs" />
+    <Compile Include="GamePlay\Modes\ShapeGenerator.cs" />
+    <Compile Include="GamePlay\Modes\ShapeLocations.cs" />
+    <Compile Include="Graphics\GraphicsManager.cs" />
+    <Compile Include="Graphics\Drawing\BasicShapes.cs" />
+    <Compile Include="Graphics\Drawing\PrimitiveBatch.cs" />
+    <Compile Include="Graphics\Effects\Metaball.cs" />
+    <Compile Include="Input\Cursor.cs" />
+    <Compile Include="Input\InputState.cs" />
+    <Compile Include="Input\PlayerIndexEventArgs.cs" />
+    <Compile Include="Menu\MenuEntry.cs" />
+    <Compile Include="Platforms\GameFrameworks.cs" />
+    <Compile Include="Platforms\GraphicsAPI.cs" />
+    <Compile Include="Platforms\PlatformConfig.cs" />
+    <Compile Include="Platforms\PlatformHandler.cs" />
+    <Compile Include="Platforms\PlatformManager.cs" />
+    <Compile Include="Platforms\Platforms.cs" />
+    <Compile Include="Platforms\VersionInfo.cs" />
+    <Compile Include="Screens\GameScreen.cs" />
+    <Compile Include="Screens\ScreenManager.cs" />
+    <Compile Include="Screens\Implementations\AboutScreen.cs" />
+    <Compile Include="Screens\Implementations\BackgroundScreen.cs" />
+    <Compile Include="Screens\Implementations\GameplayScreen.cs" />
+    <Compile Include="Screens\Implementations\LoadingScreen.cs" />
+    <Compile Include="Screens\Implementations\MainMenuScreen.cs" />
+    <Compile Include="Screens\Implementations\MenuScreen.cs" />
+    <Compile Include="Screens\Implementations\MessageBoxScreen.cs" />
+    <Compile Include="Screens\Implementations\OptionsMenuScreen.cs" />
+    <Compile Include="Screens\Implementations\PauseMenuScreen.cs" />
+    <Compile Include="Utils\Debugging\DebugBar.cs" />
+    <Compile Include="Utils\Debugging\Graphs\DebugGraph.cs" />
+    <Compile Include="Utils\Debugging\Graphs\GraphManager.cs" />
+    <Compile Include="Utils\Debugging\Graphs\Implementations\FPSGraph.cs" />
+    <Compile Include="Utils\Debugging\Graphs\Implementations\MemGraph.cs" />
+    <Compile Include="Utils\Extensions\NumberExtensions.cs" />
+    <Compile Include="Utils\Extensions\StringBuilderExtensions.cs" />
+    <Compile Include="Utils\Extensions\Vector2Extensions.cs" />
+    <Compile Include="Utils\Services\ServiceHelper.cs" />
+    <Compile Include="FrenziedGame.cs" />
+    <Compile Include="Audio\AudioManager.cs" />
+    <Compile Include="Platforms\Linux\LinuxPlatform.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\" />
+    <Folder Include="Config\" />
+    <Folder Include="GamePlay\" />
+    <Folder Include="Graphics\" />
+    <Folder Include="Input\" />
+    <Folder Include="Menu\" />
+    <Folder Include="Platforms\" />
+    <Folder Include="Screens\" />
+    <Folder Include="Utils\" />
+    <Folder Include="Audio\" />
+    <Folder Include="Platforms\Linux\" />
+    <Folder Include="Content\" />
+    <Folder Include="Content\Fonts\" />
+    <Folder Include="Content\Music\" />
+    <Folder Include="Content\Sounds\" />
+    <Folder Include="Content\Textures\" />
+    <Folder Include="Content\Sounds\Blocks\" />
+    <Folder Include="Content\Sounds\Explode\" />
+    <Folder Include="Content\Sounds\Timeout\" />
+    <Folder Include="Content\Textures\Blocks\" />
+    <Folder Include="Content\Textures\Pies\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="..\..\bin\Debug\windows\xna\Content\Fonts\GameFont.xnb">
+      <Link>Content\Fonts\GameFont.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\windows\xna\Content\Fonts\GoodDog.xnb">
+      <Link>Content\Fonts\GoodDog.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\windows\xna\Content\Fonts\MenuFont.xnb">
+      <Link>Content\Fonts\MenuFont.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\windows\xna\Content\Fonts\Verdana.xnb">
+      <Link>Content\Fonts\Verdana.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\windows\xna\Content\Music\Dragon Soul.wma">
+      <Link>Content\Music\Dragon Soul.wma</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\windows\xna\Content\Music\Dragon Soul.xnb">
+      <Link>Content\Music\Dragon Soul.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\windows\xna\Content\Sounds\Blocks\0.xnb">
+      <Link>Content\Sounds\Blocks\0.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\windows\xna\Content\Sounds\Blocks\1.xnb">
+      <Link>Content\Sounds\Blocks\1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\windows\xna\Content\Sounds\Blocks\2.xnb">
+      <Link>Content\Sounds\Blocks\2.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\windows\xna\Content\Sounds\Blocks\3.xnb">
+      <Link>Content\Sounds\Blocks\3.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\windows\xna\Content\Sounds\Blocks\4.xnb">
+      <Link>Content\Sounds\Blocks\4.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\windows\xna\Content\Sounds\Explode\0.xnb">
+      <Link>Content\Sounds\Explode\0.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\windows\xna\Content\Sounds\Timeout\0.xnb">
+      <Link>Content\Sounds\Timeout\0.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\windows\xna\Content\Textures\Pies\BluePie.xnb">
+      <Link>Content\Textures\Pies\BluePie.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\windows\xna\Content\Textures\Pies\Chart.xnb">
+      <Link>Content\Textures\Pies\Chart.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\windows\xna\Content\Textures\Pies\GreenPie.xnb">
+      <Link>Content\Textures\Pies\GreenPie.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\windows\xna\Content\Textures\Pies\OrangePie.xnb">
+      <Link>Content\Textures\Pies\OrangePie.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\windows\xna\Content\Textures\Pies\PurplePie.xnb">
+      <Link>Content\Textures\Pies\PurplePie.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\windows\xna\Content\Textures\Blank.xnb">
+      <Link>Content\Textures\Blank.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\windows\xna\Content\Textures\BlockContainer.xnb">
+      <Link>Content\Textures\BlockContainer.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\windows\xna\Content\Textures\Gradient.xnb">
+      <Link>Content\Textures\Gradient.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\windows\xna\Content\Textures\cursor.xnb">
+      <Link>Content\Textures\cursor.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\windows\xna\Content\Textures\Blocks\BlockProgressBar.xnb">
+      <Link>Content\Textures\Blocks\BlockProgressBar.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\windows\xna\Content\Textures\Blocks\BlueBlock.xnb">
+      <Link>Content\Textures\Blocks\BlueBlock.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\windows\xna\Content\Textures\Blocks\GreenBlock.xnb">
+      <Link>Content\Textures\Blocks\GreenBlock.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\windows\xna\Content\Textures\Blocks\OrangeBlock.xnb">
+      <Link>Content\Textures\Blocks\OrangeBlock.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\windows\xna\Content\Textures\Blocks\PurpleBlock.xnb">
+      <Link>Content\Textures\Blocks\PurpleBlock.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+</Project>
