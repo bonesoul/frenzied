@@ -17,7 +17,7 @@ namespace Frenzied
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        static void Main()
+		static void Main()
         {
             PlatformManager.Startup();
         }

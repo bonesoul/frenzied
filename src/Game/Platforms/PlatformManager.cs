@@ -44,12 +44,18 @@ namespace Frenzied.Platforms
         private static void IdentifyPlatform()
         {
             // find base platform.
-            #if DESKTOP
+            #if WINDOWS && DESKTOP
                 Platform = Platforms.Windows;
                 PlatformHandler = new Windows.WindowsPlatform();
-            #elif METRO
+            #elif WINDOWS && METRO
                 Platform = Platforms.WindowsMetro;
                 PlatformHandler = new WindowsMetro.WindowsMetroPlatform();
+			#elif LINUX && DESKTOP
+				Platform = Platforms.Linux;
+				PlatformHandler = new Linux.LinuxPlatform();
+			#elif MACOS && DESKTOP
+				Platform=Platforms.MacOS;
+				PlatformHandler = new MacOS.MacOSPlatform();
             #elif WINPHONE7
                 Platform = Platforms.WindowsPhone7;
                 PlatformHandler = new WindowsPhone7.WindowsPhone7Platform();
@@ -59,6 +65,9 @@ namespace Frenzied.Platforms
             #elif ANDROID
                 Platform = Platforms.Android;
                 PlatformHandler = new Android.AndroidPlatform();
+			#elif IOS
+				Platform=Platforms.IOS;
+				PlatformHandler=new IOS.IOSPlatform();
             #endif
 
             if (PlatformHandler == null)
