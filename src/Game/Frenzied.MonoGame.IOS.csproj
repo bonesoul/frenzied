@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProductVersion>10.0.0</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{60C3B524-B483-4611-ABF9-730F9C45CC87}</ProjectGuid>
+    <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Frenzied</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>Frenzied</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG; MONOGAME; IOS;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <MtouchDebug>True</MtouchDebug>
+    <MtouchProfiling>True</MtouchProfiling>
+    <MtouchLink>None</MtouchLink>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <MtouchLink>None</MtouchLink>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>True</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>False</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchDebug>True</MtouchDebug>
+    <MtouchProfiling>True</MtouchProfiling>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <CodesignKey>iPhone Developer</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <BuildIpa>True</BuildIpa>
+    <ConsolePause>False</ConsolePause>
+    <CodesignProvision>Automatic:AdHoc</CodesignProvision>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
+    <DebugType>none</DebugType>
+    <Optimize>True</Optimize>
+    <OutputPath>bin\iPhone\AppStore</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>False</ConsolePause>
+    <CodesignKey>iPhone Distribution</CodesignKey>
+    <CodesignProvision>Automatic:AppStore</CodesignProvision>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="monotouch" />
+    <Reference Include="OpenTK" />
+    <Reference Include="Lidgren.Network">
+      <HintPath>..\..\dep\monogame\ios\Lidgren.Network.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>..\..\dep\monogame\ios\MonoGame.Framework.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FrenziedGame.cs" />
+    <Compile Include="Assets\AssetManager.cs" />
+    <Compile Include="Audio\AudioManager.cs" />
+    <Compile Include="Config\BackgroundConfig.cs" />
+    <Compile Include="Config\GameConfig.cs" />
+    <Compile Include="GamePlay\ScoreManager.cs" />
+    <Compile Include="GamePlay\Implementations\BlockyMode\BlockColors.cs" />
+    <Compile Include="GamePlay\Implementations\BlockyMode\BlockContainer.cs" />
+    <Compile Include="GamePlay\Implementations\BlockyMode\BlockGenerator.cs" />
+    <Compile Include="GamePlay\Implementations\BlockyMode\BlockLocations.cs" />
+    <Compile Include="GamePlay\Implementations\BlockyMode\BlockMode.cs" />
+    <Compile Include="GamePlay\Implementations\BlockyMode\BlockRuleSet.cs" />
+    <Compile Include="GamePlay\Implementations\BlockyMode\BlockShape.cs" />
+    <Compile Include="GamePlay\Implementations\PieMode\PieColors.cs" />
+    <Compile Include="GamePlay\Implementations\PieMode\PieContainer.cs" />
+    <Compile Include="GamePlay\Implementations\PieMode\PieGenerator.cs" />
+    <Compile Include="GamePlay\Implementations\PieMode\PieLocations.cs" />
+    <Compile Include="GamePlay\Implementations\PieMode\PieMode.cs" />
+    <Compile Include="GamePlay\Implementations\PieMode\PieRuleSet.cs" />
+    <Compile Include="GamePlay\Implementations\PieMode\PieShape.cs" />
+    <Compile Include="GamePlay\Modes\GameMode.cs" />
+    <Compile Include="GamePlay\Modes\IContainer.cs" />
+    <Compile Include="GamePlay\Modes\RuleSet.cs" />
+    <Compile Include="GamePlay\Modes\Shape.cs" />
+    <Compile Include="GamePlay\Modes\ShapeColors.cs" />
+    <Compile Include="GamePlay\Modes\ShapeContainer.cs" />
+    <Compile Include="GamePlay\Modes\ShapeGenerator.cs" />
+    <Compile Include="GamePlay\Modes\ShapeLocations.cs" />
+    <Compile Include="Graphics\GraphicsManager.cs" />
+    <Compile Include="Graphics\Drawing\BasicShapes.cs" />
+    <Compile Include="Graphics\Drawing\PrimitiveBatch.cs" />
+    <Compile Include="Graphics\Effects\Metaball.cs" />
+    <Compile Include="Input\Cursor.cs" />
+    <Compile Include="Input\InputState.cs" />
+    <Compile Include="Input\PlayerIndexEventArgs.cs" />
+    <Compile Include="Menu\MenuEntry.cs" />
+    <Compile Include="Platforms\GameFrameworks.cs" />
+    <Compile Include="Platforms\GraphicsAPI.cs" />
+    <Compile Include="Platforms\PlatformConfig.cs" />
+    <Compile Include="Platforms\PlatformHandler.cs" />
+    <Compile Include="Platforms\PlatformManager.cs" />
+    <Compile Include="Platforms\Platforms.cs" />
+    <Compile Include="Platforms\VersionInfo.cs" />
+    <Compile Include="Platforms\IOS\Main.cs" />
+    <Compile Include="Screens\GameScreen.cs" />
+    <Compile Include="Screens\ScreenManager.cs" />
+    <Compile Include="Screens\Implementations\AboutScreen.cs" />
+    <Compile Include="Screens\Implementations\BackgroundScreen.cs" />
+    <Compile Include="Screens\Implementations\GameplayScreen.cs" />
+    <Compile Include="Screens\Implementations\LoadingScreen.cs" />
+    <Compile Include="Screens\Implementations\MainMenuScreen.cs" />
+    <Compile Include="Screens\Implementations\MenuScreen.cs" />
+    <Compile Include="Screens\Implementations\MessageBoxScreen.cs" />
+    <Compile Include="Screens\Implementations\OptionsMenuScreen.cs" />
+    <Compile Include="Screens\Implementations\PauseMenuScreen.cs" />
+    <Compile Include="Utils\Debugging\DebugBar.cs" />
+    <Compile Include="Utils\Debugging\Graphs\DebugGraph.cs" />
+    <Compile Include="Utils\Debugging\Graphs\GraphManager.cs" />
+    <Compile Include="Utils\Debugging\Graphs\Implementations\FPSGraph.cs" />
+    <Compile Include="Utils\Debugging\Graphs\Implementations\MemGraph.cs" />
+    <Compile Include="Utils\Extensions\NumberExtensions.cs" />
+    <Compile Include="Utils\Extensions\StringBuilderExtensions.cs" />
+    <Compile Include="Utils\Extensions\Vector2Extensions.cs" />
+    <Compile Include="Utils\Services\ServiceHelper.cs" />
+    <Compile Include="Platforms\IOS\IOSPlatform.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="Info.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\" />
+  </ItemGroup>
+</Project>
