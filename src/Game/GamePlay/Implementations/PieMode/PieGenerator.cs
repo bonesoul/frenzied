@@ -20,9 +20,6 @@ namespace Frenzied.GamePlay.Implementations.PieMode
     {
         public static Vector2 Size = new Vector2(200, 200);
 
-        private bool _generatorStarted = false;
-        private TimeSpan _timeOutStart;
-
         // required services.       
         private IScoreManager _scoreManager;
         private IGameMode _gameMode;
@@ -64,20 +61,6 @@ namespace Frenzied.GamePlay.Implementations.PieMode
         {
             if (this.IsEmpty())
                 this.Generate();
-
-            if (!this._generatorStarted)
-            {
-                this._timeOutStart = gameTime.TotalGameTime;
-                this._generatorStarted = true;
-            }
-            else
-            {
-                if (gameTime.TotalGameTime.TotalMilliseconds - this._timeOutStart.TotalMilliseconds > this._gameMode.RuleSet.ShapePlacementTimeout)
-                {
-                    this._scoreManager.TimeOut();
-                    this._timeOutStart = gameTime.TotalGameTime;
-                }
-            }
         }
 
         public override void Generate()
@@ -130,16 +113,6 @@ namespace Frenzied.GamePlay.Implementations.PieMode
                                                         Color.White, MathHelper.ToRadians(this.CurrentShape.LocationIndex * 60f), new Vector2(48, 95),
                                                         1f, SpriteEffects.None, 0);
             }
-
-            // progressbar.
-            //var timeOutLeft = this._gameMode.RuleSet.ShapePlacementTimeout - (int)(gameTime.TotalGameTime.TotalMilliseconds - this._timeOutStart.TotalMilliseconds);
-            //timeOutLeft = (int)(timeOutLeft / 1000);
-            //timeOutLeft++;
-
-            //var width = (int)(31.25f * timeOutLeft);
-
-            //ScreenManager.Instance.SpriteBatch.Draw(this._progressBarTexture, new Rectangle(5, 200, width, 10), new Rectangle(0, 0, width, 10),
-            //                                        Color.White);
 
             ScreenManager.Instance.SpriteBatch.End();
 

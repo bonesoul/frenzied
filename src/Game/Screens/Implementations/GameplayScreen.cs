@@ -79,7 +79,7 @@ namespace Frenzied.Screens.Implementations
         /// Lets the game respond to player input. Unlike the Update method,
         /// this will only be called when the gameplay screen is active.
         /// </summary>
-        public override void HandleInput(InputState input)
+        public override void HandleInput(GameTime gameTime, InputState input)
         {
             if (input.IsPauseGame(ControllingPlayer))
             {
@@ -89,10 +89,10 @@ namespace Frenzied.Screens.Implementations
             if (input.CurrentMouseState.LeftButton != ButtonState.Pressed || input.LastMouseState.LeftButton != ButtonState.Released)
                 return;
 
-            this._gameMode.HandleClick(input.CurrentMouseState.X, input.CurrentMouseState.Y);
+            this._gameMode.HandleClick(gameTime, input.CurrentMouseState.X, input.CurrentMouseState.Y);
         }
 
-        public override void HandleGestures(InputState input)
+        public override void HandleGestures(GameTime gameTime, InputState input)
         {
             if (input.Gestures.Count == 0)
                 return;
@@ -100,7 +100,7 @@ namespace Frenzied.Screens.Implementations
             foreach (var gesture in input.Gestures)
             {
                 if (gesture.GestureType == GestureType.Tap)
-                    this._gameMode.HandleClick((int)gesture.Position.X, (int)gesture.Position.Y);
+                    this._gameMode.HandleClick(gameTime, (int)gesture.Position.X, (int)gesture.Position.Y);
             }
         }
 
