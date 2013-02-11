@@ -108,6 +108,7 @@
     <Compile Include="Graphics\Drawing\PrimitiveBatch.cs" />
     <Compile Include="Graphics\Effects\Metaball.cs" />
     <Compile Include="Graphics\Effects\NonRealistingRendering.cs" />
+    <Compile Include="Graphics\Effects\PostProcessing.cs" />
     <Compile Include="Graphics\GraphicsManager.cs" />
     <Compile Include="Input\Cursor.cs" />
     <Compile Include="Platforms\GameFrameworks.cs" />

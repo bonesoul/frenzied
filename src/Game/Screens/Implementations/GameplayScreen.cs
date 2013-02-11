@@ -10,9 +10,11 @@ using System.Collections.Generic;
 using Frenzied.Assets;
 using Frenzied.GamePlay;
 using Frenzied.GamePlay.Modes;
+using Frenzied.Graphics.Effects;
 using Frenzied.Input;
 using Frenzied.Utils.Services;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 
@@ -128,6 +130,11 @@ namespace Frenzied.Screens.Implementations
         /// </summary>
         public override void Draw(GameTime gameTime)
         {
+            if (PostProcessing.Settings.EnableSketch)
+                FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(PostProcessing.sceneRenderTarget);
+
+            FrenziedGame.Instance.GraphicsDevice.Clear(Color.CornflowerBlue);
+
             this._gameMode.Draw(gameTime);
 
             base.Draw(gameTime);

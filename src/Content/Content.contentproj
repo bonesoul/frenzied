@@ -195,11 +195,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Effects\CartoonEffect.Fx">
-      <Name>CartoonEffect</Name>
-      <Importer>EffectImporter</Importer>
-      <Processor>EffectProcessor</Processor>
-    </Compile>
     <Compile Include="Effects\PostprocessEffect.Fx">
       <Name>PostprocessEffect</Name>
       <Importer>EffectImporter</Importer>
