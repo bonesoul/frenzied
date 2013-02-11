@@ -103,7 +103,9 @@ namespace Frenzied.GamePlay.Implementations.PieMode
             if (!this.IsFull())
                 return;
 
-            this._scoreManager.AddScore(this._gameMode.RuleSet.CalculateExplosionScore(this));
+            bool isPerfect;
+            var score = this._gameMode.RuleSet.CalculateExplosionScore(this, out isPerfect);
+            this._scoreManager.AddScore(score, isPerfect);
 
             this[PieLocations.TopLeft] = Shape.Empty;
             this[PieLocations.TopMiddle] = Shape.Empty;

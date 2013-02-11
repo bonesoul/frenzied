@@ -31,7 +31,7 @@ namespace Frenzied.Screens.Implementations
             gradientTexture = content.Load<Texture2D>(@"Textures\Gradient");
         }
 
-        public override void HandleInput(InputState input)
+        public override void HandleInput(GameTime gameTime, InputState input)
         {
             PlayerIndex playerIndex;
 

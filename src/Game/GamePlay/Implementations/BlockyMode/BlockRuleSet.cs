@@ -6,7 +6,6 @@
  */
 
 using System.Collections.Generic;
-using Frenzied.GamePlay.Implementations.PieMode;
 using Frenzied.GamePlay.Modes;
 
 namespace Frenzied.GamePlay.Implementations.BlockyMode
@@ -15,6 +14,7 @@ namespace Frenzied.GamePlay.Implementations.BlockyMode
     {
         public BlockRuleSet()
         {
+            this.SubShapeCount = 4;
             this.ShapePlacementTimeout = 5000;
             this.StartingLifes = 5;
             this.BonusLifeOnPerfectExplosion = 1;

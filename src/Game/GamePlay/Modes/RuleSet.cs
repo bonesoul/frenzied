@@ -18,6 +18,11 @@ namespace Frenzied.GamePlay.Modes
     public class RuleSet
     {
         /// <summary>
+        /// Number of subshapes to construct a complete container.
+        /// </summary>
+        public int SubShapeCount { get; protected set; }
+
+        /// <summary>
         /// Timeout value in miliseconds for placing the last generated shape.
         /// </summary>
         public int ShapePlacementTimeout { get; protected set; }
@@ -50,6 +55,7 @@ namespace Frenzied.GamePlay.Modes
         public RuleSet()
         {
             // set the defaults for ruleset.
+            this.SubShapeCount = 4;
             this.StartingLifes = 5;
             this.BonusLifeOnPerfectExplosion = 1;
             this.ShapePlacementTimeout = 5000;
@@ -61,7 +67,7 @@ namespace Frenzied.GamePlay.Modes
         /// Calculates the score on a container explosion.
         /// </summary>
         /// <param name="container"></param>
-        public  int CalculateExplosionScore(ShapeContainer container)
+        public  int CalculateExplosionScore(ShapeContainer container, out bool isPerfect)
         {
             // call associated ShapeColor type's color value's enumerator.
             #if !METRO
@@ -85,6 +91,8 @@ namespace Frenzied.GamePlay.Modes
                 if (pair.Value > colorUsages[maximumUsedColorsIndex])
                     maximumUsedColorsIndex = pair.Key;
             }
+
+            isPerfect = colorUsages[maximumUsedColorsIndex] == this.SubShapeCount;
 
             return this.ScoreDictionary[colorUsages[maximumUsedColorsIndex]];
         }
