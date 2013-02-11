@@ -6,6 +6,8 @@
  */
 
 using System.Collections.Generic;
+using Frenzied.Assets;
+using Frenzied.Utils.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -46,6 +48,9 @@ namespace Frenzied.GamePlay.Modes
         /// </summary>
         public RuleSet RuleSet { get; protected set; }
 
+        // required services.       
+        private IScoreManager _scoreManager;
+
         /// <summary>
         /// Creates a new GameMode instance.
         /// </summary>
@@ -60,6 +65,9 @@ namespace Frenzied.GamePlay.Modes
         /// </summary>
         public virtual void Initialize()
         {
+            // import required services.
+            this._scoreManager = ServiceHelper.GetService<IScoreManager>(typeof(IScoreManager));
+
             // initialize generator.
             this.ShapeGenerator.Initialize();
 
@@ -90,7 +98,24 @@ namespace Frenzied.GamePlay.Modes
         /// </summary>
         /// <param name="X">The x position of the cursor.</param>
         /// <param name="Y">The y position of the cursor.</param>
-        public virtual void HandleClick(int X, int Y) { }
+        public void HandleClick(GameTime gameTime, int X, int Y)
+        {
+            if (this.ShapeGenerator.IsEmpty())
+                return;
+
+            foreach (var container in this.ShapeContainers)
+            {
+                if (!container.Bounds.Contains(X, Y))
+                    continue;
+
+                if (!container.IsEmpty(this.ShapeGenerator.CurrentShape.LocationIndex))
+                    continue;
+
+                container[this.ShapeGenerator.CurrentShape.LocationIndex] = this.ShapeGenerator.CurrentShape;
+                this._scoreManager.MoveCommitted(gameTime);
+                break;
+            }
+        }
 
         public virtual Texture2D GetShapeTexture(Shape shape)
         {

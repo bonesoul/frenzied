@@ -96,7 +96,9 @@ namespace Frenzied.GamePlay.Implementations.BlockyMode
             if (!this.IsFull())
                 return;
 
-            this._scoreManager.AddScore(this._gameMode.RuleSet.CalculateExplosionScore(this));
+            bool isPerfect;
+            var score = this._gameMode.RuleSet.CalculateExplosionScore(this, out isPerfect);
+            this._scoreManager.AddScore(score, isPerfect);
 
             this[BlockLocations.TopLeft] = Shape.Empty;
             this[BlockLocations.TopRight] = Shape.Empty;

@@ -57,23 +57,5 @@ namespace Frenzied.GamePlay.Implementations.PieMode
                     return null;
             }
         }
-
-        public override void HandleClick(int X, int Y)
-        {
-            if (this.ShapeGenerator.IsEmpty())
-                return;
-
-            foreach (var container in this.ShapeContainers)
-            {
-                if (!container.Bounds.Contains(X, Y))
-                    continue;
-
-                if (!container.IsEmpty(this.ShapeGenerator.CurrentShape.LocationIndex))
-                    continue;
-
-                container[this.ShapeGenerator.CurrentShape.LocationIndex] = this.ShapeGenerator.CurrentShape;
-                break;
-            }
-        }
     }
 }

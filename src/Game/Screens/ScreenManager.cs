@@ -171,10 +171,10 @@ namespace Frenzied.Screens
                     // give it a chance to handle input.
                     if (!otherScreenHasFocus)
                     {
-                        screen.HandleInput(input);
+                        screen.HandleInput(gameTime, input);
 
                         if (input.Gestures.Count > 0)
-                            screen.HandleGestures(input);
+                            screen.HandleGestures(gameTime, input);
 
                         otherScreenHasFocus = true;
                     }

@@ -14,6 +14,7 @@ namespace Frenzied.GamePlay.Implementations.PieMode
     {
         public PieRuleSet()
         {
+            this.SubShapeCount = 6;
             this.ShapePlacementTimeout = 5000;
             this.StartingLifes = 5;
             this.BonusLifeOnPerfectExplosion = 1;

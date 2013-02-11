@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 
 namespace Frenzied.Platforms.WindowsPhone7
 {
-    public class WindowsPhone7Platform : Platform
+    public class WindowsPhone7Platform : PlatformHandler
     {
         public WindowsPhone7Platform()
         {
