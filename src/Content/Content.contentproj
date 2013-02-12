@@ -195,6 +195,18 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Effects\PostprocessEffect.Fx">
+      <Name>PostprocessEffect</Name>
+      <Importer>EffectImporter</Importer>
+      <Processor>EffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Effects\SketchTexture.bmp">
+      <Name>SketchTexture</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+    <ItemGroup>
     <Compile Include="Textures\Menu\Credits.png">
       <Name>Credits</Name>
       <Importer>TextureImporter</Importer>
