@@ -81,29 +81,56 @@
     <Compile Include="..\..\FrenziedGame.cs">
       <Link>FrenziedGame.cs</Link>
     </Compile>
-    <Compile Include="..\..\GamePlay\Implementations\BlockColors.cs">
-      <Link>GamePlay\Implementations\BlockColors.cs</Link>
+    <Compile Include="..\..\GamePlay\Implementations\BlockyMode\BlockColors.cs">
+      <Link>GamePlay\Implementaions\BlockyMode\BlockColors.cs</Link>
     </Compile>
-    <Compile Include="..\..\GamePlay\Implementations\BlockLocations.cs">
-      <Link>GamePlay\Implementations\BlockLocations.cs</Link>
+    <Compile Include="..\..\GamePlay\Implementations\BlockyMode\BlockContainer.cs">
+      <Link>GamePlay\Implementaions\BlockyMode\BlockContainer.cs</Link>
     </Compile>
-    <Compile Include="..\..\GamePlay\Implementations\BlockShape.cs">
-      <Link>GamePlay\Implementations\BlockShape.cs</Link>
+    <Compile Include="..\..\GamePlay\Implementations\BlockyMode\BlockGenerator.cs">
+      <Link>GamePlay\Implementaions\BlockyMode\BlockGenerator.cs</Link>
     </Compile>
-    <Compile Include="..\..\GamePlay\Implementations\BlockyContainer.cs">
-      <Link>GamePlay\Implementations\BlockyContainer.cs</Link>
+    <Compile Include="..\..\GamePlay\Implementations\BlockyMode\BlockLocations.cs">
+      <Link>GamePlay\Implementaions\BlockyMode\BlockLocations.cs</Link>
     </Compile>
-    <Compile Include="..\..\GamePlay\Implementations\BlockyGenerator.cs">
-      <Link>GamePlay\Implementations\BlockyGenerator.cs</Link>
+    <Compile Include="..\..\GamePlay\Implementations\BlockyMode\BlockMode.cs">
+      <Link>GamePlay\Implementaions\BlockyMode\BlockMode.cs</Link>
     </Compile>
-    <Compile Include="..\..\GamePlay\Implementations\BlockyMode.cs">
-      <Link>GamePlay\Implementations\BlockyMode.cs</Link>
+    <Compile Include="..\..\GamePlay\Implementations\BlockyMode\BlockRuleSet.cs">
+      <Link>GamePlay\Implementaions\BlockyMode\BlockRuleSet.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GamePlay\Implementations\BlockyMode\BlockShape.cs">
+      <Link>GamePlay\Implementaions\BlockyMode\BlockShape.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GamePlay\Implementations\PieMode\PieColors.cs">
+      <Link>GamePlay\Implementaions\PieMode\PieColors.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GamePlay\Implementations\PieMode\PieContainer.cs">
+      <Link>GamePlay\Implementaions\PieMode\PieContainer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GamePlay\Implementations\PieMode\PieGenerator.cs">
+      <Link>GamePlay\Implementaions\PieMode\PieGenerator.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GamePlay\Implementations\PieMode\PieLocations.cs">
+      <Link>GamePlay\Implementaions\PieMode\PieLocations.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GamePlay\Implementations\PieMode\PieMode.cs">
+      <Link>GamePlay\Implementaions\PieMode\PieMode.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GamePlay\Implementations\PieMode\PieRuleSet.cs">
+      <Link>GamePlay\Implementaions\PieMode\PieRuleSet.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GamePlay\Implementations\PieMode\PieShape.cs">
+      <Link>GamePlay\Implementaions\PieMode\PieShape.cs</Link>
     </Compile>
     <Compile Include="..\..\GamePlay\Modes\GameMode.cs">
       <Link>GamePlay\Modes\GameMode.cs</Link>
     </Compile>
     <Compile Include="..\..\GamePlay\Modes\IContainer.cs">
       <Link>GamePlay\Modes\IContainer.cs</Link>
+    </Compile>
+    <Compile Include="..\..\GamePlay\Modes\RuleSet.cs">
+      <Link>GamePlay\Modes\RuleSet.cs</Link>
     </Compile>
     <Compile Include="..\..\GamePlay\Modes\Shape.cs">
       <Link>GamePlay\Modes\Shape.cs</Link>
@@ -207,17 +234,26 @@
     <Compile Include="..\..\Utils\Extensions\Vector2Extensions.cs">
       <Link>Utils\Extensions\Vector2Extensions.cs</Link>
     </Compile>
-    <Compile Include="..\Platform.cs">
-      <Link>Platforms\Platform.cs</Link>
+    <Compile Include="..\..\Utils\Services\ServiceHelper.cs">
+      <Link>Utils\Services\ServiceHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\GameFrameworks.cs">
+      <Link>Platforms\GameFrameworks.cs</Link>
+    </Compile>
+    <Compile Include="..\GraphicsAPI.cs">
+      <Link>Platforms\GraphicsAPI.cs</Link>
     </Compile>
     <Compile Include="..\PlatformConfig.cs">
       <Link>Platforms\PlatformConfig.cs</Link>
     </Compile>
-    <Compile Include="..\PlatformInfo.cs">
-      <Link>Platforms\PlatformInfo.cs</Link>
+    <Compile Include="..\PlatformHandler.cs">
+      <Link>Platforms\PlatformHandler.cs</Link>
     </Compile>
     <Compile Include="..\PlatformManager.cs">
       <Link>Platforms\PlatformManager.cs</Link>
+    </Compile>
+    <Compile Include="..\Platforms.cs">
+      <Link>Platforms\Platforms.cs</Link>
     </Compile>
     <Compile Include="..\VersionInfo.cs">
       <Link>Platforms\VersionInfo.cs</Link>
