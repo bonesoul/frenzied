@@ -121,11 +121,6 @@ namespace Frenzied.Screens.Implementations
         /// </summary>
         public override void Draw(GameTime gameTime)
         {
-            if (PostProcessing.Settings.EnableSketch)
-                FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(PostProcessing.sceneRenderTarget);
-
-            FrenziedGame.Instance.GraphicsDevice.Clear(Color.CornflowerBlue);
-
             this._gameMode.Draw(gameTime);
 
             base.Draw(gameTime);

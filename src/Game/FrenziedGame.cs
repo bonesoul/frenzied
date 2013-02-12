@@ -105,7 +105,7 @@ namespace Frenzied
             this._screenManager.AddScreen(new MainMenuScreen2(), null);
             //this._screenManager.AddScreen(new GameplayScreen(new PieMode()), null);
 
-            this.Components.Add(new PostProcessing(this));
+            //this.Components.Add(new PostProcessing(this));
 
             // add debug components
             this.Components.Add(new DebugBar(this));
