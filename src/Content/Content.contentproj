@@ -35,11 +35,6 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Textures\BlockContainer.png">
-      <Name>BlockContainer</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
     <Compile Include="Textures\Blocks\GreenBlock.png">
       <Name>GreenBlock</Name>
       <Importer>TextureImporter</Importer>
@@ -157,13 +152,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Textures\Gradient.png">
-      <Name>Gradient</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Textures\Pies\Chart.png">
       <Name>Chart</Name>
       <Importer>TextureImporter</Importer>
@@ -206,7 +194,7 @@
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
-    <ItemGroup>
+  <ItemGroup>
     <Compile Include="Textures\Menu\Credits.png">
       <Name>Credits</Name>
       <Importer>TextureImporter</Importer>
@@ -229,6 +217,20 @@
     </Compile>
     <Compile Include="Textures\Menu\Tutorial.png">
       <Name>Tutorial</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Blocks\BlockContainer.png">
+      <Name>BlockContainer</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Menu\Background.jpg">
+      <Name>Background</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

@@ -54,6 +54,8 @@ namespace Frenzied.Assets
         public Texture2D MenuQuickPlay { get; private set; }
         public Texture2D MenuTutorial { get; private set; }
 
+        public Texture2D MenuBackground { get; private set; }
+
         public SoundsEffects Sounds { get; private set; }
 
         public AssetManager(Game game)
@@ -74,7 +76,7 @@ namespace Frenzied.Assets
         public void LoadContent()
         {
             this.BlockTextures = new Dictionary<Color, Texture2D>();
-            this.BlockContainerTexture = Game.Content.Load<Texture2D>(@"Textures/BlockContainer");
+            this.BlockContainerTexture = Game.Content.Load<Texture2D>(@"Textures/Blocks/BlockContainer");
             this.BlockTextures[Color.Orange] = this.Game.Content.Load<Texture2D>(@"Textures/Blocks/OrangeBlock");
             this.BlockTextures[Color.Purple] = this.Game.Content.Load<Texture2D>(@"Textures/Blocks/PurpleBlock");
             this.BlockTextures[Color.Green] = this.Game.Content.Load<Texture2D>(@"Textures/Blocks/GreenBlock");
@@ -88,6 +90,7 @@ namespace Frenzied.Assets
             this.PieTextures[Color.Blue] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/BluePie");
 
             // menu
+            this.MenuBackground = this.Game.Content.Load<Texture2D>(@"Textures/Menu/Background");
             this.MenuCredits = this.Game.Content.Load<Texture2D>(@"Textures/Menu/Credits");
             this.MenuCustomMode = this.Game.Content.Load<Texture2D>(@"Textures/Menu/CustomMode");
             this.MenuOptions = this.Game.Content.Load<Texture2D>(@"Textures/Menu/Options");

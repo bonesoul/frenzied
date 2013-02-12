@@ -17,21 +17,28 @@ namespace Frenzied.Screens.Implementations
     {
         private SpriteBatch _spriteBatch;
 
-        Random random = new Random();
+        readonly Random _random = new Random();
 
         // Effect used to apply the edge detection and pencil sketch postprocessing.
-        Effect postprocessEffect;
+        Effect _postprocessEffect;
 
         // Overlay texture containing the pencil sketch stroke pattern.
-        Texture2D sketchTexture;
+        Texture2D _sketchTexture;
 
         // Randomly offsets the sketch pattern to create a hand-drawn animation effect.
-        Vector2 sketchJitter;
-        TimeSpan timeToNextJitter;
+        Vector2 _sketchJitter;
+        TimeSpan _timeToNextJitter;
+
+        private const float SketchThreshold = 0.2f;
+        private const float SketchBrightness = 0.35f;
+        private const float SketchJitterSpeed = 0.09f;
 
         // Custom rendertargets.
         RenderTarget2D sceneRenderTarget;
 
+        private float _quickPlayButtonScale = 1f;
+
+        private Texture2D _menuBackground;
         private Texture2D _menuTextureCredits;
         private Texture2D _menuTextureCustomMode;
         private Texture2D _menuTextureOptions;
@@ -42,8 +49,8 @@ namespace Frenzied.Screens.Implementations
         {
             this._spriteBatch = new SpriteBatch(FrenziedGame.Instance.GraphicsDevice);
 
-            postprocessEffect = FrenziedGame.Instance.Content.Load<Effect>(@"Effects\PostprocessEffect");
-            sketchTexture = FrenziedGame.Instance.Content.Load<Texture2D>(@"Effects\SketchTexture");
+            _postprocessEffect = FrenziedGame.Instance.Content.Load<Effect>(@"Effects\PostprocessEffect");
+            _sketchTexture = FrenziedGame.Instance.Content.Load<Texture2D>(@"Effects\SketchTexture");
 
             // Create two custom rendertargets.
             PresentationParameters pp = FrenziedGame.Instance.GraphicsDevice.PresentationParameters;
@@ -52,6 +59,7 @@ namespace Frenzied.Screens.Implementations
                                                    pp.BackBufferWidth, pp.BackBufferHeight, false,
                                                    pp.BackBufferFormat, pp.DepthStencilFormat);
 
+            this._menuBackground = AssetManager.Instance.MenuBackground;
             this._menuTextureCredits = AssetManager.Instance.MenuCredits;
             this._menuTextureCustomMode = AssetManager.Instance.MenuCustomMode;
             this._menuTextureOptions = AssetManager.Instance.MenuOptions;
@@ -64,46 +72,46 @@ namespace Frenzied.Screens.Implementations
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
             // Update the sketch overlay texture jitter animation.
-            if (SketchSettings.Settings.SketchJitterSpeed > 0)
+            if (SketchJitterSpeed > 0)
             {
-                timeToNextJitter -= gameTime.ElapsedGameTime;
+                _timeToNextJitter -= gameTime.ElapsedGameTime;
 
-                if (timeToNextJitter <= TimeSpan.Zero)
+                if (_timeToNextJitter <= TimeSpan.Zero)
                 {
-                    sketchJitter.X = (float)random.NextDouble();
-                    sketchJitter.Y = (float)random.NextDouble();
+                    _sketchJitter.X = (float)_random.NextDouble();
+                    _sketchJitter.Y = (float)_random.NextDouble();
 
-                    timeToNextJitter += TimeSpan.FromSeconds(SketchSettings.Settings.SketchJitterSpeed);
+                    _timeToNextJitter += TimeSpan.FromSeconds(SketchJitterSpeed);
                 }
             }
+
+            // Pulsate the size of the selected menu entry.
+            double time = gameTime.TotalGameTime.TotalSeconds;
+            float pulsate = (float)Math.Sin(time * 6) + 1;
+            _quickPlayButtonScale = 1 + pulsate * 0.05f;
 
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
         }
 
         public override void Draw(GameTime gameTime)
         {
-            //FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(sceneRenderTarget);
-
-            FrenziedGame.Instance.GraphicsDevice.Clear(new Color(51, 51, 51));
-
-            // Pulsate the size of the selected menu entry.
-            double time = gameTime.TotalGameTime.TotalSeconds;
-
-            float pulsate = (float)Math.Sin(time * 6) + 1;
-
-            float scale = 1 + pulsate*0.05f;
+            FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(sceneRenderTarget);
+            //FrenziedGame.Instance.GraphicsDevice.Clear(new Color(51, 51, 51));
 
             this._spriteBatch.Begin();
-            this._spriteBatch.Draw(this._menuTextureQuickPlay, new Vector2(100, 100), null, Color.White, 0f, new Vector2(0, 0), scale, SpriteEffects.None, 0);
+            this._spriteBatch.Draw(this._menuBackground, new Vector2(0, 0), Color.White);
+            this._spriteBatch.End();
+
+            FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(null);
+            ApplyPostprocess();
+
+            this._spriteBatch.Begin();
+            this._spriteBatch.Draw(this._menuTextureQuickPlay, new Vector2(100, 100), null, Color.White, 0f, new Vector2(0, 0), _quickPlayButtonScale, SpriteEffects.None, 0);
             this._spriteBatch.Draw(this._menuTextureCustomMode, new Vector2(100, 175), Color.White);
             this._spriteBatch.Draw(this._menuTextureTutorial, new Vector2(100, 250), Color.White);
             this._spriteBatch.Draw(this._menuTextureOptions, new Vector2(100, 325), Color.White);
             this._spriteBatch.Draw(this._menuTextureCredits, new Vector2(100, 400), Color.White);
             this._spriteBatch.End();
-
-            //FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(null);
-
-            //ApplyPostprocess();
 
             base.Draw(gameTime);
         }
@@ -113,23 +121,22 @@ namespace Frenzied.Screens.Implementations
         /// </summary>
         void ApplyPostprocess()
         {
-            EffectParameterCollection parameters = postprocessEffect.Parameters;
+            EffectParameterCollection parameters = _postprocessEffect.Parameters;
             string effectTechniqueName;
 
             // Set effect parameters controlling the pencil sketch effect.
-            parameters["SketchThreshold"].SetValue(SketchSettings.Settings.SketchThreshold);
-            parameters["SketchBrightness"].SetValue(SketchSettings.Settings.SketchBrightness);
-                parameters["SketchJitter"].SetValue(sketchJitter);
-                parameters["SketchTexture"].SetValue(sketchTexture);
-
+            parameters["SketchThreshold"].SetValue(SketchThreshold);
+            parameters["SketchBrightness"].SetValue(SketchBrightness);
+            parameters["SketchJitter"].SetValue(_sketchJitter);
+            parameters["SketchTexture"].SetValue(_sketchTexture);
 
             effectTechniqueName = "ColorSketch";
 
             // Activate the appropriate effect technique.
-            postprocessEffect.CurrentTechnique = postprocessEffect.Techniques[effectTechniqueName];
+            _postprocessEffect.CurrentTechnique = _postprocessEffect.Techniques[effectTechniqueName];
 
             // Draw a fullscreen sprite to apply the postprocessing effect.
-            _spriteBatch.Begin(0, BlendState.AlphaBlend, null, null, null, postprocessEffect);
+            _spriteBatch.Begin(0, BlendState.AlphaBlend, null, null, null, _postprocessEffect);
             _spriteBatch.Draw(sceneRenderTarget, Vector2.Zero, Color.White);
             _spriteBatch.End();
         }
