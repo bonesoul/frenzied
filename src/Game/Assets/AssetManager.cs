@@ -23,6 +23,14 @@ namespace Frenzied.Assets
         SpriteFont Verdana { get; }
         SpriteFont GoodDog { get; }
 
+        Texture2D MenuCredits { get; }
+        Texture2D MenuCustomMode { get; }
+        Texture2D MenuOptions { get; }
+        Texture2D MenuQuickPlay { get; }
+        Texture2D MenuTutorial { get; }
+
+        Texture2D MenuBackground { get; }
+
         AssetManager.SoundsEffects Sounds { get; }
     }
 
@@ -42,6 +50,13 @@ namespace Frenzied.Assets
         public Texture2D BlockProgressBar { get; private set; }
         public SpriteFont Verdana { get; private set; }
         public SpriteFont GoodDog { get; private set; }
+        public Texture2D MenuCredits { get; private set; }
+        public Texture2D MenuCustomMode { get; private set; }
+        public Texture2D MenuOptions { get; private set; }
+        public Texture2D MenuQuickPlay { get; private set; }
+        public Texture2D MenuTutorial { get; private set; }
+
+        public Texture2D MenuBackground { get; private set; }
 
         public SoundsEffects Sounds { get; private set; }
 
@@ -63,18 +78,27 @@ namespace Frenzied.Assets
         public void LoadContent()
         {
             this.BlockTextures = new Dictionary<Color, Texture2D>();
-            this.BlockContainerTexture = Game.Content.Load<Texture2D>(@"Textures/BlockContainer");
+            this.BlockContainerTexture = Game.Content.Load<Texture2D>(@"Textures/Blocks/BlockContainer");
             this.BlockTextures[Color.Orange] = this.Game.Content.Load<Texture2D>(@"Textures/Blocks/OrangeBlock");
             this.BlockTextures[Color.Purple] = this.Game.Content.Load<Texture2D>(@"Textures/Blocks/PurpleBlock");
             this.BlockTextures[Color.Green] = this.Game.Content.Load<Texture2D>(@"Textures/Blocks/GreenBlock");
             this.BlockTextures[Color.Blue] = this.Game.Content.Load<Texture2D>(@"Textures/Blocks/BlueBlock");
 
             this.PieTextures = new Dictionary<Color, Texture2D>();
-            this.PieContainerTexture = Game.Content.Load<Texture2D>(@"Textures/Pies/Chart");
-            this.PieTextures[Color.Orange] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/OrangePie");
-            this.PieTextures[Color.Purple] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/PurplePie");
-            this.PieTextures[Color.Green] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/GreenPie");
-            this.PieTextures[Color.Blue] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/BluePie");
+            this.PieContainerTexture = Game.Content.Load<Texture2D>(@"Textures/Pies/Container");
+            this.PieTextures[Color.Orange] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/Slice");
+            this.PieTextures[Color.Purple] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/Slice");
+            this.PieTextures[Color.Green] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/Slice");
+            this.PieTextures[Color.Blue] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/Slice");
+
+            // menu
+            this.MenuBackground = this.Game.Content.Load<Texture2D>(@"Textures/Menu/Background");
+
+            this.MenuCredits = this.Game.Content.Load<Texture2D>(@"Textures/Menu/Credits");
+            this.MenuCustomMode = this.Game.Content.Load<Texture2D>(@"Textures/Menu/CustomMode");
+            this.MenuOptions = this.Game.Content.Load<Texture2D>(@"Textures/Menu/Options");
+            this.MenuQuickPlay = this.Game.Content.Load<Texture2D>(@"Textures/Menu/QuickPlay");
+            this.MenuTutorial = this.Game.Content.Load<Texture2D>(@"Textures/Menu/Tutorial");
 
             this.BlockProgressBar = this.Game.Content.Load<Texture2D>(@"Textures/Blocks/BlockProgressBar");
 
