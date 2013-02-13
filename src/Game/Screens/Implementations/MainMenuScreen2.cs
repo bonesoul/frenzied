@@ -99,7 +99,10 @@ namespace Frenzied.Screens.Implementations
             //FrenziedGame.Instance.GraphicsDevice.Clear(new Color(51, 51, 51));
 
             this._spriteBatch.Begin();
-            this._spriteBatch.Draw(this._menuBackground, new Vector2(0, 0), Color.White);
+
+            this._spriteBatch.Draw(this._menuBackground,
+                                   new Vector2(0,0),  Color.White);
+ 
             this._spriteBatch.End();
 
             FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(null);
@@ -119,7 +122,7 @@ namespace Frenzied.Screens.Implementations
         /// <summary>
         /// Helper applies the edge detection and pencil sketch postprocess effect.
         /// </summary>
-        void ApplyPostprocess()
+        private void ApplyPostprocess()
         {
             EffectParameterCollection parameters = _postprocessEffect.Parameters;
             string effectTechniqueName;
