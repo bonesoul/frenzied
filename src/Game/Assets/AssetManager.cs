@@ -29,6 +29,8 @@ namespace Frenzied.Assets
         Texture2D MenuQuickPlay { get; }
         Texture2D MenuTutorial { get; }
 
+        Texture2D MenuBackground { get; }
+
         AssetManager.SoundsEffects Sounds { get; }
     }
 
@@ -91,6 +93,7 @@ namespace Frenzied.Assets
 
             // menu
             this.MenuBackground = this.Game.Content.Load<Texture2D>(@"Textures/Menu/Background");
+
             this.MenuCredits = this.Game.Content.Load<Texture2D>(@"Textures/Menu/Credits");
             this.MenuCustomMode = this.Game.Content.Load<Texture2D>(@"Textures/Menu/CustomMode");
             this.MenuOptions = this.Game.Content.Load<Texture2D>(@"Textures/Menu/Options");

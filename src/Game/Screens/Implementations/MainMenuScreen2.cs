@@ -39,6 +39,7 @@ namespace Frenzied.Screens.Implementations
         private float _quickPlayButtonScale = 1f;
 
         private Texture2D _menuBackground;
+
         private Texture2D _menuTextureCredits;
         private Texture2D _menuTextureCustomMode;
         private Texture2D _menuTextureOptions;
@@ -60,6 +61,7 @@ namespace Frenzied.Screens.Implementations
                                                    pp.BackBufferFormat, pp.DepthStencilFormat);
 
             this._menuBackground = AssetManager.Instance.MenuBackground;
+
             this._menuTextureCredits = AssetManager.Instance.MenuCredits;
             this._menuTextureCustomMode = AssetManager.Instance.MenuCustomMode;
             this._menuTextureOptions = AssetManager.Instance.MenuOptions;
@@ -98,11 +100,17 @@ namespace Frenzied.Screens.Implementations
             FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(sceneRenderTarget);
             //FrenziedGame.Instance.GraphicsDevice.Clear(new Color(51, 51, 51));
 
-            this._spriteBatch.Begin();
+            _spriteBatch.Begin(SpriteSortMode.BackToFront,
+                               BlendState.AlphaBlend,
+                               SamplerState.PointWrap,null,null,null);
 
-            this._spriteBatch.Draw(this._menuBackground,
-                                   new Vector2(0,0),  Color.White);
- 
+            var dest = new Rectangle(0, 0, FrenziedGame.Instance.GraphicsDevice.PresentationParameters.BackBufferWidth, FrenziedGame.Instance.GraphicsDevice.PresentationParameters.BackBufferHeight);
+
+
+            this._spriteBatch.Draw(this._menuBackground, new Vector2(0, 0), dest, Color.White);
+
+            
+
             this._spriteBatch.End();
 
             FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(null);
