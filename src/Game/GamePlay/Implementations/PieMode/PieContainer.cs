@@ -18,7 +18,7 @@ namespace Frenzied.GamePlay.Implementations.PieMode
 {
     public class PieContainer : ShapeContainer
     {
-        public static Vector2 Size = new Vector2(210, 210);
+        public static Vector2 Size = new Vector2(200, 200);
 
         private IScoreManager _scoreManager;
         private IGameMode _gameMode;       
@@ -136,8 +136,9 @@ namespace Frenzied.GamePlay.Implementations.PieMode
                 var pie = ((PieShape)shape);
 
                 var texture = this._gameMode.GetShapeTexture(pie);
+                
                 ScreenManager.Instance.SpriteBatch.Draw(texture, new Vector2(this.Bounds.Center.X, this.Bounds.Center.Y), null,
-                                        Color.White, MathHelper.ToRadians(pie.LocationIndex * 60f ), new Vector2(48, 95),
+                                        Color.Brown, MathHelper.ToRadians(pie.LocationIndex * 60f ), new Vector2(48, 96),
                                         1f, SpriteEffects.None, 0);
             }
 
