@@ -122,6 +122,7 @@
     <Compile Include="Screens\Implementations\AboutScreen.cs" />
     <Compile Include="Screens\Implementations\BackgroundScreen.cs" />
     <Compile Include="Input\InputState.cs" />
+    <Compile Include="Screens\Implementations\IntroScreen.cs" />
     <Compile Include="Screens\Implementations\MainMenuScreen2.cs" />
     <Compile Include="Screens\ScreenManager.cs" />
     <Compile Include="Screens\Implementations\GameplayScreen.cs" />

@@ -51,7 +51,6 @@ namespace Frenzied.Screens
             get { return spriteBatch; }
         }
 
-
         /// <summary>
         /// A default font shared by all the screens. This saves
         /// each screen having to bother loading their own local copy.
@@ -60,7 +59,6 @@ namespace Frenzied.Screens
         {
             get { return font; }
         }
-
 
         /// <summary>
         /// If true, the manager prints out a list of all the screens

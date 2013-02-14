@@ -106,10 +106,7 @@ namespace Frenzied.Screens.Implementations
 
             var dest = new Rectangle(0, 0, FrenziedGame.Instance.GraphicsDevice.PresentationParameters.BackBufferWidth, FrenziedGame.Instance.GraphicsDevice.PresentationParameters.BackBufferHeight);
 
-
             this._spriteBatch.Draw(this._menuBackground, new Vector2(0, 0), dest, Color.White);
-
-            
 
             this._spriteBatch.End();
 
