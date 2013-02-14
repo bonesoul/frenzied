@@ -86,10 +86,10 @@ namespace Frenzied.Assets
 
             this.PieTextures = new Dictionary<Color, Texture2D>();
             this.PieContainerTexture = Game.Content.Load<Texture2D>(@"Textures/Pies/Container");
-            this.PieTextures[Color.Orange] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/Slice");
-            this.PieTextures[Color.Purple] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/Slice");
-            this.PieTextures[Color.Green] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/Slice");
-            this.PieTextures[Color.Blue] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/Slice");
+            this.PieTextures[Color.Orange] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/Orange");
+            this.PieTextures[Color.Purple] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/Purple");
+            this.PieTextures[Color.Green] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/Green");
+            this.PieTextures[Color.Blue] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/Blue");
 
             // menu
             this.MenuBackground = this.Game.Content.Load<Texture2D>(@"Textures/Menu/Background");

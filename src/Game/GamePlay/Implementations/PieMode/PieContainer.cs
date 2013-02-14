@@ -138,7 +138,7 @@ namespace Frenzied.GamePlay.Implementations.PieMode
                 var texture = this._gameMode.GetShapeTexture(pie);
                 
                 ScreenManager.Instance.SpriteBatch.Draw(texture, new Vector2(this.Bounds.Center.X, this.Bounds.Center.Y), null,
-                                        Color.Brown, MathHelper.ToRadians(pie.LocationIndex * 60f ), new Vector2(48, 96),
+                                        Color.White, MathHelper.ToRadians(pie.LocationIndex * 60f ), new Vector2(48, 96),
                                         1f, SpriteEffects.None, 0);
             }
 
