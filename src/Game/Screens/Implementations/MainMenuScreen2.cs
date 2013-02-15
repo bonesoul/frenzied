@@ -10,6 +10,7 @@ using Frenzied.Assets;
 using Frenzied.Graphics.Effects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Frenzied.Screens.Implementations
 {
@@ -69,6 +70,16 @@ namespace Frenzied.Screens.Implementations
             this._menuTextureTutorial = AssetManager.Instance.MenuTutorial;
 
             base.LoadContent();
+        }
+
+        public override void HandleInput(GameTime gameTime, Input.InputState input)
+        {
+            if (input.CurrentMouseState.LeftButton != ButtonState.Pressed || input.LastMouseState.LeftButton != ButtonState.Released)
+                return;
+
+            ScreenManager.AddScreen(new PauseMenuScreen(), ControllingPlayer);
+
+            base.HandleInput(gameTime, input);
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)

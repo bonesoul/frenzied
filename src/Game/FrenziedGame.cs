@@ -99,9 +99,9 @@ namespace Frenzied
             //this.Components.Add(scoreManager);
 
             // Activate the first screens.
-            this._screenManager.AddScreen(new AboutScreen(), null);
+            //this._screenManager.AddScreen(new AboutScreen(), null);
             //this._screenManager.AddScreen(new BackgroundScreen(), null);
-            //this._screenManager.AddScreen(new MainMenuScreen2(), null);
+            this._screenManager.AddScreen(new MainMenuScreen2(), null);
             //this._screenManager.AddScreen(new GameplayScreen(new PieMode()), null);
 
 
