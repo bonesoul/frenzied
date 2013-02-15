@@ -28,6 +28,7 @@ namespace Frenzied.Screens.Implementations
         private bool _fadingIn; // are we currently fading in? (true if yes, false if we are instead fading-out).
         private TimeSpan _fadeInTimer = TimeSpan.FromMilliseconds(1000); // fade-in timer.
         private TimeSpan _fadeOutTimer = TimeSpan.FromMilliseconds(1500); // fade-out timer.
+        private Color _fadeOutColor = new Color(91, 113, 134);
 
         public override void Initialize()
         {
@@ -85,7 +86,7 @@ namespace Frenzied.Screens.Implementations
 
             // draw the fade-in & fade-out alpha.
             this._spriteBatch.Draw(_blankTexture, new Rectangle(0, 0, this._viewport.Width, this._viewport.Height),
-                                   this._fadingIn ? Color.Black*_fadeAlpha : Color.CornflowerBlue*_fadeAlpha);
+                                   this._fadingIn ? Color.Black*_fadeAlpha : this._fadeOutColor*_fadeAlpha);
             
             _spriteBatch.End();
 
