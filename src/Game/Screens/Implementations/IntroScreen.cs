@@ -43,7 +43,7 @@ namespace Frenzied.Screens.Implementations
             this._spriteBatch = new SpriteBatch(FrenziedGame.Instance.GraphicsDevice);           
 
             // load assets.
-            this._studioLogo = AssetManager.Instance.StudioLogo;
+            this._studioLogo = AssetManager.Instance.StudioIntro;
             this._blankTexture = FrenziedGame.Instance.Content.Load<Texture2D>(@"Textures\Blank");
 
             base.LoadContent();

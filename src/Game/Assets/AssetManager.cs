@@ -31,6 +31,7 @@ namespace Frenzied.Assets
 
         Texture2D MenuBackground { get; }
 
+        Texture2D StudioIntro { get; }
         Texture2D StudioLogo { get; }
 
         AssetManager.SoundsEffects Sounds { get; }
@@ -59,6 +60,7 @@ namespace Frenzied.Assets
         public Texture2D MenuTutorial { get; private set; }
 
         public Texture2D MenuBackground { get; private set; }
+        public Texture2D StudioIntro { get; private set; }
         public Texture2D StudioLogo { get; private set; }
 
         public SoundsEffects Sounds { get; private set; }
@@ -105,7 +107,8 @@ namespace Frenzied.Assets
 
             this.BlockProgressBar = this.Game.Content.Load<Texture2D>(@"Textures/Blocks/BlockProgressBar");
 
-            this.StudioLogo = this.Game.Content.Load<Texture2D>(@"Textures/Intro/Int6Studios");
+            this.StudioIntro = this.Game.Content.Load<Texture2D>(@"Textures/Common/Intro");
+            this.StudioLogo = this.Game.Content.Load<Texture2D>(@"Textures/Common/Logo");
 
             this.Verdana = Game.Content.Load<SpriteFont>(@"Fonts/Verdana");
             this.GoodDog = Game.Content.Load<SpriteFont>(@"Fonts/GoodDog");
