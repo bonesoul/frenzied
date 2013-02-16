@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Content", "..\src\Content\Content.contentproj", "{49796CBA-FA0E-4778-896D-65CBD54CB3F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frenzied.XNA.WinPhone7", "..\src\Game\Platforms\WindowsPhone7\Frenzied.XNA.WinPhone7.csproj", "{68942D65-0E5E-4747-8917-48DB9DF91957}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Frenzied.XNA.WinPhone7", "..\src\Game\Frenzied.XNA.WinPhone7.csproj", "{68942D65-0E5E-4747-8917-48DB9DF91957}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

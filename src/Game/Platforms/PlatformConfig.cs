@@ -19,23 +19,19 @@ namespace Frenzied.Platforms
         /// </summary>
         public bool IsFixedTimeStep { get; set; }
 
+        public GraphicsConfig Graphics { get; private set; }
+
         /// <summary>
         /// Creates a new instance of platform-config.
         /// </summary>
-        internal PlatformConfig()
+        public PlatformConfig()
         {
+            // init. sub-configs.
+            this.Graphics = new GraphicsConfig();
+
             // set the defaults.
             this.IsMouseVisible = false;
             this.IsFixedTimeStep = false;
-        }
-
-        /// <summary>
-        /// Validates the configuration.
-        /// </summary>
-        /// <returns></returns>
-        internal bool Validate()
-        {
-            return true;
         }
     }
 }
