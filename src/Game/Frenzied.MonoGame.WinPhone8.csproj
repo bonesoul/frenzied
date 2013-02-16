@@ -321,4 +321,7 @@
   </Target>
   -->
   <ProjectExtensions />
+  <PropertyGroup>
+    <PreBuildEvent>xcopy /C /Y $(ProjectDir)Platforms\WindowsPhone8\WMAppManifest.xml $(ProjectDir)Properties\WMAppManifest.xml</PreBuildEvent>
+  </PropertyGroup>
 </Project>

@@ -10,11 +10,12 @@ namespace Frenzied.Platforms.WindowsPhone7
     {
         public WindowsPhone7Platform()
         {
-            this.PlatformConfig = new PlatformConfig()
-            {
-                IsMouseVisible = false,
-                IsFixedTimeStep = false,
-            };
+            this.PlatformConfig = new PlatformConfig
+                {
+                    IsMouseVisible = false,
+                    IsFixedTimeStep = false,
+                    Graphics = {CustomShadersEnabled = false},
+                };
         }
 
         public override void PlatformEntrance()
