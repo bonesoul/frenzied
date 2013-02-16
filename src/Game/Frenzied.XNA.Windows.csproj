@@ -111,6 +111,7 @@
     <Compile Include="Input\Cursor.cs" />
     <Compile Include="Platforms\GameFrameworks.cs" />
     <Compile Include="Platforms\GraphicsAPI.cs" />
+    <Compile Include="Platforms\GraphicsConfig.cs" />
     <Compile Include="Platforms\PlatformConfig.cs" />
     <Compile Include="Platforms\PlatformHandler.cs" />
     <Compile Include="Platforms\Platforms.cs" />

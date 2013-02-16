@@ -210,7 +210,7 @@ namespace Frenzied.Platforms.WindowsPhone8
                 FlowDirection flow = (FlowDirection)Enum.Parse(typeof(FlowDirection), AppResources.ResourceFlowDirection);
                 RootFrame.FlowDirection = flow;
             }
-            catch
+            catch(Exception e)
             {
                 // If an exception is caught here it is most likely due to either
                 // ResourceLangauge not being correctly set to a supported language
