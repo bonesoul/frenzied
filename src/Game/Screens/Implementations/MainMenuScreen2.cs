@@ -8,6 +8,7 @@
 using System;
 using Frenzied.Assets;
 using Frenzied.Graphics.Effects;
+using Frenzied.Platforms;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -51,8 +52,11 @@ namespace Frenzied.Screens.Implementations
         {
             this._spriteBatch = new SpriteBatch(FrenziedGame.Instance.GraphicsDevice);
 
-            _postprocessEffect = FrenziedGame.Instance.Content.Load<Effect>(@"Effects\PostprocessEffect");
-            _sketchTexture = FrenziedGame.Instance.Content.Load<Texture2D>(@"Effects\SketchTexture");
+            if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.CustomShadersEnabled)
+            {
+                _postprocessEffect = FrenziedGame.Instance.Content.Load<Effect>(@"Effects\PostprocessEffect");
+                _sketchTexture = FrenziedGame.Instance.Content.Load<Texture2D>(@"Effects\SketchTexture");
+            }
 
             // Create two custom rendertargets.
             PresentationParameters pp = FrenziedGame.Instance.GraphicsDevice.PresentationParameters;
@@ -108,21 +112,24 @@ namespace Frenzied.Screens.Implementations
 
         public override void Draw(GameTime gameTime)
         {
-            FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(sceneRenderTarget);
-            //FrenziedGame.Instance.GraphicsDevice.Clear(new Color(51, 51, 51));
+            if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.CustomShadersEnabled)
+                FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(sceneRenderTarget);
 
             _spriteBatch.Begin(SpriteSortMode.BackToFront,
-                               BlendState.AlphaBlend,
-                               SamplerState.PointWrap,null,null,null);
+                   BlendState.AlphaBlend,
+                   SamplerState.PointWrap, null, null, null);
 
             var dest = new Rectangle(0, 0, FrenziedGame.Instance.GraphicsDevice.PresentationParameters.BackBufferWidth, FrenziedGame.Instance.GraphicsDevice.PresentationParameters.BackBufferHeight);
 
             this._spriteBatch.Draw(this._menuBackground, new Vector2(0, 0), dest, Color.White);
 
-            this._spriteBatch.End();
+            this._spriteBatch.End();            
 
-            FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(null);
-            ApplyPostprocess();
+            if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.CustomShadersEnabled)
+            {
+                FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(null);
+                ApplyPostprocess();
+            }
 
             this._spriteBatch.Begin();
             this._spriteBatch.Draw(this._menuTextureQuickPlay, new Vector2(100, 100), null, Color.White, 0f, new Vector2(0, 0), _quickPlayButtonScale, SpriteEffects.None, 0);
