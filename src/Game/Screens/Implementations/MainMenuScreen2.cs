@@ -18,6 +18,8 @@ namespace Frenzied.Screens.Implementations
     public class MainMenuScreen2 : GameScreen
     {
         private SpriteBatch _spriteBatch;
+        private Viewport _viewport;
+
 
         readonly Random _random = new Random();
 
@@ -38,8 +40,6 @@ namespace Frenzied.Screens.Implementations
         // Custom rendertargets.
         RenderTarget2D sceneRenderTarget;
 
-        private float _quickPlayButtonScale = 1f;
-
         private Texture2D _menuBackground;
 
         private Texture2D _menuTextureCredits;
@@ -48,22 +48,43 @@ namespace Frenzied.Screens.Implementations
         private Texture2D _menuTextureQuickPlay;
         private Texture2D _menuTextureTutorial;
 
+        // game logo
+        private Texture2D _textureGameLogo;
+        private int _targetGameLogoWidth;
+        private float _actualGameLogoScale;
+        private float _pulsatedGameLogoScale;
+        private Vector2 _gameLogoPosition;
+        private const float PulsateFactor = 0.01f;
+
+        // studio board
+        private Texture2D _textureStudioBoard;
+
         public override void LoadContent()
         {
+            this._viewport = ScreenManager.GraphicsDevice.Viewport;
             this._spriteBatch = new SpriteBatch(FrenziedGame.Instance.GraphicsDevice);
+
+            // game logo stuff.
+            this._textureGameLogo = ScreenManager.Game.Content.Load<Texture2D>(@"Textures\Common\game-logo");
+            this._targetGameLogoWidth = this._viewport.Width/2;
+            this._actualGameLogoScale = (float)_targetGameLogoWidth / this._textureGameLogo.Width;
+            this._gameLogoPosition = new Vector2(this._viewport.Width / 2 - _targetGameLogoWidth / 2, 25);
+
+            // other textures.
+            this._textureStudioBoard = ScreenManager.Game.Content.Load<Texture2D>(@"Textures\Menu\StudioBoard");
+
 
             if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.CustomShadersEnabled)
             {
-                _postprocessEffect = FrenziedGame.Instance.Content.Load<Effect>(@"Effects\PostprocessEffect");
-                _sketchTexture = FrenziedGame.Instance.Content.Load<Texture2D>(@"Effects\SketchTexture");
+                _postprocessEffect = ScreenManager.Game.Content.Load<Effect>(@"Effects\PostprocessEffect");
+                _sketchTexture = ScreenManager.Game.Content.Load<Texture2D>(@"Effects\SketchTexture");
             }
 
-            // Create two custom rendertargets.
-            PresentationParameters pp = FrenziedGame.Instance.GraphicsDevice.PresentationParameters;
-
+            // Create custom rendertarget.
+            var presentationParameters = FrenziedGame.Instance.GraphicsDevice.PresentationParameters;
             sceneRenderTarget = new RenderTarget2D(FrenziedGame.Instance.GraphicsDevice,
-                                                   pp.BackBufferWidth, pp.BackBufferHeight, false,
-                                                   pp.BackBufferFormat, pp.DepthStencilFormat);
+                                                   presentationParameters.BackBufferWidth, presentationParameters.BackBufferHeight, false,
+                                                   presentationParameters.BackBufferFormat, presentationParameters.DepthStencilFormat);
 
             this._menuBackground = AssetManager.Instance.MenuBackground;
 
@@ -102,10 +123,10 @@ namespace Frenzied.Screens.Implementations
                 }
             }
 
-            // Pulsate the size of the selected menu entry.
+            // Pulsate the game-logo.
             double time = gameTime.TotalGameTime.TotalSeconds;
             float pulsate = (float)Math.Sin(time * 6) + 1;
-            _quickPlayButtonScale = 1 + pulsate * 0.05f;
+            this._pulsatedGameLogoScale = this._actualGameLogoScale + pulsate * PulsateFactor;
 
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
         }
@@ -119,11 +140,20 @@ namespace Frenzied.Screens.Implementations
                    BlendState.AlphaBlend,
                    SamplerState.PointWrap, null, null, null);
 
-            var dest = new Rectangle(0, 0, FrenziedGame.Instance.GraphicsDevice.PresentationParameters.BackBufferWidth, FrenziedGame.Instance.GraphicsDevice.PresentationParameters.BackBufferHeight);
+            var dest = new Rectangle(0, 0, this._viewport.Width, this._viewport.Height);
 
             this._spriteBatch.Draw(this._menuBackground, new Vector2(0, 0), dest, Color.White);
 
-            this._spriteBatch.End();            
+            this._spriteBatch.End();
+
+            this._spriteBatch.Begin();
+
+            this._spriteBatch.Draw(this._textureGameLogo, this._gameLogoPosition, null, Color.White, 0f, Vector2.Zero,
+                                   this._pulsatedGameLogoScale, SpriteEffects.None, 0);
+
+            this._spriteBatch.Draw(this._textureStudioBoard, new Vector2(25, this._viewport.Height - this._textureStudioBoard.Height), Color.White);
+
+            this._spriteBatch.End();
 
             if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.CustomShadersEnabled)
             {
@@ -132,7 +162,8 @@ namespace Frenzied.Screens.Implementations
             }
 
             this._spriteBatch.Begin();
-            this._spriteBatch.Draw(this._menuTextureQuickPlay, new Vector2(100, 100), null, Color.White, 0f, new Vector2(0, 0), _quickPlayButtonScale, SpriteEffects.None, 0);
+
+            this._spriteBatch.Draw(this._menuTextureQuickPlay, new Vector2(100, 100), Color.White);
             this._spriteBatch.Draw(this._menuTextureCustomMode, new Vector2(100, 175), Color.White);
             this._spriteBatch.Draw(this._menuTextureTutorial, new Vector2(100, 250), Color.White);
             this._spriteBatch.Draw(this._menuTextureOptions, new Vector2(100, 325), Color.White);
@@ -140,6 +171,11 @@ namespace Frenzied.Screens.Implementations
             this._spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        private float GetAspectRatio(Texture2D texture)
+        {
+            return texture.Width/texture.Height;
         }
 
         /// <summary>

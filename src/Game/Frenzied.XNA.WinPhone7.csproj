@@ -144,9 +144,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Content\Content.contentproj">
+    <ProjectReference Include="..\Content\ReachContent.contentproj">
       <Project>{49796CBA-FA0E-4778-896D-65CBD54CB3F7}</Project>
-      <Name>Content</Name>
+      <Name>ReachContent %28Content%29</Name>
       <XnaReferenceType>Content</XnaReferenceType>
     </ProjectReference>
   </ItemGroup>

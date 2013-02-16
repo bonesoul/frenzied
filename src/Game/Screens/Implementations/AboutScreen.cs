@@ -17,7 +17,7 @@ namespace Frenzied.Screens.Implementations
         private SpriteBatch _spriteBatch;
         private Viewport _viewport;
 
-        private Texture2D _studioLogoTexture;
+        private Texture2D _textureStudioLogo;
         private SpriteFont _spriteFont;
 
         private float _horizantalCenter;
@@ -30,7 +30,8 @@ namespace Frenzied.Screens.Implementations
 
         public AboutScreen()
             : base()
-        { }
+        {
+        }
 
         public override void LoadContent()
         {
@@ -40,8 +41,8 @@ namespace Frenzied.Screens.Implementations
             this._horizantalCenter = this._viewport.Width/2;
             this._scrollOffset = this._viewport.Height - 100;
 
-            this._studioLogoTexture = AssetManager.Instance.StudioLogo;
-            this._spriteFont = AssetManager.Instance.GoodDog;
+            this._textureStudioLogo = ScreenManager.Game.Content.Load<Texture2D>(@"Textures/Common/Logo");
+            this._spriteFont = ScreenManager.Game.Content.Load<SpriteFont>(@"Fonts/GoodDog");
 
             this._creditsText =
                 "Developer: Huseyin Uslu\nGraphics: Lorem Ipsum\nMusic & Audio: Dogac Yavuz" +
@@ -76,13 +77,21 @@ namespace Frenzied.Screens.Implementations
 
             this._spriteBatch.Begin();
 
-            var studioLogoPosition = new Vector2(this._horizantalCenter - this._studioLogoTexture.Width/2, 100 + _scrollOffset);
-            this._spriteBatch.Draw(this._studioLogoTexture, studioLogoPosition, Color.White);
+            var studioLogoPosition = new Vector2(this._horizantalCenter - this._textureStudioLogo.Width/2, 100 + _scrollOffset);
+            this._spriteBatch.Draw(this._textureStudioLogo, studioLogoPosition, Color.White);
 
-            var creditsTextPosition = new Vector2(this._horizantalCenter - this._creditsTextSize.X / 2, studioLogoPosition.Y + _studioLogoTexture.Height + 25);
+            var creditsTextPosition = new Vector2(this._horizantalCenter - this._creditsTextSize.X / 2, studioLogoPosition.Y + _textureStudioLogo.Height + 25);
             _spriteBatch.DrawString(_spriteFont, this._creditsText, creditsTextPosition, Color.White,0f, Vector2.Zero,_creditsTextScale,SpriteEffects.None, 0 );
 
             this._spriteBatch.End();
+        }
+
+        public override void UnloadContent()
+        {
+            this._textureStudioLogo = null;
+            this._spriteFont = null;
+
+            base.UnloadContent();
         }
     }
 }

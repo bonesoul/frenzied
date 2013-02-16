@@ -30,8 +30,9 @@ namespace Frenzied.Platforms.WindowsPhone7
         {
             this.GraphicsDeviceManager = graphicsDeviceManager;
 
-            this.GraphicsDeviceManager.PreferredBackBufferWidth = 480;
-            this.GraphicsDeviceManager.PreferredBackBufferHeight = 800;
+            this.GraphicsDeviceManager.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
+            this.GraphicsDeviceManager.PreferredBackBufferWidth = 800;
+            this.GraphicsDeviceManager.PreferredBackBufferHeight = 480;
             this.GraphicsDeviceManager.IsFullScreen = true;
             this.GraphicsDeviceManager.ApplyChanges();
         }
