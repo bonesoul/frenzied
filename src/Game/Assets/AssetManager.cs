@@ -30,8 +30,6 @@ namespace Frenzied.Assets
         Texture2D MenuQuickPlay { get; }
         Texture2D MenuTutorial { get; }
 
-        Texture2D MenuBackground { get; }
-
         Texture2D StudioIntro { get; }
 
         AssetManager.SoundsEffects Sounds { get; }
@@ -60,7 +58,6 @@ namespace Frenzied.Assets
         public Texture2D MenuQuickPlay { get; private set; }
         public Texture2D MenuTutorial { get; private set; }
 
-        public Texture2D MenuBackground { get; private set; }
         public Texture2D StudioIntro { get; private set; }
 
         public SoundsEffects Sounds { get; private set; }
@@ -103,9 +100,6 @@ namespace Frenzied.Assets
             this.PieTextures[Color.Purple] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/Purple");
             this.PieTextures[Color.Green] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/Green");
             this.PieTextures[Color.Blue] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/Blue");
-
-            // menu
-            this.MenuBackground = this.Game.Content.Load<Texture2D>(@"Textures/Menu/Background");
 
             this.MenuCredits = this.Game.Content.Load<Texture2D>(@"Textures/Menu/Credits");
             this.MenuCustomMode = this.Game.Content.Load<Texture2D>(@"Textures/Menu/CustomMode");
