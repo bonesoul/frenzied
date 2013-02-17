@@ -251,15 +251,20 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Textures\Menu\MeadowBackground.png">
-      <Name>MeadowBackground</Name>
+    <Compile Include="Textures\Menu\AutumnBackground.png">
+      <Name>AutumnBackground</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Textures\Menu\AutumnBackground.png">
-      <Name>AutumnBackground</Name>
+    <Compile Include="Textures\Menu\AutumnMeadow.png">
+      <Name>AutumnMeadow</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Textures\Menu\Meadow.png">
+      <Name>Meadow</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
