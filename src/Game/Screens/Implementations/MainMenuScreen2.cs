@@ -9,6 +9,7 @@ using System;
 using Frenzied.Assets;
 using Frenzied.Graphics.Effects;
 using Frenzied.Platforms;
+using Frenzied.Utils.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -55,19 +56,26 @@ namespace Frenzied.Screens.Implementations
 
         // other textures;
         private Texture2D _textureStudioBoard;
-        private Texture2D _textureBackground;
-        private Texture2D _textureMeadow;
 
-        // clouds
-        private Texture2D[] _textureClouds;
-        private Vector2[] _cloudPositions;
-        private bool[] _cloudMovingRight;
-        private float[] _cloudMovementSpeeds;
+        // required services.       
+        private IBackgroundScene _backgroundScene;
+
+        public override void Initialize()
+        {
+            // import required services.
+            this._backgroundScene = ServiceHelper.GetService<IBackgroundScene>(typeof(IBackgroundScene)); 
+
+            base.Initialize();
+        }
 
         public override void LoadContent()
         {
+            // init. common stuff.
             this._viewport = ScreenManager.GraphicsDevice.Viewport;
-            this._spriteBatch = new SpriteBatch(FrenziedGame.Instance.GraphicsDevice);
+            this._spriteBatch = ScreenManager.SpriteBatch;
+
+            // let background-scene load it's contentes.
+            this._backgroundScene.LoadContent();
 
             // game logo stuff.
             this._textureGameLogo = ScreenManager.Game.Content.Load<Texture2D>(@"Textures\Common\game-logo");
@@ -77,28 +85,6 @@ namespace Frenzied.Screens.Implementations
 
             // other textures.
             this._textureStudioBoard = ScreenManager.Game.Content.Load<Texture2D>(@"Textures\Menu\StudioBoard");
-            this._textureBackground = ScreenManager.Game.Content.Load<Texture2D>(@"Textures\Menu\Background");
-            this._textureMeadow = ScreenManager.Game.Content.Load<Texture2D>(@"Textures\Menu\Meadow");
-
-            // clouds
-            this._textureClouds = new Texture2D[5];
-            this._cloudPositions = new Vector2[5];
-            this._cloudMovingRight=new bool[5];
-            this._cloudMovementSpeeds = new float[5];
-
-            this._cloudPositions[0]=new Vector2(25,25);
-            this._cloudPositions[1] = new Vector2(this._viewport.Width - 500, 150);
-            this._cloudPositions[2] = new Vector2(300, 250);
-            this._cloudPositions[3] = new Vector2(400, 350);
-            this._cloudPositions[4] = new Vector2(this._viewport.Width - 700, 450);
-
-            for (int i = 0; i < 5;i++ )
-            {
-                this._textureClouds[i] = ScreenManager.Game.Content.Load<Texture2D>(string.Format(@"Textures\Menu\Clouds\BlueCloud{0}", i + 1));
-
-                this._cloudMovingRight[i] = _random.Next(100)%2 == 0;
-                this._cloudMovementSpeeds[i] = _random.Next(1, 6)*0.1f;
-            }
 
             if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.CustomShadersEnabled)
             {
@@ -152,23 +138,8 @@ namespace Frenzied.Screens.Implementations
             float pulsate = (float)Math.Sin(time * 6) + 1;
             this._pulsatedGameLogoScale = this._actualGameLogoScale + pulsate * PulsateFactor;
 
-
-            for (int i = 0; i < 5;i++ )
-            {
-                if (_cloudMovingRight[i])
-                    this._cloudPositions[i].X += this._cloudMovementSpeeds[i];
-                else
-                    this._cloudPositions[i].X -=  this._cloudMovementSpeeds[i];
-
-                if(this._cloudPositions[i].X > this._viewport.Width)
-                {
-                    this._cloudMovingRight[i] = false;
-                }
-                else if (this._cloudPositions[i].X < -this._textureClouds[i].Width)
-                {
-                    this._cloudMovingRight[i] = true;
-                }
-            }
+            // update the background scene.
+            this._backgroundScene.Update();
 
             base.Update(gameTime, otherScreenHasFocus, coveredByOtherScreen);
         }
@@ -180,17 +151,9 @@ namespace Frenzied.Screens.Implementations
 
             this._spriteBatch.Begin();
 
-            this._spriteBatch.Draw(this._textureBackground,  this._viewport.Bounds, null, Color.White);
+            // draw background scene.
+            this._backgroundScene.Draw(BackgroundScene.Season.Spring);
 
-            for (int i = 0; i < 5; i++)
-            {
-                this._spriteBatch.Draw(this._textureClouds[i], this._cloudPositions[i], Color.White);
-            }
-
-            var meadowHeight = (this._viewport.Width*this._textureMeadow.Height)/this._textureMeadow.Width;
-            var rectangle = new Rectangle(0, this._viewport.Height - meadowHeight, this._viewport.Width, meadowHeight);
-            this._spriteBatch.Draw(this._textureMeadow, rectangle, null, Color.White);
-                
             this._spriteBatch.Draw(this._textureStudioBoard, new Vector2(this._viewport.Width - this._textureStudioBoard.Width - 25, this._viewport.Height - this._textureStudioBoard.Height), Color.White);
 
             this._spriteBatch.Draw(this._textureGameLogo, this._gameLogoPosition, null, Color.White, 0f, Vector2.Zero,

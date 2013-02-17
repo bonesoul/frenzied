@@ -101,6 +101,8 @@ namespace Frenzied
             //var scoreManager = new ScoreManager(this);
             //this.Components.Add(scoreManager);
 
+            var backgroundScene = new BackgroundScene(this);
+
             // Activate the first screens.
             this._screenManager.AddScreen(new MainMenuScreen2(), null);
             //this._screenManager.AddScreen(new IntroScreen(), null);            
