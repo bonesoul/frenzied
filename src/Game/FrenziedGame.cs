@@ -103,14 +103,15 @@ namespace Frenzied
 
             // Activate the first screens.
             this._screenManager.AddScreen(new MainMenuScreen2(), null);
+            //this._screenManager.AddScreen(new IntroScreen(), null);            
             //this._screenManager.AddScreen(new AboutScreen(), null);
             //this._screenManager.AddScreen(new BackgroundScreen(), null);            
             //this._screenManager.AddScreen(new GameplayScreen(new PieMode()), null);
 
 
             // add debug components
-            //this.Components.Add(new DebugBar(this));
-            //this.Components.Add(new GraphManager(this));
+            this.Components.Add(new DebugBar(this));
+            this.Components.Add(new GraphManager(this));
 
             // init the audio manager.
             var audioManager = new AudioManager(this);

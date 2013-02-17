@@ -56,8 +56,9 @@ namespace Frenzied.Screens.Implementations
         private Vector2 _gameLogoPosition;
         private const float PulsateFactor = 0.01f;
 
-        // studio board
+        // other textures;
         private Texture2D _textureStudioBoard;
+        private Texture2D _textureMeadowBackground;
 
         public override void LoadContent()
         {
@@ -72,6 +73,7 @@ namespace Frenzied.Screens.Implementations
 
             // other textures.
             this._textureStudioBoard = ScreenManager.Game.Content.Load<Texture2D>(@"Textures\Menu\StudioBoard");
+            this._textureMeadowBackground = ScreenManager.Game.Content.Load<Texture2D>(@"Textures\Menu\MeadowBackground");
 
 
             if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.CustomShadersEnabled)
@@ -102,7 +104,7 @@ namespace Frenzied.Screens.Implementations
             if (input.CurrentMouseState.LeftButton != ButtonState.Pressed || input.LastMouseState.LeftButton != ButtonState.Released)
                 return;
 
-            ScreenManager.AddScreen(new PauseMenuScreen(), ControllingPlayer);
+            ScreenManager.AddScreen(new AboutScreen(), ControllingPlayer);
 
             base.HandleInput(gameTime, input);
         }
@@ -136,17 +138,9 @@ namespace Frenzied.Screens.Implementations
             if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.CustomShadersEnabled)
                 FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(sceneRenderTarget);
 
-            _spriteBatch.Begin(SpriteSortMode.BackToFront,
-                   BlendState.AlphaBlend,
-                   SamplerState.PointWrap, null, null, null);
-
-            var dest = new Rectangle(0, 0, this._viewport.Width, this._viewport.Height);
-
-            this._spriteBatch.Draw(this._menuBackground, new Vector2(0, 0), dest, Color.White);
-
-            this._spriteBatch.End();
-
             this._spriteBatch.Begin();
+
+            this._spriteBatch.Draw(this._textureMeadowBackground,  this._viewport.Bounds, null, Color.White);
 
             this._spriteBatch.Draw(this._textureGameLogo, this._gameLogoPosition, null, Color.White, 0f, Vector2.Zero,
                                    this._pulsatedGameLogoScale, SpriteEffects.None, 0);
@@ -171,11 +165,6 @@ namespace Frenzied.Screens.Implementations
             this._spriteBatch.End();
 
             base.Draw(gameTime);
-        }
-
-        private float GetAspectRatio(Texture2D texture)
-        {
-            return texture.Width/texture.Height;
         }
 
         /// <summary>

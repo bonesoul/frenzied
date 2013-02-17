@@ -235,26 +235,38 @@
     <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\Tutorial.xnb">
       <Link>Content\Textures\Menu\Tutorial.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Pies\Blue.xnb">
-      <Link>Content\Textures\Pie\Blue.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Pies\Container.xnb">
-      <Link>Content\Textures\Pie\Container.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Pies\Green.xnb">
-      <Link>Content\Textures\Pie\Green.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Pies\Orange.xnb">
-      <Link>Content\Textures\Pie\Orange.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Pies\Purple.xnb">
-      <Link>Content\Textures\Pie\Purple.xnb</Link>
-    </Content>
     <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Blank.xnb">
       <Link>Content\Textures\Blank.xnb</Link>
     </Content>
     <Content Include="..\..\bin\debug\windows\xna\Content\Textures\cursor.xnb">
       <Link>Content\Textures\cursor.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Pies\Blue.xnb">
+      <Link>Content\Textures\Pies\Blue.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Pies\Container.xnb">
+      <Link>Content\Textures\Pies\Container.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Pies\Green.xnb">
+      <Link>Content\Textures\Pies\Green.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Pies\Orange.xnb">
+      <Link>Content\Textures\Pies\Orange.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Pies\Purple.xnb">
+      <Link>Content\Textures\Pies\Purple.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Common\game-logo.xnb">
+      <Link>Content\Textures\Common\game-logo.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\StudioBoard.xnb">
+      <Link>Content\Textures\Menu\StudioBoard.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Effects\PostprocessEffect.xnb">
+      <Link>Content\Effects\PostprocessEffect.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Effects\SketchTexture.xnb">
+      <Link>Content\Effects\SketchTexture.xnb</Link>
     </Content>
     <None Include="Properties\AppManifest.xml" />
   </ItemGroup>

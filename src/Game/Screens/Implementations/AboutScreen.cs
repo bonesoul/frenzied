@@ -9,6 +9,7 @@ using Frenzied.Assets;
 using Frenzied.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Frenzied.Screens.Implementations
 {
@@ -28,6 +29,8 @@ namespace Frenzied.Screens.Implementations
 
         private float _scrollOffset;
 
+        private Texture2D _textureMeadowBackground;
+
         public AboutScreen()
             : base()
         {
@@ -40,6 +43,8 @@ namespace Frenzied.Screens.Implementations
             
             this._horizantalCenter = this._viewport.Width/2;
             this._scrollOffset = this._viewport.Height - 100;
+
+            this._textureMeadowBackground = ScreenManager.Game.Content.Load<Texture2D>(@"Textures\Menu\AutumnBackground");
 
             this._textureStudioLogo = ScreenManager.Game.Content.Load<Texture2D>(@"Textures/Common/Logo");
             this._spriteFont = ScreenManager.Game.Content.Load<SpriteFont>(@"Fonts/GoodDog");
@@ -61,6 +66,11 @@ namespace Frenzied.Screens.Implementations
             {
                 ExitScreen();
             }
+
+            if (input.CurrentMouseState.LeftButton != ButtonState.Pressed || input.LastMouseState.LeftButton != ButtonState.Released)
+                return;
+
+            ExitScreen();
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
@@ -77,11 +87,13 @@ namespace Frenzied.Screens.Implementations
 
             this._spriteBatch.Begin();
 
+            this._spriteBatch.Draw(this._textureMeadowBackground, this._viewport.Bounds, null, Color.White);
+
             var studioLogoPosition = new Vector2(this._horizantalCenter - this._textureStudioLogo.Width/2, 100 + _scrollOffset);
             this._spriteBatch.Draw(this._textureStudioLogo, studioLogoPosition, Color.White);
 
             var creditsTextPosition = new Vector2(this._horizantalCenter - this._creditsTextSize.X / 2, studioLogoPosition.Y + _textureStudioLogo.Height + 25);
-            _spriteBatch.DrawString(_spriteFont, this._creditsText, creditsTextPosition, Color.White,0f, Vector2.Zero,_creditsTextScale,SpriteEffects.None, 0 );
+            _spriteBatch.DrawString(_spriteFont, this._creditsText, creditsTextPosition, Color.Black, 0f, Vector2.Zero,_creditsTextScale,SpriteEffects.None, 0 );
 
             this._spriteBatch.End();
         }
