@@ -24,7 +24,7 @@ namespace Frenzied.Platforms
         /// </summary>
         public GraphicsConfig()
         {
-            this.CustomShadersEnabled = true;
+            this.CustomShadersEnabled = false;
         }
     }
 }

@@ -24,7 +24,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\bin\debug\android\</OutputPath>
+    <OutputPath>..\..\bin\debug\Android\</OutputPath>
     <DefineConstants>TRACE;DEBUG;ANDROID, OPENGL, MONOGAME,</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -59,14 +59,23 @@
     <Compile Include="Config\BackgroundConfig.cs" />
     <Compile Include="Config\GameConfig.cs" />
     <Compile Include="FrenziedGame.cs" />
-    <Compile Include="GamePlay\Implementations\BlockColors.cs" />
-    <Compile Include="GamePlay\Implementations\BlockLocations.cs" />
-    <Compile Include="GamePlay\Implementations\BlockShape.cs" />
-    <Compile Include="GamePlay\Implementations\BlockyContainer.cs" />
-    <Compile Include="GamePlay\Implementations\BlockyGenerator.cs" />
-    <Compile Include="GamePlay\Implementations\BlockyMode.cs" />
+    <Compile Include="GamePlay\Implementations\BlockyMode\BlockColors.cs" />
+    <Compile Include="GamePlay\Implementations\BlockyMode\BlockContainer.cs" />
+    <Compile Include="GamePlay\Implementations\BlockyMode\BlockGenerator.cs" />
+    <Compile Include="GamePlay\Implementations\BlockyMode\BlockLocations.cs" />
+    <Compile Include="GamePlay\Implementations\BlockyMode\BlockMode.cs" />
+    <Compile Include="GamePlay\Implementations\BlockyMode\BlockRuleSet.cs" />
+    <Compile Include="GamePlay\Implementations\BlockyMode\BlockShape.cs" />
+    <Compile Include="GamePlay\Implementations\PieMode\PieColors.cs" />
+    <Compile Include="GamePlay\Implementations\PieMode\PieContainer.cs" />
+    <Compile Include="GamePlay\Implementations\PieMode\PieGenerator.cs" />
+    <Compile Include="GamePlay\Implementations\PieMode\PieLocations.cs" />
+    <Compile Include="GamePlay\Implementations\PieMode\PieMode.cs" />
+    <Compile Include="GamePlay\Implementations\PieMode\PieRuleSet.cs" />
+    <Compile Include="GamePlay\Implementations\PieMode\PieShape.cs" />
     <Compile Include="GamePlay\Modes\GameMode.cs" />
     <Compile Include="GamePlay\Modes\IContainer.cs" />
+    <Compile Include="GamePlay\Modes\RuleSet.cs" />
     <Compile Include="GamePlay\Modes\Shape.cs" />
     <Compile Include="GamePlay\Modes\ShapeColors.cs" />
     <Compile Include="GamePlay\Modes\ShapeContainer.cs" />
@@ -85,6 +94,7 @@
     <Compile Include="Platforms\Android\AndroidPlatform.cs" />
     <Compile Include="Platforms\GameFrameworks.cs" />
     <Compile Include="Platforms\GraphicsAPI.cs" />
+    <Compile Include="Platforms\GraphicsConfig.cs" />
     <Compile Include="Platforms\PlatformConfig.cs" />
     <Compile Include="Platforms\PlatformHandler.cs" />
     <Compile Include="Platforms\PlatformManager.cs" />
@@ -94,10 +104,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Screens\GameScreen.cs" />
     <Compile Include="Screens\Implementations\AboutScreen.cs" />
+    <Compile Include="Screens\Implementations\BackgroundScene.cs" />
     <Compile Include="Screens\Implementations\BackgroundScreen.cs" />
     <Compile Include="Screens\Implementations\GameplayScreen.cs" />
+    <Compile Include="Screens\Implementations\IntroScreen.cs" />
     <Compile Include="Screens\Implementations\LoadingScreen.cs" />
     <Compile Include="Screens\Implementations\MainMenuScreen.cs" />
+    <Compile Include="Screens\Implementations\MainMenuScreen2.cs" />
     <Compile Include="Screens\Implementations\MenuScreen.cs" />
     <Compile Include="Screens\Implementations\MessageBoxScreen.cs" />
     <Compile Include="Screens\Implementations\OptionsMenuScreen.cs" />
@@ -111,70 +124,152 @@
     <Compile Include="Utils\Extensions\NumberExtensions.cs" />
     <Compile Include="Utils\Extensions\StringBuilderExtensions.cs" />
     <Compile Include="Utils\Extensions\Vector2Extensions.cs" />
+    <Compile Include="Utils\Services\ServiceHelper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="..\..\bin\debug\windows\xna\Content\Fonts\GameFont.xnb">
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Fonts\GameFont.xnb">
       <Link>Assets\Content\Fonts\GameFont.xnb</Link>
     </AndroidAsset>
-    <AndroidAsset Include="..\..\bin\debug\windows\xna\Content\Fonts\GoodDog.xnb">
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Fonts\GoodDog.xnb">
       <Link>Assets\Content\Fonts\GoodDog.xnb</Link>
     </AndroidAsset>
-    <AndroidAsset Include="..\..\bin\debug\windows\xna\Content\Fonts\MenuFont.xnb">
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Fonts\MenuFont.xnb">
       <Link>Assets\Content\Fonts\MenuFont.xnb</Link>
     </AndroidAsset>
-    <AndroidAsset Include="..\..\bin\debug\windows\xna\Content\Fonts\Verdana.xnb">
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Fonts\Verdana.xnb">
       <Link>Assets\Content\Fonts\Verdana.xnb</Link>
     </AndroidAsset>
-    <AndroidAsset Include="..\..\bin\debug\windows\xna\Content\Music\Dragon Soul.xnb">
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Music\Dragon Soul.xnb">
       <Link>Assets\Content\Music\Dragon Soul.xnb</Link>
     </AndroidAsset>
-    <AndroidAsset Include="..\..\bin\debug\windows\xna\Content\Sounds\Blocks\0.xnb">
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Sounds\Blocks\0.xnb">
       <Link>Assets\Content\Sounds\Blocks\0.xnb</Link>
     </AndroidAsset>
-    <AndroidAsset Include="..\..\bin\debug\windows\xna\Content\Sounds\Blocks\1.xnb">
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Sounds\Blocks\1.xnb">
       <Link>Assets\Content\Sounds\Blocks\1.xnb</Link>
     </AndroidAsset>
-    <AndroidAsset Include="..\..\bin\debug\windows\xna\Content\Sounds\Blocks\2.xnb">
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Sounds\Blocks\2.xnb">
       <Link>Assets\Content\Sounds\Blocks\2.xnb</Link>
     </AndroidAsset>
-    <AndroidAsset Include="..\..\bin\debug\windows\xna\Content\Sounds\Blocks\3.xnb">
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Sounds\Blocks\3.xnb">
       <Link>Assets\Content\Sounds\Blocks\3.xnb</Link>
     </AndroidAsset>
-    <AndroidAsset Include="..\..\bin\debug\windows\xna\Content\Sounds\Blocks\4.xnb">
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Sounds\Blocks\4.xnb">
       <Link>Assets\Content\Sounds\Blocks\4.xnb</Link>
     </AndroidAsset>
-    <AndroidAsset Include="..\..\bin\debug\windows\xna\Content\Sounds\Explode\0.xnb">
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Sounds\Explode\0.xnb">
       <Link>Assets\Content\Sounds\Explode\0.xnb</Link>
     </AndroidAsset>
-    <AndroidAsset Include="..\..\bin\debug\windows\xna\Content\Sounds\Timeout\0.xnb">
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Sounds\Timeout\0.xnb">
       <Link>Assets\Content\Sounds\Timeout\0.xnb</Link>
     </AndroidAsset>
-    <AndroidAsset Include="..\..\bin\debug\windows\xna\Content\Textures\Blank.xnb">
-      <Link>Assets\Content\Textures\Blank.xnb</Link>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Blocks\BlockContainer.xnb">
+      <Link>Assets\Content\Textures\Blocks\BlockContainer.xnb</Link>
     </AndroidAsset>
-    <AndroidAsset Include="..\..\bin\debug\windows\xna\Content\Textures\BlockContainer.xnb">
-      <Link>Assets\Content\Textures\BlockContainer.xnb</Link>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\bin\debug\windows\xna\Content\Textures\cursor.xnb">
-      <Link>Assets\Content\Textures\cursor.xnb</Link>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\bin\debug\windows\xna\Content\Textures\Gradient.xnb">
-      <Link>Assets\Content\Textures\Gradient.xnb</Link>
-    </AndroidAsset>
-    <AndroidAsset Include="..\..\bin\debug\windows\xna\Content\Textures\Blocks\BlockProgressBar.xnb">
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Blocks\BlockProgressBar.xnb">
       <Link>Assets\Content\Textures\Blocks\BlockProgressBar.xnb</Link>
     </AndroidAsset>
-    <AndroidAsset Include="..\..\bin\debug\windows\xna\Content\Textures\Blocks\BlueBlock.xnb">
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Blocks\BlueBlock.xnb">
       <Link>Assets\Content\Textures\Blocks\BlueBlock.xnb</Link>
     </AndroidAsset>
-    <AndroidAsset Include="..\..\bin\debug\windows\xna\Content\Textures\Blocks\GreenBlock.xnb">
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Blocks\GreenBlock.xnb">
       <Link>Assets\Content\Textures\Blocks\GreenBlock.xnb</Link>
     </AndroidAsset>
-    <AndroidAsset Include="..\..\bin\debug\windows\xna\Content\Textures\Blocks\OrangeBlock.xnb">
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Blocks\OrangeBlock.xnb">
       <Link>Assets\Content\Textures\Blocks\OrangeBlock.xnb</Link>
     </AndroidAsset>
-    <AndroidAsset Include="..\..\bin\debug\windows\xna\Content\Textures\Blocks\PurpleBlock.xnb">
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Blocks\PurpleBlock.xnb">
       <Link>Assets\Content\Textures\Blocks\PurpleBlock.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Common\game-logo.xnb">
+      <Link>Assets\Content\Textures\Common\game-logo.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Common\Intro.xnb">
+      <Link>Assets\Content\Textures\Common\Intro.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Common\Logo.xnb">
+      <Link>Assets\Content\Textures\Common\Logo.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Menu\AutumnBackground.xnb">
+      <Link>Assets\Content\Textures\Menu\AutumnBackground.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Menu\AutumnMeadow.xnb">
+      <Link>Assets\Content\Textures\Menu\AutumnMeadow.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Background.xnb">
+      <Link>Assets\Content\Textures\Menu\Background.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Credits.xnb">
+      <Link>Assets\Content\Textures\Menu\Credits.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Menu\CustomMode.xnb">
+      <Link>Assets\Content\Textures\Menu\CustomMode.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Meadow.xnb">
+      <Link>Assets\Content\Textures\Menu\Meadow.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Options.xnb">
+      <Link>Assets\Content\Textures\Menu\Options.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Menu\QuickPlay.xnb">
+      <Link>Assets\Content\Textures\Menu\QuickPlay.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Menu\StudioBoard.xnb">
+      <Link>Assets\Content\Textures\Menu\StudioBoard.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Tutorial.xnb">
+      <Link>Assets\Content\Textures\Menu\Tutorial.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Clouds\BlueCloud1.xnb">
+      <Link>Assets\Content\Textures\Menu\Clouds\BlueCloud1.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Clouds\BlueCloud2.xnb">
+      <Link>Assets\Content\Textures\Menu\Clouds\BlueCloud2.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Clouds\BlueCloud3.xnb">
+      <Link>Assets\Content\Textures\Menu\Clouds\BlueCloud3.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Clouds\BlueCloud4.xnb">
+      <Link>Assets\Content\Textures\Menu\Clouds\BlueCloud4.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Clouds\BlueCloud5.xnb">
+      <Link>Assets\Content\Textures\Menu\Clouds\BlueCloud5.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Clouds\YellowCloud1.xnb">
+      <Link>Assets\Content\Textures\Menu\Clouds\YellowCloud1.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Clouds\YellowCloud2.xnb">
+      <Link>Assets\Content\Textures\Menu\Clouds\YellowCloud2.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Clouds\YellowCloud3.xnb">
+      <Link>Assets\Content\Textures\Menu\Clouds\YellowCloud3.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Clouds\YellowCloud4.xnb">
+      <Link>Assets\Content\Textures\Menu\Clouds\YellowCloud4.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Clouds\YellowCloud5.xnb">
+      <Link>Assets\Content\Textures\Menu\Clouds\YellowCloud5.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Pies\Blue.xnb">
+      <Link>Assets\Content\Textures\Pies\Blue.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Pies\Container.xnb">
+      <Link>Assets\Content\Textures\Pies\Container.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Pies\Green.xnb">
+      <Link>Assets\Content\Textures\Pies\Green.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Pies\Orange.xnb">
+      <Link>Assets\Content\Textures\Pies\Orange.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Pies\Purple.xnb">
+      <Link>Assets\Content\Textures\Pies\Purple.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\Blank.xnb">
+      <Link>Assets\Content\Textures\Blank.xnb</Link>
+    </AndroidAsset>
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Textures\cursor.xnb">
+      <Link>Assets\Content\Textures\cursor.xnb</Link>
     </AndroidAsset>
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
@@ -186,12 +281,6 @@
     <AndroidResource Include="Resources\Drawable\Icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\Fonts\" />
-    <Folder Include="Content\Music\" />
-    <Folder Include="Content\Sounds\Blocks\" />
-    <Folder Include="Content\Sounds\Coins\" />
-    <Folder Include="Content\Sounds\Explode\" />
-    <Folder Include="Content\Textures\Blocks\" />
     <Folder Include="Resources\Layout\" />
   </ItemGroup>
   <ItemGroup>
@@ -201,7 +290,7 @@
     <AndroidResource Include="Resources\Values\Styles.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidAsset Include="..\..\bin\debug\windows\xna\Content\Music\Dragon Soul.wma">
+    <AndroidAsset Include="..\..\bin\debug\Desktop\Content\Music\Dragon Soul.wma">
       <Link>Assets\Content\Music\Dragon Soul.wma</Link>
     </AndroidAsset>
   </ItemGroup>

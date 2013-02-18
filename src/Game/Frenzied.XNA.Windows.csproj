@@ -41,7 +41,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\bin\debug\windows\xna\</OutputPath>
+    <OutputPath>..\..\bin\debug\Desktop\</OutputPath>
     <DefineConstants>TRACE;DEBUG;WINDOWS, XNA, DESKTOP</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>

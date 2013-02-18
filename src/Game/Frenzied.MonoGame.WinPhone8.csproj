@@ -30,8 +30,8 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\bin\debug\winphone\8\xna\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;WINPHONE8, DIRECTX11, MONOGAME</DefineConstants>
+    <OutputPath>..\..\bin\debug\WinPhone8\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;WINPHONE8, DIRECTX9, MONOGAME</DefineConstants>
     <NoStdLib>true</NoStdLib>
     <NoConfig>true</NoConfig>
     <ErrorReport>prompt</ErrorReport>
@@ -125,6 +125,7 @@
     <Compile Include="Resources\AppResources.Designer.cs" />
     <Compile Include="Screens\GameScreen.cs" />
     <Compile Include="Screens\Implementations\AboutScreen.cs" />
+    <Compile Include="Screens\Implementations\BackgroundScene.cs" />
     <Compile Include="Screens\Implementations\BackgroundScreen.cs" />
     <Compile Include="Screens\Implementations\GameplayScreen.cs" />
     <Compile Include="Screens\Implementations\IntroScreen.cs" />
@@ -157,121 +158,160 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Fonts\GameFont.xnb">
+    <Content Include="..\..\bin\debug\Desktop\Content\Fonts\GameFont.xnb">
       <Link>Content\Fonts\GameFont.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Fonts\GoodDog.xnb">
+    <Content Include="..\..\bin\debug\Desktop\Content\Fonts\GoodDog.xnb">
       <Link>Content\Fonts\GoodDog.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Fonts\MenuFont.xnb">
+    <Content Include="..\..\bin\debug\Desktop\Content\Fonts\MenuFont.xnb">
       <Link>Content\Fonts\MenuFont.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Fonts\Verdana.xnb">
+    <Content Include="..\..\bin\debug\Desktop\Content\Fonts\Verdana.xnb">
       <Link>Content\Fonts\Verdana.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Music\Dragon Soul.xnb">
+    <Content Include="..\..\bin\debug\Desktop\Content\Music\Dragon Soul.xnb">
       <Link>Content\Music\Dragon Soul.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Sounds\Blocks\0.xnb">
+    <Content Include="..\..\bin\debug\Desktop\Content\Sounds\Blocks\0.xnb">
       <Link>Content\Sounds\Blocks\0.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Sounds\Blocks\1.xnb">
+    <Content Include="..\..\bin\debug\Desktop\Content\Sounds\Blocks\1.xnb">
       <Link>Content\Sounds\Blocks\1.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Sounds\Blocks\2.xnb">
+    <Content Include="..\..\bin\debug\Desktop\Content\Sounds\Blocks\2.xnb">
       <Link>Content\Sounds\Blocks\2.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Sounds\Blocks\3.xnb">
+    <Content Include="..\..\bin\debug\Desktop\Content\Sounds\Blocks\3.xnb">
       <Link>Content\Sounds\Blocks\3.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Sounds\Blocks\4.xnb">
+    <Content Include="..\..\bin\debug\Desktop\Content\Sounds\Blocks\4.xnb">
       <Link>Content\Sounds\Blocks\4.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Sounds\Explode\0.xnb">
+    <Content Include="..\..\bin\debug\Desktop\Content\Sounds\Explode\0.xnb">
       <Link>Content\Sounds\Explode\0.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Sounds\Timeout\0.xnb">
+    <Content Include="..\..\bin\debug\Desktop\Content\Sounds\Timeout\0.xnb">
       <Link>Content\Sounds\Timeout\0.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Blocks\BlockContainer.xnb">
-      <Link>Content\Textures\Blocks\BlockContainer.xnb</Link>
+    <Content Include="..\..\bin\debug\Desktop\Content\Effects\SketchTexture.xnb">
+      <Link>Content\Effects\SketchTexture.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Blocks\BlockProgressBar.xnb">
-      <Link>Content\Textures\Blocks\BlockProgressBar.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Blocks\BlueBlock.xnb">
-      <Link>Content\Textures\Blocks\BlueBlock.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Blocks\GreenBlock.xnb">
-      <Link>Content\Textures\Blocks\GreenBlock.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Blocks\OrangeBlock.xnb">
-      <Link>Content\Textures\Blocks\OrangeBlock.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Blocks\PurpleBlock.xnb">
-      <Link>Content\Textures\Blocks\PurpleBlock.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Common\Intro.xnb">
-      <Link>Content\Textures\Common\Intro.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Common\Logo.xnb">
-      <Link>Content\Textures\Common\Logo.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\Background.xnb">
-      <Link>Content\Textures\Menu\Background.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\Credits.xnb">
-      <Link>Content\Textures\Menu\Credits.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\CustomMode.xnb">
-      <Link>Content\Textures\Menu\CustomMode.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\Options.xnb">
-      <Link>Content\Textures\Menu\Options.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\QuickPlay.xnb">
-      <Link>Content\Textures\Menu\QuickPlay.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\Tutorial.xnb">
-      <Link>Content\Textures\Menu\Tutorial.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Blank.xnb">
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Blank.xnb">
       <Link>Content\Textures\Blank.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\cursor.xnb">
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\cursor.xnb">
       <Link>Content\Textures\cursor.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Pies\Blue.xnb">
-      <Link>Content\Textures\Pies\Blue.xnb</Link>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Blocks\BlockContainer.xnb">
+      <Link>Content\Textures\Blocks\BlockContainer.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Pies\Container.xnb">
-      <Link>Content\Textures\Pies\Container.xnb</Link>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Blocks\BlockProgressBar.xnb">
+      <Link>Content\Textures\Blocks\BlockProgressBar.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Pies\Green.xnb">
-      <Link>Content\Textures\Pies\Green.xnb</Link>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Blocks\BlueBlock.xnb">
+      <Link>Content\Textures\Blocks\BlueBlock.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Pies\Orange.xnb">
-      <Link>Content\Textures\Pies\Orange.xnb</Link>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Blocks\GreenBlock.xnb">
+      <Link>Content\Textures\Blocks\GreenBlock.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Pies\Purple.xnb">
-      <Link>Content\Textures\Pies\Purple.xnb</Link>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Blocks\OrangeBlock.xnb">
+      <Link>Content\Textures\Blocks\OrangeBlock.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Common\game-logo.xnb">
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Blocks\PurpleBlock.xnb">
+      <Link>Content\Textures\Blocks\PurpleBlock.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Common\game-logo.xnb">
       <Link>Content\Textures\Common\game-logo.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\StudioBoard.xnb">
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Common\Intro.xnb">
+      <Link>Content\Textures\Common\Intro.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Common\Logo.xnb">
+      <Link>Content\Textures\Common\Logo.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\AutumnBackground.xnb">
+      <Link>Content\Textures\Menu\AutumnBackground.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\AutumnMeadow.xnb">
+      <Link>Content\Textures\Menu\AutumnMeadow.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Background.xnb">
+      <Link>Content\Textures\Menu\Background.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Clouds\BlueCloud1.xnb">
+      <Link>Content\Textures\Menu\Clouds\BlueCloud1.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Clouds\BlueCloud2.xnb">
+      <Link>Content\Textures\Menu\Clouds\BlueCloud2.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Clouds\BlueCloud3.xnb">
+      <Link>Content\Textures\Menu\Clouds\BlueCloud3.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Clouds\BlueCloud4.xnb">
+      <Link>Content\Textures\Menu\Clouds\BlueCloud4.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Clouds\BlueCloud5.xnb">
+      <Link>Content\Textures\Menu\Clouds\BlueCloud5.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Clouds\YellowCloud1.xnb">
+      <Link>Content\Textures\Menu\Clouds\YellowCloud1.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Clouds\YellowCloud2.xnb">
+      <Link>Content\Textures\Menu\Clouds\YellowCloud2.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Clouds\YellowCloud3.xnb">
+      <Link>Content\Textures\Menu\Clouds\YellowCloud3.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Clouds\YellowCloud4.xnb">
+      <Link>Content\Textures\Menu\Clouds\YellowCloud4.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Clouds\YellowCloud5.xnb">
+      <Link>Content\Textures\Menu\Clouds\YellowCloud5.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Credits.xnb">
+      <Link>Content\Textures\Menu\Credits.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\CustomMode.xnb">
+      <Link>Content\Textures\Menu\CustomMode.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Meadow.xnb">
+      <Link>Content\Textures\Menu\Meadow.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Options.xnb">
+      <Link>Content\Textures\Menu\Options.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\QuickPlay.xnb">
+      <Link>Content\Textures\Menu\QuickPlay.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\StudioBoard.xnb">
       <Link>Content\Textures\Menu\StudioBoard.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Effects\PostprocessEffect.xnb">
-      <Link>Content\Effects\PostprocessEffect.xnb</Link>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Tutorial.xnb">
+      <Link>Content\Textures\Menu\Tutorial.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Effects\SketchTexture.xnb">
-      <Link>Content\Effects\SketchTexture.xnb</Link>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Pies\Blue.xnb">
+      <Link>Content\Textures\Pies\Blue.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Pies\Container.xnb">
+      <Link>Content\Textures\Pies\Container.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Pies\Green.xnb">
+      <Link>Content\Textures\Pies\Green.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Pies\Orange.xnb">
+      <Link>Content\Textures\Pies\Orange.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Pies\Purple.xnb">
+      <Link>Content\Textures\Pies\Purple.xnb</Link>
+    </Content>
+    <Content Include="..\Content\Effects\PostprocessEffect.WinPhone8.mgfxo">
+      <Link>Content\Effects\PostprocessEffect.WinPhone8.mgfxo</Link>
     </Content>
     <None Include="Properties\AppManifest.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Music\Dragon Soul.wma">
+    <Content Include="..\..\bin\debug\Desktop\Content\Music\Dragon Soul.wma">
       <Link>Content\Music\Dragon Soul.wma</Link>
     </Content>
     <Content Include="Assets\AlignmentGrid.png" />
@@ -288,30 +328,30 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\AppResources.resx" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
-      <HintPath>..\..\dep\monogame\WinPhone8\x86\MonoGame.Framework.dll</HintPath>
+      <HintPath>..\..\dep\monogame\WindowsPhone\x86\Debug\MonoGame.Framework.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX">
-      <HintPath>..\..\dep\monogame\WinPhone8\x86\SharpDX.dll</HintPath>
+      <HintPath>..\..\dep\monogame\WindowsPhone\x86\Debug\SharpDX.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.Direct3D11">
-      <HintPath>..\..\dep\monogame\WinPhone8\x86\SharpDX.Direct3D11.dll</HintPath>
+      <HintPath>..\..\dep\monogame\WindowsPhone\x86\Debug\SharpDX.Direct3D11.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.DXGI">
-      <HintPath>..\..\dep\monogame\WinPhone8\x86\SharpDX.DXGI.dll</HintPath>
+      <HintPath>..\..\dep\monogame\WindowsPhone\x86\Debug\SharpDX.DXGI.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.MediaFoundation">
-      <HintPath>..\..\dep\monogame\WinPhone8\x86\SharpDX.MediaFoundation.dll</HintPath>
+      <HintPath>..\..\dep\monogame\WindowsPhone\x86\Debug\SharpDX.MediaFoundation.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.WP8">
-      <HintPath>..\..\dep\monogame\WinPhone8\x86\SharpDX.WP8.winmd</HintPath>
+      <HintPath>..\..\dep\monogame\WindowsPhone\x86\Debug\SharpDX.WP8.winmd</HintPath>
     </Reference>
     <Reference Include="SharpDX.XAudio2">
-      <HintPath>..\..\dep\monogame\WinPhone8\x86\SharpDX.XAudio2.dll</HintPath>
+      <HintPath>..\..\dep\monogame\WindowsPhone\x86\Debug\SharpDX.XAudio2.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <Target Name="MonoGame_RemoveXnaAssemblies" AfterTargets="ImplicitlyExpandTargetFramework">

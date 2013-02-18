@@ -38,10 +38,10 @@ namespace Frenzied.Assets
 
     public class AssetManager:GameComponent, IAssetManager
     {
-        #if MONOGAME && DIRECTX11
-            private const string EffectShaderExtension = ".dx11.mgfxo";
-        #elif   MONOGAME && DIRECTX9
-            private const string EffectShaderExtension = ".dx9.mgfxo";
+        #if MONOGAME && METRO
+            private const string EffectShaderExtension = ".Metro.mgfxo";
+        #elif MONOGAME && WINPHONE8
+            private const string EffectShaderExtension = ".WinPhone8.mgfxo";
         #else 
             private const string EffectShaderExtension = ""; 
         #endif

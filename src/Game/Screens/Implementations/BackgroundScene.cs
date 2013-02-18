@@ -27,7 +27,6 @@ namespace Frenzied.Screens.Implementations
         private readonly Random _random = new Random();
 
         private const int CloudCount = 5;
-        private const int SeasonCount = 2;
 
         // textures.
         private readonly Dictionary<Season, Texture2D> _textureBackgrounds;
