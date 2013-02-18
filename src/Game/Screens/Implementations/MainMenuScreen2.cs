@@ -88,7 +88,7 @@ namespace Frenzied.Screens.Implementations
 
             if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.CustomShadersEnabled)
             {
-                _postprocessEffect = ScreenManager.Game.Content.Load<Effect>(@"Effects\PostprocessEffect");
+                _postprocessEffect = AssetManager.Instance.LoadEffectShader(@"Effects\PostprocessEffect");
                 _sketchTexture = ScreenManager.Game.Content.Load<Texture2D>(@"Effects\SketchTexture");
             }
 

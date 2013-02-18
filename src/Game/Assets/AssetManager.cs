@@ -38,7 +38,16 @@ namespace Frenzied.Assets
 
     public class AssetManager:GameComponent, IAssetManager
     {
-        private static AssetManager _instance; // the instance.
+        #if MONOGAME && DIRECTX11
+            private const string EffectShaderExtension = ".dx11.mgfxo";
+        #elif   MONOGAME && DIRECTX9
+            private const string EffectShaderExtension = ".dx9.mgfxo";
+        #else 
+            private const string EffectShaderExtension = ""; 
+        #endif
+
+
+            private static AssetManager _instance; // the instance.
 
         public static AssetManager Instance
         {
@@ -115,6 +124,17 @@ namespace Frenzied.Assets
             this.GoodDog = Game.Content.Load<SpriteFont>(@"Fonts/GoodDog");
 
             this.Sounds.LoadContent(this.Game);
+        }
+
+        /// <summary>
+        /// Loads an effect shared file.
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public Effect LoadEffectShader(string path)
+        {
+            // Note that monogame requires special compiled shaders with mgfxo extension.
+            return this.Game.Content.Load<Effect>(path + EffectShaderExtension);
         }
 
         /// <summary>

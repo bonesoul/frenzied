@@ -129,6 +129,7 @@
     <Compile Include="Menu\MenuEntry.cs" />
     <Compile Include="Platforms\GameFrameworks.cs" />
     <Compile Include="Platforms\GraphicsAPI.cs" />
+    <Compile Include="Platforms\GraphicsConfig.cs" />
     <Compile Include="Platforms\PlatformHandler.cs" />
     <Compile Include="Platforms\PlatformConfig.cs" />
     <Compile Include="Platforms\PlatformManager.cs" />
@@ -137,10 +138,13 @@
     <Compile Include="Platforms\WindowsMetro\WindowsMetroPlatform.cs" />
     <Compile Include="Screens\GameScreen.cs" />
     <Compile Include="Screens\Implementations\AboutScreen.cs" />
+    <Compile Include="Screens\Implementations\BackgroundScene.cs" />
     <Compile Include="Screens\Implementations\BackgroundScreen.cs" />
     <Compile Include="Screens\Implementations\GameplayScreen.cs" />
+    <Compile Include="Screens\Implementations\IntroScreen.cs" />
     <Compile Include="Screens\Implementations\LoadingScreen.cs" />
     <Compile Include="Screens\Implementations\MainMenuScreen.cs" />
+    <Compile Include="Screens\Implementations\MainMenuScreen2.cs" />
     <Compile Include="Screens\Implementations\MenuScreen.cs" />
     <Compile Include="Screens\Implementations\MessageBoxScreen.cs" />
     <Compile Include="Screens\Implementations\OptionsMenuScreen.cs" />
@@ -177,21 +181,6 @@
     <Content Include="..\..\bin\debug\windows\xna\Content\Music\Dragon Soul.wma">
       <Link>Content\Music\Dragon Soul.wma</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Fonts\GameFont.xnb">
-      <Link>Content\Fonts\GameFont.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Fonts\GoodDog.xnb">
-      <Link>Content\Fonts\GoodDog.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Fonts\MenuFont.xnb">
-      <Link>Content\Fonts\MenuFont.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Fonts\Verdana.xnb">
-      <Link>Content\Fonts\Verdana.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Music\Dragon Soul.xnb">
-      <Link>Content\Music\Dragon Soul.xnb</Link>
-    </Content>
     <Content Include="..\..\bin\debug\windows\xna\Content\Sounds\Blocks\0.xnb">
       <Link>Content\Sounds\Blocks\0.xnb</Link>
     </Content>
@@ -213,11 +202,29 @@
     <Content Include="..\..\bin\debug\windows\xna\Content\Sounds\Timeout\0.xnb">
       <Link>Content\Sounds\Timeout\0.xnb</Link>
     </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Fonts\GameFont.xnb">
+      <Link>Content\Fonts\GameFont.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Fonts\GoodDog.xnb">
+      <Link>Content\Fonts\GoodDog.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Fonts\MenuFont.xnb">
+      <Link>Content\Fonts\MenuFont.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Fonts\Verdana.xnb">
+      <Link>Content\Fonts\Verdana.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Effects\SketchTexture.xnb">
+      <Link>Content\Effects\SketchTexture.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Music\Dragon Soul.xnb">
+      <Link>Content\Music\Dragon Soul.xnb</Link>
+    </Content>
     <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Blank.xnb">
       <Link>Content\Textures\Blank.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\BlockContainer.xnb">
-      <Link>Content\Textures\BlockContainer.xnb</Link>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Blocks\BlockContainer.xnb">
+      <Link>Content\Textures\Blocks\BlockContainer.xnb</Link>
     </Content>
     <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Blocks\BlockProgressBar.xnb">
       <Link>Content\Textures\Blocks\BlockProgressBar.xnb</Link>
@@ -237,23 +244,92 @@
     <Content Include="..\..\bin\debug\windows\xna\Content\Textures\cursor.xnb">
       <Link>Content\Textures\cursor.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Gradient.xnb">
-      <Link>Content\Textures\Gradient.xnb</Link>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Common\game-logo.xnb">
+      <Link>Content\Textures\Common\game-logo.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Pies\BluePie.xnb">
-      <Link>Content\Textures\Pies\BluePie.xnb</Link>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Common\Intro.xnb">
+      <Link>Content\Textures\Common\Intro.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Pies\Chart.xnb">
-      <Link>Content\Textures\Pies\Chart.xnb</Link>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Common\Logo.xnb">
+      <Link>Content\Textures\Common\Logo.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Pies\GreenPie.xnb">
-      <Link>Content\Textures\Pies\GreenPie.xnb</Link>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\AutumnBackground.xnb">
+      <Link>Content\Textures\Menu\AutumnBackground.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Pies\OrangePie.xnb">
-      <Link>Content\Textures\Pies\OrangePie.xnb</Link>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\AutumnMeadow.xnb">
+      <Link>Content\Textures\Menu\AutumnMeadow.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Pies\PurplePie.xnb">
-      <Link>Content\Textures\Pies\PurplePie.xnb</Link>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\Background.xnb">
+      <Link>Content\Textures\Menu\Background.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\Clouds\BlueCloud1.xnb">
+      <Link>Content\Textures\Menu\Clouds\BlueCloud1.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\Clouds\BlueCloud2.xnb">
+      <Link>Content\Textures\Menu\Clouds\BlueCloud2.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\Clouds\BlueCloud3.xnb">
+      <Link>Content\Textures\Menu\Clouds\BlueCloud3.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\Clouds\BlueCloud4.xnb">
+      <Link>Content\Textures\Menu\Clouds\BlueCloud4.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\Clouds\BlueCloud5.xnb">
+      <Link>Content\Textures\Menu\Clouds\BlueCloud5.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\Clouds\YellowCloud1.xnb">
+      <Link>Content\Textures\Menu\Clouds\YellowCloud1.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\Clouds\YellowCloud2.xnb">
+      <Link>Content\Textures\Menu\Clouds\YellowCloud2.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\Clouds\YellowCloud3.xnb">
+      <Link>Content\Textures\Menu\Clouds\YellowCloud3.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\Clouds\YellowCloud4.xnb">
+      <Link>Content\Textures\Menu\Clouds\YellowCloud4.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\Clouds\YellowCloud5.xnb">
+      <Link>Content\Textures\Menu\Clouds\YellowCloud5.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\Credits.xnb">
+      <Link>Content\Textures\Menu\Credits.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\CustomMode.xnb">
+      <Link>Content\Textures\Menu\CustomMode.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\Meadow.xnb">
+      <Link>Content\Textures\Menu\Meadow.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\Options.xnb">
+      <Link>Content\Textures\Menu\Options.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\QuickPlay.xnb">
+      <Link>Content\Textures\Menu\QuickPlay.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\StudioBoard.xnb">
+      <Link>Content\Textures\Menu\StudioBoard.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Menu\Tutorial.xnb">
+      <Link>Content\Textures\Menu\Tutorial.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Pies\Blue.xnb">
+      <Link>Content\Textures\Pies\Blue.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Pies\Container.xnb">
+      <Link>Content\Textures\Pies\Container.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Pies\Green.xnb">
+      <Link>Content\Textures\Pies\Green.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Pies\Orange.xnb">
+      <Link>Content\Textures\Pies\Orange.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\windows\xna\Content\Textures\Pies\Purple.xnb">
+      <Link>Content\Textures\Pies\Purple.xnb</Link>
+    </Content>
+    <Content Include="..\Content\Effects\PostprocessEffect.dx11.mgfxo">
+      <Link>Content\Effects\PostprocessEffect.dx11.mgfxo</Link>
     </Content>
     <None Include="Package.StoreAssociation.xml" />
     <None Include="Frenzied.MonoGame.Metro_StoreKey.pfx" />
@@ -266,32 +342,39 @@
     <Content Include="Assets\StoreLogo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MonoGame.Framework">
-      <HintPath>..\..\dep\monogame\WindowsMetro\MonoGame.Framework.dll</HintPath>
+    <Reference Include="MonoGame.Framework, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dep\monogame\Windows8\Debug\MonoGame.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="SharpDX">
-      <HintPath>..\..\dep\monogame\WindowsMetro\SharpDX.dll</HintPath>
+    <Reference Include="SharpDX, Version=2.4.2.0, Culture=neutral, PublicKeyToken=627a3d6d1956f55a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dep\monogame\Windows8\Debug\SharpDX.dll</HintPath>
     </Reference>
-    <Reference Include="SharpDX.Direct2D1">
-      <HintPath>..\..\dep\monogame\WindowsMetro\SharpDX.Direct2D1.dll</HintPath>
+    <Reference Include="SharpDX.Direct2D1, Version=2.4.2.0, Culture=neutral, PublicKeyToken=627a3d6d1956f55a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dep\monogame\Windows8\Debug\SharpDX.Direct2D1.dll</HintPath>
     </Reference>
-    <Reference Include="SharpDX.Direct3D11">
-      <HintPath>..\..\dep\monogame\WindowsMetro\SharpDX.Direct3D11.dll</HintPath>
+    <Reference Include="SharpDX.Direct3D11, Version=2.4.2.0, Culture=neutral, PublicKeyToken=627a3d6d1956f55a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dep\monogame\Windows8\Debug\SharpDX.Direct3D11.dll</HintPath>
     </Reference>
-    <Reference Include="SharpDX.DXGI">
-      <HintPath>..\..\dep\monogame\WindowsMetro\SharpDX.DXGI.dll</HintPath>
+    <Reference Include="SharpDX.DXGI, Version=2.4.2.0, Culture=neutral, PublicKeyToken=627a3d6d1956f55a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dep\monogame\Windows8\Debug\SharpDX.DXGI.dll</HintPath>
     </Reference>
-    <Reference Include="SharpDX.MediaFoundation">
-      <HintPath>..\..\dep\monogame\WindowsMetro\SharpDX.MediaFoundation.dll</HintPath>
+    <Reference Include="SharpDX.MediaFoundation, Version=2.4.2.0, Culture=neutral, PublicKeyToken=627a3d6d1956f55a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dep\monogame\Windows8\Debug\SharpDX.MediaFoundation.dll</HintPath>
     </Reference>
-    <Reference Include="SharpDX.XAudio2">
-      <HintPath>..\..\dep\monogame\WindowsMetro\SharpDX.XAudio2.dll</HintPath>
+    <Reference Include="SharpDX.XAudio2, Version=2.4.2.0, Culture=neutral, PublicKeyToken=627a3d6d1956f55a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dep\monogame\Windows8\Debug\SharpDX.XAudio2.dll</HintPath>
     </Reference>
-    <Reference Include="SharpDX.XInput">
-      <HintPath>..\..\dep\monogame\WindowsMetro\SharpDX.XInput.dll</HintPath>
+    <Reference Include="SharpDX.XInput, Version=2.4.2.0, Culture=neutral, PublicKeyToken=627a3d6d1956f55a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\dep\monogame\Windows8\Debug\SharpDX.XInput.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>

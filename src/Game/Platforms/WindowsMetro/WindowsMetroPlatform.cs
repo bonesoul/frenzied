@@ -17,6 +17,7 @@ namespace Frenzied.Platforms.WindowsMetro
             {
                 IsMouseVisible = true,
                 IsFixedTimeStep = false,
+                Graphics = { CustomShadersEnabled = false },
             };
         }
 
