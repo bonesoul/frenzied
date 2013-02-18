@@ -44,7 +44,6 @@ namespace Frenzied.Screens.Implementations
         private Texture2D _menuTextureCustomMode;
         private Texture2D _menuTextureOptions;
         private Texture2D _menuTextureQuickPlay;
-        private Texture2D _menuTextureTutorial;
 
         // game logo
         private Texture2D _textureGameLogo;
@@ -102,7 +101,6 @@ namespace Frenzied.Screens.Implementations
             this._menuTextureCustomMode = AssetManager.Instance.MenuCustomMode;
             this._menuTextureOptions = AssetManager.Instance.MenuOptions;
             this._menuTextureQuickPlay = AssetManager.Instance.MenuQuickPlay;
-            this._menuTextureTutorial = AssetManager.Instance.MenuTutorial;
 
             base.LoadContent();
         }
@@ -159,6 +157,11 @@ namespace Frenzied.Screens.Implementations
             this._spriteBatch.Draw(this._textureGameLogo, this._gameLogoPosition, null, Color.White, 0f, Vector2.Zero,
                                    this._pulsatedGameLogoScale, SpriteEffects.None, 0);
 
+            this._spriteBatch.Draw(this._menuTextureQuickPlay, new Vector2(100, 100), Color.White);
+            this._spriteBatch.Draw(this._menuTextureCustomMode, new Vector2(100, 175), Color.White);
+            this._spriteBatch.Draw(this._menuTextureOptions, new Vector2(100, 325), Color.White);
+            this._spriteBatch.Draw(this._menuTextureCredits, new Vector2(100, 400), Color.White);
+
             this._spriteBatch.End();
 
             if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.CustomShadersEnabled)
@@ -166,15 +169,6 @@ namespace Frenzied.Screens.Implementations
                 FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(null);
                 ApplyPostprocess();
             }
-
-            this._spriteBatch.Begin();
-
-            this._spriteBatch.Draw(this._menuTextureQuickPlay, new Vector2(100, 100), Color.White);
-            this._spriteBatch.Draw(this._menuTextureCustomMode, new Vector2(100, 175), Color.White);
-            this._spriteBatch.Draw(this._menuTextureTutorial, new Vector2(100, 250), Color.White);
-            this._spriteBatch.Draw(this._menuTextureOptions, new Vector2(100, 325), Color.White);
-            this._spriteBatch.Draw(this._menuTextureCredits, new Vector2(100, 400), Color.White);
-            this._spriteBatch.End();
 
             base.Draw(gameTime);
         }
