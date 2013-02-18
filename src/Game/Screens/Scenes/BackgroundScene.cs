@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Frenzied.Screens.Implementations
+namespace Frenzied.Screens.Scenes
 {
     public interface IBackgroundScene
     {

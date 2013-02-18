@@ -16,6 +16,7 @@ using Frenzied.Input;
 using Frenzied.Platforms;
 using Frenzied.Screens;
 using Frenzied.Screens.Implementations;
+using Frenzied.Screens.Scenes;
 using Frenzied.Utils.Debugging;
 using Frenzied.Utils.Debugging.Graphs;
 using Microsoft.Xna.Framework;
@@ -92,24 +93,15 @@ namespace Frenzied
             var graphicsManager = new GraphicsManager(this._graphicsDeviceManager, this); // start the screen manager.
             graphicsManager.ToggleVerticalSync();
 
-
             // create the screen manager
             this._screenManager = new ScreenManager(this);
             Components.Add(_screenManager);
 
-            // create the score manager
-            //var scoreManager = new ScoreManager(this);
-            //this.Components.Add(scoreManager);
-
             var backgroundScene = new BackgroundScene(this);
 
             // Activate the first screens.
+            //this._screenManager.AddScreen(new IntroScreen(), null);
             this._screenManager.AddScreen(new MainMenuScreen2(), null);
-            //this._screenManager.AddScreen(new IntroScreen(), null);            
-            //this._screenManager.AddScreen(new AboutScreen(), null);
-            //this._screenManager.AddScreen(new BackgroundScreen(), null);            
-            //this._screenManager.AddScreen(new GameplayScreen(new PieMode()), null);
-
 
             // add debug components
             this.Components.Add(new DebugBar(this));

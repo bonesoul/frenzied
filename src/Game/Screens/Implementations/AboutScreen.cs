@@ -9,6 +9,7 @@ using System;
 using Frenzied.Assets;
 using Frenzied.Input;
 using Frenzied.Platforms;
+using Frenzied.Screens.Scenes;
 using Frenzied.Utils.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

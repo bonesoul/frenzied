@@ -33,7 +33,7 @@ namespace Frenzied.GamePlay
         void MoveCommitted(GameTime gameTime);
     }
 
-    public class ScoreManager : DrawableGameComponent , IScoreManager
+    public class ScoreManager : DrawableGameComponent, IScoreManager
     {
         public int Score { get; private set; }
         public int Lives { get; private set; }
@@ -65,11 +65,11 @@ namespace Frenzied.GamePlay
         {
             // import required services.
             this._gameMode = ServiceHelper.GetService<IGameMode>(typeof(IGameMode));
-            this._assetManager = ServiceHelper.GetService<IAssetManager>(typeof (IAssetManager));        
+            this._assetManager = ServiceHelper.GetService<IAssetManager>(typeof(IAssetManager));
 
             this.Score = 0;
             this.Lives = this._gameMode.RuleSet.StartingLifes;
-            this.TimeoutStepCount = this._gameMode.RuleSet.ShapePlacementTimeout/7; // our timeout bar has 6 pies and we want additional step for empty state.
+            this.TimeoutStepCount = this._gameMode.RuleSet.ShapePlacementTimeout / 7; // our timeout bar has 6 pies and we want additional step for empty state.
 
             base.Initialize();
         }
@@ -98,9 +98,9 @@ namespace Frenzied.GamePlay
             this.Lives--;
             this.ResetNextTimeout(gameTime);
 
-            #if !WINPHONE8
+#if !WINPHONE8
             //this._assetManager.Sounds.Timeout.Play();
-            #endif
+#endif
         }
 
         private void ResetNextTimeout(GameTime gameTime)
@@ -114,7 +114,7 @@ namespace Frenzied.GamePlay
                 this.ResetNextTimeout(gameTime);
 
             TimeLeftForNextTimeout = this.NextTimeout - gameTime.TotalGameTime; // calculate the time left.
-            TimeoutPiesLeftCount = (int) (TimeLeftForNextTimeout.TotalMilliseconds/this.TimeoutStepCount); // calculate number of pies to render.
+            TimeoutPiesLeftCount = (int)(TimeLeftForNextTimeout.TotalMilliseconds / this.TimeoutStepCount); // calculate number of pies to render.
 
             if (TimeoutPiesLeftCount == 0 && TimeLeftForNextTimeout.TotalMilliseconds < 100)
                 this.TimeOut(gameTime); // run the actual timeout code.

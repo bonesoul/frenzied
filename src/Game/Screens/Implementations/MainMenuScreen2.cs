@@ -6,9 +6,13 @@
  */
 
 using System;
+using System.Collections.Generic;
 using Frenzied.Assets;
-using Frenzied.Graphics.Effects;
+using Frenzied.GamePlay;
+using Frenzied.GamePlay.Implementations.PieMode;
 using Frenzied.Platforms;
+using Frenzied.Screens.Menu;
+using Frenzied.Screens.Scenes;
 using Frenzied.Utils.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -53,8 +57,7 @@ namespace Frenzied.Screens.Implementations
         private Vector2 _gameLogoPosition;
         private const float PulsateFactor = 0.01f;
 
-        // other textures;
-        private Texture2D _textureStudioBoard;
+        private Dictionary<string, Button> _buttons;
 
         // required services.       
         private IBackgroundScene _backgroundScene;
@@ -62,7 +65,7 @@ namespace Frenzied.Screens.Implementations
         public override void Initialize()
         {
             // import required services.
-            this._backgroundScene = ServiceHelper.GetService<IBackgroundScene>(typeof(IBackgroundScene)); 
+            this._backgroundScene = ServiceHelper.GetService<IBackgroundScene>(typeof(IBackgroundScene));
 
             base.Initialize();
         }
@@ -82,9 +85,6 @@ namespace Frenzied.Screens.Implementations
             this._actualGameLogoScale = (float)_targetGameLogoWidth / this._textureGameLogo.Width;
             this._gameLogoPosition = new Vector2(this._viewport.Width / 2 - _targetGameLogoWidth / 2, 25);
 
-            // other textures.
-            this._textureStudioBoard = ScreenManager.Game.Content.Load<Texture2D>(@"Textures\Menu\StudioBoard");
-
             if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.CustomShadersEnabled)
             {
                 _postprocessEffect = AssetManager.Instance.LoadEffectShader(@"Effects\PostprocessEffect");
@@ -102,7 +102,87 @@ namespace Frenzied.Screens.Implementations
             this._menuTextureOptions = AssetManager.Instance.MenuOptions;
             this._menuTextureQuickPlay = AssetManager.Instance.MenuQuickPlay;
 
+            this._buttons = new Dictionary<string, Button>()
+                                {
+                                    {"Play", new Button(@"Textures/Menu/Play")},
+                                    {"Custom", new Button(@"Textures/Menu/Custom")},
+                                    {"Options", new Button(@"Textures/Menu/Options")},
+                                    {"Credits", new Button(@"Textures/Menu/Credits")},
+                                    {"Studio", new Button(@"Textures/Menu/StudioBoard")},
+                                    {"Twitter", new Button(@"Textures/Menu/Social/Twitter")},
+                                    {"Facebook", new Button(@"Textures/Menu/Social/Facebook")},
+                                    {"Youtube", new Button(@"Textures/Menu/Social/Youtube")},
+                                };
+
+            foreach (var pair in this._buttons)
+            {
+                pair.Value.LoadContent();
+            }
+
+            this._buttons["Play"].Position = new Vector2(100, this._viewport.Height * 0.25f);
+            this._buttons["Custom"].Position = new Vector2(100, this._viewport.Height * 0.40f);
+            this._buttons["Options"].Position = new Vector2(100, this._viewport.Height * 0.55f);
+            this._buttons["Credits"].Position = new Vector2(100, this._viewport.Height * 0.70f);
+            this._buttons["Studio"].Position = new Vector2(this._viewport.Width - this._buttons["Studio"].Texture.Width - 25, this._viewport.Height - this._buttons["Studio"].Texture.Height);
+            this._buttons["Twitter"].Position=new Vector2(1000,50);
+            this._buttons["Facebook"].Position = new Vector2(1080, 50);
+            this._buttons["Youtube"].Position = new Vector2(1160, 50);
+
+            this._buttons["Play"].Selected += ButtonPlaySelected;
+            this._buttons["Custom"].Selected += ButtonCustomSelected;
+            this._buttons["Options"].Selected += ButtonOptionsSelected;
+            this._buttons["Credits"].Selected += ButtonCreditsSelected;
+            this._buttons["Studio"].Selected += ButtonStudio_Selected;
+            this._buttons["Twitter"].Selected += ButtonTwitter_Selected;
+            this._buttons["Facebook"].Selected += ButtonFacebook_Selected;
+            this._buttons["Youtube"].Selected += ButtonYoutube_Selected;
+
             base.LoadContent();
+        }
+
+        private void ButtonPlaySelected(object sender, EventArgs e)
+        {
+            // create the score manager
+            var mode = new PieMode();
+
+            var scoreManager = new ScoreManager(this.ScreenManager.Game);
+            this.ScreenManager.Game.Components.Add(scoreManager);
+
+            ScreenManager.AddScreen(new GameplayScreen(mode), ControllingPlayer);
+        }
+
+        private void ButtonCustomSelected(object sender, EventArgs e)
+        {
+        }
+
+        private void ButtonOptionsSelected(object sender, EventArgs e)
+        {
+            ScreenManager.AddScreen(new OptionsMenuScreen(), ControllingPlayer);
+        }
+
+        private void ButtonCreditsSelected(object sender, EventArgs e)
+        {
+            ScreenManager.AddScreen(new AboutScreen(), ControllingPlayer);
+        }
+
+        private void ButtonStudio_Selected(object sender, EventArgs e)
+        {
+            PlatformManager.PlatformHelper.LaunchURI("http://www.int6.org/");
+        }
+
+        private void ButtonTwitter_Selected(object sender, EventArgs e)
+        {
+            PlatformManager.PlatformHelper.LaunchURI("http://www.twitter.com/int6games/");
+        }
+
+        private void ButtonFacebook_Selected(object sender, EventArgs e)
+        {
+            PlatformManager.PlatformHelper.LaunchURI("https://www.facebook.com/Int6Studios");
+        }
+
+        private void ButtonYoutube_Selected(object sender, EventArgs e)
+        {
+            PlatformManager.PlatformHelper.LaunchURI("http://www.youtube.com/user/Int6Games");
         }
 
         public override void HandleInput(GameTime gameTime, Input.InputState input)
@@ -110,7 +190,11 @@ namespace Frenzied.Screens.Implementations
             if (input.CurrentMouseState.LeftButton != ButtonState.Pressed || input.LastMouseState.LeftButton != ButtonState.Released)
                 return;
 
-            ScreenManager.AddScreen(new AboutScreen(), ControllingPlayer);
+            foreach (var pair in this._buttons)
+            {
+                if (pair.Value.Bounds.Contains(input.CurrentMouseState.X, input.CurrentMouseState.Y))
+                    pair.Value.OnSelectEntry();
+            }
 
             base.HandleInput(gameTime, input);
         }
@@ -152,15 +236,13 @@ namespace Frenzied.Screens.Implementations
             // draw background scene.
             this._backgroundScene.Draw(BackgroundScene.Season.Spring);
 
-            this._spriteBatch.Draw(this._textureStudioBoard, new Vector2(this._viewport.Width - this._textureStudioBoard.Width - 25, this._viewport.Height - this._textureStudioBoard.Height), Color.White);
-
             this._spriteBatch.Draw(this._textureGameLogo, this._gameLogoPosition, null, Color.White, 0f, Vector2.Zero,
                                    this._pulsatedGameLogoScale, SpriteEffects.None, 0);
 
-            this._spriteBatch.Draw(this._menuTextureQuickPlay, new Vector2(100, 100), Color.White);
-            this._spriteBatch.Draw(this._menuTextureCustomMode, new Vector2(100, 175), Color.White);
-            this._spriteBatch.Draw(this._menuTextureOptions, new Vector2(100, 325), Color.White);
-            this._spriteBatch.Draw(this._menuTextureCredits, new Vector2(100, 400), Color.White);
+            foreach (var pair in this._buttons)
+            {
+                pair.Value.Draw(gameTime);
+            }
 
             this._spriteBatch.End();
 
@@ -179,7 +261,6 @@ namespace Frenzied.Screens.Implementations
         private void ApplyPostprocess()
         {
             EffectParameterCollection parameters = _postprocessEffect.Parameters;
-            string effectTechniqueName;
 
             // Set effect parameters controlling the pencil sketch effect.
             parameters["SketchThreshold"].SetValue(SketchThreshold);
@@ -187,10 +268,8 @@ namespace Frenzied.Screens.Implementations
             parameters["SketchJitter"].SetValue(_sketchJitter);
             parameters["SketchTexture"].SetValue(_sketchTexture);
 
-            effectTechniqueName = "ColorSketch";
-
             // Activate the appropriate effect technique.
-            _postprocessEffect.CurrentTechnique = _postprocessEffect.Techniques[effectTechniqueName];
+            _postprocessEffect.CurrentTechnique = _postprocessEffect.Techniques["ColorSketch"];
 
             // Draw a fullscreen sprite to apply the postprocessing effect.
             _spriteBatch.Begin(0, BlendState.AlphaBlend, null, null, null, _postprocessEffect);

@@ -323,8 +323,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Textures\Menu\facebook.png">
-      <Name>facebook</Name>
+    <Compile Include="Textures\Menu\Social\Facebook.png">
+      <Name>Facebook</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -335,25 +335,32 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Textures\Menu\reddit.png">
-      <Name>reddit</Name>
+    <Compile Include="Textures\Menu\Social\Reddit.png">
+      <Name>Reddit</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Textures\Menu\rss.png">
-      <Name>rss</Name>
+    <Compile Include="Textures\Menu\Social\RSS.png">
+      <Name>RSS</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Textures\Menu\twitter.png">
-      <Name>twitter</Name>
+    <Compile Include="Textures\Menu\Social\Twitter.png">
+      <Name>Twitter</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Textures\Menu\youtube.png">
-      <Name>youtube</Name>
+    <Compile Include="Textures\Menu\Social\Youtube.png">
+      <Name>Youtube</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Textures\Gradient.png">
+      <Name>Gradient</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

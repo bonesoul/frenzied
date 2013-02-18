@@ -26,6 +26,8 @@ namespace Frenzied.Platforms
 
         public static PlatformHandler PlatformHandler { get; private set; }
 
+        public static PlatformHelper PlatformHelper { get; private set; }
+
         static PlatformManager()
         {
             IdentifyPlatform();
@@ -47,6 +49,7 @@ namespace Frenzied.Platforms
             #if WINDOWS && DESKTOP
                 Platform = Platforms.Windows;
                 PlatformHandler = new Windows.WindowsPlatform();
+                PlatformHelper = new Windows.WindowsHelper();
             #elif WINDOWS && METRO
                 Platform = Platforms.WindowsMetro;
                 PlatformHandler = new WindowsMetro.WindowsMetroPlatform();

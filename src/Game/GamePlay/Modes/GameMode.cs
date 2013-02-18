@@ -58,6 +58,8 @@ namespace Frenzied.GamePlay.Modes
         {
             this.RuleSet = new RuleSet();
             this.ShapeContainers = new List<ShapeContainer>();
+
+            FrenziedGame.Instance.Services.AddService(typeof(IGameMode), this); // export the service.
         }
 
         /// <summary>
