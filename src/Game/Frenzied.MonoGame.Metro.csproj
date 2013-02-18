@@ -328,8 +328,8 @@
     <Content Include="..\..\bin\debug\Desktop\Content\Textures\Pies\Purple.xnb">
       <Link>Content\Textures\Pies\Purple.xnb</Link>
     </Content>
-    <Content Include="..\Content\Effects\PostprocessEffect.dx11.mgfxo">
-      <Link>Content\Effects\PostprocessEffect.dx11.mgfxo</Link>
+    <Content Include="..\Content\Effects\PostprocessEffect.Metro.mgfxo">
+      <Link>Content\Effects\PostprocessEffect.Metro.mgfxo</Link>
     </Content>
     <None Include="Package.StoreAssociation.xml" />
     <None Include="Frenzied.MonoGame.Metro_StoreKey.pfx" />
