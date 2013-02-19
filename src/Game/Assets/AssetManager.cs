@@ -24,11 +24,6 @@ namespace Frenzied.Assets
         SpriteFont Verdana { get; }
         SpriteFont GoodDog { get; }
 
-        Texture2D MenuCredits { get; }
-        Texture2D MenuCustomMode { get; }
-        Texture2D MenuOptions { get; }
-        Texture2D MenuQuickPlay { get; }
-
         Texture2D StudioIntro { get; }
 
         AssetManager.SoundsEffects Sounds { get; }
@@ -60,10 +55,6 @@ namespace Frenzied.Assets
         public Texture2D BlockProgressBar { get; private set; }
         public SpriteFont Verdana { get; private set; }
         public SpriteFont GoodDog { get; private set; }
-        public Texture2D MenuCredits { get; private set; }
-        public Texture2D MenuCustomMode { get; private set; }
-        public Texture2D MenuOptions { get; private set; }
-        public Texture2D MenuQuickPlay { get; private set; }
 
         public Texture2D StudioIntro { get; private set; }
 
@@ -107,11 +98,6 @@ namespace Frenzied.Assets
             this.PieTextures[Color.Purple] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/Purple");
             this.PieTextures[Color.Green] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/Green");
             this.PieTextures[Color.Blue] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/Blue");
-
-            this.MenuCredits = this.Game.Content.Load<Texture2D>(@"Textures/Menu/Credits");
-            this.MenuCustomMode = this.Game.Content.Load<Texture2D>(@"Textures/Menu/Custom");
-            this.MenuOptions = this.Game.Content.Load<Texture2D>(@"Textures/Menu/Options");
-            this.MenuQuickPlay = this.Game.Content.Load<Texture2D>(@"Textures/Menu/Play");
 
             this.BlockProgressBar = this.Game.Content.Load<Texture2D>(@"Textures/Blocks/BlockProgressBar");
 

@@ -44,11 +44,6 @@ namespace Frenzied.Screens.Implementations
         // Custom rendertargets.
         RenderTarget2D sceneRenderTarget;
 
-        private Texture2D _menuTextureCredits;
-        private Texture2D _menuTextureCustomMode;
-        private Texture2D _menuTextureOptions;
-        private Texture2D _menuTextureQuickPlay;
-
         // game logo
         private Texture2D _textureGameLogo;
         private int _targetGameLogoWidth;
@@ -97,18 +92,13 @@ namespace Frenzied.Screens.Implementations
                                                    presentationParameters.BackBufferWidth, presentationParameters.BackBufferHeight, false,
                                                    presentationParameters.BackBufferFormat, presentationParameters.DepthStencilFormat);
 
-            this._menuTextureCredits = AssetManager.Instance.MenuCredits;
-            this._menuTextureCustomMode = AssetManager.Instance.MenuCustomMode;
-            this._menuTextureOptions = AssetManager.Instance.MenuOptions;
-            this._menuTextureQuickPlay = AssetManager.Instance.MenuQuickPlay;
-
             this._buttons = new Dictionary<string, Button>()
                                 {
                                     {"Play", new Button(@"Textures/Menu/Play")},
-                                    {"Custom", new Button(@"Textures/Menu/Custom")},
-                                    {"Options", new Button(@"Textures/Menu/Options")},
+                                    {"Kids", new Button(@"Textures/Menu/Kids")},
+                                    {"Settings", new Button(@"Textures/Menu/Settings")},
                                     {"Credits", new Button(@"Textures/Menu/Credits")},
-                                    {"Studio", new Button(@"Textures/Menu/StudioBoard")},
+                                    {"Board", new Button(@"Textures/Menu/Board")},
                                     {"Twitter", new Button(@"Textures/Menu/Social/Twitter")},
                                     {"Facebook", new Button(@"Textures/Menu/Social/Facebook")},
                                     {"Youtube", new Button(@"Textures/Menu/Social/Youtube")},
@@ -120,19 +110,19 @@ namespace Frenzied.Screens.Implementations
             }
 
             this._buttons["Play"].Position = new Vector2(100, this._viewport.Height * 0.25f);
-            this._buttons["Custom"].Position = new Vector2(100, this._viewport.Height * 0.40f);
-            this._buttons["Options"].Position = new Vector2(100, this._viewport.Height * 0.55f);
+            this._buttons["Kids"].Position = new Vector2(100, this._viewport.Height * 0.40f);
+            this._buttons["Settings"].Position = new Vector2(100, this._viewport.Height * 0.55f);
             this._buttons["Credits"].Position = new Vector2(100, this._viewport.Height * 0.70f);
-            this._buttons["Studio"].Position = new Vector2(this._viewport.Width - this._buttons["Studio"].Texture.Width - 25, this._viewport.Height - this._buttons["Studio"].Texture.Height);
+            this._buttons["Board"].Position = new Vector2(this._viewport.Width - this._buttons["Board"].Texture.Width - 25, this._viewport.Height - this._buttons["Board"].Texture.Height);
             this._buttons["Twitter"].Position=new Vector2(1000,50);
             this._buttons["Facebook"].Position = new Vector2(1080, 50);
             this._buttons["Youtube"].Position = new Vector2(1160, 50);
 
-            this._buttons["Play"].Selected += ButtonPlaySelected;
-            this._buttons["Custom"].Selected += ButtonCustomSelected;
-            this._buttons["Options"].Selected += ButtonOptionsSelected;
-            this._buttons["Credits"].Selected += ButtonCreditsSelected;
-            this._buttons["Studio"].Selected += ButtonStudio_Selected;
+            this._buttons["Play"].Selected += ButtonPlay_Selected;
+            this._buttons["Kids"].Selected += ButtonKids_Selected;
+            this._buttons["Settings"].Selected += ButtonSettings_Selected;
+            this._buttons["Credits"].Selected += ButtonCredits_Selected;
+            this._buttons["Board"].Selected += ButtonBoard_Selected;
             this._buttons["Twitter"].Selected += ButtonTwitter_Selected;
             this._buttons["Facebook"].Selected += ButtonFacebook_Selected;
             this._buttons["Youtube"].Selected += ButtonYoutube_Selected;
@@ -140,7 +130,7 @@ namespace Frenzied.Screens.Implementations
             base.LoadContent();
         }
 
-        private void ButtonPlaySelected(object sender, EventArgs e)
+        private void ButtonPlay_Selected(object sender, EventArgs e)
         {
             // create the score manager
             var mode = new PieMode();
@@ -151,21 +141,22 @@ namespace Frenzied.Screens.Implementations
             ScreenManager.AddScreen(new GameplayScreen(mode), ControllingPlayer);
         }
 
-        private void ButtonCustomSelected(object sender, EventArgs e)
+        private void ButtonKids_Selected(object sender, EventArgs e)
         {
+            
         }
 
-        private void ButtonOptionsSelected(object sender, EventArgs e)
+        private void ButtonSettings_Selected(object sender, EventArgs e)
         {
             ScreenManager.AddScreen(new OptionsMenuScreen(), ControllingPlayer);
         }
 
-        private void ButtonCreditsSelected(object sender, EventArgs e)
+        private void ButtonCredits_Selected(object sender, EventArgs e)
         {
             ScreenManager.AddScreen(new AboutScreen(), ControllingPlayer);
         }
 
-        private void ButtonStudio_Selected(object sender, EventArgs e)
+        private void ButtonBoard_Selected(object sender, EventArgs e)
         {
             PlatformManager.PlatformHelper.LaunchURI("http://www.int6.org/");
         }
