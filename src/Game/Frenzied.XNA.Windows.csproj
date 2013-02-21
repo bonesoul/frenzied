@@ -119,6 +119,8 @@
     <Compile Include="Platforms\Windows\WindowsHelper.cs" />
     <Compile Include="Platforms\Windows\WindowsPlatform.cs" />
     <Compile Include="Platforms\PlatformManager.cs" />
+    <Compile Include="PostProcessing\Effects\SketchEffect.cs" />
+    <Compile Include="PostProcessing\PostprocessingEffect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Screens\GameScreen.cs" />
@@ -195,9 +197,9 @@
     <None Include="Platforms\Windows\app.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Content\HiDefContent.contentproj">
+    <ProjectReference Include="..\Content\Content.contentproj">
       <Project>{49796CBA-FA0E-4778-896D-65CBD54CB3F7}</Project>
-      <Name>HiDefContent %28Content%29</Name>
+      <Name>Content</Name>
       <XnaReferenceType>Content</XnaReferenceType>
     </ProjectReference>
   </ItemGroup>
