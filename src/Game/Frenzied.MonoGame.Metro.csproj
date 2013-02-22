@@ -138,6 +138,7 @@
     <Compile Include="Platforms\VersionInfo.cs" />
     <Compile Include="Platforms\WindowsMetro\WindowsMetroHelper.cs" />
     <Compile Include="Platforms\WindowsMetro\WindowsMetroPlatform.cs" />
+    <Compile Include="PostProcessing\Effects\NoiseEffect.cs" />
     <Compile Include="PostProcessing\Effects\SketchEffect.cs" />
     <Compile Include="PostProcessing\PostprocessingEffect.cs" />
     <Compile Include="Screens\GameScreen.cs" />

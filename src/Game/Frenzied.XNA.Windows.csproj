@@ -119,6 +119,7 @@
     <Compile Include="Platforms\Windows\WindowsHelper.cs" />
     <Compile Include="Platforms\Windows\WindowsPlatform.cs" />
     <Compile Include="Platforms\PlatformManager.cs" />
+    <Compile Include="PostProcessing\Effects\NoiseEffect.cs" />
     <Compile Include="PostProcessing\Effects\SketchEffect.cs" />
     <Compile Include="PostProcessing\PostprocessingEffect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

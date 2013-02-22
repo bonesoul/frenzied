@@ -123,6 +123,7 @@
     </Compile>
     <Compile Include="Platforms\WindowsPhone8\WindowsPhone8Helper.cs" />
     <Compile Include="Platforms\WindowsPhone8\WindowsPhone8Platform.cs" />
+    <Compile Include="PostProcessing\Effects\NoiseEffect.cs" />
     <Compile Include="PostProcessing\Effects\SketchEffect.cs" />
     <Compile Include="PostProcessing\PostprocessingEffect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
