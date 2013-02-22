@@ -9,22 +9,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Phone.Tasks;
 
-namespace Frenzied.Platforms
+namespace Frenzied.Platforms.WindowsPhone7
 {
-    public class GraphicsConfig
+    public class WindowsPhone7Helper : PlatformHelper
     {
-        /// <summary>
-        /// Gets or sets if custom shaders are enabled for platform.
-        /// </summary>
-        public bool ExtendedEffects { get; set; }
-        
-        /// <summary>
-        /// Creates a new instance of graphics-config.
-        /// </summary>
-        public GraphicsConfig()
+        public override void LaunchURI(string url)
         {
-            this.ExtendedEffects = false;
+            var task = new WebBrowserTask {Uri = new Uri(url)};
+            task.Show();
         }
     }
 }

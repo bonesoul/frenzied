@@ -53,6 +53,7 @@ namespace Frenzied.Platforms
             #elif WINDOWS && METRO
                 Platform = Platforms.WindowsMetro;
                 PlatformHandler = new WindowsMetro.WindowsMetroPlatform();
+                PlatformHelper = new WindowsMetro.WindowsMetroHelper();
 			#elif LINUX && DESKTOP
 				Platform = Platforms.Linux;
 				PlatformHandler = new Linux.LinuxPlatform();
@@ -62,9 +63,11 @@ namespace Frenzied.Platforms
             #elif WINPHONE7
                 Platform = Platforms.WindowsPhone7;
                 PlatformHandler = new WindowsPhone7.WindowsPhone7Platform();
+            PlatformHelper = new WindowsPhone7.WindowsPhone7Helper();
             #elif WINPHONE8
                 Platform = Platforms.WindowsPhone8;
                 PlatformHandler = new WindowsPhone8.WindowsPhone8Platform();
+                PlatformHelper = new WindowsPhone8.WindowsPhone8Helper();
             #elif ANDROID
                 Platform = Platforms.Android;
                 PlatformHandler = new Android.AndroidPlatform();
