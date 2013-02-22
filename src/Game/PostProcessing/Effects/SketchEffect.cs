@@ -7,7 +7,6 @@
 
 using System;
 using Frenzied.Assets;
-using Frenzied.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 

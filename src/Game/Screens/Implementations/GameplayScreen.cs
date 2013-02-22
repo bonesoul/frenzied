@@ -6,11 +6,7 @@
  */
 
 using System;
-using System.Collections.Generic;
-using Frenzied.Assets;
-using Frenzied.GamePlay;
 using Frenzied.GamePlay.Modes;
-using Frenzied.Graphics.Effects;
 using Frenzied.Input;
 using Frenzied.Platforms;
 using Frenzied.PostProcessing.Effects;
@@ -31,8 +27,9 @@ namespace Frenzied.Screens.Implementations
         private float pauseAlpha;
 
         // post-process effects
-        private RenderTarget2D scene;
-        private SketchEffect _sketchEffect;
+        private RenderTarget2D _scene; // the render-target that we draw the scene.
+        private SketchEffect _sketchEffect; // the extended sketch post-process effect.
+        private NoiseEffect _noiseEffect; // the replaced noise effect for WP7 which doesn't actually support custom-effects.
 
         // required services.
         private IBackgroundScene _backgroundScene;
@@ -72,9 +69,11 @@ namespace Frenzied.Screens.Implementations
             // load contents for post-process effects
             if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.ExtendedEffects)
                 this._sketchEffect = new SketchEffect(ScreenManager.Game, ScreenManager.SpriteBatch);
+            else
+                this._noiseEffect = new NoiseEffect(ScreenManager.Game, ScreenManager.SpriteBatch);
 
             // Create custom rendertarget for the scene.
-            scene = new RenderTarget2D(ScreenManager.GraphicsDevice, this._viewport.Width, this._viewport.Height);
+            _scene = new RenderTarget2D(ScreenManager.GraphicsDevice, this._viewport.Width, this._viewport.Height);
 
             this._gameMode.LoadContent();
 
@@ -118,8 +117,8 @@ namespace Frenzied.Screens.Implementations
         /// </summary>
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
-            if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.ExtendedEffects)
-                this._sketchEffect.UpdateJitter(gameTime);
+            // create a render target for the scene which will be later using with post process effect.
+            FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(_scene);
 
             this._gameMode.Update(gameTime);
 
@@ -142,7 +141,7 @@ namespace Frenzied.Screens.Implementations
         {
             // create a render target for the scene which will be later using with post process effect.
             if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.ExtendedEffects)
-                FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(scene);
+                FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(_scene);
 
             this.ScreenManager.SpriteBatch.Begin();
 
@@ -153,7 +152,9 @@ namespace Frenzied.Screens.Implementations
 
             // apply post-process effect.
             if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.ExtendedEffects)
-                this._sketchEffect.Apply(scene);
+                this._sketchEffect.Apply(_scene);
+            else
+                this._noiseEffect.Apply(_scene);
 
             this._gameMode.Draw(gameTime);
 
