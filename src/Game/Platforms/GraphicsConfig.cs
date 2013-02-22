@@ -17,14 +17,14 @@ namespace Frenzied.Platforms
         /// <summary>
         /// Gets or sets if custom shaders are enabled for platform.
         /// </summary>
-        public bool CustomShadersEnabled { get; set; }
+        public bool ExtendedEffects { get; set; }
         
         /// <summary>
         /// Creates a new instance of graphics-config.
         /// </summary>
         public GraphicsConfig()
         {
-            this.CustomShadersEnabled = false;
+            this.ExtendedEffects = false;
         }
     }
 }

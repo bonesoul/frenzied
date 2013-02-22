@@ -13,6 +13,7 @@ using Frenzied.GamePlay.Modes;
 using Frenzied.Graphics.Effects;
 using Frenzied.Input;
 using Frenzied.Platforms;
+using Frenzied.PostProcessing.Effects;
 using Frenzied.Screens.Scenes;
 using Frenzied.Utils.Services;
 using Microsoft.Xna.Framework;
@@ -24,32 +25,17 @@ namespace Frenzied.Screens.Implementations
 {
     class GameplayScreen : GameScreen
     {
-        float pauseAlpha;
+        // common stuff.
+        private Viewport _viewport;
+        private GameMode _gameMode;
+        private float pauseAlpha;
+
+        // post-process effects
+        private RenderTarget2D scene;
+        private SketchEffect _sketchEffect;
 
         // required services.
         private IBackgroundScene _backgroundScene;
-
-        readonly Random _random = new Random();
-
-        // Effect used to apply the edge detection and pencil sketch postprocessing.
-        Effect _postprocessEffect;
-
-        // Overlay texture containing the pencil sketch stroke pattern.
-        Texture2D _sketchTexture;
-
-        // Randomly offsets the sketch pattern to create a hand-drawn animation effect.
-        Vector2 _sketchJitter;
-        TimeSpan _timeToNextJitter;
-
-        private const float SketchThreshold = 0.2f;
-        private const float SketchBrightness = 0.35f;
-        private const float SketchJitterSpeed = 0.09f;
-
-        // Custom rendertargets.
-        RenderTarget2D sceneRenderTarget;
-
-
-        private GameMode _gameMode;
 
         /// <summary>
         /// Creates a new <see cref="GameplayScreen"/> instance.
@@ -81,18 +67,14 @@ namespace Frenzied.Screens.Implementations
         /// </summary>
         public override void LoadContent()
         {
-            if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.CustomShadersEnabled)
-            {
-                _postprocessEffect = AssetManager.Instance.LoadEffectShader(@"Effects\PostprocessEffect");
-                _sketchTexture = ScreenManager.Game.Content.Load<Texture2D>(@"Effects\SketchTexture");
-            }
+            this._viewport = ScreenManager.GraphicsDevice.Viewport;
 
-            // Create custom rendertarget.
-            var presentationParameters = FrenziedGame.Instance.GraphicsDevice.PresentationParameters;
-            sceneRenderTarget = new RenderTarget2D(FrenziedGame.Instance.GraphicsDevice,
-                                                   presentationParameters.BackBufferWidth, presentationParameters.BackBufferHeight, false,
-                                                   presentationParameters.BackBufferFormat, presentationParameters.DepthStencilFormat);
+            // load contents for post-process effects
+            if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.ExtendedEffects)
+                this._sketchEffect = new SketchEffect(ScreenManager.Game, ScreenManager.SpriteBatch);
 
+            // Create custom rendertarget for the scene.
+            scene = new RenderTarget2D(ScreenManager.GraphicsDevice, this._viewport.Width, this._viewport.Height);
 
             this._gameMode.LoadContent();
 
@@ -136,19 +118,9 @@ namespace Frenzied.Screens.Implementations
         /// </summary>
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
-            // Update the sketch overlay texture jitter animation.
-            if (SketchJitterSpeed > 0)
-            {
-                _timeToNextJitter -= gameTime.ElapsedGameTime;
+            if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.ExtendedEffects)
+                this._sketchEffect.UpdateJitter(gameTime);
 
-                if (_timeToNextJitter <= TimeSpan.Zero)
-                {
-                    _sketchJitter.X = (float)_random.NextDouble();
-                    _sketchJitter.Y = (float)_random.NextDouble();
-
-                    _timeToNextJitter += TimeSpan.FromSeconds(SketchJitterSpeed);
-                }
-            }
             this._gameMode.Update(gameTime);
 
             // Gradually fade in or out depending on whether we are covered by the pause screen.
@@ -168,8 +140,9 @@ namespace Frenzied.Screens.Implementations
         /// </summary>
         public override void Draw(GameTime gameTime)
         {
-            if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.CustomShadersEnabled)
-                FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(sceneRenderTarget);
+            // create a render target for the scene which will be later using with post process effect.
+            if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.ExtendedEffects)
+                FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(scene);
 
             this.ScreenManager.SpriteBatch.Begin();
 
@@ -178,37 +151,13 @@ namespace Frenzied.Screens.Implementations
 
             this.ScreenManager.SpriteBatch.End();
 
-            if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.CustomShadersEnabled)
-            {
-                FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(null);
-                ApplyPostprocess();
-            }
+            // apply post-process effect.
+            if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.ExtendedEffects)
+                this._sketchEffect.Apply(scene);
 
             this._gameMode.Draw(gameTime);
 
             base.Draw(gameTime);
-        }
-
-        /// <summary>
-        /// Helper applies the edge detection and pencil sketch postprocess effect.
-        /// </summary>
-        private void ApplyPostprocess()
-        {
-            EffectParameterCollection parameters = _postprocessEffect.Parameters;
-
-            // Set effect parameters controlling the pencil sketch effect.
-            parameters["SketchThreshold"].SetValue(SketchThreshold);
-            parameters["SketchBrightness"].SetValue(SketchBrightness);
-            parameters["SketchJitter"].SetValue(_sketchJitter);
-            parameters["SketchTexture"].SetValue(_sketchTexture);
-
-            // Activate the appropriate effect technique.
-            _postprocessEffect.CurrentTechnique = _postprocessEffect.Techniques["ColorSketch"];
-
-            // Draw a fullscreen sprite to apply the postprocessing effect.
-            ScreenManager.Instance.SpriteBatch.Begin(0, BlendState.AlphaBlend, null, null, null, _postprocessEffect);
-            ScreenManager.Instance.SpriteBatch.Draw(sceneRenderTarget, Vector2.Zero, Color.White);
-            ScreenManager.Instance.SpriteBatch.End();
-        }
+        }        
     }
 }

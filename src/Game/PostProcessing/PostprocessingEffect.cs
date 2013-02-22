@@ -23,9 +23,7 @@ namespace Frenzied.PostProcessing
             this.SpriteBatch = spriteBatch;
         }
 
-        public virtual Texture2D Apply(Texture2D input, GameTime gameTime)
-        {
-            return input;
-        }
+        public virtual void Apply(Texture2D input)
+        { }
     }
 }

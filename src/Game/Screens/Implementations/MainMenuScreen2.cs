@@ -11,6 +11,7 @@ using Frenzied.Assets;
 using Frenzied.GamePlay;
 using Frenzied.GamePlay.Implementations.PieMode;
 using Frenzied.Platforms;
+using Frenzied.PostProcessing.Effects;
 using Frenzied.Screens.Menu;
 using Frenzied.Screens.Scenes;
 using Frenzied.Utils.Services;
@@ -22,27 +23,13 @@ namespace Frenzied.Screens.Implementations
 {
     public class MainMenuScreen2 : GameScreen
     {
+        // common stuff.
         private SpriteBatch _spriteBatch;
         private Viewport _viewport;
 
-        readonly Random _random = new Random();
-
-        // Effect used to apply the edge detection and pencil sketch postprocessing.
-        Effect _postprocessEffect;
-
-        // Overlay texture containing the pencil sketch stroke pattern.
-        Texture2D _sketchTexture;
-
-        // Randomly offsets the sketch pattern to create a hand-drawn animation effect.
-        Vector2 _sketchJitter;
-        TimeSpan _timeToNextJitter;
-
-        private const float SketchThreshold = 0.2f;
-        private const float SketchBrightness = 0.35f;
-        private const float SketchJitterSpeed = 0.09f;
-
-        // Custom rendertargets.
-        RenderTarget2D sceneRenderTarget;
+        // post-process effects
+        private RenderTarget2D scene;
+        private SketchEffect _sketchEffect;
 
         // game logo
         private Texture2D _textureGameLogo;
@@ -80,18 +67,6 @@ namespace Frenzied.Screens.Implementations
             this._actualGameLogoScale = (float)_targetGameLogoWidth / this._textureGameLogo.Width;
             this._gameLogoPosition = new Vector2(this._viewport.Width / 2 - _targetGameLogoWidth / 2, 25);
 
-            if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.CustomShadersEnabled)
-            {
-                _postprocessEffect = AssetManager.Instance.LoadEffectShader(@"Effects\PostprocessEffect");
-                _sketchTexture = ScreenManager.Game.Content.Load<Texture2D>(@"Effects\SketchTexture");
-            }
-
-            // Create custom rendertarget.
-            var presentationParameters = FrenziedGame.Instance.GraphicsDevice.PresentationParameters;
-            sceneRenderTarget = new RenderTarget2D(FrenziedGame.Instance.GraphicsDevice,
-                                                   presentationParameters.BackBufferWidth, presentationParameters.BackBufferHeight, false,
-                                                   presentationParameters.BackBufferFormat, presentationParameters.DepthStencilFormat);
-
             this._buttons = new Dictionary<string, Button>()
                                 {
                                     {"Play", new Button(@"Textures/Menu/Play")},
@@ -126,6 +101,13 @@ namespace Frenzied.Screens.Implementations
             this._buttons["Twitter"].Selected += ButtonTwitter_Selected;
             this._buttons["Facebook"].Selected += ButtonFacebook_Selected;
             this._buttons["Youtube"].Selected += ButtonYoutube_Selected;
+
+            // load contents for post-process effects
+            if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.ExtendedEffects)
+                this._sketchEffect = new SketchEffect(ScreenManager.Game, ScreenManager.SpriteBatch);
+
+            // Create custom rendertarget for the scene.
+            scene = new RenderTarget2D(ScreenManager.GraphicsDevice, this._viewport.Width, this._viewport.Height);
 
             base.LoadContent();
         }
@@ -192,19 +174,8 @@ namespace Frenzied.Screens.Implementations
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
-            // Update the sketch overlay texture jitter animation.
-            if (SketchJitterSpeed > 0)
-            {
-                _timeToNextJitter -= gameTime.ElapsedGameTime;
-
-                if (_timeToNextJitter <= TimeSpan.Zero)
-                {
-                    _sketchJitter.X = (float)_random.NextDouble();
-                    _sketchJitter.Y = (float)_random.NextDouble();
-
-                    _timeToNextJitter += TimeSpan.FromSeconds(SketchJitterSpeed);
-                }
-            }
+            if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.ExtendedEffects)
+                this._sketchEffect.UpdateJitter(gameTime);
 
             // Pulsate the game-logo.
             double time = gameTime.TotalGameTime.TotalSeconds;
@@ -219,17 +190,20 @@ namespace Frenzied.Screens.Implementations
 
         public override void Draw(GameTime gameTime)
         {
-            if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.CustomShadersEnabled)
-                FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(sceneRenderTarget);
+            // create a render target for the scene which will be later using with post process effect.
+            if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.ExtendedEffects)
+                FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(scene);
 
             this._spriteBatch.Begin();
 
             // draw background scene.
             this._backgroundScene.Draw(BackgroundScene.Season.Spring);
 
+            // draw game-logo.
             this._spriteBatch.Draw(this._textureGameLogo, this._gameLogoPosition, null, Color.White, 0f, Vector2.Zero,
                                    this._pulsatedGameLogoScale, SpriteEffects.None, 0);
 
+            // draw buttons.
             foreach (var pair in this._buttons)
             {
                 pair.Value.Draw(gameTime);
@@ -237,35 +211,11 @@ namespace Frenzied.Screens.Implementations
 
             this._spriteBatch.End();
 
-            if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.CustomShadersEnabled)
-            {
-                FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(null);
-                ApplyPostprocess();
-            }
+            // apply post-process effect.
+            if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.ExtendedEffects)
+                this._sketchEffect.Apply(scene);
 
             base.Draw(gameTime);
-        }
-
-        /// <summary>
-        /// Helper applies the edge detection and pencil sketch postprocess effect.
-        /// </summary>
-        private void ApplyPostprocess()
-        {
-            EffectParameterCollection parameters = _postprocessEffect.Parameters;
-
-            // Set effect parameters controlling the pencil sketch effect.
-            parameters["SketchThreshold"].SetValue(SketchThreshold);
-            parameters["SketchBrightness"].SetValue(SketchBrightness);
-            parameters["SketchJitter"].SetValue(_sketchJitter);
-            parameters["SketchTexture"].SetValue(_sketchTexture);
-
-            // Activate the appropriate effect technique.
-            _postprocessEffect.CurrentTechnique = _postprocessEffect.Techniques["ColorSketch"];
-
-            // Draw a fullscreen sprite to apply the postprocessing effect.
-            _spriteBatch.Begin(0, BlendState.AlphaBlend, null, null, null, _postprocessEffect);
-            _spriteBatch.Draw(sceneRenderTarget, Vector2.Zero, Color.White);
-            _spriteBatch.End();
         }
     }
 }
