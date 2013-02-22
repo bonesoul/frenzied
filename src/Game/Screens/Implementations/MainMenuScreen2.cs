@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using Frenzied.Assets;
 using Frenzied.GamePlay;
 using Frenzied.GamePlay.Implementations.PieMode;
+using Frenzied.Input;
 using Frenzied.Platforms;
 using Frenzied.PostProcessing.Effects;
 using Frenzied.Screens.Menu;
@@ -18,6 +19,7 @@ using Frenzied.Utils.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
 
 namespace Frenzied.Screens.Implementations
 {
@@ -48,6 +50,8 @@ namespace Frenzied.Screens.Implementations
         {
             // import required services.
             this._backgroundScene = ServiceHelper.GetService<IBackgroundScene>(typeof(IBackgroundScene));
+
+            this.EnabledGestures = GestureType.Tap;
 
             base.Initialize();
         }
@@ -163,13 +167,33 @@ namespace Frenzied.Screens.Implementations
             if (input.CurrentMouseState.LeftButton != ButtonState.Pressed || input.LastMouseState.LeftButton != ButtonState.Released)
                 return;
 
-            foreach (var pair in this._buttons)
-            {
-                if (pair.Value.Bounds.Contains(input.CurrentMouseState.X, input.CurrentMouseState.Y))
-                    pair.Value.OnSelectEntry();
-            }
+            this.HandleClick(gameTime, input.CurrentMouseState.X, input.CurrentMouseState.Y);
 
             base.HandleInput(gameTime, input);
+        }
+
+        public override void HandleGestures(GameTime gameTime, InputState input)
+        {
+            if (input.Gestures.Count == 0)
+                return;
+
+            foreach (var gesture in input.Gestures)
+            {
+                if (gesture.GestureType == GestureType.Tap)
+                    this.HandleClick(gameTime, (int)gesture.Position.X, (int)gesture.Position.Y);
+            }
+        }
+
+        private void HandleClick(GameTime gameTime, int X, int Y)
+        {
+            foreach (var pair in this._buttons)
+            {
+                if (!pair.Value.Bounds.Contains(X, Y)) 
+                    continue;
+
+                pair.Value.OnSelectEntry();
+                break;
+            }
         }
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)

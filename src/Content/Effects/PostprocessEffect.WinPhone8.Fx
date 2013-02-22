@@ -45,7 +45,7 @@ sampler SketchSampler : register(s2) = sampler_state
 // It is compiled several times using different settings for the uniform boolean
 // parameters, producing different optimized versions of the shader depending on
 // which combination of processing effects is desired.
-float4 PixelShaderFunction(float2 texCoord : TEXCOORD0) : COLOR0
+float4 PixelShaderFunction(float4 position : SV_Position, float4 color	: COLOR0, float2 texCoord : TEXCOORD0) : COLOR0
 {
     // Look up the original color from the main scene.
     float3 scene = tex2D(SceneSampler, texCoord);

@@ -66,6 +66,7 @@ namespace Frenzied.Platforms
             #elif WINPHONE8
                 Platform = Platforms.WindowsPhone8;
                 PlatformHandler = new WindowsPhone8.WindowsPhone8Platform();
+                PlatformHelper = new WindowsPhone8.WindowsPhone8Helper();
             #elif ANDROID
                 Platform = Platforms.Android;
                 PlatformHandler = new Android.AndroidPlatform();

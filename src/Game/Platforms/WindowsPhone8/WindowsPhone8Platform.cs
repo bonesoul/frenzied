@@ -17,7 +17,7 @@ namespace Frenzied.Platforms.WindowsPhone8
             {
                 IsMouseVisible = false,
                 IsFixedTimeStep = false,
-                Graphics = { CustomShadersEnabled = false },
+                Graphics = { ExtendedEffects = true },
             };
         }
 
