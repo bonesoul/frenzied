@@ -53,6 +53,7 @@ namespace Frenzied.Platforms
             #elif WINDOWS && METRO
                 Platform = Platforms.WindowsMetro;
                 PlatformHandler = new WindowsMetro.WindowsMetroPlatform();
+                PlatformHelper = new WindowsMetro.WindowsMetroHelper();
 			#elif LINUX && DESKTOP
 				Platform = Platforms.Linux;
 				PlatformHandler = new Linux.LinuxPlatform();

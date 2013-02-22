@@ -132,13 +132,16 @@
     <Compile Include="Platforms\GraphicsConfig.cs" />
     <Compile Include="Platforms\PlatformHandler.cs" />
     <Compile Include="Platforms\PlatformConfig.cs" />
+    <Compile Include="Platforms\PlatformHelper.cs" />
     <Compile Include="Platforms\PlatformManager.cs" />
     <Compile Include="Platforms\Platforms.cs" />
     <Compile Include="Platforms\VersionInfo.cs" />
+    <Compile Include="Platforms\WindowsMetro\WindowsMetroHelper.cs" />
     <Compile Include="Platforms\WindowsMetro\WindowsMetroPlatform.cs" />
+    <Compile Include="PostProcessing\Effects\SketchEffect.cs" />
+    <Compile Include="PostProcessing\PostprocessingEffect.cs" />
     <Compile Include="Screens\GameScreen.cs" />
     <Compile Include="Screens\Implementations\AboutScreen.cs" />
-    <Compile Include="Screens\Implementations\BackgroundScene.cs" />
     <Compile Include="Screens\Implementations\BackgroundScreen.cs" />
     <Compile Include="Screens\Implementations\GameplayScreen.cs" />
     <Compile Include="Screens\Implementations\IntroScreen.cs" />
@@ -149,6 +152,8 @@
     <Compile Include="Screens\Implementations\MessageBoxScreen.cs" />
     <Compile Include="Screens\Implementations\OptionsMenuScreen.cs" />
     <Compile Include="Screens\Implementations\PauseMenuScreen.cs" />
+    <Compile Include="Screens\Menu\Button.cs" />
+    <Compile Include="Screens\Scenes\BackgroundScene.cs" />
     <Compile Include="Screens\ScreenManager.cs" />
     <Compile Include="Utils\Debugging\DebugBar.cs" />
     <Compile Include="Utils\Debugging\Graphs\DebugGraph.cs" />
@@ -253,15 +258,6 @@
     <Content Include="..\..\bin\debug\Desktop\Content\Textures\Common\Logo.xnb">
       <Link>Content\Textures\Common\Logo.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\AutumnBackground.xnb">
-      <Link>Content\Textures\Menu\AutumnBackground.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\AutumnMeadow.xnb">
-      <Link>Content\Textures\Menu\AutumnMeadow.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Background.xnb">
-      <Link>Content\Textures\Menu\Background.xnb</Link>
-    </Content>
     <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Clouds\BlueCloud1.xnb">
       <Link>Content\Textures\Menu\Clouds\BlueCloud1.xnb</Link>
     </Content>
@@ -292,27 +288,6 @@
     <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Clouds\YellowCloud5.xnb">
       <Link>Content\Textures\Menu\Clouds\YellowCloud5.xnb</Link>
     </Content>
-    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Credits.xnb">
-      <Link>Content\Textures\Menu\Credits.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\CustomMode.xnb">
-      <Link>Content\Textures\Menu\CustomMode.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Meadow.xnb">
-      <Link>Content\Textures\Menu\Meadow.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Options.xnb">
-      <Link>Content\Textures\Menu\Options.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\QuickPlay.xnb">
-      <Link>Content\Textures\Menu\QuickPlay.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\StudioBoard.xnb">
-      <Link>Content\Textures\Menu\StudioBoard.xnb</Link>
-    </Content>
-    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Tutorial.xnb">
-      <Link>Content\Textures\Menu\Tutorial.xnb</Link>
-    </Content>
     <Content Include="..\..\bin\debug\Desktop\Content\Textures\Pies\Blue.xnb">
       <Link>Content\Textures\Pies\Blue.xnb</Link>
     </Content>
@@ -328,6 +303,57 @@
     <Content Include="..\..\bin\debug\Desktop\Content\Textures\Pies\Purple.xnb">
       <Link>Content\Textures\Pies\Purple.xnb</Link>
     </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\AutumnBackground.xnb">
+      <Link>Content\Textures\Menu\AutumnBackground.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\AutumnMeadow.xnb">
+      <Link>Content\Textures\Menu\AutumnMeadow.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Background.xnb">
+      <Link>Content\Textures\Menu\Background.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\BlockMode.xnb">
+      <Link>Content\Textures\Menu\BlockMode.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Board.xnb">
+      <Link>Content\Textures\Menu\Board.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Credits.xnb">
+      <Link>Content\Textures\Menu\Credits.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Kids.xnb">
+      <Link>Content\Textures\Menu\Kids.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Meadow.xnb">
+      <Link>Content\Textures\Menu\Meadow.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\PieMode.xnb">
+      <Link>Content\Textures\Menu\PieMode.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Play.xnb">
+      <Link>Content\Textures\Menu\Play.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Settings.xnb">
+      <Link>Content\Textures\Menu\Settings.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Social\Facebook.xnb">
+      <Link>Content\Textures\Menu\Social\Facebook.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Social\Reddit.xnb">
+      <Link>Content\Textures\Menu\Social\Reddit.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Social\RSS.xnb">
+      <Link>Content\Textures\Menu\Social\RSS.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Social\Twitter.xnb">
+      <Link>Content\Textures\Menu\Social\Twitter.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Social\Youtube.xnb">
+      <Link>Content\Textures\Menu\Social\Youtube.xnb</Link>
+    </Content>
+    <None Include="..\Content\Effects\PostprocessEffect.Metro.Fx">
+      <Link>Content\Effects\PostprocessEffect.Metro.Fx</Link>
+    </None>
     <Content Include="..\Content\Effects\PostprocessEffect.Metro.mgfxo">
       <Link>Content\Effects\PostprocessEffect.Metro.mgfxo</Link>
     </Content>
@@ -379,6 +405,9 @@
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>Call $(SolutionDir)build-effects.bat</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

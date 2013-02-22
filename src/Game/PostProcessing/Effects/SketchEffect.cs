@@ -15,8 +15,6 @@ namespace Frenzied.PostProcessing.Effects
 {
     public class SketchEffect : PostprocessingEffect
     {
-        private readonly RenderTarget2D _buffer;
-        private Viewport _viewport;
         private readonly Random _random = new Random();
 
         private Effect _postprocessEffect; // Effect used to apply the edge detection and pencil sketch postprocessing.
@@ -34,8 +32,6 @@ namespace Frenzied.PostProcessing.Effects
         public SketchEffect(Game game, SpriteBatch spriteBatch)
             : base(game, spriteBatch)
         {
-            this._viewport = this.GraphicsDevice.Viewport;
-
             _postprocessEffect = AssetManager.Instance.LoadEffectShader(@"Effects\PostprocessEffect");
             _sketchTexture = Game.Content.Load<Texture2D>(@"Effects\SketchTexture");
         }
