@@ -131,11 +131,10 @@
     <Compile Include="Screens\Implementations\BackgroundScreen.cs" />
     <Compile Include="Input\InputState.cs" />
     <Compile Include="Screens\Implementations\IntroScreen.cs" />
-    <Compile Include="Screens\Implementations\MainMenuScreen2.cs" />
+    <Compile Include="Screens\Implementations\MainMenuScreen.cs" />
     <Compile Include="Screens\ScreenManager.cs" />
     <Compile Include="Screens\Implementations\GameplayScreen.cs" />
     <Compile Include="Screens\Implementations\LoadingScreen.cs" />
-    <Compile Include="Screens\Implementations\MainMenuScreen.cs" />
     <Compile Include="Menu\MenuEntry.cs" />
     <Compile Include="Screens\Implementations\MenuScreen.cs" />
     <Compile Include="Screens\Implementations\MessageBoxScreen.cs" />

@@ -64,7 +64,7 @@ namespace Frenzied.Screens.Implementations
 
                 if (_fadeOutTimer < TimeSpan.Zero) // if fading-out is done, we should now load the main menu screen.
                 {
-                    ScreenManager.Instance.AddScreen(new MainMenuScreen2(), null); // add menu-screen.
+                    ScreenManager.Instance.AddScreen(new MainMenuScreen(), null); // add menu-screen.
                     ScreenManager.Instance.RemoveScreen(this); // remove the intro screen.
                 }
             }
