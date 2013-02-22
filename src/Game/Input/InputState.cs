@@ -7,6 +7,7 @@
 
 #region Using Statements
 
+using Frenzied.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
@@ -75,6 +76,14 @@ namespace Frenzied.Input
             LastMouseState = CurrentMouseState;
             CurrentMouseState = Mouse.GetState();
 
+            // original virtual resolution managment code: http://infinitespace-studios.co.uk/2012/08/06/handling-multiple-screen-resolutions-in-monogame-for-android-part-2/
+
+            // scale mouse input to virtual screen resolution.
+            Vector2 _mousePosition = new Vector2(CurrentMouseState.X, CurrentMouseState.Y);
+            Vector2 p = _mousePosition - ScreenManager.Instance.InputTranslate;
+            p = Vector2.Transform(p, ScreenManager.Instance.InputScale);
+            CurrentMouseState = new MouseState((int)p.X, (int)p.Y, CurrentMouseState.ScrollWheelValue, CurrentMouseState.LeftButton, CurrentMouseState.MiddleButton, CurrentMouseState.RightButton, CurrentMouseState.XButton1, CurrentMouseState.XButton2);
+
             // get keyboard and gamepad states for all user.
 
             for (int i = 0; i < MaxInputs; i++)
@@ -84,9 +93,9 @@ namespace Frenzied.Input
 
                 CurrentKeyboardStates[i] = Keyboard.GetState((PlayerIndex)i);
 
-                #if !WINPHONE8
+#if !WINPHONE8
                 CurrentGamePadStates[i] = GamePad.GetState((PlayerIndex)i);
-                #endif
+#endif
 
                 // Keep track of whether a gamepad has ever been
                 // connected, so we can detect if it is unplugged.
@@ -98,10 +107,17 @@ namespace Frenzied.Input
 
             TouchState = TouchPanel.GetState();
 
+            // scale touch input to virtual screen resolution.
             Gestures.Clear();
             while (TouchPanel.IsGestureAvailable)
             {
-                Gestures.Add(TouchPanel.ReadGesture());
+                GestureSample g = TouchPanel.ReadGesture();
+                Vector2 p1 = Vector2.Transform(g.Position - ScreenManager.Instance.InputTranslate, ScreenManager.Instance.InputScale);
+                Vector2 p2 = Vector2.Transform(g.Position2 - ScreenManager.Instance.InputTranslate, ScreenManager.Instance.InputScale);
+                Vector2 p3 = Vector2.Transform(g.Delta - ScreenManager.Instance.InputTranslate, ScreenManager.Instance.InputScale);
+                Vector2 p4 = Vector2.Transform(g.Delta2 - ScreenManager.Instance.InputTranslate, ScreenManager.Instance.InputScale);
+                g = new GestureSample(g.GestureType, g.Timestamp, p1, p2, p3, p4);
+                Gestures.Add(g);
             }
         }
 

@@ -7,6 +7,7 @@
 
 using System;
 using Frenzied.Assets;
+using Frenzied.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -16,6 +17,7 @@ namespace Frenzied.PostProcessing.Effects
     {
         private readonly Random _random = new Random();
 
+        private Viewport _viewport;
         private Effect _postprocessEffect; // Effect used to apply the edge detection and pencil sketch postprocessing.
         private Texture2D _sketchTexture; // Overlay texture containing the pencil sketch stroke pattern.
 
@@ -33,6 +35,7 @@ namespace Frenzied.PostProcessing.Effects
         {
             _postprocessEffect = AssetManager.Instance.LoadEffectShader(@"Effects\PostprocessEffect");
             _sketchTexture = Game.Content.Load<Texture2D>(@"Effects\SketchTexture");
+            this._viewport = ScreenManager.Instance.Viewport;
         }
 
         public void UpdateJitter(GameTime gameTime)
@@ -51,6 +54,7 @@ namespace Frenzied.PostProcessing.Effects
         public override void Apply(Texture2D input)
         {
             GraphicsDevice.SetRenderTarget(null);
+            ScreenManager.Instance.BeginDraw();
 
             var parameters = _postprocessEffect.Parameters;
 
@@ -64,8 +68,8 @@ namespace Frenzied.PostProcessing.Effects
             _postprocessEffect.CurrentTechnique = _postprocessEffect.Techniques["ColorSketch"];
 
             // Draw a fullscreen sprite to apply the postprocessing effect.
-            this.SpriteBatch.Begin(0, BlendState.AlphaBlend, null, null, null, _postprocessEffect);
-            this.SpriteBatch.Draw(input, Vector2.Zero, Color.White);
+            this.SpriteBatch.Begin(0, BlendState.AlphaBlend, null, null, null, _postprocessEffect,ScreenManager.Instance.Scale);
+            this.SpriteBatch.Draw(input, this._viewport.Bounds, Color.White);
             this.SpriteBatch.End();
         }
     }

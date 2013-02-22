@@ -59,7 +59,7 @@ namespace Frenzied.Screens.Implementations
         public override void LoadContent()
         {
             // init. common stuff.
-            this._viewport = ScreenManager.GraphicsDevice.Viewport;
+            this._viewport = ScreenManager.Viewport;
             this._spriteBatch = ScreenManager.SpriteBatch;
 
             // let background-scene load it's contentes.
@@ -217,9 +217,9 @@ namespace Frenzied.Screens.Implementations
         public override void Draw(GameTime gameTime)
         {
             // create a render target for the scene which will be later using with post process effect.
-            FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(_scene);
+            ScreenManager.GraphicsDevice.SetRenderTarget(_scene);            
 
-            this._spriteBatch.Begin();
+            this._spriteBatch.Begin(SpriteSortMode.Immediate, null, null, null, null, null, ScreenManager.Scale);
 
             // draw background scene.
             this._backgroundScene.Draw(BackgroundScene.Season.Spring);

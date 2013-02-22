@@ -6,6 +6,7 @@
  */
 
 using System;
+using Frenzied.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -21,7 +22,7 @@ namespace Frenzied.PostProcessing.Effects
         public NoiseEffect(Game game, SpriteBatch spriteBatch)
             : base(game, spriteBatch)
         {
-            this._viewport = GraphicsDevice.Viewport;
+            this._viewport = ScreenManager.Instance.Viewport;
             
             // We want this to be subtle
             // FinalColor = (SourceColor*One) - 0.15f * (DestinationColor*One)
@@ -51,11 +52,12 @@ namespace Frenzied.PostProcessing.Effects
             var sourceRect = new Rectangle(_random.Next(100), _random.Next(100), pieceWidth, pieceHeight);
 
             GraphicsDevice.SetRenderTarget(null);
+            ScreenManager.Instance.BeginDraw();
 
-            this.SpriteBatch.Begin(SpriteSortMode.Deferred, this._blendState);
+            this.SpriteBatch.Begin(SpriteSortMode.Deferred, this._blendState, null, null, null, null, ScreenManager.Instance.Scale);
             
-            this.SpriteBatch.Draw(this._noiseTexture, new Rectangle(0, 0, this._viewport.Width, this._viewport.Height), sourceRect, Color.White);
-            this.SpriteBatch.Draw(input, Vector2.Zero, Color.White);
+            this.SpriteBatch.Draw(this._noiseTexture, this._viewport.Bounds, sourceRect, Color.White);
+            this.SpriteBatch.Draw(input, this._viewport.Bounds, Color.White);
             
             this.SpriteBatch.End();
 

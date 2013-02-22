@@ -17,7 +17,7 @@ namespace Frenzied.Platforms.Windows
                 {
                     IsMouseVisible = true,
                     IsFixedTimeStep = false,
-                    Graphics = {ExtendedEffects = true},
+                    Graphics = {ExtendedEffects = false},
                 };
         }
 

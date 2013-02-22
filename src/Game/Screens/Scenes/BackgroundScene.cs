@@ -62,7 +62,7 @@ namespace Frenzied.Screens.Scenes
         public void LoadContent()
         {
             // init common stuff.
-            this._viewport = this._game.GraphicsDevice.Viewport;
+            this._viewport = ScreenManager.Instance.Viewport;
             this._spriteBatch = ScreenManager.Instance.SpriteBatch;
 
             // load backgrounds textures.

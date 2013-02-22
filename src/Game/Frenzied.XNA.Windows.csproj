@@ -128,7 +128,7 @@
     <Compile Include="Screens\Implementations\AboutScreen.cs" />
     <Compile Include="Screens\Menu\Button.cs" />
     <Compile Include="Screens\Scenes\BackgroundScene.cs" />
-    <Compile Include="Screens\Implementations\BackgroundScreen.cs" />
+    <Compile Include="Screens\Implementations\MetaballBGScreen.cs" />
     <Compile Include="Input\InputState.cs" />
     <Compile Include="Screens\Implementations\IntroScreen.cs" />
     <Compile Include="Screens\Implementations\MainMenuScreen.cs" />

@@ -74,9 +74,14 @@ namespace Frenzied.Screens
         /// <summary>
         /// Constructs a new screen manager component.
         /// </summary>
-        public ScreenManager(Game game)
+        public ScreenManager(Game game, int virtualWidth, int virtualHeight)
             : base(game)
         {
+            // set virtual resolution environment.
+            this.virtualWidth = virtualWidth;
+            this.virtualHeight = virtualHeight;
+            this.graphicsDeviceManager = (GraphicsDeviceManager)game.Services.GetService(typeof(IGraphicsDeviceManager));
+
             Instance = this;
 
             // we must set EnabledGestures before we can query for them, but
@@ -209,6 +214,8 @@ namespace Frenzied.Screens
         /// </summary>
         public override void Draw(GameTime gameTime)
         {
+            BeginDraw();
+
             foreach (GameScreen screen in screens)
             {
                 if (screen.ScreenState == ScreenState.Hidden)
@@ -294,5 +301,112 @@ namespace Frenzied.Screens
 
             spriteBatch.End();
         }
+
+        #region Virtual Resolution Managment
+
+        // original virtual resolution managment code: http://infinitespace-studios.co.uk/2012/07/19/handling-multiple-screen-resolutions-in-monogame-for-android-part-1/
+
+        private int virtualWidth;
+        private int virtualHeight;
+        private GraphicsDeviceManager graphicsDeviceManager;
+        private bool updateMatrix = true;
+        private Matrix scaleMatrix = Matrix.Identity;
+
+        public Viewport Viewport
+        {
+            get { return new Viewport(0, 0, virtualWidth, virtualHeight); }
+        }
+
+        public Matrix Scale
+        {
+            get
+            {
+                if (updateMatrix)
+                {
+                    CreateScaleMatrix();
+                    updateMatrix = false;
+                }
+                return scaleMatrix;
+            }
+        }
+
+        public Matrix InputScale { get { return Matrix.Invert(Scale); } }
+
+        public Vector2 InputTranslate
+        {
+            get { return new Vector2(GraphicsDevice.Viewport.X, GraphicsDevice.Viewport.Y); }
+        }
+
+        protected void CreateScaleMatrix()
+        {
+            scaleMatrix = Matrix.CreateScale(
+                      (float)GraphicsDevice.Viewport.Width / virtualWidth,
+                      (float)GraphicsDevice.Viewport.Width / virtualWidth,
+                      1f);
+        }
+
+        public void BeginDraw()
+        {
+            // Start by reseting viewport 
+            FullViewport();
+            // We clear the backbuffer with a Color.Blank so we get that nice letterbox effect.
+            GraphicsDevice.Clear(Color.Black);
+            // Calculate Proper Viewport according to Aspect Ratio
+            ResetViewport();
+            // and clear that
+            // This way we are gonna have black bars if aspect ratio requires it and
+            // the clear color on the rest
+            GraphicsDevice.Clear(Color.Black);
+        }
+
+        protected void FullViewport()
+        {
+            var vp = new Viewport();
+            vp.X = vp.Y = 0;
+            vp.Width = graphicsDeviceManager.PreferredBackBufferWidth;
+            vp.Height = graphicsDeviceManager.PreferredBackBufferHeight;
+            GraphicsDevice.Viewport = vp;
+        }
+
+        protected void ResetViewport()
+        {
+            float targetAspectRatio = GetVirtualAspectRatio();
+            // figure out the largest area that fits in this resolution at the desired aspect ratio
+            int width = graphicsDeviceManager.PreferredBackBufferWidth;
+            int height = (int)(width / targetAspectRatio + .5f);
+            bool changed = false;
+
+            if (height > graphicsDeviceManager.PreferredBackBufferHeight)
+            {
+                height = graphicsDeviceManager.PreferredBackBufferHeight;
+                // PillarBox
+                width = (int)(height * targetAspectRatio + .5f);
+                changed = true;
+            }
+
+            // set up the new viewport centered in the backbuffer
+            var viewport = new Viewport();
+
+            viewport.X = (graphicsDeviceManager.PreferredBackBufferWidth / 2) - (width / 2);
+            viewport.Y = (graphicsDeviceManager.PreferredBackBufferHeight / 2) - (height / 2);
+            viewport.Width = width;
+            viewport.Height = height;
+            viewport.MinDepth = 0;
+            viewport.MaxDepth = 1;
+
+            if (changed)
+            {
+                updateMatrix = true;
+            }
+
+            graphicsDeviceManager.GraphicsDevice.Viewport = viewport;
+        }
+
+        protected float GetVirtualAspectRatio()
+        {
+            return (float)virtualWidth / (float)virtualHeight;
+        }
+
+        #endregion       
     }
 }
