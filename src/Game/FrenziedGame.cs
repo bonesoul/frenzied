@@ -100,6 +100,7 @@ namespace Frenzied
             var backgroundScene = new BackgroundScene(this);
 
             // Activate the first screens.
+            //this._screenManager.AddScreen(new BackgroundScreen(), null);
             this._screenManager.AddScreen(new MainMenuScreen(), null);
 
             // add debug components

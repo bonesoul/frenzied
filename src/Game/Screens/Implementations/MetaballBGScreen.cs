@@ -24,7 +24,7 @@ namespace Frenzied.Screens.Implementations
     /// It draws a background image that remains fixed in place regardless
     /// of whatever transitions the screens on top of it may be doing.
     /// </summary>
-    class BackgroundScreen : GameScreen
+    class MetaballBGScreen : GameScreen
     {
         private ColorScheme _colorScheme;
 
@@ -37,7 +37,7 @@ namespace Frenzied.Screens.Implementations
         /// <summary>
         /// Constructor.
         /// </summary>
-        public BackgroundScreen()
+        public MetaballBGScreen()
         {
             TransitionOnTime = TimeSpan.FromSeconds(0.5);
             TransitionOffTime = TimeSpan.FromSeconds(0.5);
