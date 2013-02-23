@@ -117,8 +117,9 @@ namespace Frenzied.Screens.Implementations
         /// </summary>
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
-            // create a render target for the scene which will be later using with post process effect.
-            FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(_scene);
+            if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.ExtendedEffects)
+                this._sketchEffect.UpdateJitter(gameTime);
+
 
             this._gameMode.Update(gameTime);
 

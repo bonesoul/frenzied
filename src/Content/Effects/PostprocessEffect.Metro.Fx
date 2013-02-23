@@ -32,10 +32,10 @@ sampler SceneSampler : register(s0) = sampler_state
 // pencil drawing effect.
 texture SketchTexture;
 
-sampler SketchSampler : register(s2) = sampler_state
+sampler SketchSampler : register(s1) = sampler_state
 {
     Texture = SketchTexture;
-
+    
     AddressU = Wrap;
     AddressV = Wrap;
 };
