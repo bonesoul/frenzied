@@ -19,7 +19,7 @@ namespace Frenzied.Platforms.WindowsPhone8
         {
             InitializeComponent();
 
-            _game = XamlGame<FrenziedGame>.Create("", XnaSurface);
+            _game = XamlGame<FrenziedGame>.Create("", this);
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();

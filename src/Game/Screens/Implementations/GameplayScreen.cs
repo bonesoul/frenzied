@@ -141,8 +141,7 @@ namespace Frenzied.Screens.Implementations
         public override void Draw(GameTime gameTime)
         {
             // create a render target for the scene which will be later using with post process effect.
-            if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.ExtendedEffects)
-                FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(_scene);
+            FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(_scene);
 
             this.ScreenManager.SpriteBatch.Begin();
 

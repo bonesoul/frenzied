@@ -328,6 +328,12 @@
     <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Social\Youtube.xnb">
       <Link>Content\Textures\Menu\Social\Youtube.xnb</Link>
     </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Gradient.xnb">
+      <Link>Content\Textures\Gradient.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Noise.xnb">
+      <Link>Content\Textures\Noise.xnb</Link>
+    </Content>
     <None Include="..\Content\Effects\PostprocessEffect.WinPhone8.Fx">
       <Link>Content\Effects\PostprocessEffect.WinPhone8.Fx</Link>
     </None>

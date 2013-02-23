@@ -26,7 +26,7 @@ namespace Frenzied.Platforms.WindowsPhone8
             this.GraphicsDeviceManager = graphicsDeviceManager;
 
             this.GraphicsDeviceManager.IsFullScreen = true;
-            this.GraphicsDeviceManager.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
+            this.GraphicsDeviceManager.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;            
             this.GraphicsDeviceManager.PreferredBackBufferWidth = 1280;
             this.GraphicsDeviceManager.PreferredBackBufferHeight = 720;
             this.GraphicsDeviceManager.ApplyChanges();
