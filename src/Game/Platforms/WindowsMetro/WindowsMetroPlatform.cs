@@ -30,8 +30,7 @@ namespace Frenzied.Platforms.WindowsMetro
         public override void Initialize(GraphicsDeviceManager graphicsDeviceManager)
         {
             this.GraphicsDeviceManager = graphicsDeviceManager;
-
-            this.GraphicsDeviceManager.ApplyChanges();
+            //this.GraphicsDeviceManager.ApplyChanges();
         }
     }
 }

@@ -127,7 +127,7 @@
     <Compile Include="GamePlay\Modes\ShapeLocations.cs" />
     <Compile Include="Input\PlayerIndexEventArgs.cs" />
     <Compile Include="Menu\MenuEntry.cs" />
-    <Compile Include="Platforms\GameFrameworks.cs" />
+    <Compile Include="Platforms\Frameworks.cs" />
     <Compile Include="Platforms\GraphicsAPI.cs" />
     <Compile Include="Platforms\GraphicsConfig.cs" />
     <Compile Include="Platforms\PlatformHandler.cs" />

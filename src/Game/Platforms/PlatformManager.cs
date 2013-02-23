@@ -10,22 +10,49 @@ using Microsoft.Xna.Framework;
 
 namespace Frenzied.Platforms
 {
+    /// <summary>
+    /// Platform Manager that identifies platforms & manages them.
+    /// </summary>
     public static class PlatformManager
     {
+        /// <summary>
+        /// The current platform.
+        /// </summary>
         public static Platforms Platform { get; private set; }
 
-        public static string DotNetFramework { get; private set; }
+        /// <summary>
+        /// Current .Net framework.
+        /// </summary>
+        public static NetFrameworks DotNetFramework { get; private set; }
 
+        /// <summary>
+        /// Current .Net framework's version.
+        /// </summary>
         public static Version DotNetFrameworkVersion { get; private set; }
 
+        /// <summary>
+        /// Current game framework.
+        /// </summary>
         public static GameFrameworks GameFramework { get; private set; }
 
+        /// <summary>
+        /// Current game framework's version.
+        /// </summary>
         public static Version GameFrameworkVersion { get; private set; }
 
+        /// <summary>
+        /// Current graphics api.
+        /// </summary>
         public static GraphicsAPI GraphicsApi { get; private set; }
 
+        /// <summary>
+        /// Handler for current platform.
+        /// </summary>
         public static PlatformHandler PlatformHandler { get; private set; }
 
+        /// <summary>
+        /// Helper for current platform.
+        /// </summary>
         public static PlatformHelper PlatformHelper { get; private set; }
 
         static PlatformManager()
@@ -33,16 +60,26 @@ namespace Frenzied.Platforms
             IdentifyPlatform();
         }
 
+        /// <summary>
+        /// Should be called by platform-specific startup code.
+        /// </summary>
         public static void Startup()
         {
-            PlatformHandler.PlatformEntrance();
+            PlatformHandler.PlatformEntrance(); // run the appropriate platform entrace code.
         }
 
+        /// <summary>
+        /// Should be called by actual game code's Initialize() method.
+        /// </summary>
+        /// <param name="graphicsDeviceManager">The <see cref="GraphicsDeviceManager"/>.</param>
         public static void Initialize(GraphicsDeviceManager graphicsDeviceManager)
         {
-            PlatformHandler.Initialize(graphicsDeviceManager);
+            PlatformHandler.Initialize(graphicsDeviceManager); // rtun the appropriate platform initialization code.
         }
 
+        /// <summary>
+        /// Identifies the current platform and used frameworks.
+        /// </summary>
         private static void IdentifyPlatform()
         {
             // find base platform.
@@ -72,15 +109,15 @@ namespace Frenzied.Platforms
                 Platform = Platforms.Android;
                 PlatformHandler = new Android.AndroidPlatform();
 			#elif IOS
-				Platform=Platforms.IOS;
-				PlatformHandler=new IOS.IOSPlatform();
+				Platform = Platforms.IOS;
+				PlatformHandler = new IOS.IOSPlatform();
             #endif
 
             if (PlatformHandler == null)
                 throw new Exception("Unsupported platform!");
 
             // find dot.net framework.
-            DotNetFramework = IsRunningOnMono() ? "Mono" : ".Net";
+            DotNetFramework = IsRunningOnMono() ? NetFrameworks.Mono : NetFrameworks.DotNet;
 
             // find dot.net framework and game framework version.
             #if METRO
@@ -109,6 +146,10 @@ namespace Frenzied.Platforms
             #endif
         }
 
+        /// <summary>
+        /// Returns true if code runs over Mono framework.
+        /// </summary>
+        /// <returns>true if running over Mono, false otherwise.</returns>
         public static bool IsRunningOnMono()
         {
             return Type.GetType("Mono.Runtime") != null;

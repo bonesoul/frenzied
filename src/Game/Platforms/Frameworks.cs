@@ -8,6 +8,15 @@
 namespace Frenzied.Platforms
 {
     /// <summary>
+    /// .Net frameworks.
+    /// </summary>
+    public enum NetFrameworks
+    {
+        DotNet,
+        Mono
+    }
+
+    /// <summary>
     /// Game frameworks.
     /// </summary>
     public enum GameFrameworks
