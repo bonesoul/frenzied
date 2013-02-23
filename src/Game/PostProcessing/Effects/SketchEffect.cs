@@ -42,8 +42,8 @@ namespace Frenzied.PostProcessing.Effects
             if (_timeToNextJitter > TimeSpan.Zero) 
                 return;
 
-            _sketchJitter.X = (float)_random.NextDouble();
-            _sketchJitter.Y = (float)_random.NextDouble();
+            _sketchJitter.X = (float) _random.NextDouble();
+            _sketchJitter.Y = (float) _random.NextDouble();
 
             _timeToNextJitter += TimeSpan.FromSeconds(SketchJitterSpeed);
         }

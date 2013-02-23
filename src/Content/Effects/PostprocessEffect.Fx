@@ -40,7 +40,6 @@ sampler SketchSampler : register(s2) = sampler_state
     AddressV = Wrap;
 };
 
-
 // Pixel shader applies the edge detection and/or sketch filter postprocessing.
 // It is compiled several times using different settings for the uniform boolean
 // parameters, producing different optimized versions of the shader depending on

@@ -143,14 +143,13 @@
     <Compile Include="PostProcessing\PostprocessingEffect.cs" />
     <Compile Include="Screens\GameScreen.cs" />
     <Compile Include="Screens\Implementations\AboutScreen.cs" />
-    <Compile Include="Screens\Implementations\BackgroundScreen.cs" />
     <Compile Include="Screens\Implementations\GameplayScreen.cs" />
     <Compile Include="Screens\Implementations\IntroScreen.cs" />
     <Compile Include="Screens\Implementations\LoadingScreen.cs" />
     <Compile Include="Screens\Implementations\MainMenuScreen.cs" />
-    <Compile Include="Screens\Implementations\MainMenuScreen2.cs" />
     <Compile Include="Screens\Implementations\MenuScreen.cs" />
     <Compile Include="Screens\Implementations\MessageBoxScreen.cs" />
+    <Compile Include="Screens\Implementations\MetaballBGScreen.cs" />
     <Compile Include="Screens\Implementations\OptionsMenuScreen.cs" />
     <Compile Include="Screens\Implementations\PauseMenuScreen.cs" />
     <Compile Include="Screens\Menu\Button.cs" />
@@ -352,13 +351,18 @@
     <Content Include="..\..\bin\debug\Desktop\Content\Textures\Menu\Social\Youtube.xnb">
       <Link>Content\Textures\Menu\Social\Youtube.xnb</Link>
     </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Noise.xnb">
+      <Link>Content\Textures\Noise.xnb</Link>
+    </Content>
     <None Include="..\Content\Effects\PostprocessEffect.Metro.Fx">
       <Link>Content\Effects\PostprocessEffect.Metro.Fx</Link>
     </None>
     <Content Include="..\Content\Effects\PostprocessEffect.Metro.mgfxo">
       <Link>Content\Effects\PostprocessEffect.Metro.mgfxo</Link>
     </Content>
-    <None Include="Package.StoreAssociation.xml" />
+    <None Include="Package.StoreAssociation.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Frenzied.MonoGame.Metro_StoreKey.pfx" />
     <None Include="Platforms\WindowsMetro\Game1_TemporaryKey.pfx" />
   </ItemGroup>
@@ -405,6 +409,7 @@
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>
+  <PropertyGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>Call $(SolutionDir)build-effects.bat</PreBuildEvent>
