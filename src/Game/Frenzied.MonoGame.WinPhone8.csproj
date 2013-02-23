@@ -130,14 +130,13 @@
     <Compile Include="Resources\AppResources.Designer.cs" />
     <Compile Include="Screens\GameScreen.cs" />
     <Compile Include="Screens\Implementations\AboutScreen.cs" />
-    <Compile Include="Screens\Implementations\BackgroundScreen.cs" />
     <Compile Include="Screens\Implementations\GameplayScreen.cs" />
     <Compile Include="Screens\Implementations\IntroScreen.cs" />
     <Compile Include="Screens\Implementations\LoadingScreen.cs" />
     <Compile Include="Screens\Implementations\MainMenuScreen.cs" />
-    <Compile Include="Screens\Implementations\MainMenuScreen2.cs" />
     <Compile Include="Screens\Implementations\MenuScreen.cs" />
     <Compile Include="Screens\Implementations\MessageBoxScreen.cs" />
+    <Compile Include="Screens\Implementations\MetaballBGScreen.cs" />
     <Compile Include="Screens\Implementations\OptionsMenuScreen.cs" />
     <Compile Include="Screens\Implementations\PauseMenuScreen.cs" />
     <Compile Include="Screens\Menu\Button.cs" />
