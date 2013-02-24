@@ -124,7 +124,7 @@ namespace Frenzied.GamePlay.Implementations.PieMode
 
         public override void Draw(GameTime gameTime)
         {
-            ScreenManager.Instance.SpriteBatch.Begin();
+            //ScreenManager.Instance.SpriteBatch.Begin();
 
             ScreenManager.Instance.SpriteBatch.Draw(AssetManager.Instance.PieContainerTexture, this.Bounds, Color.White);
 
@@ -142,7 +142,7 @@ namespace Frenzied.GamePlay.Implementations.PieMode
                                         1f, SpriteEffects.None, 0);
             }
 
-            ScreenManager.Instance.SpriteBatch.End();
+            //ScreenManager.Instance.SpriteBatch.End();
 
             base.Draw(gameTime);
         }

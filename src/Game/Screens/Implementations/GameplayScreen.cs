@@ -148,6 +148,8 @@ namespace Frenzied.Screens.Implementations
             // draw background scene.
             this._backgroundScene.Draw(BackgroundScene.Season.Spring);
 
+            this._gameMode.Draw(gameTime);
+
             this.ScreenManager.SpriteBatch.End();
 
             // apply post-process effect.
@@ -155,8 +157,6 @@ namespace Frenzied.Screens.Implementations
                 this._sketchEffect.Apply(_scene);
             else
                 this._noiseEffect.Apply(_scene);
-
-            this._gameMode.Draw(gameTime);
 
             base.Draw(gameTime);
         }        

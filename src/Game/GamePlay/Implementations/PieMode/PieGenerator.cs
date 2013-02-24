@@ -65,7 +65,7 @@ namespace Frenzied.GamePlay.Implementations.PieMode
 
         public override void Generate()
         {
-            var color = Randomizer.Next(1, 5);
+            var color = Randomizer.Next(1, PieColors.ToArray().Length + 1);
             var availableLocations = this.GetAvailableLocations();
 
             if (availableLocations.Count == 0)
@@ -102,7 +102,7 @@ namespace Frenzied.GamePlay.Implementations.PieMode
 
         public override void Draw(GameTime gameTime)
         {
-            ScreenManager.Instance.SpriteBatch.Begin();
+            //ScreenManager.Instance.SpriteBatch.Begin();
 
             ScreenManager.Instance.SpriteBatch.Draw(AssetManager.Instance.PieContainerTexture, this.Bounds, Color.White);
 
@@ -114,7 +114,7 @@ namespace Frenzied.GamePlay.Implementations.PieMode
                                                         1f, SpriteEffects.None, 0);
             }
 
-            ScreenManager.Instance.SpriteBatch.End();
+            //ScreenManager.Instance.SpriteBatch.End();
 
             base.Draw(gameTime);
         }

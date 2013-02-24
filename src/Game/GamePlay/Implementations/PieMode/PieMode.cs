@@ -31,9 +31,7 @@ namespace Frenzied.GamePlay.Implementations.PieMode
             this.ShapeContainers.Add(new PieContainer(new Vector2(screenCenter.X + PieContainer.Size.X / 2, screenCenter.Y - PieContainer.Size.Y * 1.5f))); // top-right
             this.ShapeContainers.Add(new PieContainer(new Vector2(screenCenter.X + PieContainer.Size.X / 2, screenCenter.Y + PieContainer.Size.Y / 2))); // bottom-right
             this.ShapeContainers.Add(new PieContainer(new Vector2(screenCenter.X - PieContainer.Size.X / 2, screenCenter.Y + PieContainer.Size.Y / 2))); // bottom-middle
-            this.ShapeContainers.Add(new PieContainer(new Vector2(screenCenter.X - PieContainer.Size.X * 1.5f, screenCenter.Y + PieContainer.Size.Y / 2))); // bottom-right
-            //this.ShapeContainers.Add(new PieContainer(new Vector2(screenCenter.X + PieContainer.Size.X / 2, screenCenter.Y - PieContainer.Size.Y / 2))); // right
-            //this.ShapeContainers.Add(new PieContainer(new Vector2(screenCenter.X - PieContainer.Size.X * 1.5f, screenCenter.Y - PieContainer.Size.Y / 2))); // left                                    
+            this.ShapeContainers.Add(new PieContainer(new Vector2(screenCenter.X - PieContainer.Size.X * 1.5f, screenCenter.Y + PieContainer.Size.Y / 2))); // bottom-right                               
 
             // add generator.
             this.ShapeGenerator = new PieGenerator(new Vector2(screenCenter.X - BlockContainer.Size.X / 2, screenCenter.Y - BlockContainer.Size.Y / 2), this.ShapeContainers);
@@ -53,6 +51,10 @@ namespace Frenzied.GamePlay.Implementations.PieMode
                     return AssetManager.Instance.PieTextures[Color.Green];
                 case PieColors.Blue:
                     return AssetManager.Instance.PieTextures[Color.Blue];
+                case PieColors.Red:
+                    return AssetManager.Instance.PieTextures[Color.Red];
+                case PieColors.Brown:
+                    return AssetManager.Instance.PieTextures[Color.Brown];
                 default:
                     return null;
             }

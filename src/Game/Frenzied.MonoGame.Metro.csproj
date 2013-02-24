@@ -354,6 +354,12 @@
     <Content Include="..\..\bin\debug\Desktop\Content\Textures\Noise.xnb">
       <Link>Content\Textures\Noise.xnb</Link>
     </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Pies\Brown.xnb">
+      <Link>Content\Textures\Pies\Brown.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Pies\Red.xnb">
+      <Link>Content\Textures\Pies\Red.xnb</Link>
+    </Content>
     <None Include="..\Content\Effects\PostprocessEffect.Metro.Fx">
       <Link>Content\Effects\PostprocessEffect.Metro.Fx</Link>
     </None>

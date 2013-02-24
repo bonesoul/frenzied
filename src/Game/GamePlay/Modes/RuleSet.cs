@@ -73,7 +73,7 @@ namespace Frenzied.GamePlay.Modes
             #if !METRO
                 var colorIndexes = (IEnumerable<byte>)this.ShapeColorsType.GetMethod("GetEnumerator").Invoke(null, null);
             #else
-                var colorIndexes = (IEnumerable<byte>) this.ShapeColorsType.GetRuntimeMethod("GetEnumerator", null).Invoke(null, null);
+                var colorIndexes = (IEnumerable<byte>) this.ShapeColorsType.GetRuntimeMethod("GetEnumerator", new Type[]{}).Invoke(null, null);
             #endif
 
             // create a list of dictionary that holds colorIndex => colorUsageCount.

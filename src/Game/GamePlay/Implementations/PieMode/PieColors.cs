@@ -20,6 +20,8 @@ namespace Frenzied.GamePlay.Implementations.PieMode
         public const byte Purple = 2;
         public const byte Green = 3;
         public const byte Blue = 4;
+        public const byte Red = 5;
+        public const byte Brown = 6;
 
         public new static IEnumerable<byte> GetEnumerator()
         {
@@ -27,11 +29,13 @@ namespace Frenzied.GamePlay.Implementations.PieMode
             yield return Purple;
             yield return Green;
             yield return Blue;
+            yield return Red;
+            yield return Brown;
         }
 
         public new static byte[] ToArray()
         {
-            return new[] { Orange, Purple, Green, Blue };
+            return new[] { Orange, Purple, Green, Blue, Red, Brown };
         }
     }
 }

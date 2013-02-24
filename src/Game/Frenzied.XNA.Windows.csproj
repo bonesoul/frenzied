@@ -109,7 +109,7 @@
     <Compile Include="Graphics\Effects\Metaball.cs" />
     <Compile Include="Graphics\GraphicsManager.cs" />
     <Compile Include="Input\Cursor.cs" />
-    <Compile Include="Platforms\GameFrameworks.cs" />
+    <Compile Include="Platforms\Frameworks.cs" />
     <Compile Include="Platforms\GraphicsAPI.cs" />
     <Compile Include="Platforms\GraphicsConfig.cs" />
     <Compile Include="Platforms\PlatformConfig.cs" />

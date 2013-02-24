@@ -98,6 +98,8 @@ namespace Frenzied.Assets
             this.PieTextures[Color.Purple] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/Purple");
             this.PieTextures[Color.Green] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/Green");
             this.PieTextures[Color.Blue] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/Blue");
+            this.PieTextures[Color.Red] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/Red");
+            this.PieTextures[Color.Brown] = this.Game.Content.Load<Texture2D>(@"Textures/Pies/Brown");
 
             this.BlockProgressBar = this.Game.Content.Load<Texture2D>(@"Textures/Blocks/BlockProgressBar");
 
