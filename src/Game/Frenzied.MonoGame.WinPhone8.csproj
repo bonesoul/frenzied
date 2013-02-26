@@ -105,7 +105,7 @@
     <Compile Include="Input\InputState.cs" />
     <Compile Include="Input\PlayerIndexEventArgs.cs" />
     <Compile Include="Menu\MenuEntry.cs" />
-    <Compile Include="Platforms\GameFrameworks.cs" />
+    <Compile Include="Platforms\Frameworks.cs" />
     <Compile Include="Platforms\GraphicsAPI.cs" />
     <Compile Include="Platforms\GraphicsConfig.cs" />
     <Compile Include="Platforms\PlatformConfig.cs" />
@@ -333,6 +333,12 @@
     </Content>
     <Content Include="..\..\bin\debug\Desktop\Content\Textures\Noise.xnb">
       <Link>Content\Textures\Noise.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Pies\Brown.xnb">
+      <Link>Content\Textures\Pies\Brown.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Pies\Red.xnb">
+      <Link>Content\Textures\Pies\Red.xnb</Link>
     </Content>
     <None Include="..\Content\Effects\PostprocessEffect.WinPhone8.Fx">
       <Link>Content\Effects\PostprocessEffect.WinPhone8.Fx</Link>
