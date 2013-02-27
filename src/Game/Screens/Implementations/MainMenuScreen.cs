@@ -217,7 +217,7 @@ namespace Frenzied.Screens.Implementations
         public override void Draw(GameTime gameTime)
         {
             // create a render target for the scene which will be later using with post process effect.
-            //FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(_scene);
+            FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(_scene);
 
             this._spriteBatch.Begin();
 
@@ -237,10 +237,10 @@ namespace Frenzied.Screens.Implementations
             this._spriteBatch.End();
 
             // apply post-process effect.
-            //if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.ExtendedEffects)
-            //    this._sketchEffect.Apply(_scene);
-            //else
-            //    this._noiseEffect.Apply(_scene);
+            if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.ExtendedEffects)
+                this._sketchEffect.Apply(_scene);
+            else
+                this._noiseEffect.Apply(_scene);
 
             base.Draw(gameTime);
         }
