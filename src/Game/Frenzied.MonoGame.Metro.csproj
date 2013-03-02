@@ -150,7 +150,6 @@
     <Compile Include="Screens\Implementations\MainMenuScreen.cs" />
     <Compile Include="Screens\Implementations\MenuScreen.cs" />
     <Compile Include="Screens\Implementations\MessageBoxScreen.cs" />
-    <Compile Include="Screens\Implementations\MetaballBGScreen.cs" />
     <Compile Include="Screens\Implementations\OptionsMenuScreen.cs" />
     <Compile Include="Screens\Implementations\PauseMenuScreen.cs" />
     <Compile Include="Screens\Menu\Button.cs" />

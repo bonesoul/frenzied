@@ -67,9 +67,6 @@ namespace Frenzied.Screens.Implementations
             // Tell all the current screens to transition off.
             foreach (GameScreen screen in screenManager.GetScreens())
             {
-                if(screen is MetaballBGScreen)
-                    continue;
-
                 screen.ExitScreen();
             }
 
