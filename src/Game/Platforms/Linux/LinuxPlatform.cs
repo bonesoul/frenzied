@@ -7,6 +7,7 @@
 
 using System;
 using Microsoft.Xna.Framework;
+using Frenzied.Platforms.Config;
 
 namespace Frenzied.Platforms.Linux
 {
@@ -14,11 +15,27 @@ namespace Frenzied.Platforms.Linux
 	{
         public LinuxPlatform()
         {
-            this.PlatformConfig = new PlatformConfig()
-                {
-                    IsMouseVisible = true,
-                    IsFixedTimeStep = false,
-                };
+            this.Config = new PlatformConfig
+                    {
+                        Screen =
+                        {
+                            IsFullScreen = false,
+                            Width = 1280,
+                            Height = 720,
+                        },
+                        Input =
+                        {
+                            IsMouseVisible = true,
+                        },
+                        Graphics =
+                        {
+
+                            IsFixedTimeStep = false,
+                            IsVsyncEnabled = false,
+                            PostprocessEnabled = false,
+                            ExtendedEffects = true,
+                        },
+                    };
         }
 
         public override void PlatformEntrance()
@@ -27,15 +44,6 @@ namespace Frenzied.Platforms.Linux
             {
                 game.Run();
             }
-        }
-
-        public override void Initialize(GraphicsDeviceManager graphicsDeviceManager)
-        {
-            this.GraphicsDeviceManager = graphicsDeviceManager;
-
-            this.GraphicsDeviceManager.PreferredBackBufferWidth = 1280;
-            this.GraphicsDeviceManager.PreferredBackBufferHeight = 720;
-            this.GraphicsDeviceManager.ApplyChanges();
         }
 	}
 }

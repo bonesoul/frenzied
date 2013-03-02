@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\bin\Debug\linux\monogame\</OutputPath>
+    <OutputPath>..\..\bin\Debug\Linux</OutputPath>
     <DefineConstants>DEBUG; LINUX; MONOGAME; DESKTOP</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -26,7 +26,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>none</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\bin\Release\linux\monogame\</OutputPath>
+    <OutputPath>..\..\bin\Release\Linux</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
@@ -53,8 +53,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Assets\AssetManager.cs" />
-    <Compile Include="Config\BackgroundConfig.cs" />
-    <Compile Include="Config\GameConfig.cs" />
     <Compile Include="GamePlay\ScoreManager.cs" />
     <Compile Include="GamePlay\Implementations\BlockyMode\BlockColors.cs" />
     <Compile Include="GamePlay\Implementations\BlockyMode\BlockContainer.cs" />
@@ -78,17 +76,13 @@
     <Compile Include="GamePlay\Modes\ShapeContainer.cs" />
     <Compile Include="GamePlay\Modes\ShapeGenerator.cs" />
     <Compile Include="GamePlay\Modes\ShapeLocations.cs" />
-    <Compile Include="Graphics\GraphicsManager.cs" />
     <Compile Include="Graphics\Drawing\BasicShapes.cs" />
     <Compile Include="Graphics\Drawing\PrimitiveBatch.cs" />
-    <Compile Include="Graphics\Effects\Metaball.cs" />
     <Compile Include="Input\Cursor.cs" />
     <Compile Include="Input\InputState.cs" />
     <Compile Include="Input\PlayerIndexEventArgs.cs" />
     <Compile Include="Menu\MenuEntry.cs" />
-    <Compile Include="Platforms\GameFrameworks.cs" />
     <Compile Include="Platforms\GraphicsAPI.cs" />
-    <Compile Include="Platforms\PlatformConfig.cs" />
     <Compile Include="Platforms\PlatformHandler.cs" />
     <Compile Include="Platforms\PlatformManager.cs" />
     <Compile Include="Platforms\Platforms.cs" />
@@ -96,10 +90,8 @@
     <Compile Include="Screens\GameScreen.cs" />
     <Compile Include="Screens\ScreenManager.cs" />
     <Compile Include="Screens\Implementations\AboutScreen.cs" />
-    <Compile Include="Screens\Implementations\BackgroundScreen.cs" />
     <Compile Include="Screens\Implementations\GameplayScreen.cs" />
     <Compile Include="Screens\Implementations\LoadingScreen.cs" />
-    <Compile Include="Screens\Implementations\MainMenuScreen.cs" />
     <Compile Include="Screens\Implementations\MenuScreen.cs" />
     <Compile Include="Screens\Implementations\MessageBoxScreen.cs" />
     <Compile Include="Screens\Implementations\OptionsMenuScreen.cs" />
@@ -116,10 +108,23 @@
     <Compile Include="FrenziedGame.cs" />
     <Compile Include="Audio\AudioManager.cs" />
     <Compile Include="Platforms\Linux\LinuxPlatform.cs" />
+    <Compile Include="Screens\Implementations\IntroScreen.cs" />
+    <Compile Include="Screens\Implementations\MainScreen.cs" />
+    <Compile Include="Screens\Menu\Button.cs" />
+    <Compile Include="Screens\Scenes\BackgroundScene.cs" />
+    <Compile Include="Platforms\Config\DebuggerConfig.cs" />
+    <Compile Include="Platforms\Config\GraphicsConfig.cs" />
+    <Compile Include="Platforms\Config\InputConfig.cs" />
+    <Compile Include="Platforms\Config\PlatformConfig.cs" />
+    <Compile Include="Platforms\Config\ScreenConfig.cs" />
+    <Compile Include="Platforms\PlatformHelper.cs" />
+    <Compile Include="Platforms\Frameworks.cs" />
+    <Compile Include="PostProcessing\PostprocessingEffect.cs" />
+    <Compile Include="PostProcessing\Effects\NoiseEffect.cs" />
+    <Compile Include="PostProcessing\Effects\SketchEffect.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\" />
-    <Folder Include="Config\" />
     <Folder Include="GamePlay\" />
     <Folder Include="Graphics\" />
     <Folder Include="Input\" />
@@ -139,115 +144,257 @@
     <Folder Include="Content\Sounds\Timeout\" />
     <Folder Include="Content\Textures\Blocks\" />
     <Folder Include="Content\Textures\Pies\" />
+    <Folder Include="PostProcessing\" />
+    <Folder Include="Content\Textures\Common\" />
+    <Folder Include="Content\Textures\Menu\" />
+    <Folder Include="Content\Textures\Menu\Clouds\" />
+    <Folder Include="Content\Textures\Menu\Social\" />
+    <Folder Include="Content\Effects\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <None Include="..\..\bin\Debug\windows\xna\Content\Fonts\GameFont.xnb">
+    <None Include="..\..\bin\Debug\Desktop\Content\Fonts\GameFont.xnb">
       <Link>Content\Fonts\GameFont.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\bin\Debug\windows\xna\Content\Fonts\GoodDog.xnb">
+    <None Include="..\..\bin\Debug\Desktop\Content\Fonts\GoodDog.xnb">
       <Link>Content\Fonts\GoodDog.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\bin\Debug\windows\xna\Content\Fonts\MenuFont.xnb">
+    <None Include="..\..\bin\Debug\Desktop\Content\Fonts\MenuFont.xnb">
       <Link>Content\Fonts\MenuFont.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\bin\Debug\windows\xna\Content\Fonts\Verdana.xnb">
+    <None Include="..\..\bin\Debug\Desktop\Content\Fonts\Verdana.xnb">
       <Link>Content\Fonts\Verdana.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\bin\Debug\windows\xna\Content\Music\Dragon Soul.wma">
+    <None Include="..\..\bin\Debug\Desktop\Content\Music\Dragon Soul.wma">
       <Link>Content\Music\Dragon Soul.wma</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\bin\Debug\windows\xna\Content\Music\Dragon Soul.xnb">
+    <None Include="..\..\bin\Debug\Desktop\Content\Music\Dragon Soul.xnb">
       <Link>Content\Music\Dragon Soul.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\bin\Debug\windows\xna\Content\Sounds\Blocks\0.xnb">
+    <None Include="..\..\bin\Debug\Desktop\Content\Sounds\Blocks\0.xnb">
       <Link>Content\Sounds\Blocks\0.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\bin\Debug\windows\xna\Content\Sounds\Blocks\1.xnb">
+    <None Include="..\..\bin\Debug\Desktop\Content\Sounds\Blocks\1.xnb">
       <Link>Content\Sounds\Blocks\1.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\bin\Debug\windows\xna\Content\Sounds\Blocks\2.xnb">
+    <None Include="..\..\bin\Debug\Desktop\Content\Sounds\Blocks\2.xnb">
       <Link>Content\Sounds\Blocks\2.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\bin\Debug\windows\xna\Content\Sounds\Blocks\3.xnb">
+    <None Include="..\..\bin\Debug\Desktop\Content\Sounds\Blocks\3.xnb">
       <Link>Content\Sounds\Blocks\3.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\bin\Debug\windows\xna\Content\Sounds\Blocks\4.xnb">
+    <None Include="..\..\bin\Debug\Desktop\Content\Sounds\Blocks\4.xnb">
       <Link>Content\Sounds\Blocks\4.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\bin\Debug\windows\xna\Content\Sounds\Explode\0.xnb">
+    <None Include="..\..\bin\Debug\Desktop\Content\Sounds\Explode\0.xnb">
       <Link>Content\Sounds\Explode\0.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\bin\Debug\windows\xna\Content\Sounds\Timeout\0.xnb">
+    <None Include="..\..\bin\Debug\Desktop\Content\Sounds\Timeout\0.xnb">
       <Link>Content\Sounds\Timeout\0.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\bin\Debug\windows\xna\Content\Textures\Pies\BluePie.xnb">
-      <Link>Content\Textures\Pies\BluePie.xnb</Link>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Blocks\BlockContainer.xnb">
+      <Link>Content\Textures\Blocks\BlockContainer.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\bin\Debug\windows\xna\Content\Textures\Pies\Chart.xnb">
-      <Link>Content\Textures\Pies\Chart.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\bin\Debug\windows\xna\Content\Textures\Pies\GreenPie.xnb">
-      <Link>Content\Textures\Pies\GreenPie.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\bin\Debug\windows\xna\Content\Textures\Pies\OrangePie.xnb">
-      <Link>Content\Textures\Pies\OrangePie.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\bin\Debug\windows\xna\Content\Textures\Pies\PurplePie.xnb">
-      <Link>Content\Textures\Pies\PurplePie.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\bin\Debug\windows\xna\Content\Textures\Blank.xnb">
-      <Link>Content\Textures\Blank.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\bin\Debug\windows\xna\Content\Textures\BlockContainer.xnb">
-      <Link>Content\Textures\BlockContainer.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\bin\Debug\windows\xna\Content\Textures\Gradient.xnb">
-      <Link>Content\Textures\Gradient.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\bin\Debug\windows\xna\Content\Textures\cursor.xnb">
-      <Link>Content\Textures\cursor.xnb</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="..\..\bin\Debug\windows\xna\Content\Textures\Blocks\BlockProgressBar.xnb">
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Blocks\BlockProgressBar.xnb">
       <Link>Content\Textures\Blocks\BlockProgressBar.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\bin\Debug\windows\xna\Content\Textures\Blocks\BlueBlock.xnb">
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Blocks\BlueBlock.xnb">
       <Link>Content\Textures\Blocks\BlueBlock.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\bin\Debug\windows\xna\Content\Textures\Blocks\GreenBlock.xnb">
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Blocks\GreenBlock.xnb">
       <Link>Content\Textures\Blocks\GreenBlock.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\bin\Debug\windows\xna\Content\Textures\Blocks\OrangeBlock.xnb">
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Blocks\OrangeBlock.xnb">
       <Link>Content\Textures\Blocks\OrangeBlock.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="..\..\bin\Debug\windows\xna\Content\Textures\Blocks\PurpleBlock.xnb">
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Blocks\PurpleBlock.xnb">
       <Link>Content\Textures\Blocks\PurpleBlock.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Common\game-logo.xnb">
+      <Link>Content\Textures\Common\game-logo.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Common\Intro.xnb">
+      <Link>Content\Textures\Common\Intro.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Common\Logo.xnb">
+      <Link>Content\Textures\Common\Logo.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Menu\Clouds\BlueCloud1.xnb">
+      <Link>Content\Textures\Menu\Clouds\BlueCloud1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Menu\Clouds\BlueCloud2.xnb">
+      <Link>Content\Textures\Menu\Clouds\BlueCloud2.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Menu\Clouds\BlueCloud3.xnb">
+      <Link>Content\Textures\Menu\Clouds\BlueCloud3.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Menu\Clouds\BlueCloud4.xnb">
+      <Link>Content\Textures\Menu\Clouds\BlueCloud4.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Menu\Clouds\BlueCloud5.xnb">
+      <Link>Content\Textures\Menu\Clouds\BlueCloud5.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Menu\Clouds\YellowCloud1.xnb">
+      <Link>Content\Textures\Menu\Clouds\YellowCloud1.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Menu\Clouds\YellowCloud2.xnb">
+      <Link>Content\Textures\Menu\Clouds\YellowCloud2.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Menu\Clouds\YellowCloud3.xnb">
+      <Link>Content\Textures\Menu\Clouds\YellowCloud3.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Menu\Clouds\YellowCloud4.xnb">
+      <Link>Content\Textures\Menu\Clouds\YellowCloud4.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Menu\Clouds\YellowCloud5.xnb">
+      <Link>Content\Textures\Menu\Clouds\YellowCloud5.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Menu\Social\Facebook.xnb">
+      <Link>Content\Textures\Menu\Social\Facebook.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Menu\Social\Reddit.xnb">
+      <Link>Content\Textures\Menu\Social\Reddit.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Menu\Social\RSS.xnb">
+      <Link>Content\Textures\Menu\Social\RSS.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Menu\Social\Twitter.xnb">
+      <Link>Content\Textures\Menu\Social\Twitter.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Menu\Social\Youtube.xnb">
+      <Link>Content\Textures\Menu\Social\Youtube.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Pies\Blue.xnb">
+      <Link>Content\Textures\Pies\Blue.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Pies\Brown.xnb">
+      <Link>Content\Textures\Pies\Brown.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Pies\Container.xnb">
+      <Link>Content\Textures\Pies\Container.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Pies\Green.xnb">
+      <Link>Content\Textures\Pies\Green.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Pies\Orange.xnb">
+      <Link>Content\Textures\Pies\Orange.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Pies\Purple.xnb">
+      <Link>Content\Textures\Pies\Purple.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Pies\Red.xnb">
+      <Link>Content\Textures\Pies\Red.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Blank.xnb">
+      <Link>Content\Textures\Blank.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\cursor.xnb">
+      <Link>Content\Textures\cursor.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Gradient.xnb">
+      <Link>Content\Textures\Gradient.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Noise.xnb">
+      <Link>Content\Textures\Noise.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Effects\PostprocessEffect.xnb">
+      <Link>Content\Effects\PostprocessEffect.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Effects\SketchTexture.xnb">
+      <Link>Content\Effects\SketchTexture.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Menu\AutumnBackground.xnb">
+      <Link>Content\Textures\Menu\AutumnBackground.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Menu\AutumnMeadow.xnb">
+      <Link>Content\Textures\Menu\AutumnMeadow.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Menu\Background.xnb">
+      <Link>Content\Textures\Menu\Background.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Menu\BlockMode.xnb">
+      <Link>Content\Textures\Menu\BlockMode.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Menu\Board.xnb">
+      <Link>Content\Textures\Menu\Board.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Menu\Credits.xnb">
+      <Link>Content\Textures\Menu\Credits.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Menu\Kids.xnb">
+      <Link>Content\Textures\Menu\Kids.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Menu\Meadow.xnb">
+      <Link>Content\Textures\Menu\Meadow.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Menu\PieMode.xnb">
+      <Link>Content\Textures\Menu\PieMode.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Menu\Play.xnb">
+      <Link>Content\Textures\Menu\Play.xnb</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="..\..\bin\Debug\Desktop\Content\Textures\Menu\Settings.xnb">
+      <Link>Content\Textures\Menu\Settings.xnb</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
