@@ -103,6 +103,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Config\DebuggerConfig.cs" />
     <Compile Include="GamePlay\Implementations\BlockyMode\BlockColors.cs" />
     <Compile Include="GamePlay\Implementations\BlockyMode\BlockContainer.cs" />
     <Compile Include="GamePlay\Implementations\BlockyMode\BlockGenerator.cs" />
@@ -359,6 +360,9 @@
     </Content>
     <Content Include="..\..\bin\debug\Desktop\Content\Textures\Pies\Red.xnb">
       <Link>Content\Textures\Pies\Red.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Textures\Gradient.xnb">
+      <Link>Content\Textures\Gradient.xnb</Link>
     </Content>
     <None Include="..\Content\Effects\PostprocessEffect.Metro.Fx">
       <Link>Content\Effects\PostprocessEffect.Metro.Fx</Link>

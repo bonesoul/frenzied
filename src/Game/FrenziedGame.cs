@@ -21,6 +21,7 @@ using Frenzied.Utils.Debugging;
 using Frenzied.Utils.Debugging.Graphs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 
 namespace Frenzied
 {
@@ -119,6 +120,27 @@ namespace Frenzied
 
             base.Initialize();
         }
+
+        #if (DESKTOP || METRO) && DEBUG // check for global key-events.
+        
+        private KeyboardState _previousKeyboardState; // tracks previous keyboard state.
+
+        protected override void Update(GameTime gameTime)
+        {
+            var currentState = Keyboard.GetState();
+
+            if (_previousKeyboardState.IsKeyUp(Keys.F8) && currentState.IsKeyDown(Keys.F8))
+                FrenziedGame.Instance.Configuration.Debugger.ToggleBar();
+
+            if (_previousKeyboardState.IsKeyUp(Keys.F9) && currentState.IsKeyDown(Keys.F9))
+                FrenziedGame.Instance.Configuration.Debugger.ToggleGraphs();
+
+            this._previousKeyboardState = currentState;
+
+            base.Update(gameTime);
+        }
+
+        #endif
 
         private static FrenziedGame _instance; // the memory instance.
 

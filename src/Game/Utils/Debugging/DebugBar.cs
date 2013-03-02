@@ -118,6 +118,9 @@ namespace Frenzied.Utils.Debugging
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
+            if (!FrenziedGame.Instance.Configuration.Debugger.BarEnabled)
+                return;
+
             this._elapsedTime += gameTime.ElapsedGameTime;
             if (this._elapsedTime < TimeSpan.FromSeconds(1))
                 return;
@@ -132,7 +135,10 @@ namespace Frenzied.Utils.Debugging
         /// </summary>
         /// <param name="gameTime"></param>
         public override void Draw(GameTime gameTime)
-        {            
+        {
+            if (!FrenziedGame.Instance.Configuration.Debugger.BarEnabled)
+                return;
+
             _frameCounter++;
 
             // backup  the raster and depth-stencil states.

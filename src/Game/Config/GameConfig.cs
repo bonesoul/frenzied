@@ -15,24 +15,17 @@ namespace Frenzied.Config
         public BackgroundConfig Background { get; private set; }
 
         /// <summary>
+        /// Holds debugger related configuration parameters.
+        /// </summary>
+        public DebuggerConfig Debugger { get; private set; }
+
+        /// <summary>
         /// Creates a new instance of engine configuration.
         /// </summary>
         public GameConfig()
         {
             this.Background = new BackgroundConfig();
+            this.Debugger = new DebuggerConfig();
         }
-
-        /// <summary>
-        /// Validates the configuration.
-        /// </summary>
-        /// <returns></returns>
-        public bool Validate()
-        {
-            // valide all the subconfigurations. 
-            if (!this.Background.Validate())
-                return false;
-
-            return true;
-        }           
     }
 }

@@ -74,8 +74,24 @@ namespace Frenzied.Utils.Debugging.Graphs
             base.LoadContent();
         }
 
+        public override void Update(GameTime gameTime)
+        {
+            if (!FrenziedGame.Instance.Configuration.Debugger.GraphsEnabled)
+                return;
+
+            foreach (var graph in this._graphs)
+            {
+                graph.Update(gameTime); // let the graphs update themself.
+            }
+
+            base.Update(gameTime);
+        }
+
         public override void Draw(GameTime gameTime)
         {
+            if (!FrenziedGame.Instance.Configuration.Debugger.GraphsEnabled)
+                return;
+
             // backup  the raster and depth-stencil states.
             var previousRasterizerState = this.Game.GraphicsDevice.RasterizerState;
             var previousDepthStencilState = this.Game.GraphicsDevice.DepthStencilState;
@@ -107,16 +123,6 @@ namespace Frenzied.Utils.Debugging.Graphs
             this.Game.GraphicsDevice.DepthStencilState = previousDepthStencilState;
 
             base.Draw(gameTime);
-        }
-
-        public override void Update(GameTime gameTime)
-        {
-            foreach (var graph in this._graphs)
-            {
-                graph.Update(gameTime); // let the graphs update themself.
-            }
-
-            base.Update(gameTime);
         }
     }
 }

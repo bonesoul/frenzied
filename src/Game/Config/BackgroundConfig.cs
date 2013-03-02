@@ -31,14 +31,5 @@
             this.MetaballScale = 1f;
             this.MetaballCount = 50;
         }
-
-        /// <summary>
-        /// Validates the configuration.
-        /// </summary>
-        /// <returns></returns>
-        public bool Validate()
-        {
-            return true;
-        }
     }
 }
