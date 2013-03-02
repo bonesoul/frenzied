@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using Frenzied.Assets;
 using Frenzied.Graphics.Drawing;
+using Frenzied.Platforms;
 using Frenzied.Utils.Debugging.Graphs.Implementations;
 using Frenzied.Utils.Services;
 using Microsoft.Xna.Framework;
@@ -76,7 +77,7 @@ namespace Frenzied.Utils.Debugging.Graphs
 
         public override void Update(GameTime gameTime)
         {
-            if (!FrenziedGame.Instance.Configuration.Debugger.GraphsEnabled)
+            if (!PlatformManager.Handler.Config.Debugger.GraphsEnabled)
                 return;
 
             foreach (var graph in this._graphs)
@@ -89,7 +90,7 @@ namespace Frenzied.Utils.Debugging.Graphs
 
         public override void Draw(GameTime gameTime)
         {
-            if (!FrenziedGame.Instance.Configuration.Debugger.GraphsEnabled)
+            if (!PlatformManager.Handler.Config.Debugger.GraphsEnabled)
                 return;
 
             // backup  the raster and depth-stencil states.

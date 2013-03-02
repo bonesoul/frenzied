@@ -5,27 +5,30 @@
  * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
  */
 
-namespace Frenzied.Config
+namespace Frenzied.Platforms.Config
 {
-    public class GameConfig
+    public class PlatformConfig
     {
         /// <summary>
-        /// Holds the chunk configuration parameters.
+        /// Gets or sets if mouse is visible for the platform.
         /// </summary>
-        public BackgroundConfig Background { get; private set; }
+        public bool IsMouseVisible { get; set; }
 
-        /// <summary>
-        /// Holds debugger related configuration parameters.
-        /// </summary>
+        public GraphicsConfig Graphics { get; private set; }
+
         public DebuggerConfig Debugger { get; private set; }
 
         /// <summary>
-        /// Creates a new instance of engine configuration.
+        /// Creates a new instance of platform-config.
         /// </summary>
-        public GameConfig()
+        public PlatformConfig()
         {
-            this.Background = new BackgroundConfig();
+            // init. sub-configs.
+            this.Graphics = new GraphicsConfig();
             this.Debugger = new DebuggerConfig();
+
+            // set the defaults.
+            this.IsMouseVisible = false;
         }
     }
 }

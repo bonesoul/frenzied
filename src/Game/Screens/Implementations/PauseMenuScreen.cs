@@ -73,7 +73,7 @@ namespace Frenzied.Screens.Implementations
         void ConfirmQuitMessageBoxAccepted(object sender, PlayerIndexEventArgs e)
         {
             LoadingScreen.Load(ScreenManager, false, null,
-                               new MainMenuScreen());
+                               new MainScreen());
         }
 
 

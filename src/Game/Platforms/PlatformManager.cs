@@ -48,12 +48,12 @@ namespace Frenzied.Platforms
         /// <summary>
         /// Handler for current platform.
         /// </summary>
-        public static PlatformHandler PlatformHandler { get; private set; }
+        public static PlatformHandler Handler { get; private set; }
 
         /// <summary>
         /// Helper for current platform.
         /// </summary>
-        public static PlatformHelper PlatformHelper { get; private set; }
+        public static PlatformHelper Helper { get; private set; }
 
         static PlatformManager()
         {
@@ -65,16 +65,17 @@ namespace Frenzied.Platforms
         /// </summary>
         public static void Startup()
         {
-            PlatformHandler.PlatformEntrance(); // run the appropriate platform entrace code.
+            Handler.PlatformEntrance(); // run the appropriate platform entrace code.
         }
 
         /// <summary>
         /// Should be called by actual game code's Initialize() method.
         /// </summary>
+        /// <param name="game"><see cref="Game"/></param>
         /// <param name="graphicsDeviceManager">The <see cref="GraphicsDeviceManager"/>.</param>
-        public static void Initialize(GraphicsDeviceManager graphicsDeviceManager)
+        public static void Initialize(Game game, GraphicsDeviceManager graphicsDeviceManager)
         {
-            PlatformHandler.Initialize(graphicsDeviceManager); // rtun the appropriate platform initialization code.
+            Handler.Initialize(game, graphicsDeviceManager); // run the appropriate platform initialization code
         }
 
         /// <summary>
@@ -85,35 +86,35 @@ namespace Frenzied.Platforms
             // find base platform.
             #if WINDOWS && DESKTOP
                 Platform = Platforms.Windows;
-                PlatformHandler = new Windows.WindowsPlatform();
-                PlatformHelper = new Windows.WindowsHelper();
+                Handler = new Windows.WindowsPlatform();
+                Helper = new Windows.WindowsHelper();
             #elif WINDOWS && METRO
                 Platform = Platforms.WindowsMetro;
-                PlatformHandler = new WindowsMetro.WindowsMetroPlatform();
-                PlatformHelper = new WindowsMetro.WindowsMetroHelper();
+                Handler = new WindowsMetro.WindowsMetroPlatform();
+                Helper = new WindowsMetro.WindowsMetroHelper();
 			#elif LINUX && DESKTOP
 				Platform = Platforms.Linux;
-				PlatformHandler = new Linux.LinuxPlatform();
+				Handler = new Linux.LinuxPlatform();
 			#elif MACOS && DESKTOP
 				Platform=Platforms.MacOS;
-				PlatformHandler = new MacOS.MacOSPlatform();
+				Handler = new MacOS.MacOSPlatform();
             #elif WINPHONE7
                 Platform = Platforms.WindowsPhone7;
-                PlatformHandler = new WindowsPhone7.WindowsPhone7Platform();
-            PlatformHelper = new WindowsPhone7.WindowsPhone7Helper();
+                Handler = new WindowsPhone7.WindowsPhone7Platform();
+            Helper = new WindowsPhone7.WindowsPhone7Helper();
             #elif WINPHONE8
                 Platform = Platforms.WindowsPhone8;
-                PlatformHandler = new WindowsPhone8.WindowsPhone8Platform();
-                PlatformHelper = new WindowsPhone8.WindowsPhone8Helper();
+                Handler = new WindowsPhone8.WindowsPhone8Platform();
+                Helper = new WindowsPhone8.WindowsPhone8Helper();
             #elif ANDROID
                 Platform = Platforms.Android;
-                PlatformHandler = new Android.AndroidPlatform();
+                Handler = new Android.AndroidPlatform();
 			#elif IOS
 				Platform = Platforms.IOS;
-				PlatformHandler = new IOS.IOSPlatform();
+				Handler = new IOS.IOSPlatform();
             #endif
 
-            if (PlatformHandler == null)
+            if (Handler == null)
                 throw new Exception("Unsupported platform!");
 
             // find dot.net framework.

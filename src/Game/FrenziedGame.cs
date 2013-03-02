@@ -8,9 +8,6 @@
 using System;
 using Frenzied.Assets;
 using Frenzied.Audio;
-using Frenzied.Config;
-using Frenzied.GamePlay;
-using Frenzied.GamePlay.Implementations.PieMode;
 using Frenzied.Graphics;
 using Frenzied.Input;
 using Frenzied.Platforms;
@@ -31,14 +28,9 @@ namespace Frenzied
     public class FrenziedGame : Game
     {
         /// <summary>
-        /// The game configuration.
-        /// </summary>
-        public GameConfig Configuration { get; private set; }
-
-        /// <summary>
         /// Graphics device manager.
         /// </summary>
-        GraphicsDeviceManager _graphicsDeviceManager;
+        public GraphicsDeviceManager GraphicsDeviceManager { get; private set; }
 
         private ScreenManager _screenManager;
 
@@ -49,27 +41,7 @@ namespace Frenzied
 
             _instance = this;
 
-            var config = new GameConfig
-                {
-                    Background =
-                        {
-                            MetaballCount = 50,
-                            MetaballRadius = 128,
-                            MetaballScale = 1f
-                        },
-                };
-
-            this.Configuration = config;
-
-            #if WINPHONE7
-            // Frame rate is 30 fps by default for Windows Phone.
-            TargetElapsedTime = TimeSpan.FromTicks(333333);
-
-            // Extend battery life under lock.
-            InactiveSleepTime = TimeSpan.FromSeconds(1);
-            #endif
-
-            _graphicsDeviceManager = new GraphicsDeviceManager(this);
+            GraphicsDeviceManager = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";         
         }
 
@@ -81,17 +53,13 @@ namespace Frenzied
         /// </summary>
         protected override void Initialize()
         {
-            // set platform specific stuff.
-            this.IsMouseVisible = PlatformManager.PlatformHandler.PlatformConfig.IsMouseVisible;
-            this.IsFixedTimeStep = PlatformManager.PlatformHandler.PlatformConfig.IsFixedTimeStep;
-
-            PlatformManager.Initialize(this._graphicsDeviceManager);        
+            PlatformManager.Initialize(this, this.GraphicsDeviceManager);
 
             // init the asset manager.
             var assetManager = new AssetManager(this);
             this.Components.Add(assetManager);
 
-            var graphicsManager = new GraphicsManager(this._graphicsDeviceManager, this); // start the screen manager.
+            var graphicsManager = new GraphicsManager(this.GraphicsDeviceManager, this); // start the screen manager.
             graphicsManager.ToggleVerticalSync();
 
             // create the screen manager
@@ -102,7 +70,7 @@ namespace Frenzied
 
             // Activate the first screens.
             //this._screenManager.AddScreen(new BackgroundScreen(), null);
-            this._screenManager.AddScreen(new MainMenuScreen(), null);
+            this._screenManager.AddScreen(new MainScreen(), null);
 
             // add debug components
             this.Components.Add(new DebugBar(this));
@@ -112,7 +80,7 @@ namespace Frenzied
             var audioManager = new AudioManager(this);
             this.Components.Add(audioManager);
 
-            if (PlatformManager.PlatformHandler.PlatformConfig.IsMouseVisible)
+            if (PlatformManager.Handler.Config.IsMouseVisible)
             {
                 var cursor = new Cursor(this);
                 this.Components.Add(cursor);
@@ -130,10 +98,10 @@ namespace Frenzied
             var currentState = Keyboard.GetState();
 
             if (_previousKeyboardState.IsKeyUp(Keys.F8) && currentState.IsKeyDown(Keys.F8))
-                FrenziedGame.Instance.Configuration.Debugger.ToggleBar();
+                PlatformManager.Handler.Config.Debugger.ToggleBar();
 
             if (_previousKeyboardState.IsKeyUp(Keys.F9) && currentState.IsKeyDown(Keys.F9))
-                FrenziedGame.Instance.Configuration.Debugger.ToggleGraphs();
+                PlatformManager.Handler.Config.Debugger.ToggleGraphs();
 
             this._previousKeyboardState = currentState;
 

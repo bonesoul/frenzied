@@ -118,7 +118,7 @@ namespace Frenzied.Utils.Debugging
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
-            if (!FrenziedGame.Instance.Configuration.Debugger.BarEnabled)
+            if (!PlatformManager.Handler.Config.Debugger.BarEnabled)
                 return;
 
             this._elapsedTime += gameTime.ElapsedGameTime;
@@ -136,7 +136,7 @@ namespace Frenzied.Utils.Debugging
         /// <param name="gameTime"></param>
         public override void Draw(GameTime gameTime)
         {
-            if (!FrenziedGame.Instance.Configuration.Debugger.BarEnabled)
+            if (!PlatformManager.Handler.Config.Debugger.BarEnabled)
                 return;
 
             _frameCounter++;

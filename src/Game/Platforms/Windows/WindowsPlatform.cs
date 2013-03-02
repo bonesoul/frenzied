@@ -5,6 +5,7 @@
  * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
  */
 
+using Frenzied.Platforms.Config;
 using Microsoft.Xna.Framework;
 
 namespace Frenzied.Platforms.Windows
@@ -13,11 +14,20 @@ namespace Frenzied.Platforms.Windows
     {
         public WindowsPlatform()
         {
-            this.PlatformConfig = new PlatformConfig()
+            this.Config = new PlatformConfig
                 {
                     IsMouseVisible = true,
-                    IsFixedTimeStep = false,
-                    Graphics = {ExtendedEffects = true},
+                    Graphics =
+                        {
+                            IsFullScreen = false,
+                            CustomResolutionEnabled = true,
+                            Width = 1680,
+                            Height = 1050,                            
+                            IsFixedTimeStep = false,
+                            IsVsyncEnabled = false,
+                            PostprocessEnabled = true,
+                            ExtendedEffects = true,
+                        },
                 };
         }
 
@@ -27,15 +37,6 @@ namespace Frenzied.Platforms.Windows
             {
                 game.Run();
             }
-        }
-
-        public override void Initialize(GraphicsDeviceManager graphicsDeviceManager)
-        {
-            this.GraphicsDeviceManager = graphicsDeviceManager;
-
-            this.GraphicsDeviceManager.PreferredBackBufferWidth = 1280;
-            this.GraphicsDeviceManager.PreferredBackBufferHeight = 720;
-            this.GraphicsDeviceManager.ApplyChanges();
         }
     }
 }

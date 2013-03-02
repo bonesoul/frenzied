@@ -29,15 +29,13 @@ namespace Frenzied.Platforms.WindowsPhone7
             }
         }
 
-        public override void Initialize(GraphicsDeviceManager graphicsDeviceManager)
+        public override void InitializePlatform()
         {
-            this.GraphicsDeviceManager = graphicsDeviceManager;
+            // Frame rate is 30 fps by default for Windows Phone.
+            game.TargetElapsedTime = TimeSpan.FromTicks(333333);
 
-            this.GraphicsDeviceManager.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
-            this.GraphicsDeviceManager.PreferredBackBufferWidth = 800;
-            this.GraphicsDeviceManager.PreferredBackBufferHeight = 480;
-            this.GraphicsDeviceManager.IsFullScreen = true;
-            this.GraphicsDeviceManager.ApplyChanges();
+            // Extend battery life under lock.
+            game.InactiveSleepTime = TimeSpan.FromSeconds(1);
         }
     }
 }

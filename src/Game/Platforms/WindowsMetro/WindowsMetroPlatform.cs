@@ -5,7 +5,8 @@
  * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
  */
 
-using Microsoft.Xna.Framework;
+using Frenzied.Platforms.Config;
+using Microsoft.Xna.Framework.Input;
 
 namespace Frenzied.Platforms.WindowsMetro
 {
@@ -13,11 +14,18 @@ namespace Frenzied.Platforms.WindowsMetro
     {
         public WindowsMetroPlatform()
         {
-            this.PlatformConfig = new PlatformConfig()
-            {
+            this.Config = new PlatformConfig
+                {
                 IsMouseVisible = true,
-                IsFixedTimeStep = false,
-                Graphics = { ExtendedEffects = true },
+                Graphics =
+                {
+                    IsFullScreen = true,
+                    CustomResolutionEnabled = false,
+                    IsFixedTimeStep = false,
+                    IsVsyncEnabled = false,
+                    PostprocessEnabled = true,
+                    ExtendedEffects = true,
+                },
             };
         }
 
@@ -25,12 +33,6 @@ namespace Frenzied.Platforms.WindowsMetro
         {
             var factory = new MonoGame.Framework.GameFrameworkViewSource<FrenziedGame>();
             Windows.ApplicationModel.Core.CoreApplication.Run(factory);
-        }
-
-        public override void Initialize(GraphicsDeviceManager graphicsDeviceManager)
-        {
-            this.GraphicsDeviceManager = graphicsDeviceManager;
-            //this.GraphicsDeviceManager.ApplyChanges();
         }
     }
 }

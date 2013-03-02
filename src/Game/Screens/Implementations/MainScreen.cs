@@ -22,7 +22,7 @@ using Microsoft.Xna.Framework.Input.Touch;
 
 namespace Frenzied.Screens.Implementations
 {
-    public class MainMenuScreen : GameScreen
+    public class MainScreen : GameScreen
     {
         // common stuff.
         private SpriteBatch _spriteBatch;
@@ -107,7 +107,7 @@ namespace Frenzied.Screens.Implementations
             this._buttons["Youtube"].Selected += ButtonYoutube_Selected;
 
             // load contents for post-process effects
-            if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.ExtendedEffects)
+            if (PlatformManager.Handler.Config.Graphics.ExtendedEffects)
                 this._sketchEffect = new SketchEffect(ScreenManager.Game, ScreenManager.SpriteBatch);
             else 
                 this._noiseEffect=new NoiseEffect(ScreenManager.Game, ScreenManager.SpriteBatch);
@@ -146,22 +146,22 @@ namespace Frenzied.Screens.Implementations
 
         private void ButtonBoard_Selected(object sender, EventArgs e)
         {
-            PlatformManager.PlatformHelper.LaunchURI("http://www.int6.org/");
+            PlatformManager.Helper.LaunchURI("http://www.int6.org/");
         }
 
         private void ButtonTwitter_Selected(object sender, EventArgs e)
         {
-            PlatformManager.PlatformHelper.LaunchURI("http://www.twitter.com/int6games/");
+            PlatformManager.Helper.LaunchURI("http://www.twitter.com/int6games/");
         }
 
         private void ButtonFacebook_Selected(object sender, EventArgs e)
         {
-            PlatformManager.PlatformHelper.LaunchURI("https://www.facebook.com/Int6Studios");
+            PlatformManager.Helper.LaunchURI("https://www.facebook.com/Int6Studios");
         }
 
         private void ButtonYoutube_Selected(object sender, EventArgs e)
         {
-            PlatformManager.PlatformHelper.LaunchURI("http://www.youtube.com/user/Int6Games");
+            PlatformManager.Helper.LaunchURI("http://www.youtube.com/user/Int6Games");
         }
 
         public override void HandleInput(GameTime gameTime, Input.InputState input)
@@ -200,7 +200,7 @@ namespace Frenzied.Screens.Implementations
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
-            if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.ExtendedEffects)
+            if (PlatformManager.Handler.Config.Graphics.ExtendedEffects)
                 this._sketchEffect.UpdateJitter(gameTime);
 
             // Pulsate the game-logo.
@@ -217,7 +217,8 @@ namespace Frenzied.Screens.Implementations
         public override void Draw(GameTime gameTime)
         {
             // create a render target for the scene which will be later using with post process effect.
-            FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(_scene);
+            if(PlatformManager.Handler.Config.Graphics.PostprocessEnabled)
+                FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(_scene);
 
             this._spriteBatch.Begin();
 
@@ -236,8 +237,11 @@ namespace Frenzied.Screens.Implementations
 
             this._spriteBatch.End();
 
+            if (!PlatformManager.Handler.Config.Graphics.PostprocessEnabled)
+                return;
+
             // apply post-process effect.
-            if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.ExtendedEffects)
+            if (PlatformManager.Handler.Config.Graphics.ExtendedEffects)
                 this._sketchEffect.Apply(_scene);
             else
                 this._noiseEffect.Apply(_scene);

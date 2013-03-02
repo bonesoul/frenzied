@@ -67,7 +67,7 @@ namespace Frenzied.Screens.Implementations
             this._viewport = ScreenManager.GraphicsDevice.Viewport;
 
             // load contents for post-process effects
-            if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.ExtendedEffects)
+            if (PlatformManager.Handler.Config.Graphics.ExtendedEffects)
                 this._sketchEffect = new SketchEffect(ScreenManager.Game, ScreenManager.SpriteBatch);
             else
                 this._noiseEffect = new NoiseEffect(ScreenManager.Game, ScreenManager.SpriteBatch);
@@ -117,9 +117,8 @@ namespace Frenzied.Screens.Implementations
         /// </summary>
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
-            if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.ExtendedEffects)
+            if (PlatformManager.Handler.Config.Graphics.ExtendedEffects)
                 this._sketchEffect.UpdateJitter(gameTime);
-
 
             this._gameMode.Update(gameTime);
 
@@ -141,7 +140,8 @@ namespace Frenzied.Screens.Implementations
         public override void Draw(GameTime gameTime)
         {
             // create a render target for the scene which will be later using with post process effect.
-            FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(_scene);
+            if (PlatformManager.Handler.Config.Graphics.ExtendedEffects)
+                this._sketchEffect.UpdateJitter(gameTime);
 
             this.ScreenManager.SpriteBatch.Begin();
 
@@ -152,8 +152,11 @@ namespace Frenzied.Screens.Implementations
 
             this.ScreenManager.SpriteBatch.End();
 
+            if (!PlatformManager.Handler.Config.Graphics.PostprocessEnabled)
+                return;
+
             // apply post-process effect.
-            if (PlatformManager.PlatformHandler.PlatformConfig.Graphics.ExtendedEffects)
+            if (PlatformManager.Handler.Config.Graphics.ExtendedEffects)
                 this._sketchEffect.Apply(_scene);
             else
                 this._noiseEffect.Apply(_scene);
