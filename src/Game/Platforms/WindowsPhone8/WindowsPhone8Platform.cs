@@ -5,6 +5,7 @@
  * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
  */
 
+using Frenzied.Platforms.Config;
 using Microsoft.Xna.Framework;
 
 namespace Frenzied.Platforms.WindowsPhone8
@@ -13,23 +14,28 @@ namespace Frenzied.Platforms.WindowsPhone8
     {
         public WindowsPhone8Platform()
         {
-            this.PlatformConfig = new PlatformConfig()
+            this.Config = new PlatformConfig
             {
-                IsMouseVisible = false,
-                IsFixedTimeStep = false,
-                Graphics = { ExtendedEffects = true },
+                Screen =
+                {                    
+                    Width = 1280,
+                    Height = 720,
+                    IsFullScreen = false,
+                    SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight,
+                },
+                Input =
+                {
+                    IsMouseVisible = false,
+                },
+                Graphics =
+                {
+
+                    IsFixedTimeStep = false,
+                    IsVsyncEnabled = false,
+                    PostprocessEnabled = true,
+                    ExtendedEffects = true,
+                },
             };
-        }
-
-        public override void Initialize(GraphicsDeviceManager graphicsDeviceManager)
-        {
-            this.GraphicsDeviceManager = graphicsDeviceManager;
-
-            this.GraphicsDeviceManager.IsFullScreen = true;
-            this.GraphicsDeviceManager.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;            
-            this.GraphicsDeviceManager.PreferredBackBufferWidth = 1280;
-            this.GraphicsDeviceManager.PreferredBackBufferHeight = 720;
-            this.GraphicsDeviceManager.ApplyChanges();
         }
     }
 }

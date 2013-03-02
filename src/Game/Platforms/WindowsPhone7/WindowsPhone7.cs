@@ -5,6 +5,8 @@
  * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
  */
 
+using System;
+using Frenzied.Platforms.Config;
 using Microsoft.Xna.Framework;
 
 namespace Frenzied.Platforms.WindowsPhone7
@@ -13,12 +15,26 @@ namespace Frenzied.Platforms.WindowsPhone7
     {
         public WindowsPhone7Platform()
         {
-            this.PlatformConfig = new PlatformConfig
+            this.Config = new PlatformConfig
+            {
+                Screen =
+                {
+                    IsFullScreen = true,
+                    SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight,
+                },
+                Input =
                 {
                     IsMouseVisible = false,
+                },
+                Graphics =
+                {
+
                     IsFixedTimeStep = false,
-                    Graphics = {ExtendedEffects = false},
-                };
+                    IsVsyncEnabled = false,
+                    PostprocessEnabled = true,
+                    ExtendedEffects = false,
+                },
+            };
         }
 
         public override void PlatformEntrance()
@@ -29,13 +45,13 @@ namespace Frenzied.Platforms.WindowsPhone7
             }
         }
 
-        public override void InitializePlatform()
+        public override void Initialize()
         {
             // Frame rate is 30 fps by default for Windows Phone.
-            game.TargetElapsedTime = TimeSpan.FromTicks(333333);
+            this.Game.TargetElapsedTime = TimeSpan.FromTicks(333333);
 
             // Extend battery life under lock.
-            game.InactiveSleepTime = TimeSpan.FromSeconds(1);
+            this.Game.InactiveSleepTime = TimeSpan.FromSeconds(1);
         }
     }
 }

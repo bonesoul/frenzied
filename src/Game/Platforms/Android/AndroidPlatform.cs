@@ -16,6 +16,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Frenzied.Platforms.Config;
 using Microsoft.Xna.Framework;
 
 namespace Frenzied.Platforms.Android
@@ -24,21 +25,27 @@ namespace Frenzied.Platforms.Android
     {
         public AndroidPlatform()
         {
-            this.PlatformConfig = new PlatformConfig()
-                {
-                    IsMouseVisible = false,
-                    IsFixedTimeStep = false,
-                };
-        }
-
-        public override void Initialize(GraphicsDeviceManager graphicsDeviceManager)
-        {
-            this.GraphicsDeviceManager = graphicsDeviceManager;
-
-            this.GraphicsDeviceManager.PreferredBackBufferWidth = 800;
-            this.GraphicsDeviceManager.PreferredBackBufferHeight = 480;
-            this.GraphicsDeviceManager.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
-            this.GraphicsDeviceManager.ApplyChanges();
-        }
+			this.Config = new PlatformConfig
+			{
+				Screen =
+				{
+					Width = 800,
+					Height = 480,
+					IsFullScreen = true,
+					SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight,
+				},
+				Input =
+				{
+					IsMouseVisible = false,
+				},
+				Graphics =
+				{					
+					IsFixedTimeStep = false,
+					IsVsyncEnabled = false,
+					PostprocessEnabled = false,
+					ExtendedEffects = true,
+				},
+			};
+        }	
     }
 }

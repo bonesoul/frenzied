@@ -15,12 +15,18 @@ namespace Frenzied.Platforms.WindowsMetro
         public WindowsMetroPlatform()
         {
             this.Config = new PlatformConfig
+            {
+                Screen =
                 {
-                IsMouseVisible = true,
+                    IsFullScreen = false,
+                },
+                Input =
+                {
+                    IsMouseVisible = true,
+                },
                 Graphics =
                 {
-                    IsFullScreen = true,
-                    CustomResolutionEnabled = false,
+
                     IsFixedTimeStep = false,
                     IsVsyncEnabled = false,
                     PostprocessEnabled = true,

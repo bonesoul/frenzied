@@ -71,8 +71,6 @@
   <ItemGroup>
     <Compile Include="Assets\AssetManager.cs" />
     <Compile Include="Audio\AudioManager.cs" />
-    <Compile Include="Config\BackgroundConfig.cs" />
-    <Compile Include="Config\GameConfig.cs" />
     <Compile Include="FrenziedGame.cs" />
     <Compile Include="GamePlay\Implementations\BlockyMode\BlockColors.cs" />
     <Compile Include="GamePlay\Implementations\BlockyMode\BlockContainer.cs" />
@@ -99,16 +97,17 @@
     <Compile Include="GamePlay\ScoreManager.cs" />
     <Compile Include="Graphics\Drawing\BasicShapes.cs" />
     <Compile Include="Graphics\Drawing\PrimitiveBatch.cs" />
-    <Compile Include="Graphics\Effects\Metaball.cs" />
-    <Compile Include="Graphics\GraphicsManager.cs" />
     <Compile Include="Input\Cursor.cs" />
     <Compile Include="Input\InputState.cs" />
     <Compile Include="Input\PlayerIndexEventArgs.cs" />
     <Compile Include="Menu\MenuEntry.cs" />
+    <Compile Include="Platforms\Config\DebuggerConfig.cs" />
+    <Compile Include="Platforms\Config\GraphicsConfig.cs" />
+    <Compile Include="Platforms\Config\InputConfig.cs" />
+    <Compile Include="Platforms\Config\PlatformConfig.cs" />
+    <Compile Include="Platforms\Config\ScreenConfig.cs" />
     <Compile Include="Platforms\Frameworks.cs" />
     <Compile Include="Platforms\GraphicsAPI.cs" />
-    <Compile Include="Platforms\GraphicsConfig.cs" />
-    <Compile Include="Platforms\PlatformConfig.cs" />
     <Compile Include="Platforms\PlatformHandler.cs" />
     <Compile Include="Platforms\PlatformHelper.cs" />
     <Compile Include="Platforms\PlatformManager.cs" />
@@ -125,10 +124,9 @@
     <Compile Include="Screens\Implementations\GameplayScreen.cs" />
     <Compile Include="Screens\Implementations\IntroScreen.cs" />
     <Compile Include="Screens\Implementations\LoadingScreen.cs" />
-    <Compile Include="Screens\Implementations\MainMenuScreen.cs" />
+    <Compile Include="Screens\Implementations\MainScreen.cs" />
     <Compile Include="Screens\Implementations\MenuScreen.cs" />
     <Compile Include="Screens\Implementations\MessageBoxScreen.cs" />
-    <Compile Include="Screens\Implementations\MetaballBGScreen.cs" />
     <Compile Include="Screens\Implementations\OptionsMenuScreen.cs" />
     <Compile Include="Screens\Implementations\PauseMenuScreen.cs" />
     <Compile Include="Screens\Menu\Button.cs" />

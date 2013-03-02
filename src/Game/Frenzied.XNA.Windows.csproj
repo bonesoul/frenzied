@@ -105,8 +105,9 @@
     <Compile Include="GamePlay\ScoreManager.cs" />
     <Compile Include="Graphics\Drawing\BasicShapes.cs" />
     <Compile Include="Graphics\Drawing\PrimitiveBatch.cs" />
-    <Compile Include="Graphics\GraphicsManager.cs" />
     <Compile Include="Input\Cursor.cs" />
+    <Compile Include="Platforms\Config\InputConfig.cs" />
+    <Compile Include="Platforms\Config\ScreenConfig.cs" />
     <Compile Include="Platforms\Frameworks.cs" />
     <Compile Include="Platforms\GraphicsAPI.cs" />
     <Compile Include="Platforms\Config\GraphicsConfig.cs" />

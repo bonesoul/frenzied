@@ -5,24 +5,13 @@
  * Frenzied Gam or its components/sources can not be copied and/or distributed without the express permission of Int6 Studios.
  */
 
+using Microsoft.Xna.Framework;
+
 namespace Frenzied.Platforms.Config
 {
     public class GraphicsConfig
     {
-        /// <summary>
-        /// Should we set a custom resolution?
-        /// </summary>
-        public bool CustomResolutionEnabled { get; set; }
 
-        /// <summary>
-        /// Screen width.
-        /// </summary>
-        public int Width { get; set; }
-
-        /// <summary>
-        /// Screen height.
-        /// </summary>
-        public int Height { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to use fixed time steps.
@@ -34,11 +23,7 @@ namespace Frenzied.Platforms.Config
         /// </summary>
         public bool IsVsyncEnabled { get; set; }
 
-        /// <summary>
-        /// Is full screen enabled?
-        /// </summary>
-        public bool IsFullScreen { get; set; }
-
+        // Is post-processing enabled?
         public bool PostprocessEnabled { get; set; }
 
         /// <summary>
@@ -51,10 +36,7 @@ namespace Frenzied.Platforms.Config
         /// </summary>
         public GraphicsConfig()
         {
-            this.CustomResolutionEnabled = true;
-            this.Width = 1024;
-            this.Height = 768;
-            this.IsFullScreen = false;
+            // set defaults.
             this.IsFixedTimeStep = false;
             this.IsVsyncEnabled = false;
             this.PostprocessEnabled = true;

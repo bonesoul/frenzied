@@ -10,12 +10,23 @@ namespace Frenzied.Platforms.Config
     public class PlatformConfig
     {
         /// <summary>
-        /// Gets or sets if mouse is visible for the platform.
+        /// Screen config.
         /// </summary>
-        public bool IsMouseVisible { get; set; }
+        public ScreenConfig Screen { get; private set; }
 
+        /// <summary>
+        /// Graphics config.
+        /// </summary>
         public GraphicsConfig Graphics { get; private set; }
 
+        /// <summary>
+        /// Input config.
+        /// </summary>
+        public InputConfig Input { get; private set; }
+
+        /// <summary>
+        /// Debugger config.
+        /// </summary>
         public DebuggerConfig Debugger { get; private set; }
 
         /// <summary>
@@ -24,11 +35,10 @@ namespace Frenzied.Platforms.Config
         public PlatformConfig()
         {
             // init. sub-configs.
+            this.Screen = new ScreenConfig();
             this.Graphics = new GraphicsConfig();
+            this.Input = new InputConfig();
             this.Debugger = new DebuggerConfig();
-
-            // set the defaults.
-            this.IsMouseVisible = false;
         }
     }
 }

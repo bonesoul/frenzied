@@ -31,21 +31,24 @@ namespace Frenzied.Platforms
             this.GraphicsDeviceManager = graphicsDeviceManager;
 
             // set custom resolution if required
-            if (this.Config.Graphics.CustomResolutionEnabled)
+            if (this.Config.Screen.Width != 0 && this.Config.Screen.Height != 0)
             {
-                this.GraphicsDeviceManager.PreferredBackBufferWidth = this.Config.Graphics.Width;
-                this.GraphicsDeviceManager.PreferredBackBufferHeight = this.Config.Graphics.Height;
+                this.GraphicsDeviceManager.PreferredBackBufferWidth = this.Config.Screen.Width;
+                this.GraphicsDeviceManager.PreferredBackBufferHeight = this.Config.Screen.Height;
             }
 
             // set full screen mode.
-            this.GraphicsDeviceManager.IsFullScreen = PlatformManager.Handler.Config.Graphics.IsFullScreen;
+            this.GraphicsDeviceManager.IsFullScreen = this.Config.Screen.IsFullScreen;
 
             // set vsync.
-            this.Game.IsFixedTimeStep = PlatformManager.Handler.Config.Graphics.IsFixedTimeStep;
-            this.GraphicsDeviceManager.SynchronizeWithVerticalRetrace = PlatformManager.Handler.Config.Graphics.IsVsyncEnabled;
+            this.Game.IsFixedTimeStep = this.Config.Graphics.IsFixedTimeStep;
+            this.GraphicsDeviceManager.SynchronizeWithVerticalRetrace = this.Config.Graphics.IsVsyncEnabled;
 
             // set mouse mode.
-            this.Game.IsMouseVisible = PlatformManager.Handler.Config.IsMouseVisible;
+            this.Game.IsMouseVisible = this.Config.Input.IsMouseVisible;
+
+            // set orientation.
+            this.GraphicsDeviceManager.SupportedOrientations = this.Config.Screen.SupportedOrientations;
 
             this.Initialize();
 

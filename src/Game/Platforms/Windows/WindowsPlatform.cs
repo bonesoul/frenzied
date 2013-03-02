@@ -15,20 +15,26 @@ namespace Frenzied.Platforms.Windows
         public WindowsPlatform()
         {
             this.Config = new PlatformConfig
-                {
-                    IsMouseVisible = true,
-                    Graphics =
+                    {
+                        Screen =
                         {
                             IsFullScreen = false,
-                            CustomResolutionEnabled = true,
                             Width = 1680,
-                            Height = 1050,                            
+                            Height = 1050,
+                        },
+                        Input =
+                        {
+                            IsMouseVisible = true,
+                        },
+                        Graphics =
+                        {
+
                             IsFixedTimeStep = false,
                             IsVsyncEnabled = false,
                             PostprocessEnabled = true,
                             ExtendedEffects = true,
                         },
-                };
+                    };
         }
 
         public override void PlatformEntrance()

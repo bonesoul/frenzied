@@ -59,9 +59,6 @@ namespace Frenzied
             var assetManager = new AssetManager(this);
             this.Components.Add(assetManager);
 
-            var graphicsManager = new GraphicsManager(this.GraphicsDeviceManager, this); // start the screen manager.
-            graphicsManager.ToggleVerticalSync();
-
             // create the screen manager
             this._screenManager = new ScreenManager(this);
             Components.Add(_screenManager);
@@ -80,7 +77,7 @@ namespace Frenzied
             var audioManager = new AudioManager(this);
             this.Components.Add(audioManager);
 
-            if (PlatformManager.Handler.Config.IsMouseVisible)
+            if (PlatformManager.Handler.Config.Input.IsMouseVisible)
             {
                 var cursor = new Cursor(this);
                 this.Components.Add(cursor);

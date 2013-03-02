@@ -107,10 +107,13 @@ namespace Frenzied.Screens.Implementations
             this._buttons["Youtube"].Selected += ButtonYoutube_Selected;
 
             // load contents for post-process effects
-            if (PlatformManager.Handler.Config.Graphics.ExtendedEffects)
-                this._sketchEffect = new SketchEffect(ScreenManager.Game, ScreenManager.SpriteBatch);
-            else 
-                this._noiseEffect=new NoiseEffect(ScreenManager.Game, ScreenManager.SpriteBatch);
+            if (PlatformManager.Handler.Config.Graphics.PostprocessEnabled)
+            {
+                if (PlatformManager.Handler.Config.Graphics.ExtendedEffects)
+                    this._sketchEffect = new SketchEffect(ScreenManager.Game, ScreenManager.SpriteBatch);
+                else
+                    this._noiseEffect = new NoiseEffect(ScreenManager.Game, ScreenManager.SpriteBatch);
+            }
 
             // Create custom rendertarget for the scene.
             _scene = new RenderTarget2D(ScreenManager.GraphicsDevice, this._viewport.Width, this._viewport.Height);
@@ -200,7 +203,7 @@ namespace Frenzied.Screens.Implementations
 
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
-            if (PlatformManager.Handler.Config.Graphics.ExtendedEffects)
+            if (PlatformManager.Handler.Config.Graphics.PostprocessEnabled && PlatformManager.Handler.Config.Graphics.ExtendedEffects)
                 this._sketchEffect.UpdateJitter(gameTime);
 
             // Pulsate the game-logo.

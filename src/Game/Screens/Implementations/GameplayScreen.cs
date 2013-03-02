@@ -67,10 +67,13 @@ namespace Frenzied.Screens.Implementations
             this._viewport = ScreenManager.GraphicsDevice.Viewport;
 
             // load contents for post-process effects
-            if (PlatformManager.Handler.Config.Graphics.ExtendedEffects)
-                this._sketchEffect = new SketchEffect(ScreenManager.Game, ScreenManager.SpriteBatch);
-            else
-                this._noiseEffect = new NoiseEffect(ScreenManager.Game, ScreenManager.SpriteBatch);
+            if (PlatformManager.Handler.Config.Graphics.PostprocessEnabled)
+            {
+                if (PlatformManager.Handler.Config.Graphics.ExtendedEffects)
+                    this._sketchEffect = new SketchEffect(ScreenManager.Game, ScreenManager.SpriteBatch);
+                else
+                    this._noiseEffect = new NoiseEffect(ScreenManager.Game, ScreenManager.SpriteBatch);
+            }
 
             // Create custom rendertarget for the scene.
             _scene = new RenderTarget2D(ScreenManager.GraphicsDevice, this._viewport.Width, this._viewport.Height);
@@ -117,7 +120,7 @@ namespace Frenzied.Screens.Implementations
         /// </summary>
         public override void Update(GameTime gameTime, bool otherScreenHasFocus, bool coveredByOtherScreen)
         {
-            if (PlatformManager.Handler.Config.Graphics.ExtendedEffects)
+            if (PlatformManager.Handler.Config.Graphics.PostprocessEnabled && PlatformManager.Handler.Config.Graphics.ExtendedEffects)
                 this._sketchEffect.UpdateJitter(gameTime);
 
             this._gameMode.Update(gameTime);
@@ -140,8 +143,8 @@ namespace Frenzied.Screens.Implementations
         public override void Draw(GameTime gameTime)
         {
             // create a render target for the scene which will be later using with post process effect.
-            if (PlatformManager.Handler.Config.Graphics.ExtendedEffects)
-                this._sketchEffect.UpdateJitter(gameTime);
+            if (PlatformManager.Handler.Config.Graphics.PostprocessEnabled)
+                FrenziedGame.Instance.GraphicsDevice.SetRenderTarget(_scene);
 
             this.ScreenManager.SpriteBatch.Begin();
 
