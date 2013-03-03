@@ -16,7 +16,7 @@
     <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
+    <OutputPath>..\..\bin\debug\MacOS\</OutputPath>
     <DefineConstants>DEBUG; MACOS; MONOGAME; DESKTOP;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -32,7 +32,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>none</DebugType>
     <Optimize>True</Optimize>
-    <OutputPath>bin\Release</OutputPath>
+    <OutputPath>..\..\bin\debug\MacOS\</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseSGen>False</UseSGen>
@@ -49,7 +49,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|x86' ">
     <DebugType>none</DebugType>
     <Optimize>True</Optimize>
-    <OutputPath>bin\x86\AppStore</OutputPath>
+    <OutputPath>..\..\bin\debug\MacOS\</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <UseSGen>False</UseSGen>
@@ -72,25 +72,23 @@
     <Reference Include="MonoMac">
       <HintPath>..\dep\monogame\macos\MonoMac.dll</HintPath>
     </Reference>
-    <Reference Include="Lidgren.Network">
-      <HintPath>..\dep\monogame\macos\Lidgren.Network.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoGame.Framework">
-      <HintPath>..\dep\monogame\macos\MonoGame.Framework.dll</HintPath>
-    </Reference>
     <Reference Include="Tao.Sdl">
-      <HintPath>..\dep\monogame\macos\Tao.Sdl.dll</HintPath>
+      <HintPath>..\..\dep\monogame\macos\Tao.Sdl.dll</HintPath>
     </Reference>
     <Reference Include="GamepadBridge">
       <HintPath>..\..\dep\monogame\macos\GamepadBridge.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework">
+      <HintPath>..\..\dep\monogame\macos\MonoGame.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Lidgren.Network">
+      <HintPath>..\..\dep\monogame\macos\Lidgren.Network.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Assets\AssetManager.cs" />
     <Compile Include="Audio\AudioManager.cs" />
-    <Compile Include="Config\BackgroundConfig.cs" />
-    <Compile Include="Config\GameConfig.cs" />
     <Compile Include="GamePlay\ScoreManager.cs" />
     <Compile Include="GamePlay\Implementations\BlockyMode\BlockColors.cs" />
     <Compile Include="GamePlay\Implementations\BlockyMode\BlockContainer.cs" />
@@ -114,17 +112,13 @@
     <Compile Include="GamePlay\Modes\ShapeContainer.cs" />
     <Compile Include="GamePlay\Modes\ShapeGenerator.cs" />
     <Compile Include="GamePlay\Modes\ShapeLocations.cs" />
-    <Compile Include="Graphics\GraphicsManager.cs" />
     <Compile Include="Graphics\Drawing\BasicShapes.cs" />
     <Compile Include="Graphics\Drawing\PrimitiveBatch.cs" />
-    <Compile Include="Graphics\Effects\Metaball.cs" />
     <Compile Include="Input\Cursor.cs" />
     <Compile Include="Input\InputState.cs" />
     <Compile Include="Input\PlayerIndexEventArgs.cs" />
     <Compile Include="Menu\MenuEntry.cs" />
-    <Compile Include="Platforms\GameFrameworks.cs" />
     <Compile Include="Platforms\GraphicsAPI.cs" />
-    <Compile Include="Platforms\PlatformConfig.cs" />
     <Compile Include="Platforms\PlatformHandler.cs" />
     <Compile Include="Platforms\PlatformManager.cs" />
     <Compile Include="Platforms\Platforms.cs" />
@@ -132,10 +126,8 @@
     <Compile Include="Screens\GameScreen.cs" />
     <Compile Include="Screens\ScreenManager.cs" />
     <Compile Include="Screens\Implementations\AboutScreen.cs" />
-    <Compile Include="Screens\Implementations\BackgroundScreen.cs" />
     <Compile Include="Screens\Implementations\GameplayScreen.cs" />
     <Compile Include="Screens\Implementations\LoadingScreen.cs" />
-    <Compile Include="Screens\Implementations\MainMenuScreen.cs" />
     <Compile Include="Screens\Implementations\MenuScreen.cs" />
     <Compile Include="Screens\Implementations\MessageBoxScreen.cs" />
     <Compile Include="Screens\Implementations\OptionsMenuScreen.cs" />
@@ -152,13 +144,31 @@
     <Compile Include="FrenziedGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Platforms\MacOS\MacOSPlatform.cs" />
+    <Compile Include="Platforms\Frameworks.cs" />
+    <Compile Include="Screens\Implementations\MainScreen.cs" />
+    <Compile Include="Screens\Menu\Button.cs" />
+    <Compile Include="Screens\Scenes\BackgroundScene.cs" />
+    <Compile Include="Platforms\Config\DebuggerConfig.cs" />
+    <Compile Include="Platforms\Config\GraphicsConfig.cs" />
+    <Compile Include="Platforms\Config\InputConfig.cs" />
+    <Compile Include="Platforms\Config\PlatformConfig.cs" />
+    <Compile Include="Platforms\Config\ScreenConfig.cs" />
+    <Compile Include="PostProcessing\PostprocessingEffect.cs" />
+    <Compile Include="PostProcessing\Effects\NoiseEffect.cs" />
+    <Compile Include="PostProcessing\Effects\SketchEffect.cs" />
+    <Compile Include="Platforms\PlatformHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Platforms\MacOS\Info.plist" />
+    <None Include="Info.plist" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Mono\MonoMac\v0.0\Mono.MonoMac.targets" />
   <ItemGroup>
     <Folder Include="Platforms\MacOS\" />
+    <Folder Include="Screens\Menu\" />
+    <Folder Include="Screens\Scenes\" />
+    <Folder Include="Platforms\Config\" />
+    <Folder Include="PostProcessing\" />
   </ItemGroup>
 </Project>

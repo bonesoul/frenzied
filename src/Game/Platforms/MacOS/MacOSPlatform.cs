@@ -9,17 +9,34 @@ using System;
 using Microsoft.Xna.Framework;
 using MonoMac.AppKit;
 using MonoMac.Foundation;
+using Frenzied.Platforms.Config;
 
 namespace Frenzied.Platforms.MacOS
 {
 	public class MacOSPlatform : PlatformHandler 
 	{
 		public MacOSPlatform()
-		{
-			this.PlatformConfig = new PlatformConfig()
+		{            
+			this.Config = new PlatformConfig
 			{
-				IsMouseVisible = true,
-				IsFixedTimeStep = false,
+				Screen =
+				{
+					IsFullScreen = false,
+					Width = 1280,
+					Height = 720,
+				},
+				Input =
+				{
+					IsMouseVisible = true,
+				},
+				Graphics =
+				{
+					
+					IsFixedTimeStep = false,
+					IsVsyncEnabled = false,
+					PostprocessEnabled = false,
+					ExtendedEffects = true,
+				},
 			};
 		}
 		
@@ -31,15 +48,6 @@ namespace Frenzied.Platforms.MacOS
 				NSApplication.SharedApplication.Delegate = new AppDelegate ();
 				NSApplication.Main (null);
 			}
-		}
-		
-		public override void Initialize(GraphicsDeviceManager graphicsDeviceManager)
-		{
-			this.GraphicsDeviceManager = graphicsDeviceManager;
-			
-			this.GraphicsDeviceManager.PreferredBackBufferWidth = 1280;
-			this.GraphicsDeviceManager.PreferredBackBufferHeight = 720;
-			this.GraphicsDeviceManager.ApplyChanges();
 		}
 	}
 
