@@ -169,11 +169,6 @@
     <Content Include="..\..\bin\debug\Desktop\Content\Music\Dragon Soul.wma">
       <Link>Content\Music\Dragon Soul.wma</Link>
     </Content>
-    <Content Include="Content\Sounds\Blocks\0.xnb" />
-    <Content Include="Content\Sounds\Blocks\1.xnb" />
-    <Content Include="Content\Sounds\Blocks\2.xnb" />
-    <Content Include="Content\Sounds\Blocks\3.xnb" />
-    <Content Include="Content\Sounds\Blocks\4.xnb" />
     <Content Include="..\..\bin\debug\Desktop\Content\Sounds\Explode\0.xnb">
       <Link>Content\Sounds\Explode\0.xnb</Link>
     </Content>
@@ -338,6 +333,21 @@
     </Content>
     <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Noise.xnb">
       <Link>Content\Textures\Noise.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Sounds\Blocks\0.xnb">
+      <Link>Content\Sounds\Blocks\0.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Sounds\Blocks\1.xnb">
+      <Link>Content\Sounds\Blocks\1.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Sounds\Blocks\2.xnb">
+      <Link>Content\Sounds\Blocks\2.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Sounds\Blocks\3.xnb">
+      <Link>Content\Sounds\Blocks\3.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Sounds\Blocks\4.xnb">
+      <Link>Content\Sounds\Blocks\4.xnb</Link>
     </Content>
     <None Include="Info.plist">
       <SubType>Designer</SubType>

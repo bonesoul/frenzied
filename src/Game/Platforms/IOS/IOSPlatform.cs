@@ -32,8 +32,8 @@ namespace Frenzied.Platforms.IOS
                 {
                     IsFixedTimeStep = false,
                     IsVsyncEnabled = false,
-                    PostprocessEnabled = false,
-                    ExtendedEffects = true,
+                    PostprocessEnabled = true,
+                    ExtendedEffects = false,
                 },
             };
 		}
