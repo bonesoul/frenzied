@@ -6,6 +6,7 @@
  */
 
 using System;
+using Frenzied.Platforms.Config;
 using Microsoft.Xna.Framework;
 
 namespace Frenzied.Platforms.IOS
@@ -14,11 +15,27 @@ namespace Frenzied.Platforms.IOS
 	{
 		public IOSPlatform()
 		{
-			this.PlatformConfig = new PlatformConfig()
-			{
-				IsMouseVisible = false,
-				IsFixedTimeStep = false,
-			};
+            this.Config = new PlatformConfig
+            {
+                Screen =
+                {
+                    Width = 480,
+                    Height = 800,
+                    IsFullScreen = true,
+                    SupportedOrientations = DisplayOrientation.FaceDown | DisplayOrientation.FaceUp,
+                },
+                Input =
+                {
+                    IsMouseVisible = false,
+                },
+                Graphics =
+                {
+                    IsFixedTimeStep = false,
+                    IsVsyncEnabled = false,
+                    PostprocessEnabled = false,
+                    ExtendedEffects = true,
+                },
+            };
 		}
 		
 		public override void PlatformEntrance()
@@ -27,15 +44,6 @@ namespace Frenzied.Platforms.IOS
 
 			game = new FrenziedGame ();
 			game.Run ();
-		}
-		
-		public override void Initialize(GraphicsDeviceManager graphicsDeviceManager)
-		{
-			this.GraphicsDeviceManager = graphicsDeviceManager;
-			
-			this.GraphicsDeviceManager.PreferredBackBufferWidth = 1280;
-			this.GraphicsDeviceManager.PreferredBackBufferHeight = 720;
-			this.GraphicsDeviceManager.ApplyChanges();
 		}
 	}
 }

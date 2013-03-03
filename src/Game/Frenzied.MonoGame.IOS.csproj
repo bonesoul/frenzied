@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -16,7 +16,7 @@
     <DebugSymbols>True</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>False</Optimize>
-    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <OutputPath>..\..\bin\debug\IOS\</OutputPath>
     <DefineConstants>DEBUG; MONOGAME; IOS;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -91,12 +91,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Platforms\Config\DebuggerConfig.cs" />
+    <Compile Include="Platforms\Config\GraphicsConfig.cs" />
+    <Compile Include="Platforms\Config\InputConfig.cs" />
+    <Compile Include="Platforms\Config\PlatformConfig.cs" />
+    <Compile Include="Platforms\Config\ScreenConfig.cs" />
+    <Compile Include="Platforms\Frameworks.cs" />
+    <Compile Include="Platforms\PlatformHelper.cs" />
+    <Compile Include="PostProcessing\Effects\NoiseEffect.cs" />
+    <Compile Include="PostProcessing\Effects\SketchEffect.cs" />
+    <Compile Include="PostProcessing\PostprocessingEffect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FrenziedGame.cs" />
     <Compile Include="Assets\AssetManager.cs" />
     <Compile Include="Audio\AudioManager.cs" />
-    <Compile Include="Config\BackgroundConfig.cs" />
-    <Compile Include="Config\GameConfig.cs" />
     <Compile Include="GamePlay\ScoreManager.cs" />
     <Compile Include="GamePlay\Implementations\BlockyMode\BlockColors.cs" />
     <Compile Include="GamePlay\Implementations\BlockyMode\BlockContainer.cs" />
@@ -120,29 +128,27 @@
     <Compile Include="GamePlay\Modes\ShapeContainer.cs" />
     <Compile Include="GamePlay\Modes\ShapeGenerator.cs" />
     <Compile Include="GamePlay\Modes\ShapeLocations.cs" />
-    <Compile Include="Graphics\GraphicsManager.cs" />
     <Compile Include="Graphics\Drawing\BasicShapes.cs" />
     <Compile Include="Graphics\Drawing\PrimitiveBatch.cs" />
-    <Compile Include="Graphics\Effects\Metaball.cs" />
     <Compile Include="Input\Cursor.cs" />
     <Compile Include="Input\InputState.cs" />
     <Compile Include="Input\PlayerIndexEventArgs.cs" />
     <Compile Include="Menu\MenuEntry.cs" />
-    <Compile Include="Platforms\GameFrameworks.cs" />
     <Compile Include="Platforms\GraphicsAPI.cs" />
-    <Compile Include="Platforms\PlatformConfig.cs" />
     <Compile Include="Platforms\PlatformHandler.cs" />
     <Compile Include="Platforms\PlatformManager.cs" />
     <Compile Include="Platforms\Platforms.cs" />
     <Compile Include="Platforms\VersionInfo.cs" />
     <Compile Include="Platforms\IOS\Main.cs" />
     <Compile Include="Screens\GameScreen.cs" />
+    <Compile Include="Screens\Implementations\IntroScreen.cs" />
+    <Compile Include="Screens\Implementations\MainScreen.cs" />
+    <Compile Include="Screens\Menu\Button.cs" />
+    <Compile Include="Screens\Scenes\BackgroundScene.cs" />
     <Compile Include="Screens\ScreenManager.cs" />
     <Compile Include="Screens\Implementations\AboutScreen.cs" />
-    <Compile Include="Screens\Implementations\BackgroundScreen.cs" />
     <Compile Include="Screens\Implementations\GameplayScreen.cs" />
     <Compile Include="Screens\Implementations\LoadingScreen.cs" />
-    <Compile Include="Screens\Implementations\MainMenuScreen.cs" />
     <Compile Include="Screens\Implementations\MenuScreen.cs" />
     <Compile Include="Screens\Implementations\MessageBoxScreen.cs" />
     <Compile Include="Screens\Implementations\OptionsMenuScreen.cs" />
@@ -158,11 +164,184 @@
     <Compile Include="Utils\Services\ServiceHelper.cs" />
     <Compile Include="Platforms\IOS\IOSPlatform.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <ItemGroup>
-    <None Include="Info.plist" />
+    <Content Include="..\..\bin\debug\Desktop\Content\Music\Dragon Soul.wma">
+      <Link>Content\Music\Dragon Soul.wma</Link>
+    </Content>
+    <Content Include="Content\Sounds\Blocks\0.xnb" />
+    <Content Include="Content\Sounds\Blocks\1.xnb" />
+    <Content Include="Content\Sounds\Blocks\2.xnb" />
+    <Content Include="Content\Sounds\Blocks\3.xnb" />
+    <Content Include="Content\Sounds\Blocks\4.xnb" />
+    <Content Include="..\..\bin\debug\Desktop\Content\Sounds\Explode\0.xnb">
+      <Link>Content\Sounds\Explode\0.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Sounds\Timeout\0.xnb">
+      <Link>Content\Sounds\Timeout\0.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Music\Dragon Soul.xnb">
+      <Link>Content\Music\Dragon Soul.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Effects\PostprocessEffect.xnb">
+      <Link>Content\Effects\PostprocessEffect.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\Desktop\Content\Effects\SketchTexture.xnb">
+      <Link>Content\Effects\SketchTexture.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Fonts\GameFont.xnb">
+      <Link>Content\Fonts\GameFont.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Fonts\GoodDog.xnb">
+      <Link>Content\Fonts\GoodDog.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Fonts\MenuFont.xnb">
+      <Link>Content\Fonts\MenuFont.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Fonts\Verdana.xnb">
+      <Link>Content\Fonts\Verdana.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Blocks\BlockContainer.xnb">
+      <Link>Content\Textures\Blocks\BlockContainer.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Blocks\BlockProgressBar.xnb">
+      <Link>Content\Textures\Blocks\BlockProgressBar.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Blocks\BlueBlock.xnb">
+      <Link>Content\Textures\Blocks\BlueBlock.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Blocks\GreenBlock.xnb">
+      <Link>Content\Textures\Blocks\GreenBlock.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Blocks\OrangeBlock.xnb">
+      <Link>Content\Textures\Blocks\OrangeBlock.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Blocks\PurpleBlock.xnb">
+      <Link>Content\Textures\Blocks\PurpleBlock.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Common\game-logo.xnb">
+      <Link>Content\Textures\Common\game-logo.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Common\Intro.xnb">
+      <Link>Content\Textures\Common\Intro.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Common\Logo.xnb">
+      <Link>Content\Textures\Common\Logo.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Menu\Clouds\BlueCloud1.xnb">
+      <Link>Content\Textures\Menu\Clouds\BlueCloud1.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Menu\Clouds\BlueCloud2.xnb">
+      <Link>Content\Textures\Menu\Clouds\BlueCloud2.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Menu\Clouds\BlueCloud3.xnb">
+      <Link>Content\Textures\Menu\Clouds\BlueCloud3.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Menu\Clouds\BlueCloud4.xnb">
+      <Link>Content\Textures\Menu\Clouds\BlueCloud4.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Menu\Clouds\BlueCloud5.xnb">
+      <Link>Content\Textures\Menu\Clouds\BlueCloud5.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Menu\Clouds\YellowCloud1.xnb">
+      <Link>Content\Textures\Menu\Clouds\YellowCloud1.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Menu\Clouds\YellowCloud2.xnb">
+      <Link>Content\Textures\Menu\Clouds\YellowCloud2.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Menu\Clouds\YellowCloud3.xnb">
+      <Link>Content\Textures\Menu\Clouds\YellowCloud3.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Menu\Clouds\YellowCloud4.xnb">
+      <Link>Content\Textures\Menu\Clouds\YellowCloud4.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Menu\Clouds\YellowCloud5.xnb">
+      <Link>Content\Textures\Menu\Clouds\YellowCloud5.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Menu\Social\Facebook.xnb">
+      <Link>Content\Textures\Menu\Social\Facebook.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Menu\Social\Reddit.xnb">
+      <Link>Content\Textures\Menu\Social\Reddit.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Menu\Social\RSS.xnb">
+      <Link>Content\Textures\Menu\Social\RSS.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Menu\Social\Twitter.xnb">
+      <Link>Content\Textures\Menu\Social\Twitter.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Menu\Social\Youtube.xnb">
+      <Link>Content\Textures\Menu\Social\Youtube.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Menu\AutumnBackground.xnb">
+      <Link>Content\Textures\Menu\AutumnBackground.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Menu\AutumnMeadow.xnb">
+      <Link>Content\Textures\Menu\AutumnMeadow.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Menu\Background.xnb">
+      <Link>Content\Textures\Menu\Background.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Menu\BlockMode.xnb">
+      <Link>Content\Textures\Menu\BlockMode.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Menu\Board.xnb">
+      <Link>Content\Textures\Menu\Board.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Menu\Credits.xnb">
+      <Link>Content\Textures\Menu\Credits.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Menu\Kids.xnb">
+      <Link>Content\Textures\Menu\Kids.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Menu\Meadow.xnb">
+      <Link>Content\Textures\Menu\Meadow.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Menu\PieMode.xnb">
+      <Link>Content\Textures\Menu\PieMode.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Menu\Play.xnb">
+      <Link>Content\Textures\Menu\Play.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Menu\Settings.xnb">
+      <Link>Content\Textures\Menu\Settings.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Pies\Blue.xnb">
+      <Link>Content\Textures\Pies\Blue.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Pies\Brown.xnb">
+      <Link>Content\Textures\Pies\Brown.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Pies\Container.xnb">
+      <Link>Content\Textures\Pies\Container.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Pies\Green.xnb">
+      <Link>Content\Textures\Pies\Green.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Pies\Orange.xnb">
+      <Link>Content\Textures\Pies\Orange.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Pies\Purple.xnb">
+      <Link>Content\Textures\Pies\Purple.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Pies\Red.xnb">
+      <Link>Content\Textures\Pies\Red.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Blank.xnb">
+      <Link>Content\Textures\Blank.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\cursor.xnb">
+      <Link>Content\Textures\cursor.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Gradient.xnb">
+      <Link>Content\Textures\Gradient.xnb</Link>
+    </Content>
+    <Content Include="..\..\bin\debug\IOS\Content.IOS\Textures\Noise.xnb">
+      <Link>Content\Textures\Noise.xnb</Link>
+    </Content>
+    <None Include="Info.plist">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

@@ -27,8 +27,8 @@ namespace Frenzied.Audio
 
         public override void Initialize()
         {
-            this._backgroundSong = Game.Content.Load<Song>(@"Music/Dragon Soul");
-            this.PlayBackroundSong();
+            //this._backgroundSong = Game.Content.Load<Song>(@"Music/Dragon Soul");
+            //this.PlayBackroundSong();
 
             base.Initialize();
         }
