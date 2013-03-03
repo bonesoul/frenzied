@@ -1,7 +1,7 @@
 Frenzied
 ========
 
-![Screenshot](http://www.voxeliq.org/wp-content/uploads/2013/01/frenzied.png)
+![Screenshot](http://www.int6.org/wp-content/uploads/2013/02/monogame-platform-frenzied.jpg)
 
 Frenzied is a puzzle game with shape blasting fun!
 
